@@ -703,37 +703,4 @@ function escHtml(str) {
 </script>
 </body>
 </html>
-/*
-  ══════════════════════════════════════════════════════
-  REGRAS DO FIREBASE REALTIME DATABASE
-  Cole isso em: Firebase Console → Realtime Database → Regras
-  ══════════════════════════════════════════════════════
 
-  {
-    "rules": {
-      "messages": {
-        ".read": "auth != null",
-        ".write": "auth != null",
-        "$msgId": {
-          ".validate": "newData.hasChildren(['uid','name','text','timestamp']) && newData.child('text').val().length <= 500"
-        }
-      },
-      "users": {
-        "$uid": {
-          ".read": "auth != null",
-          ".write": "auth != null && auth.uid == $uid"
-        }
-      },
-      "bans": {
-        "$uid": {
-          ".read": "auth != null",
-          ".write": "auth != null && auth.uid == $uid"
-        }
-      },
-      "reports": {
-        ".read": false,
-        ".write": "auth != null"
-      }
-    }
-  }
-*/
