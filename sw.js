@@ -1,12 +1,15 @@
-// EnfermaStudy Service Worker v2
-// Coloque este arquivo na mesma pasta que o EnfermaStudy_PWA.html
-const CACHE = 'enfermastudy-v2';
+// EnfermaStudy Service Worker v3
+// Coloque este arquivo na mesma pasta que index.html e chat.html
+const CACHE = 'enfermastudy-v3';
 
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE).then(c =>
-      c.addAll(['./', './EnfermaStudy_PWA.html', './index.html'])
-       .catch(() => {}) // ignora erros de arquivos inexistentes
+      c.addAll([
+        './',
+        './index.html',
+        './chat.html'
+      ]).catch(() => {}) // ignora erros de arquivos inexistentes
     )
   );
   self.skipWaiting();
@@ -23,9 +26,24 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
-  // YouTube e Google APIs: sempre da rede
-  if (url.hostname.includes('youtube') || url.hostname.includes('googleapis')) return;
-  // Tudo mais: cache-first
+
+  // ── Sempre da REDE (nunca cachear) ──────────────────────────────
+  const sempreRede = [
+    'youtube.com',
+    'youtu.be',
+    'ytimg.com',            // thumbnails YouTube
+    'googleapis.com',       // Google APIs
+    'gstatic.com',          // Firebase SDK CDN
+    'firebaseio.com',       // Realtime Database
+    'firebaseapp.com',      // Firebase Auth
+    'firebase.google.com',  // Firebase console
+    'accounts.google.com',  // Login Google
+    'sketchfab.com',        // Modelos 3D
+    'zygotebody.com',       // Atlas 3D
+  ];
+  if (sempreRede.some(d => url.hostname.includes(d))) return;
+
+  // ── Cache-first para tudo mais ───────────────────────────────────
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached;
@@ -34,7 +52,7 @@ self.addEventListener('fetch', e => {
           caches.open(CACHE).then(c => c.put(e.request, res.clone()));
         }
         return res;
-      }).catch(() => cached || new Response('Offline', {status: 503}));
+      }).catch(() => cached || new Response('Offline', { status: 503 }));
     })
   );
 });
