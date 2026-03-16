@@ -135,6 +135,33 @@ tr:hover td { background: var(--teal-light); }
 .video-label { padding: 8px 14px; background: rgba(0,0,0,0.7); color: white; font-size: 0.78rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
 .video-label span { color: #ef5350; font-size: 16px; }
 .exercise-card { border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 14px; overflow: hidden; }
+/* ── Ferramentas CSS ── */
+.calc-input { width:100%;border:1.5px solid #e0e0e0;border-radius:10px;padding:9px 12px;font-family:inherit;font-size:0.88rem;outline:none;transition:border 0.2s; }
+.calc-input:focus { border-color:var(--teal); }
+.btn-calc { background:var(--teal);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-family:inherit;font-size:0.88rem;font-weight:700;cursor:pointer;transition:background 0.15s;margin-top:4px; }
+.btn-calc:hover { background:var(--teal-dark); }
+.btn-primary-sm { background:var(--teal);color:#fff;border:none;border-radius:12px;padding:12px 28px;font-family:inherit;font-size:0.9rem;font-weight:800;cursor:pointer;transition:background 0.15s; }
+.btn-primary-sm:hover { background:var(--teal-dark); }
+.calc-result { margin-top:10px;padding:12px 16px;background:var(--teal-light);border-radius:10px;font-size:0.88rem;line-height:1.7;border-left:4px solid var(--teal); }
+.calc-result strong { color:var(--teal-dark); }
+.scale-btns { display:flex;flex-wrap:wrap;gap:6px;margin-top:4px; }
+.scale-btns button { padding:6px 10px;border:1.5px solid #e0e0e0;border-radius:8px;background:#fff;cursor:pointer;font-size:0.78rem;font-weight:600;transition:all 0.15s;font-family:inherit; }
+.scale-btns button:hover,.scale-btns button.active { background:var(--teal);color:#fff;border-color:var(--teal); }
+.scale-btns-h { display:flex;flex-wrap:wrap;gap:5px; }
+.scale-btns-h button { padding:5px 9px;border:1.5px solid #e0e0e0;border-radius:7px;background:#fff;cursor:pointer;font-size:0.75rem;font-weight:600;font-family:inherit;transition:all 0.15s; }
+.scale-btns-h button:hover,.scale-btns-h button.active { background:var(--teal);color:#fff;border-color:var(--teal); }
+.apg { padding:4px 7px;border:1px solid #ddd;border-radius:6px;background:#fff;cursor:pointer;font-size:0.73rem;font-family:inherit;transition:all 0.15s; }
+.apg:hover,.apg.active { background:var(--teal);color:#fff;border-color:var(--teal); }
+.brd { padding:4px 7px;border:1px solid #ddd;border-radius:6px;background:#fff;cursor:pointer;font-size:0.72rem;font-family:inherit;transition:all 0.15s; }
+.brd:hover,.brd.active { background:var(--teal);color:#fff;border-color:var(--teal); }
+/* Simulado */
+.sim-opt { padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:10px;background:#fff;cursor:pointer;font-family:inherit;font-size:0.85rem;font-weight:600;text-align:left;transition:all 0.2s; }
+.sim-opt:hover { border-color:var(--teal);background:var(--teal-light); }
+.sim-opt.correct { background:#e8f5e9;border-color:#4caf50;color:#2e7d32; }
+.sim-opt.wrong { background:#ffebee;border-color:#ef5350;color:#b71c1c; }
+.sim-opt:disabled { cursor:default; }
+/* Bulário */
+.bul-row:hover { background:#f0faf9 !important; }
 .exercise-q { padding: 14px 16px; font-size: 0.9rem; font-weight: 700; background: #f8f9fa; display: flex; gap: 10px; align-items: flex-start; }
 .q-number { width: 28px; height: 28px; background: var(--teal); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
 .exercise-options { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
@@ -148,6 +175,8 @@ tr:hover td { background: var(--teal-light); }
 .answer-feedback.visible { display: block; }
 .answer-feedback.correct { background: var(--green-light); color: var(--green); font-weight: 600; border-left: 3px solid var(--green); }
 .answer-feedback.wrong { background: var(--red-light); color: var(--red); font-weight: 600; border-left: 3px solid var(--red); }
+.btn-reset-ex { display: flex; align-items: center; gap: 6px; margin: 8px 16px 14px; padding: 9px 18px; background: #e0f2f1; color: #00695c; border: 1.5px solid #80cbc4; border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 0.82rem; font-weight: 800; cursor: pointer; transition: background 0.15s; }
+.btn-reset-ex:hover { background: #b2dfdb; }
 .evolucao-card { background: #1a2332; color: #e8f4f8; border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
 .evolucao-header { background: var(--teal-dark); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
 .evolucao-header h4 { font-family: 'Playfair Display', serif; font-size: 1rem; color: white; }
@@ -286,6 +315,8 @@ footer { text-align: center; padding: 20px; font-size: 0.75rem; color: var(--tex
     <button class="tab-btn" onclick="showSection('exercicios',this)">📝 Exercícios</button>
     <button class="tab-btn" onclick="showSection('outros',this)">📚 Outros Temas</button>
     <button class="tab-btn" onclick="showSection('glossario',this)">🔤 Glossário</button>
+    <button class="tab-btn" onclick="showSection('ferramentas',this)">🔧 Ferramentas</button>
+    <button class="tab-btn" onclick="showSection('anatomia',this)">🧬 Anatomia 3D</button>
     <button class="tab-btn" onclick="showSection('pratica',this)">🎬 Na Prática</button>
     <button class="tab-btn" onclick="showSection('autor',this)">👤 Sobre o Autor</button>
   </nav>
@@ -1091,6 +1122,8 @@ footer { text-align: center; padding: 20px; font-size: 0.75rem; color: var(--tex
         </div>
       </div>
       <div class="info-box alert"><strong>🚨 Máximo 15 segundos contínuos!</strong>Risco de hipóxia, atelectasia e bradicardia vagal por estimulação traqueal.</div>
+      <div class="content-block"><h4>🎬 Vídeo: Traqueostomia — Cuidados e Limpeza</h4></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> 09 Cuidados Necessários na Limpeza de Traqueostomia</div><div id="yt-traqueo"></div></div>
     </div>
   </div>
 
@@ -1124,6 +1157,8 @@ footer { text-align: center; padding: 20px; font-size: 0.75rem; color: var(--tex
           <li>Trocar fraldas imediatamente após eliminações</li>
         </ul>
       </div>
+      <div class="content-block"><h4>🎬 Vídeo: Úlcera por Pressão</h4></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Lesões por Pressão — Patologia, Estágios e Escala de Braden</div><div id="yt-upp"></div></div>
     </div>
   </div>
 
@@ -2629,6 +2664,457 @@ Politraumatizado grave. Choque hipovolêmico hemorrágico (PA baixa, FC alta, TE
 </div><!-- /glossario -->
 
 <!-- SOBRE O AUTOR -->
+<!-- FERRAMENTAS -->
+<div id="ferramentas" class="section">
+<div class="info-box tip" style="margin-bottom:20px"><strong>🔧 Ferramentas Clínicas</strong> Calculadoras, escalas, bulário, bandejas e simulado — tudo offline, sem precisar de internet.</div>
+
+<!-- ① CALCULADORAS -->
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div class="card-icon" style="background:#e8f5e9;">🧮</div>
+    <div class="card-title"><h3>Calculadoras Clínicas</h3><div class="subtitle">Gotejamento · Dose/Peso · Diluição · IMC · APGAR · Glasgow · Braden</div></div>
+    <div class="toggle-arrow">▾</div>
+  </div>
+  <div class="card-body">
+
+    <!-- Gotejamento -->
+    <div class="content-block">
+      <h4>💧 Gotejamento de Soro</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0">
+        <div><label style="font-size:0.8rem;font-weight:700;display:block;margin-bottom:4px">Volume (mL)</label><input type="number" id="g_vol" placeholder="500" class="calc-input"></div>
+        <div><label style="font-size:0.8rem;font-weight:700;display:block;margin-bottom:4px">Tempo (horas)</label><input type="number" id="g_tempo" placeholder="4" class="calc-input"></div>
+      </div>
+      <button class="btn-calc" onclick="calcGotejamento()">Calcular</button>
+      <div id="r_gotejamento" class="calc-result" style="display:none"></div>
+    </div>
+
+    <!-- Dose por peso -->
+    <div class="content-block">
+      <h4>⚖️ Dose por Peso (mg/kg)</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0">
+        <div><label style="font-size:0.8rem;font-weight:700;display:block;margin-bottom:4px">Dose (mg/kg)</label><input type="number" id="d_dose" placeholder="0.1" step="0.01" class="calc-input"></div>
+        <div><label style="font-size:0.8rem;font-weight:700;display:block;margin-bottom:4px">Peso (kg)</label><input type="number" id="d_peso" placeholder="70" class="calc-input"></div>
+      </div>
+      <button class="btn-calc" onclick="calcDose()">Calcular</button>
+      <div id="r_dose" class="calc-result" style="display:none"></div>
+    </div>
+
+    <!-- Diluição -->
+    <div class="content-block">
+      <h4>🧪 Diluição de Medicamento</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0">
+        <div><label style="font-size:0.8rem;font-weight:700;display:block;margin-bottom:4px">Conc. disponível (mg/mL)</label><input type="number" id="dil_conc" placeholder="10" step="0.1" class="calc-input"></div>
+        <div><label style="font-size:0.8rem;font-weight:700;display:block;margin-bottom:4px">Dose prescrita (mg)</label><input type="number" id="dil_dose" placeholder="50" class="calc-input"></div>
+      </div>
+      <button class="btn-calc" onclick="calcDiluicao()">Calcular</button>
+      <div id="r_diluicao" class="calc-result" style="display:none"></div>
+    </div>
+
+    <!-- IMC -->
+    <div class="content-block">
+      <h4>📏 IMC do Paciente</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0">
+        <div><label style="font-size:0.8rem;font-weight:700;display:block;margin-bottom:4px">Peso (kg)</label><input type="number" id="imc_peso" placeholder="70" class="calc-input"></div>
+        <div><label style="font-size:0.8rem;font-weight:700;display:block;margin-bottom:4px">Altura (m)</label><input type="number" id="imc_alt" placeholder="1.70" step="0.01" class="calc-input"></div>
+      </div>
+      <button class="btn-calc" onclick="calcIMC()">Calcular</button>
+      <div id="r_imc" class="calc-result" style="display:none"></div>
+    </div>
+
+    <!-- Glasgow -->
+    <div class="content-block">
+      <h4>🧠 Escala de Glasgow</h4>
+      <div style="display:flex;flex-direction:column;gap:10px;margin:10px 0">
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;display:block;margin-bottom:4px">Abertura Ocular (O)</label>
+          <div class="scale-btns" id="g_O" data-val="0">
+            <button onclick="setScale('g_O',4)">4 — Espontânea</button>
+            <button onclick="setScale('g_O',3)">3 — À voz</button>
+            <button onclick="setScale('g_O',2)">2 — À dor</button>
+            <button onclick="setScale('g_O',1)">1 — Ausente</button>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;display:block;margin-bottom:4px">Resposta Verbal (V)</label>
+          <div class="scale-btns" id="g_V" data-val="0">
+            <button onclick="setScale('g_V',5)">5 — Orientado</button>
+            <button onclick="setScale('g_V',4)">4 — Confuso</button>
+            <button onclick="setScale('g_V',3)">3 — Inapropriado</button>
+            <button onclick="setScale('g_V',2)">2 — Sons incompreensíveis</button>
+            <button onclick="setScale('g_V',1)">1 — Ausente</button>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;display:block;margin-bottom:4px">Resposta Motora (M)</label>
+          <div class="scale-btns" id="g_M" data-val="0">
+            <button onclick="setScale('g_M',6)">6 — Obedece comandos</button>
+            <button onclick="setScale('g_M',5)">5 — Localiza dor</button>
+            <button onclick="setScale('g_M',4)">4 — Flexão normal</button>
+            <button onclick="setScale('g_M',3)">3 — Flexão anormal</button>
+            <button onclick="setScale('g_M',2)">2 — Extensão</button>
+            <button onclick="setScale('g_M',1)">1 — Ausente</button>
+          </div>
+        </div>
+      </div>
+      <button class="btn-calc" onclick="calcGlasgow()">Calcular Glasgow</button>
+      <div id="r_glasgow" class="calc-result" style="display:none"></div>
+    </div>
+
+    <!-- APGAR -->
+    <div class="content-block">
+      <h4>👶 APGAR Neonatal</h4>
+      <div style="overflow-x:auto;margin:10px 0">
+        <table style="width:100%;border-collapse:collapse;font-size:0.8rem">
+          <tr style="background:var(--teal-light)">
+            <th style="padding:6px;text-align:left">Critério</th>
+            <th style="padding:6px;text-align:center">0</th>
+            <th style="padding:6px;text-align:center">1</th>
+            <th style="padding:6px;text-align:center">2</th>
+            <th style="padding:6px;text-align:center">Pts</th>
+          </tr>
+          <tr><td style="padding:6px;font-weight:700">Frequência cardíaca</td><td style="text-align:center"><button class="apg" onclick="setApgar(0,0)">Ausente</button></td><td style="text-align:center"><button class="apg" onclick="setApgar(0,1)">&lt;100</button></td><td style="text-align:center"><button class="apg" onclick="setApgar(0,2)">≥100</button></td><td style="text-align:center;font-weight:800" id="ap0">—</td></tr>
+          <tr style="background:#f9f9f9"><td style="padding:6px;font-weight:700">Esforço respiratório</td><td style="text-align:center"><button class="apg" onclick="setApgar(1,0)">Ausente</button></td><td style="text-align:center"><button class="apg" onclick="setApgar(1,1)">Fraco/irreg.</button></td><td style="text-align:center"><button class="apg" onclick="setApgar(1,2)">Bom/choro</button></td><td style="text-align:center;font-weight:800" id="ap1">—</td></tr>
+          <tr><td style="padding:6px;font-weight:700">Tônus muscular</td><td style="text-align:center"><button class="apg" onclick="setApgar(2,0)">Flácido</button></td><td style="text-align:center"><button class="apg" onclick="setApgar(2,1)">Reduzido</button></td><td style="text-align:center"><button class="apg" onclick="setApgar(2,2)">Ativo</button></td><td style="text-align:center;font-weight:800" id="ap2">—</td></tr>
+          <tr style="background:#f9f9f9"><td style="padding:6px;font-weight:700">Irritabilidade reflexa</td><td style="text-align:center"><button class="apg" onclick="setApgar(3,0)">Sem resposta</button></td><td style="text-align:center"><button class="apg" onclick="setApgar(3,1)">Careta</button></td><td style="text-align:center"><button class="apg" onclick="setApgar(3,2)">Choro/tosse</button></td><td style="text-align:center;font-weight:800" id="ap3">—</td></tr>
+          <tr><td style="padding:6px;font-weight:700">Cor da pele</td><td style="text-align:center"><button class="apg" onclick="setApgar(4,0)">Cianose/pálido</button></td><td style="text-align:center"><button class="apg" onclick="setApgar(4,1)">Extremidades</button></td><td style="text-align:center"><button class="apg" onclick="setApgar(4,2)">Róseo</button></td><td style="text-align:center;font-weight:800" id="ap4">—</td></tr>
+        </table>
+      </div>
+      <div id="r_apgar" class="calc-result" style="display:none"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ② ESCALAS CLÍNICAS -->
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div class="card-icon" style="background:#fce4ec;">📊</div>
+    <div class="card-title"><h3>Escalas Clínicas Interativas</h3><div class="subtitle">EVA (Dor) · Braden (UPP) · Morse (Queda) · FLACC (Criança)</div></div>
+    <div class="toggle-arrow">▾</div>
+  </div>
+  <div class="card-body">
+
+    <!-- EVA -->
+    <div class="content-block">
+      <h4>😣 Escala Visual Analógica de Dor (EVA)</h4>
+      <p style="font-size:0.82rem;color:#666;margin-bottom:10px">Clique no número que representa a intensidade da dor do paciente.</p>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin:10px 0" id="evaButtons"></div>
+      <div id="r_eva" class="calc-result" style="display:none"></div>
+    </div>
+
+    <!-- Braden -->
+    <div class="content-block">
+      <h4>🛏️ Escala de Braden (Risco de UPP)</h4>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:0.78rem;margin:10px 0">
+          <tr style="background:var(--teal-light)"><th style="padding:5px;text-align:left">Critério</th><th style="padding:5px;text-align:center">1</th><th style="padding:5px;text-align:center">2</th><th style="padding:5px;text-align:center">3</th><th style="padding:5px;text-align:center">4</th><th style="padding:5px;text-align:center">Pts</th></tr>
+          <tr><td style="padding:5px;font-weight:700">Percepção sensorial</td><td style="text-align:center"><button class="brd" onclick="setBraden(0,1)">Ausente</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(0,2)">Muito limitada</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(0,3)">Levemente limitada</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(0,4)">Nenhuma limitação</button></td><td style="text-align:center;font-weight:800" id="br0">—</td></tr>
+          <tr style="background:#f9f9f9"><td style="padding:5px;font-weight:700">Umidade da pele</td><td style="text-align:center"><button class="brd" onclick="setBraden(1,1)">Constantemente úmida</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(1,2)">Muito úmida</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(1,3)">Ocasionalmente úmida</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(1,4)">Raramente úmida</button></td><td style="text-align:center;font-weight:800" id="br1">—</td></tr>
+          <tr><td style="padding:5px;font-weight:700">Atividade física</td><td style="text-align:center"><button class="brd" onclick="setBraden(2,1)">Acamado</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(2,2)">Cadeira de rodas</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(2,3)">Caminha ocasionalmente</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(2,4)">Caminha frequentemente</button></td><td style="text-align:center;font-weight:800" id="br2">—</td></tr>
+          <tr style="background:#f9f9f9"><td style="padding:5px;font-weight:700">Mobilidade</td><td style="text-align:center"><button class="brd" onclick="setBraden(3,1)">Totalmente imóvel</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(3,2)">Muito limitada</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(3,3)">Levemente limitada</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(3,4)">Não limitada</button></td><td style="text-align:center;font-weight:800" id="br3">—</td></tr>
+          <tr><td style="padding:5px;font-weight:700">Nutrição</td><td style="text-align:center"><button class="brd" onclick="setBraden(4,1)">Muito pobre</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(4,2)">Provavelmente inadequada</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(4,3)">Adequada</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(4,4)">Excelente</button></td><td style="text-align:center;font-weight:800" id="br4">—</td></tr>
+          <tr style="background:#f9f9f9"><td style="padding:5px;font-weight:700">Fricção e Cisalhamento</td><td style="text-align:center"><button class="brd" onclick="setBraden(5,1)">Problema</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(5,2)">Problema potencial</button></td><td style="text-align:center"><button class="brd" onclick="setBraden(5,3)">Sem problema</button></td><td style="text-align:center">—</td><td style="text-align:center;font-weight:800" id="br5">—</td></tr>
+        </table>
+      </div>
+      <div id="r_braden" class="calc-result" style="display:none"></div>
+    </div>
+
+    <!-- Morse -->
+    <div class="content-block">
+      <h4>🚶 Escala de Morse (Risco de Queda)</h4>
+      <div style="display:flex;flex-direction:column;gap:8px;margin:10px 0">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem"><span style="font-weight:700">Histórico de queda nos últimos 3 meses</span><div class="scale-btns-h" id="mo0"><button onclick="setMorse(0,25)">Sim (25)</button><button onclick="setMorse(0,0)">Não (0)</button></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem"><span style="font-weight:700">Diagnóstico secundário</span><div class="scale-btns-h" id="mo1"><button onclick="setMorse(1,15)">Sim (15)</button><button onclick="setMorse(1,0)">Não (0)</button></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem"><span style="font-weight:700">Auxílio para deambular</span><div class="scale-btns-h" id="mo2"><button onclick="setMorse(2,30)">Móveis/muletas (30)</button><button onclick="setMorse(2,15)">Apoio em pessoa (15)</button><button onclick="setMorse(2,0)">Nenhum (0)</button></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem"><span style="font-weight:700">Acesso venoso periférico/heparina</span><div class="scale-btns-h" id="mo3"><button onclick="setMorse(3,20)">Sim (20)</button><button onclick="setMorse(3,0)">Não (0)</button></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem"><span style="font-weight:700">Marcha/transferência</span><div class="scale-btns-h" id="mo4"><button onclick="setMorse(4,20)">Prejudicada (20)</button><button onclick="setMorse(4,10)">Fraca (10)</button><button onclick="setMorse(4,0)">Normal (0)</button></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem"><span style="font-weight:700">Estado mental</span><div class="scale-btns-h" id="mo5"><button onclick="setMorse(5,15)">Superestima capacidade (15)</button><button onclick="setMorse(5,0)">Consciente limitações (0)</button></div></div>
+      </div>
+      <div id="r_morse" class="calc-result" style="display:none"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ③ CALENDÁRIO VACINAL -->
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div class="card-icon" style="background:#e8f5e9;">💉</div>
+    <div class="card-title"><h3>Calendário Vacinal PNI 2024</h3><div class="subtitle">Programa Nacional de Imunizações — Faixa etária completa</div></div>
+    <div class="toggle-arrow">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="info-box tip"><strong>📋 Fonte:</strong> PNI/MS 2024. Consulte sempre o calendário vigente no site do Ministério da Saúde.</div>
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:0.8rem">
+        <tr style="background:var(--teal);color:#fff"><th style="padding:8px;text-align:left">Faixa Etária</th><th style="padding:8px;text-align:left">Vacinas</th><th style="padding:8px;text-align:left">Via / Local</th></tr>
+        <tr><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">Ao nascer</td><td style="padding:8px;border-bottom:1px solid #eee">BCG · Hepatite B (1ª dose)</td><td style="padding:8px;border-bottom:1px solid #eee">ID (BCG) · IM deltóide (HepB)</td></tr>
+        <tr style="background:#f9f9f9"><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">2 meses</td><td style="padding:8px;border-bottom:1px solid #eee">Pentavalente (DTP+HiB+HepB) 1ª · VIP (Polio) 1ª · Pneumocócica 10 1ª · Rotavírus (VORH) 1ª</td><td style="padding:8px;border-bottom:1px solid #eee">IM vasto lateral · IM vasto lat. · IM vasto lat. · VO</td></tr>
+        <tr><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">3 meses</td><td style="padding:8px;border-bottom:1px solid #eee">Meningocócica C (MenC) 1ª</td><td style="padding:8px;border-bottom:1px solid #eee">IM vasto lateral</td></tr>
+        <tr style="background:#f9f9f9"><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">4 meses</td><td style="padding:8px;border-bottom:1px solid #eee">Pentavalente 2ª · VIP 2ª · Pneumocócica 10 2ª · Rotavírus (VORH) 2ª</td><td style="padding:8px;border-bottom:1px solid #eee">IM · IM · IM · VO</td></tr>
+        <tr><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">5 meses</td><td style="padding:8px;border-bottom:1px solid #eee">Meningocócica C 2ª</td><td style="padding:8px;border-bottom:1px solid #eee">IM vasto lateral</td></tr>
+        <tr style="background:#f9f9f9"><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">6 meses</td><td style="padding:8px;border-bottom:1px solid #eee">Pentavalente 3ª · VIP 3ª · Influenza (anual)</td><td style="padding:8px;border-bottom:1px solid #eee">IM · IM · IM deltóide</td></tr>
+        <tr><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">9 meses</td><td style="padding:8px;border-bottom:1px solid #eee">Febre Amarela 1ª dose</td><td style="padding:8px;border-bottom:1px solid #eee">SC deltóide</td></tr>
+        <tr style="background:#f9f9f9"><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">12 meses</td><td style="padding:8px;border-bottom:1px solid #eee">Pneumocócica 10 (reforço) · Meningocócica C (reforço) · Tríplice viral (SCR) 1ª</td><td style="padding:8px;border-bottom:1px solid #eee">IM · IM · SC</td></tr>
+        <tr><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">15 meses</td><td style="padding:8px;border-bottom:1px solid #eee">DTP (reforço) · VOP (oral) · Varicela 1ª · Hepatite A 1ª</td><td style="padding:8px;border-bottom:1px solid #eee">IM · VO · SC · IM</td></tr>
+        <tr style="background:#f9f9f9"><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">4 anos</td><td style="padding:8px;border-bottom:1px solid #eee">DTP (2º reforço) · VOP (2º reforço) · Tríplice viral (SCR) 2ª · Varicela 2ª</td><td style="padding:8px;border-bottom:1px solid #eee">IM · VO · SC · SC</td></tr>
+        <tr><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">9–14 anos (M)</td><td style="padding:8px;border-bottom:1px solid #eee">HPV Quadrivalente (2 doses)</td><td style="padding:8px;border-bottom:1px solid #eee">IM deltóide</td></tr>
+        <tr style="background:#f9f9f9"><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">9–14 anos (F)</td><td style="padding:8px;border-bottom:1px solid #eee">HPV Quadrivalente (2 doses) + MenACWY</td><td style="padding:8px;border-bottom:1px solid #eee">IM deltóide</td></tr>
+        <tr><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">Adultos/Gestantes</td><td style="padding:8px;border-bottom:1px solid #eee">dT ou dTpa (reforço 10/10 anos) · Influenza (anual) · HepB (se não vacinado)</td><td style="padding:8px;border-bottom:1px solid #eee">IM deltóide</td></tr>
+        <tr style="background:#f9f9f9"><td style="padding:8px;font-weight:700">Idosos ≥60 anos</td><td style="padding:8px">Influenza (anual) · Pneumocócica 23 · Febre Amarela (dose única, se indicado)</td><td style="padding:8px">IM deltóide · IM · SC</td></tr>
+      </table>
+    </div>
+    <div class="info-box warning" style="margin-top:12px"><strong>⚠️ Vias de administração:</strong> IM = Intramuscular · SC = Subcutânea · ID = Intradérmica · VO = Via Oral</div>
+  </div>
+</div>
+
+<!-- ④ MINI BULÁRIO -->
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div class="card-icon" style="background:#fff8e1;">💊</div>
+    <div class="card-title"><h3>Mini Bulário — Emergência e UTI</h3><div class="subtitle">35 medicamentos essenciais · Dose · Diluição · Cuidados</div></div>
+    <div class="toggle-arrow">▾</div>
+  </div>
+  <div class="card-body">
+    <input type="text" id="bulSearch" placeholder="🔍 Buscar medicamento..." style="width:100%;border:1.5px solid #e0e0e0;border-radius:10px;padding:10px;margin-bottom:12px;font-size:0.9rem;font-family:inherit;outline:none" oninput="filterBulario(this.value)">
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:0.78rem" id="bulTable">
+        <tr style="background:var(--teal);color:#fff;font-size:0.8rem">
+          <th style="padding:8px;text-align:left;white-space:nowrap">Medicamento</th>
+          <th style="padding:8px;text-align:left;white-space:nowrap">Indicação</th>
+          <th style="padding:8px;text-align:left;white-space:nowrap">Dose / Via</th>
+          <th style="padding:8px;text-align:left;white-space:nowrap">Diluição</th>
+          <th style="padding:8px;text-align:left;white-space:nowrap">Cuidados de Enfermagem</th>
+        </tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Adrenalina 1mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">PCR · Anafilaxia</td><td style="padding:7px;border-bottom:1px solid #eee">1mg EV a cada 3–5 min (PCR) · 0,3–0,5 mg IM (anafilaxia)</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% — infusão rápida na PCR</td><td style="padding:7px;border-bottom:1px solid #eee">Monitorar FC e PA. Via central preferencial em infusão contínua. Verificar retorno venoso.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Atropina 0,5mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Bradicardia sintomática</td><td style="padding:7px;border-bottom:1px solid #eee">0,5–1 mg EV (repete a cada 3–5 min, máx 3 mg)</td><td style="padding:7px;border-bottom:1px solid #eee">Sem diluição ou SF 0,9%</td><td style="padding:7px;border-bottom:1px solid #eee">Monitorar FC. Dose &lt;0,5mg pode causar bradicardia paradoxal.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Amiodarona 50mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">FV/TVSP · Taquiarritmias</td><td style="padding:7px;border-bottom:1px solid #eee">300 mg EV (FV) · 150 mg EV lento (taquiarritmia)</td><td style="padding:7px;border-bottom:1px solid #eee">SG 5% — nunca SF (precipita)</td><td style="padding:7px;border-bottom:1px solid #eee">Proteger da luz. Monitorar PA e ECG. Veia calibrosa — flebite frequente.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Noradrenalina 1mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Choque séptico · Hipotensão grave</td><td style="padding:7px;border-bottom:1px solid #eee">0,01–3 mcg/kg/min — infusão contínua</td><td style="padding:7px;border-bottom:1px solid #eee">SG 5% — via central OBRIGATÓRIA</td><td style="padding:7px;border-bottom:1px solid #eee">Nunca interromper abruptamente. Monitorar PA invasiva. Risco de isquemia periférica.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Dopamina 5mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Choque cardiogênico · Hipotensão</td><td style="padding:7px;border-bottom:1px solid #eee">2–20 mcg/kg/min — infusão contínua</td><td style="padding:7px;border-bottom:1px solid #eee">SG 5% ou SF 0,9%</td><td style="padding:7px;border-bottom:1px solid #eee">Via central preferencial. Monitorar PA e diurese. Dose &gt;10 mcg = efeito vasopressor.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Furosemida 10mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Edema · IC · HAS grave</td><td style="padding:7px;border-bottom:1px solid #eee">20–80 mg EV/IM — máx 4mg/min</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% (proteger da luz)</td><td style="padding:7px;border-bottom:1px solid #eee">Monitorar balanço hídrico, K⁺, peso diário. Risco de hipocalemia.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Midazolam 5mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Sedação · Status epilepticus</td><td style="padding:7px;border-bottom:1px solid #eee">0,02–0,1 mg/kg EV lento · 0,1–0,2 mg/kg IM</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% ou SG 5%</td><td style="padding:7px;border-bottom:1px solid #eee">Ter flumazenil disponível. Monitorar FR e SpO₂. Risco de apneia.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Morfina 10mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Dor intensa · EAP</td><td style="padding:7px;border-bottom:1px solid #eee">2–5 mg EV lento (repetir se necessário) · 5–10 mg SC/IM</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% — injeção lenta</td><td style="padding:7px;border-bottom:1px solid #eee">Ter naloxona disponível. Monitorar FR, SpO₂ e PA. Risco de depressão respiratória.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Dipirona 500mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Dor · Febre</td><td style="padding:7px;border-bottom:1px solid #eee">1–2 g EV lento (3–5 min) · 500 mg–1 g VO</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% 100 mL — EV lento</td><td style="padding:7px;border-bottom:1px solid #eee">Infundir em ≥3 min. Risco de hipotensão se rápido. Verificar alergias.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Ondansetrona 2mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Náuseas e vômitos</td><td style="padding:7px;border-bottom:1px solid #eee">4–8 mg EV lento · 8 mg VO</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% 50 mL — 15 min</td><td style="padding:7px;border-bottom:1px solid #eee">Infundir em 15 min. Monitorar ECG (QT longo). Evitar em hepatopatia grave.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Dexametasona 4mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Edema cerebral · Alergia grave · Anafilaxia</td><td style="padding:7px;border-bottom:1px solid #eee">4–20 mg EV/IM — dose varia conforme indicação</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% ou direto</td><td style="padding:7px;border-bottom:1px solid #eee">Monitorar glicemia (hiperglicemia). Não suspender abruptamente em uso prolongado.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Hidrocortisona 100mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Anafilaxia · Insuficiência adrenal · Choque séptico</td><td style="padding:7px;border-bottom:1px solid #eee">100–500 mg EV lento (anafilaxia) · 200–300 mg/dia (sépsis)</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% ou SG 5%</td><td style="padding:7px;border-bottom:1px solid #eee">Monitorar glicemia e PA. Risco de hiperglicemia e hipertensão.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Insulina Regular (100 UI/mL)</td><td style="padding:7px;border-bottom:1px solid #eee">Hiperglicemia · CAD</td><td style="padding:7px;border-bottom:1px solid #eee">0,1 UI/kg/h (CAD) · Sliding scale conforme glicemia</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% — infusão contínua via bomba</td><td style="padding:7px;border-bottom:1px solid #eee">Monitorar glicemia capilar 1–2h. Risco de hipoglicemia. Usar via exclusiva.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Glicose 50% (soro glicosado hipertônico)</td><td style="padding:7px;border-bottom:1px solid #eee">Hipoglicemia grave</td><td style="padding:7px;border-bottom:1px solid #eee">20–50 mL EV rápido (hipoglicemia grave)</td><td style="padding:7px;border-bottom:1px solid #eee">Sem diluição — EV direto em veia calibrosa</td><td style="padding:7px;border-bottom:1px solid #eee">Verificar glicemia após 15 min. Risco de flebite — veia grossa. Extravasamento: lesão tecidual grave.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Bicarbonato de Sódio 8,4%</td><td style="padding:7px;border-bottom:1px solid #eee">Acidose metabólica grave · Hipercalemia</td><td style="padding:7px;border-bottom:1px solid #eee">1–2 mEq/kg EV lento · Baseado em gasometria</td><td style="padding:7px;border-bottom:1px solid #eee">Sem diluição ou SG 5% (nunca SF)</td><td style="padding:7px;border-bottom:1px solid #eee">Monitorar gasometria. Nunca misturar com cálcio (precipita). Infundir lentamente.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">KCl 19,1% (Cloreto de Potássio)</td><td style="padding:7px;border-bottom:1px solid #eee">Hipocalemia</td><td style="padding:7px;border-bottom:1px solid #eee">Máx 10–20 mEq/h · Nunca em bolus</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% — diluir sempre (nunca direto)</td><td style="padding:7px;border-bottom:1px solid #eee">⚠️ NUNCA EV DIRETO — risco de parada cardíaca. Monitorar ECG e K⁺. Via central se &gt;40 mEq/L.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Naloxona 0,4mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Reversão de opioides</td><td style="padding:7px;border-bottom:1px solid #eee">0,4–2 mg EV (repete a cada 2–3 min) · máx 10 mg</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% — EV direto ou infusão</td><td style="padding:7px;border-bottom:1px solid #eee">Efeito dura 30–90 min — reavaliar. Pode causar síndrome de abstinência. Monitorar FR.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Flumazenil 0,1mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Reversão de benzodiazepínicos</td><td style="padding:7px;border-bottom:1px solid #eee">0,2 mg EV lento (30 seg) — repete até 1 mg total</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% — injeção lenta</td><td style="padding:7px;border-bottom:1px solid #eee">Efeito curto (1–2h) — risco de ressedação. Contraindicado em epilépticos.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Heparina não fracionada</td><td style="padding:7px;border-bottom:1px solid #eee">TEP · TVP · AVC isquêmico · SCA</td><td style="padding:7px;border-bottom:1px solid #eee">5.000 UI SC 8/8h (profilática) · 80 UI/kg bolus + 18 UI/kg/h (terapêutica)</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% — bomba de infusão</td><td style="padding:7px;border-bottom:1px solid #eee">Monitorar TTPA. Ter protamina disponível. Não massagear local de injeção SC.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Enoxaparina (Clexane) 100mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">TEP · TVP · SCA — profilaxia/tratamento</td><td style="padding:7px;border-bottom:1px solid #eee">40 mg SC/dia (profilaxia) · 1 mg/kg SC 12/12h (tratamento)</td><td style="padding:7px;border-bottom:1px solid #eee">Sem diluição — SC abdominal</td><td style="padding:7px;border-bottom:1px solid #eee">Rodizar o local. Não remover bolha de ar da seringa. Ajustar dose na IRC.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Omeprazol 40mg/fr</td><td style="padding:7px;border-bottom:1px solid #eee">Gastroproteção · Hemorragia digestiva</td><td style="padding:7px;border-bottom:1px solid #eee">40 mg EV 12/12h · 20–40 mg VO 30 min antes do café</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% 100 mL — 30 min EV</td><td style="padding:7px;border-bottom:1px solid #eee">VO: administrar em jejum. Não abrir cápsula de revestimento entérico.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Metoclopramida 5mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Náuseas · Gastroparesia</td><td style="padding:7px;border-bottom:1px solid #eee">10 mg EV/IM/VO — até 3x/dia</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% — EV lento (min 3 min)</td><td style="padding:7px;border-bottom:1px solid #eee">Risco de reações extrapiramidais (distonia aguda). Evitar em crianças pequenas.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Sulfato de Magnésio 50%</td><td style="padding:7px;border-bottom:1px solid #eee">Pré-eclâmpsia/eclâmpsia · Broncoespasmo · Hipomagnesemia</td><td style="padding:7px;border-bottom:1px solid #eee">4 g EV lento (eclâmpsia) · 1–2 g/h manutenção</td><td style="padding:7px;border-bottom:1px solid #eee">SG 5% — infusão lenta (≥15 min)</td><td style="padding:7px;border-bottom:1px solid #eee">Ter gluconato de cálcio disponível (antídoto). Monitorar reflexo patelar e diurese.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Gluconato de Cálcio 10%</td><td style="padding:7px;border-bottom:1px solid #eee">Hipocalcemia · Hipercalemia · Intox. por Mg</td><td style="padding:7px;border-bottom:1px solid #eee">10 mL EV lento (10 min)</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% — EV lento monitorando ECG</td><td style="padding:7px;border-bottom:1px solid #eee">Nunca misturar com bicarbonato (precipita). Risco de bradicardia se rápido.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Fenitoína 50mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Status epilepticus · Epilepsia</td><td style="padding:7px;border-bottom:1px solid #eee">15–20 mg/kg EV (máx 50 mg/min)</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% — NUNCA SG (precipita)</td><td style="padding:7px;border-bottom:1px solid #eee">Monitorar ECG e PA durante infusão. Extravasamento causa necrose tissular.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Diazepam 5mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Convulsões · Abstinência alcoólica · Ansiedade</td><td style="padding:7px;border-bottom:1px solid #eee">5–10 mg EV lento · 10 mg IM</td><td style="padding:7px;border-bottom:1px solid #eee">Sem diluição — EV lento (2 mg/min)</td><td style="padding:7px;border-bottom:1px solid #eee">Monitorar FR e SpO₂. Ter flumazenil disponível. Risco de apneia se EV rápido.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Tramadol 50mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Dor moderada a intensa</td><td style="padding:7px;border-bottom:1px solid #eee">100 mg EV/IM a cada 6–8h</td><td style="padding:7px;border-bottom:1px solid #eee">SF 0,9% 100 mL — 30 min EV</td><td style="padding:7px;border-bottom:1px solid #eee">Monitorar PA (risco de hipotensão). Reduzir dose na IRC/IH. Risco de convulsões em altas doses.</td></tr>
+        <tr class="bul-row" style="background:#f9f9f9"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Nitroglicerina 1mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">Angina · IAM · EAP hipertensivo</td><td style="padding:7px;border-bottom:1px solid #eee">5–200 mcg/min — infusão contínua</td><td style="padding:7px;border-bottom:1px solid #eee">SG 5% — frasco âmbar (proteger da luz)</td><td style="padding:7px;border-bottom:1px solid #eee">Usar equipo não absorvente (PVC absorve). Monitorar PA a cada 5 min. Risco de hipotensão grave.</td></tr>
+        <tr class="bul-row"><td style="padding:7px;font-weight:700;border-bottom:1px solid #eee">Dobutamina 12,5mg/mL</td><td style="padding:7px;border-bottom:1px solid #eee">IC descompensada · Choque cardiogênico</td><td style="padding:7px;border-bottom:1px solid #eee">2–20 mcg/kg/min — infusão contínua</td><td style="padding:7px;border-bottom:1px solid #eee">SG 5% ou SF 0,9% — bomba de infusão</td><td style="padding:7px;border-bottom:1px solid #eee">Monitorar FC e PA continuamente. Risco de taquiarritmia. Via central preferencial.</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ⑤ BANDEJAS DE PROCEDIMENTOS -->
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div class="card-icon" style="background:#e8eaf6;">🧰</div>
+    <div class="card-title"><h3>Bandejas de Procedimentos</h3><div class="subtitle">Material necessário · Organização · Técnica</div></div>
+    <div class="toggle-arrow">▾</div>
+  </div>
+  <div class="card-body">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px" id="bandejaTabs">
+      <button class="tag" onclick="showBandeja('puncao')" id="btn-puncao">💉 Punção Venosa</button>
+      <button class="tag" onclick="showBandeja('svd-m')" id="btn-svd-m">🔵 SVD Masc</button>
+      <button class="tag" onclick="showBandeja('svd-f')" id="btn-svd-f">🔵 SVD Fem</button>
+      <button class="tag" onclick="showBandeja('sng')" id="btn-sng">🟡 SNG</button>
+      <button class="tag" onclick="showBandeja('curativo')" id="btn-curativo">🩹 Curativo</button>
+      <button class="tag" onclick="showBandeja('nebul')" id="btn-nebul">🫁 Nebulização</button>
+      <button class="tag" onclick="showBandeja('pcr')" id="btn-pcr">🚨 Carro PCR</button>
+      <button class="tag" onclick="showBandeja('coleta')" id="btn-coleta">🩸 Coleta Sang.</button>
+    </div>
+    <div id="bandejaContent" style="font-size:0.85rem;line-height:1.7"></div>
+  </div>
+</div>
+
+<!-- ⑥ SIMULADO ESTILO CONCURSO -->
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div class="card-icon" style="background:#fce4ec;">📝</div>
+    <div class="card-title"><h3>Simulado Estilo Concurso</h3><div class="subtitle">20 questões · Timer · Pontuação final · Gabarito comentado</div></div>
+    <div class="toggle-arrow">▾</div>
+  </div>
+  <div class="card-body">
+    <div id="simInicio" style="text-align:center;padding:20px 0">
+      <div style="font-size:3rem;margin-bottom:12px">🏆</div>
+      <p style="font-weight:700;margin-bottom:6px">Teste seus conhecimentos!</p>
+      <p style="font-size:0.85rem;color:#666;margin-bottom:20px">20 questões aleatórias sobre temas essenciais do técnico de enfermagem. Timer de 30 minutos.</p>
+      <button class="btn-primary-sm" onclick="startSimulado()">▶ Iniciar Simulado</button>
+    </div>
+    <div id="simArea" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding:10px 14px;background:var(--teal-light);border-radius:10px">
+        <span style="font-weight:800;font-size:0.9rem">Questão <span id="simQnum">1</span>/20</span>
+        <span style="font-weight:800;color:#b71c1c;font-size:1rem" id="simTimer">30:00</span>
+      </div>
+      <div id="simQuestion" style="font-weight:700;font-size:0.92rem;margin-bottom:14px;line-height:1.5"></div>
+      <div id="simOptions" style="display:flex;flex-direction:column;gap:8px"></div>
+      <div id="simFeedback" style="display:none;margin-top:12px;padding:12px;border-radius:10px;font-size:0.85rem;font-weight:600"></div>
+      <div style="margin-top:14px;display:flex;justify-content:flex-end">
+        <button class="btn-primary-sm" id="simNextBtn" onclick="simNext()" style="display:none">Próxima →</button>
+      </div>
+    </div>
+    <div id="simResult" style="display:none;text-align:center;padding:20px 0">
+      <div style="font-size:3rem;margin-bottom:12px" id="simResultIcon">🎉</div>
+      <h3 style="margin-bottom:8px" id="simResultTitle">Resultado</h3>
+      <div style="font-size:2rem;font-weight:800;color:var(--teal);margin:12px 0" id="simScore"></div>
+      <p style="font-size:0.85rem;color:#666;margin-bottom:20px" id="simResultMsg"></p>
+      <button class="btn-primary-sm" onclick="startSimulado()">🔄 Refazer Simulado</button>
+    </div>
+  </div>
+</div>
+
+<!-- ⑦ ANOTADOR DE PLANTÃO -->
+<div class="card">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div class="card-icon" style="background:#e3f2fd;">📓</div>
+    <div class="card-title"><h3>Anotador de Plantão</h3><div class="subtitle">Anote intercorrências · Salvo automaticamente no dispositivo</div></div>
+    <div class="toggle-arrow">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="info-box warning" style="margin-bottom:14px"><strong>⚠️ Lembrete LGPD:</strong> Nunca anote dados que identifiquem pacientes (nome, CPF, prontuário). Use apenas iniciais ou número do leito.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px">
+      <div><label style="font-size:0.78rem;font-weight:700;display:block;margin-bottom:4px">Leito / Paciente</label><input type="text" id="nt_leito" placeholder="Ex: Leito 12" class="calc-input"></div>
+      <div><label style="font-size:0.78rem;font-weight:700;display:block;margin-bottom:4px">Horário</label><input type="time" id="nt_hora" class="calc-input"></div>
+      <div><label style="font-size:0.78rem;font-weight:700;display:block;margin-bottom:4px">Tipo</label>
+        <select id="nt_tipo" class="calc-input">
+          <option>Intercorrência</option><option>Medicação</option><option>Sinais Vitais</option><option>Procedimento</option><option>Evolução</option><option>Outro</option>
+        </select>
+      </div>
+    </div>
+    <textarea id="nt_obs" placeholder="Observação..." style="width:100%;border:1.5px solid #e0e0e0;border-radius:10px;padding:10px;font-family:inherit;font-size:0.85rem;resize:vertical;min-height:70px;outline:none" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <button class="btn-calc" onclick="addNote()" style="flex:1">➕ Adicionar Nota</button>
+      <button onclick="clearNotes()" style="background:#ffebee;color:#b71c1c;border:none;border-radius:10px;padding:10px 16px;font-weight:700;font-size:0.82rem;cursor:pointer">🗑️ Limpar Tudo</button>
+    </div>
+    <div id="notesArea" style="margin-top:14px;display:flex;flex-direction:column;gap:8px"></div>
+    <div style="text-align:right;margin-top:10px">
+      <button onclick="exportNotes()" style="background:var(--teal-light);color:var(--teal-dark);border:none;border-radius:10px;padding:8px 16px;font-weight:700;font-size:0.8rem;cursor:pointer">📋 Copiar Anotações</button>
+    </div>
+  </div>
+</div>
+
+<!-- Chat link -->
+<div style="background:linear-gradient(135deg,#004d40,#00796b);border-radius:16px;padding:20px 24px;color:#fff;display:flex;align-items:center;gap:16px;margin-top:4px">
+  <div style="font-size:2.5rem">💬</div>
+  <div style="flex:1">
+    <div style="font-weight:800;font-size:1rem;margin-bottom:4px">Comunidade EnfermaStudy</div>
+    <div style="font-size:0.82rem;opacity:0.85">Tire dúvidas e troque experiências com outros técnicos e estudantes!</div>
+  </div>
+  <a href="chat.html" style="background:#fff;color:var(--teal-dark);font-weight:800;font-size:0.85rem;padding:10px 18px;border-radius:12px;text-decoration:none;flex-shrink:0">Entrar →</a>
+</div>
+
+</div><!-- /ferramentas -->
+
+<!-- ANATOMIA 3D -->
+<div id="anatomia" class="section">
+  <div class="info-box tip" style="margin-bottom:20px"><strong>🧬 Anatomia 3D</strong> Explore o corpo humano com as melhores ferramentas gratuitas disponíveis. Algumas abrem em nova aba, outras têm visualização incorporada.</div>
+
+  <div class="info-box warning" style="margin-bottom:20px"><strong>ℹ️ Sobre corpo humano 3D gratuito incorporado:</strong> Infelizmente, nenhuma plataforma gratuita permite incorporar um atlas completo do corpo humano diretamente em outros sites sem custo. As melhores opções (BioDigital, Visible Body, Complete Anatomy) são pagas. As alternativas gratuitas abaixo são as melhores disponíveis atualmente e abrem em nova aba com conteúdo completo.</div>
+
+  <!-- ZygoteBody -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon" style="background:#e8f5e9;">🌐</div>
+      <div class="card-title"><h3>ZygoteBody — Atlas 3D Completo</h3><div class="subtitle">Ex-Google Body · Músculos · Veias · Ossos · Órgãos · Gratuito</div></div>
+      <div class="toggle-arrow">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="content-block">
+        <p style="margin-bottom:12px">O <strong>ZygoteBody</strong> (antigo Google Body) é a melhor opção gratuita disponível. Permite explorar o corpo humano em 3D com camadas de músculo, osso, veias, artérias e órgãos. Interface em inglês, mas os nomes anatômicos são universais (latim).</p>
+        <p style="margin-bottom:12px"><strong>O que você pode fazer:</strong> Rotacionar o corpo em qualquer ângulo · Remover camadas (pele → músculo → osso) · Clicar em estruturas para ver o nome · Isolar partes específicas · Pesquisar estruturas pelo nome</p>
+      </div>
+      <a href="https://www.zygotebody.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#fff;font-weight:800;padding:12px 24px;border-radius:12px;text-decoration:none;font-size:0.9rem">🌐 Abrir ZygoteBody (gratuito)</a>
+    </div>
+  </div>
+
+  <!-- AnatomyLearning -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon" style="background:#fce4ec;">📱</div>
+      <div class="card-title"><h3>AnatomyLearning — Atlas com Português</h3><div class="subtitle">App e Web · Músculos · Ossos · Veias · Interface em Português</div></div>
+      <div class="toggle-arrow">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="content-block">
+        <p style="margin-bottom:12px">O <strong>AnatomyLearning</strong> tem suporte a <strong>português</strong> e versão gratuita com ossos, articulações e músculos detalhados. O sistema cardiovascular (veias, artérias) e outros sistemas são parte do plano pago.</p>
+        <p style="margin-bottom:12px"><strong>Gratuito inclui:</strong> Esqueleto completo com nomes · Músculos (origem, inserção, inervação) · Articulações · Rotação 360° · Quiz de localização</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="https://anatomylearning.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#fff;font-weight:800;padding:12px 20px;border-radius:12px;text-decoration:none;font-size:0.85rem">🌐 Versão Web</a>
+        <a href="https://play.google.com/store/apps/details?id=com.AnatomyLearning.Anatomy3DViewer3" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#3ddc84;color:#000;font-weight:800;padding:12px 20px;border-radius:12px;text-decoration:none;font-size:0.85rem">📱 Android (Play Store)</a>
+        <a href="https://apps.apple.com/br/app/anatomy-learning-anatomia-3d/id1593953398" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#000;color:#fff;font-weight:800;padding:12px 20px;border-radius:12px;text-decoration:none;font-size:0.85rem">🍎 iPhone (App Store)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sketchfab Embeds - UFMG skull -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon" style="background:#e8eaf6;">💀</div>
+      <div class="card-title"><h3>Crânio Humano 3D — UFMG</h3><div class="subtitle">Modelo 3D interativo · CADTEC Faculdade de Medicina UFMG · Gratuito</div></div>
+      <div class="toggle-arrow">▾</div>
+    </div>
+    <div class="card-body">
+      <p style="font-size:0.82rem;color:#666;margin-bottom:12px">Modelo 3D do crânio humano masculino criado pelo CADTEC da Faculdade de Medicina da UFMG. Rotacione, zoom e explore a anatomia craniana. Clique em ▶ para carregar.</p>
+      <div style="border-radius:12px;overflow:hidden;background:#111">
+        <iframe title="Crânio Humano Masculino - UFMG" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" style="width:100%;height:320px;display:block" src="https://sketchfab.com/models/1e79ecc2ea2b4205bcdda6f9ef7462c1/embed?autostart=0&ui_theme=dark&preload=0"></iframe>
+      </div>
+      <p style="font-size:0.72rem;color:#aaa;margin-top:6px">Modelo por CADTEC-FM-UFMG via Sketchfab — uso educacional</p>
+    </div>
+  </div>
+
+  <!-- Z-Anatomy -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon" style="background:#fff3e0;">🔬</div>
+      <div class="card-title"><h3>Z-Anatomy — Atlas Open Source Completo</h3><div class="subtitle">Código aberto · Ossos · Músculos · Veias · Artérias · Nervos · Órgãos</div></div>
+      <div class="toggle-arrow">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="content-block">
+        <p style="margin-bottom:12px">O <strong>Z-Anatomy</strong> é um atlas anatômico open source com o corpo humano <strong>completo</strong>: todos os ossos, músculos, cartilagens, veias, artérias, nervos e órgãos. Termos em latim (nomenclatura internacional). Funciona no navegador.</p>
+      </div>
+      <a href="https://www.z-anatomy.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#ff6f00;color:#fff;font-weight:800;padding:12px 24px;border-radius:12px;text-decoration:none;font-size:0.85rem">🔬 Abrir Z-Anatomy (open source)</a>
+    </div>
+  </div>
+
+  <!-- Comparação -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon" style="background:#e0f2f1;">📊</div>
+      <div class="card-title"><h3>Comparação das Ferramentas</h3><div class="subtitle">Qual usar para cada situação?</div></div>
+      <div class="toggle-arrow">▾</div>
+    </div>
+    <div class="card-body">
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:0.8rem">
+          <tr style="background:var(--teal);color:#fff"><th style="padding:8px;text-align:left">Ferramenta</th><th style="padding:8px">Completo</th><th style="padding:8px">Português</th><th style="padding:8px">Offline</th><th style="padding:8px">Gratuito</th><th style="padding:8px;text-align:left">Melhor para</th></tr>
+          <tr><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">ZygoteBody</td><td style="padding:8px;text-align:center;border-bottom:1px solid #eee">✅</td><td style="padding:8px;text-align:center;border-bottom:1px solid #eee">❌</td><td style="padding:8px;text-align:center;border-bottom:1px solid #eee">❌</td><td style="padding:8px;text-align:center;border-bottom:1px solid #eee">✅</td><td style="padding:8px;border-bottom:1px solid #eee">Visão geral de todos os sistemas</td></tr>
+          <tr style="background:#f9f9f9"><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">AnatomyLearning</td><td style="padding:8px;text-align:center;border-bottom:1px solid #eee">⚠️ parcial</td><td style="padding:8px;text-align:center;border-bottom:1px solid #eee">✅</td><td style="padding:8px;text-align:center;border-bottom:1px solid #eee">⚠️ app</td><td style="padding:8px;text-align:center;border-bottom:1px solid #eee">⚠️ parcial</td><td style="padding:8px;border-bottom:1px solid #eee">Ossos e músculos detalhados em PT</td></tr>
+          <tr><td style="padding:8px;font-weight:700;border-bottom:1px solid #eee">Z-Anatomy</td><td style="padding:8px;text-align:center;border-bottom:1px solid #eee">✅</td><td style="padding:8px;text-align:center;border-bottom:1px solid #eee">❌</td><td style="padding:8px;text-align:center;border-bottom:1px solid #eee">❌</td><td style="padding:8px;text-align:center;border-bottom:1px solid #eee">✅</td><td style="padding:8px;border-bottom:1px solid #eee">Anatomia completa open source</td></tr>
+          <tr style="background:#f9f9f9"><td style="padding:8px;font-weight:700">UFMG (Sketchfab)</td><td style="padding:8px;text-align:center">⚠️ crânio</td><td style="padding:8px;text-align:center">✅</td><td style="padding:8px;text-align:center">❌</td><td style="padding:8px;text-align:center">✅</td><td style="padding:8px">Crânio interativo direto no app</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /anatomia -->
+
 <div id="pratica" class="section">
   <div class="info-box tip" style="margin-bottom:20px;"><strong>🎬 Aprendendo na Prática</strong> Vídeos organizados por tema para reforçar a técnica. Curtos, Shorts e aulas completas — do básico ao avançado. Requer conexão com internet.</div>
 
@@ -2769,6 +3255,95 @@ Politraumatizado grave. Choque hipovolêmico hemorrágico (PA baixa, FC alta, TE
     <div class="card-body">
       <div class="video-wrapper"><div class="video-label"><span>▶</span> ⚡ Nebulização em Paciente com Traqueostomia (Short)</div><div id="yt-neb2"></div></div>
       <div class="video-wrapper"><div class="video-label"><span>▶</span> ⚡ Nebulização — Procedimentos de Enfermagem (Short)</div><div id="yt-neb3"></div></div>
+    </div>
+  </div>
+
+  <!-- SALA DE VACINA -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon" style="background:#e8f5e9;">💉</div>
+      <div class="card-title"><h3>Sala de Vacina</h3><div class="subtitle">Estrutura · Técnicas · Conservação · Administração</div></div>
+      <div class="toggle-arrow">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="info-box tip"><strong>💡 Lembre-se</strong> Vacinas devem ser conservadas entre 2°C e 8°C. Nunca congelar. Checar prazo de validade e cadeia de frio antes de qualquer aplicação.</div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Sala de Vacina — Guia Técnico Completo e Atualizado</div><div id="yt-vac1"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Sala de Vacinação — Estrutura, Organização e Insumos</div><div id="yt-vac5"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> 4 Coisas que Você Precisa Saber sobre Vacinação</div><div id="yt-vac2"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Vacinas — Via Intramuscular no Deltóide (Aula)</div><div id="yt-vac3"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Técnicas Adequadas de Vacinação — Orientações</div><div id="yt-vac4"></div></div>
+    </div>
+  </div>
+
+  <!-- SONDAGEM E CATETERISMO -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon" style="background:#ede7f6;">🔵</div>
+      <div class="card-title"><h3>Sondagem e Cateterismo Vesical</h3><div class="subtitle">SVD Masculino e Feminino · SVA · SNG</div></div>
+      <div class="toggle-arrow">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="info-box warning"><strong>⚠️ Assepsia é obrigatória</strong> Todo cateterismo vesical exige técnica asséptica rigorosa. Usar material estéril. Identificar o meato corretamente antes de inserir a sonda.</div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Cateter Vesical de Demora — Sexo Masculino</div><div id="yt-svd-masc"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Cateterismo Vesical de Demora — Feminino</div><div id="yt-svd-fem"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Sondagem Vesical de Alívio — Materiais Obrigatórios</div><div id="yt-sva"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Passagem de Sonda Nasogástrica (SNG)</div><div id="yt-sng"></div></div>
+    </div>
+  </div>
+
+  <!-- AUSCULTA E SINAIS VITAIS AVANÇADOS -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon" style="background:#e0f7fa;">🫁</div>
+      <div class="card-title"><h3>Ausculta Pulmonar e Pressão Arterial</h3><div class="subtitle">Sons Pulmonares · Técnica de Aferição de PA · Glicemia</div></div>
+      <div class="toggle-arrow">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Ausculta Pulmonar na Prática — Todos os Sons Pulmonares</div><div id="yt-ausculta"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Aprenda a Aferir a Pressão Arterial do Zero</div><div id="yt-pa"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Sinais Vitais e Glicemia Capilar — Aula Completa</div><div id="yt-sv-glicemia"></div></div>
+    </div>
+  </div>
+
+  <!-- FARMACOLOGIA E MEDICAMENTOS -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon" style="background:#fff3e0;">💊</div>
+      <div class="card-title"><h3>Farmacologia e Administração de Medicamentos</h3><div class="subtitle">O mínimo essencial · Vias · Preparo e segurança</div></div>
+      <div class="toggle-arrow">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> O Mínimo de Farmacologia que Enfermagem Deve Saber</div><div id="yt-farmaco"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Administração de Medicamentos — O que Você Precisa Saber</div><div id="yt-med-adm"></div></div>
+    </div>
+  </div>
+
+  <!-- EMERGÊNCIAS AVANÇADAS E APH -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon" style="background:#ffebee;">🚨</div>
+      <div class="card-title"><h3>Emergências Avançadas e APH</h3><div class="subtitle">Intubação Orotraqueal · APH · XABCDE do Trauma</div></div>
+      <div class="toggle-arrow">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="info-box alert"><strong>⚠️ Papel do Técnico</strong> Na intubação orotraqueal o técnico auxilia: prepara material, posiciona paciente, monitora SV e registra. A intubação em si é realizada pelo médico ou enfermeiro habilitado.</div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Intubação Orotraqueal — Papel do Enfermeiro e Técnico</div><div id="yt-intubacao"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> APH — Abordagem Primária XABCDE do Trauma</div><div id="yt-aph-xabcde"></div></div>
+    </div>
+  </div>
+
+  <!-- TÉCNICO DE ENFERMAGEM — VISÃO GERAL -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-icon" style="background:#e8f5e9;">🧑‍⚕️</div>
+      <div class="card-title"><h3>Técnico de Enfermagem — Visão Geral</h3><div class="subtitle">Atuação · Técnicas essenciais · Punção completa</div></div>
+      <div class="toggle-arrow">▾</div>
+    </div>
+    <div class="card-body">
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> O que o Técnico de Enfermagem Faz?</div><div id="yt-tecnico-geral"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> 5 Técnicas que Todo Técnico de Enfermagem Precisa Dominar</div><div id="yt-5tecnicas"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> O que Todo Técnico de Enfermagem Precisa Saber</div><div id="yt-minimo-tecnico"></div></div>
+      <div class="video-wrapper"><div class="video-label"><span>▶</span> Punção Venosa Periférica — Aula Completa (Teoria + Prática)</div><div id="yt-puncao-completa"></div></div>
     </div>
   </div>
 
@@ -2968,6 +3543,33 @@ function answer(btn, isCorrect, explanation) {
   feedback.className = 'answer-feedback visible ' + (isCorrect ? 'correct' : 'wrong');
 }
 
+function resetExercises(cardBody) {
+  cardBody.querySelectorAll('.option-btn').forEach(b => {
+    b.disabled = false;
+    b.style.opacity = '1';
+    b.classList.remove('correct', 'wrong', 'reveal');
+  });
+  cardBody.querySelectorAll('.answer-feedback').forEach(f => {
+    f.textContent = '';
+    f.className = 'answer-feedback';
+  });
+  // Scroll para o topo do card
+  cardBody.closest('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Injeta botão "Reiniciar" em todos os card-bodies que contêm exercícios
+function injectResetButtons() {
+  document.querySelectorAll('.card-body').forEach(body => {
+    if (!body.querySelector('.exercise-card')) return;
+    if (body.querySelector('.btn-reset-ex')) return; // já tem
+    const btn = document.createElement('button');
+    btn.className = 'btn-reset-ex';
+    btn.innerHTML = '🔄 Reiniciar Questões';
+    btn.onclick = function() { resetExercises(body); };
+    body.appendChild(btn);
+  });
+}
+
 function copyEvolucao(btn) {
   const body = btn.previousElementSibling;
   const text = body.innerText;
@@ -2981,7 +3583,7 @@ function copyEvolucao(btn) {
 }
 
 const ytVideos = {
-  /* ── Seções existentes (IDs corrigidos) ── */
+  /* ── Seções principais (IDs corrigidos) ── */
   'yt-sv':           { id: 'cL8FD8mSG0I', title: 'Sinais Vitais — Aula Completa e Atualizada 2024' },
   'yt-med':          { id: 'svQwtPJKTNs', title: 'Preparo e Administração de Medicamentos — Pronto Socorro' },
   'yt-rcp':          { id: 'B0Y1H7xPRqA', title: 'PCR na Emergência — 5 Passos Práticos' },
@@ -2989,17 +3591,24 @@ const ytVideos = {
   'yt-nebulizacao':  { id: 'LWvmwi5Kia8', title: 'Oxigenioterapia por Máscara de Nebulização' },
   'yt-avc':          { id: 'om72pOks_0M', title: 'AVC — Protocolo de Atendimento' },
   'yt-trauma':       { id: 'VGqkLCKm3jE', title: 'ATLS 2025 — XABCDE e Atualizações no Trauma' },
-  'yt-ostomia':      { id: 'f5FBHS6vMxo', title: 'Ostomia — Troca de Bolsa Passo a Passo' },
-  /* ── Seção "Aprendendo na Prática" — Atribuições ── */
+  /* ── Home Care ── */
+  'yt-ostomia':      { id: 'lLWHWe-2VjM', title: 'Como Colocar e Trocar Bolsa de Colostomia' },
+  'yt-traqueo':      { id: 'ZR6lrkf_vTw', title: '09 Cuidados Necessários na Limpeza de Traqueostomia' },
+  'yt-upp':          { id: 'U9ArLeYqMjc', title: 'Lesões por Pressão — Patologia, Estágios e Escala de Braden' },
+  /* ── Na Prática — Atribuições ── */
   'yt-atribuicoes':  { id: '4fKaK0_qAtk', title: 'Atribuições do Técnico e do Enfermeiro', short: true },
-  /* ── Primeiros Socorros ── */
+  'yt-tecnico-geral':{ id: 'NR3PXFn9lpc', title: 'O que o Técnico de Enfermagem Faz?' },
+  'yt-5tecnicas':    { id: 'Z8YbVfV4KmA', title: '5 Técnicas que Todo Técnico de Enfermagem Precisa Dominar' },
+  'yt-minimo-tecnico':{ id: 'ciK-dl2ET5k', title: 'O que Todo Técnico de Enfermagem Precisa Saber' },
+  /* ── Na Prática — Primeiros Socorros ── */
   'yt-engasgo':      { id: 'uImVd4rBlPA', title: 'Primeiros Socorros — Engasgo em Adultos e Crianças' },
-  /* ── Mudança de Decúbito ── */
+  /* ── Na Prática — Mudança de Decúbito ── */
   'yt-decubito':     { id: 'RXsgPw3ZwAc', title: 'Mudança de Decúbito — Técnica Segura e Simples' },
   'yt-leito':        { id: 'SLB-PcPYIyY', title: 'Arrumação de Leito — Cama Fechada, Aberta e Operado' },
   'yt-fralda':       { id: 'MhGAFzpE8pA', title: 'Como Trocar Fralda de Paciente Acamado/Idoso' },
   'yt-coxinho':      { id: 'HJ9_mwz0B1c', title: 'Uso do Coxinho para Prevenir Escaras', short: true },
-  /* ── Punção Venosa ── */
+  /* ── Na Prática — Punção Venosa ── */
+  'yt-puncao-completa':{ id: 'OSq8kQ3MIp0', title: 'Punção Venosa Periférica — Aula Completa (Teoria + Prática)' },
   'yt-puncao1':      { id: '4PXCA5PTHbc', title: 'Punção Venosa — Veia Difícil' },
   'yt-puncao2':      { id: '1gHgDBahrBg', title: '3 Motivos que Te Fazem Errar a Veia' },
   'yt-puncao3':      { id: 'q8WfwFHziik', title: 'Dica para Punção em Veias Bailarinas', short: true },
@@ -3008,10 +3617,32 @@ const ytVideos = {
   'yt-puncao6':      { id: 'KtACdz3_c4E', title: 'Garrotear Corretamente para Acesso Venoso', short: true },
   'yt-puncao7':      { id: 'FSJhGwxdxkk', title: 'Macete — Como Pegar Veias na Coleta Venosa', short: true },
   'yt-puncao8':      { id: 'bCX6-kRPneE', title: 'Anatomia das Veias do Membro Superior', short: true },
-  /* ── Intramuscular ── */
+  /* ── Na Prática — Sondagem e Cateterismo ── */
+  'yt-svd-masc':     { id: 'qCofMxv1YRI', title: 'Cateter Vesical de Demora — Sexo Masculino' },
+  'yt-svd-fem':      { id: 'G2P6r5nwa8A', title: 'Cateterismo Vesical de Demora — Feminino' },
+  'yt-sva':          { id: 'GoU-2h6MErw', title: 'Sondagem Vesical de Alívio — Materiais Obrigatórios' },
+  'yt-sng':          { id: 'u56wwAPzt3E', title: 'Passagem de Sonda Nasogástrica (SNG)' },
+  /* ── Na Prática — Ausculta ── */
+  'yt-ausculta':     { id: 'YmqxPPhw01g', title: 'Ausculta Pulmonar na Prática — Todos os Sons Pulmonares' },
+  /* ── Na Prática — Intramuscular ── */
   'yt-im1':          { id: 'lwa8lntZZbQ', title: 'Intramuscular — Dorso Glúteo', short: true },
   'yt-im2':          { id: 'CYH5hunxURY', title: 'Intramuscular — Como e Onde Aplicar (Aula Prática)' },
   'yt-im3':          { id: 'EcabUGpx6yQ', title: 'Vasto Lateral, Dorso Glúteo e Ventroglúteo — Técnicas' },
+  /* ── Na Prática — Sinais Vitais e PA ── */
+  'yt-pa':           { id: '0W1U9jEp3KY', title: 'Aprenda a Aferir a Pressão Arterial do Zero' },
+  'yt-sv-glicemia':  { id: 'kkddG-7y_WE', title: 'Sinais Vitais e Glicemia Capilar — Aula Completa' },
+  /* ── Na Prática — Farmacologia ── */
+  'yt-farmaco':      { id: '_Xpmtr4tqMQ', title: 'O Mínimo de Farmacologia que Enfermagem Deve Saber' },
+  'yt-med-adm':      { id: 'RytQ5bqIyXo', title: 'Administração de Medicamentos — O que Você Precisa Saber' },
+  /* ── Na Prática — Emergências Avançadas ── */
+  'yt-intubacao':    { id: '5ZpXvecq9i4', title: 'Intubação Orotraqueal — Papel do Enfermeiro e Técnico' },
+  'yt-aph-xabcde':   { id: 'PLVA2R4Pr3o', title: 'APH — Abordagem Primária XABCDE do Trauma' },
+  /* ── Sala de Vacina ── */
+  'yt-vac1':         { id: 'D0WVaHhwAX8', title: 'Sala de Vacina — Guia Técnico Completo e Atualizado' },
+  'yt-vac2':         { id: 'xXMW_SAl_Vw', title: '4 Coisas que Você Precisa Saber sobre Vacinação' },
+  'yt-vac3':         { id: '4XlLYfADa6c', title: 'Vacinas — Via Intramuscular no Deltóide (Aula)' },
+  'yt-vac4':         { id: 'TDuj2H50PY8', title: 'Técnicas Adequadas de Vacinação — Orientações' },
+  'yt-vac5':         { id: 'ORaDLTGVV_E', title: 'Sala de Vacinação — Estrutura, Organização e Insumos' },
   /* ── Reforço AVC ── */
   'yt-avc2':         { id: 'SDkZB4nkVO0', title: 'SAMU 192 — O que Fazer em Caso de AVC' },
   'yt-avc3':         { id: '8nNSUq30pfo', title: 'Sinais e Sintomas de AVC — Primeiros Socorros' },
@@ -3153,7 +3784,7 @@ function updateConnectionBadge() {
 
 window.addEventListener('online', () => { updateConnectionBadge(); loadAllVideos(); });
 window.addEventListener('offline', () => { updateConnectionBadge(); loadAllVideos(); });
-window.addEventListener('load', () => { updateConnectionBadge(); loadAllVideos(); });
+window.addEventListener('load', () => { updateConnectionBadge(); loadAllVideos(); injectResetButtons(); });
 
 function filterGloss(query) {
   const q = query.toLowerCase().trim();
@@ -3313,7 +3944,384 @@ function dismissIosTip() {
   localStorage.setItem('installDismissed', Date.now());
 }
 
-/* ── Nav scroll arrow ── */
+/* ══════ FERRAMENTAS JS ══════ */
+
+/* ── Calculadoras ── */
+function calcGotejamento() {
+  const vol = parseFloat(document.getElementById('g_vol').value);
+  const h   = parseFloat(document.getElementById('g_tempo').value);
+  const r   = document.getElementById('r_gotejamento');
+  if (!vol || !h) { r.innerHTML='⚠️ Preencha volume e tempo.'; r.style.display='block'; return; }
+  const macro = Math.round((vol / h) * 3);
+  const micro = Math.round(vol / h);
+  const mlh   = Math.round(vol / h);
+  r.innerHTML = `💧 <strong>Macrogotas:</strong> ${macro} gts/min &nbsp;|&nbsp; <strong>Microgotas:</strong> ${micro} mcgts/min &nbsp;|&nbsp; <strong>Fluxo:</strong> ${mlh} mL/h
+    <br><small>Fórmula macrogotas: (${vol} ÷ ${h}) × 3 = ${macro} gts/min</small>`;
+  r.style.display = 'block';
+}
+
+function calcDose() {
+  const d = parseFloat(document.getElementById('d_dose').value);
+  const p = parseFloat(document.getElementById('d_peso').value);
+  const r = document.getElementById('r_dose');
+  if (!d || !p) { r.innerHTML='⚠️ Preencha dose e peso.'; r.style.display='block'; return; }
+  const total = (d * p).toFixed(2);
+  r.innerHTML = `⚖️ <strong>Dose total:</strong> ${total} mg &nbsp;|&nbsp; (${d} mg/kg × ${p} kg)`;
+  r.style.display = 'block';
+}
+
+function calcDiluicao() {
+  const conc = parseFloat(document.getElementById('dil_conc').value);
+  const dose = parseFloat(document.getElementById('dil_dose').value);
+  const r    = document.getElementById('r_diluicao');
+  if (!conc || !dose) { r.innerHTML='⚠️ Preencha concentração e dose.'; r.style.display='block'; return; }
+  const vol = (dose / conc).toFixed(2);
+  r.innerHTML = `🧪 <strong>Volume a aspirar:</strong> ${vol} mL &nbsp;|&nbsp; (${dose} mg ÷ ${conc} mg/mL)`;
+  r.style.display = 'block';
+}
+
+function calcIMC() {
+  const p = parseFloat(document.getElementById('imc_peso').value);
+  const a = parseFloat(document.getElementById('imc_alt').value);
+  const r = document.getElementById('r_imc');
+  if (!p || !a) { r.innerHTML='⚠️ Preencha peso e altura.'; r.style.display='block'; return; }
+  const imc = (p / (a * a)).toFixed(1);
+  const cls = imc < 18.5 ? '⬇️ Abaixo do peso' : imc < 25 ? '✅ Peso normal' : imc < 30 ? '⚠️ Sobrepeso' : imc < 35 ? '🔴 Obesidade grau I' : imc < 40 ? '🔴 Obesidade grau II' : '🔴 Obesidade grau III';
+  r.innerHTML = `📏 <strong>IMC:</strong> ${imc} kg/m² — ${cls}`;
+  r.style.display = 'block';
+}
+
+/* Glasgow */
+const glasgowVals = { g_O: 0, g_V: 0, g_M: 0 };
+function setScale(id, val) {
+  glasgowVals[id] = val;
+  document.querySelectorAll(`#${id} button`).forEach(b => b.classList.remove('active'));
+  const clicked = [...document.querySelectorAll(`#${id} button`)].find(b => b.textContent.startsWith(val));
+  if (clicked) clicked.classList.add('active');
+}
+function calcGlasgow() {
+  const O = glasgowVals.g_O, V = glasgowVals.g_V, M = glasgowVals.g_M;
+  const r = document.getElementById('r_glasgow');
+  if (!O || !V || !M) { r.innerHTML='⚠️ Selecione todos os critérios.'; r.style.display='block'; return; }
+  const total = O + V + M;
+  const cls = total >= 13 ? '✅ Leve (13–15)' : total >= 9 ? '⚠️ Moderado (9–12)' : '🔴 Grave (3–8) — Risco de vida';
+  r.innerHTML = `🧠 <strong>Glasgow: ${total}/15</strong> — ${cls}<br><small>O(${O}) + V(${V}) + M(${M}) = ${total}</small>`;
+  r.style.display = 'block';
+}
+
+/* APGAR */
+const apgarVals = [null, null, null, null, null];
+function setApgar(idx, val) {
+  apgarVals[idx] = val;
+  document.getElementById('ap' + idx).textContent = val;
+  const all = apgarVals.every(v => v !== null);
+  if (all) {
+    const total = apgarVals.reduce((a, b) => a + b, 0);
+    const r = document.getElementById('r_apgar');
+    const cls = total >= 8 ? '✅ Normal (8–10)' : total >= 4 ? '⚠️ Asfixia moderada (4–7)' : '🔴 Asfixia grave (0–3)';
+    r.innerHTML = `👶 <strong>APGAR: ${total}/10</strong> — ${cls}`;
+    r.style.display = 'block';
+  }
+}
+
+/* EVA */
+(function buildEVA() {
+  const c = document.getElementById('evaButtons');
+  if (!c) return;
+  const colors = ['#4caf50','#8bc34a','#cddc39','#ffeb3b','#ffc107','#ff9800','#ff5722','#f44336','#e53935','#b71c1c','#880000'];
+  const labels = ['0 Sem dor','1','2','3','4','5 Moderada','6','7','8','9','10 Insuportável'];
+  for (let i = 0; i <= 10; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    btn.title = labels[i];
+    btn.style.cssText = `width:36px;height:36px;border-radius:50%;border:2px solid ${colors[i]};background:${colors[i]};color:#fff;font-weight:800;cursor:pointer;font-size:0.9rem;transition:transform 0.15s`;
+    btn.onmouseover = () => { btn.style.transform = 'scale(1.2)'; };
+    btn.onmouseout  = () => { btn.style.transform = 'scale(1)'; };
+    btn.onclick = () => {
+      const r = document.getElementById('r_eva');
+      const nivel = i <= 2 ? '✅ Leve' : i <= 5 ? '⚠️ Moderada' : i <= 7 ? '🔴 Intensa' : '🚨 Insuportável';
+      const cond  = i <= 2 ? 'Registrar e monitorar.' : i <= 5 ? 'Notificar enfermeiro. Analgesia VO conforme protocolo.' : 'Notificar enfermeiro/médico urgente. Analgesia EV/IM conforme prescrição.';
+      r.innerHTML = `😣 <strong>EVA ${i}/10</strong> — ${nivel}<br><small>${cond}</small>`;
+      r.style.display = 'block';
+      c.querySelectorAll('button').forEach(b => { b.style.opacity = '0.5'; b.style.transform = 'scale(1)'; });
+      btn.style.opacity = '1'; btn.style.transform = 'scale(1.25)';
+    };
+    c.appendChild(btn);
+  }
+})();
+
+/* Braden */
+const bradenVals = [0,0,0,0,0,0];
+function setBraden(idx, val) {
+  bradenVals[idx] = val;
+  document.getElementById('br'+idx).textContent = val;
+  const total = bradenVals.reduce((a,b)=>a+b,0);
+  const r = document.getElementById('r_braden');
+  if (bradenVals.every(v=>v>0)) {
+    const risk = total <= 9 ? '🔴 Muito alto' : total <= 12 ? '🔴 Alto' : total <= 14 ? '⚠️ Moderado' : total <= 18 ? '⚠️ Baixo' : '✅ Sem risco';
+    r.innerHTML = `🛏️ <strong>Braden: ${total}/23</strong> — ${risk}<br><small>≤9 muito alto · 10–12 alto · 13–14 moderado · 15–18 baixo · ≥19 sem risco</small>`;
+    r.style.display = 'block';
+  } else { r.innerHTML=`Pontuação parcial: ${total} — complete todos os critérios.`; r.style.display='block'; }
+  // highlight active buttons
+  document.querySelectorAll(`#mo${idx} button, #br${idx}`).forEach(b => b.classList.remove('active'));
+}
+
+/* Morse */
+const morseVals = [0,0,0,0,0,0];
+function setMorse(idx, val) {
+  morseVals[idx] = val;
+  document.querySelectorAll(`#mo${idx} button`).forEach(b => b.classList.remove('active'));
+  [...document.querySelectorAll(`#mo${idx} button`)].forEach(b => {
+    if (b.textContent.includes('('+val+')')) b.classList.add('active');
+  });
+  const total = morseVals.reduce((a,b)=>a+b,0);
+  const risk = total < 25 ? '✅ Baixo risco' : total <= 50 ? '⚠️ Médio risco — precauções padrão' : '🔴 Alto risco — precauções máximas de queda';
+  const r = document.getElementById('r_morse');
+  r.innerHTML = `🚶 <strong>Morse: ${total}</strong> — ${risk}`;
+  r.style.display = 'block';
+}
+
+/* ── Bulário search ── */
+function filterBulario(q) {
+  const rows = document.querySelectorAll('.bul-row');
+  const lq = q.toLowerCase();
+  rows.forEach(row => {
+    row.style.display = row.textContent.toLowerCase().includes(lq) ? '' : 'none';
+  });
+}
+
+/* ── Bandejas ── */
+const bandejas = {
+  'puncao': {
+    title: '💉 Punção Venosa Periférica',
+    items: ['Bandeja de procedimentos limpa','Cateter IV (jelco) tamanho adequado (14G–22G)','Garrote (torniquete)','Algodão / gaze estéril','PVPI degermante ou álcool 70%','Curativo adesivo estéril (tegaderm / esparadrapo)','Equipo de soro + soro fisiológico / medicação prescrita','Seringa 10 mL + scalp (se necessário)','Luvas de procedimento','Descartex (caixa de perfurocortantes)','Etiqueta de identificação do acesso'],
+    tips: '⚠️ Bisel para cima · Ângulo 15–30° · Confirme retorno venoso · Fixe em H · Registre data e hora do acesso'
+  },
+  'svd-m': {
+    title: '🔵 Sondagem Vesical de Demora — Masculino',
+    items: ['Kit de sondagem vesical estéril','Sonda Foley 14–18 Fr (conforme prescrição)','Bolsa coletora de urina com suporte','Seringa 10 mL para inflar o balonete','Água destilada (10–15 mL) para balonete','PVPI aquoso ou clorexidina degermante 0,5%','Gaze estéril','Campo fenestrado estéril','Luvas estéreis','Gel lubrificante estéril','Esparadrapo para fixação na coxa','Frasco de SF 0,9% para higiene do meato'],
+    tips: '⚠️ Técnica asséptica rigorosa · Introduzir 15–20 cm · Não insufllar balonete se resistência · Bolsa SEMPRE abaixo do nível da bexiga'
+  },
+  'svd-f': {
+    title: '🔵 Sondagem Vesical de Demora — Feminino',
+    items: ['Kit de sondagem vesical estéril','Sonda Foley 12–16 Fr','Bolsa coletora de urina com suporte','Seringa 10 mL + água destilada (5–10 mL) para balonete','PVPI aquoso ou clorexidina 0,5%','Gaze estéril e campo fenestrado estéril','Luvas estéreis','Gel lubrificante estéril','Boa iluminação (lanterna ou abajur)','Esparadrapo para fixação na coxa','Biombo para privacidade'],
+    tips: '⚠️ Identificar meato uretral antes de iniciar · Introduzir 5–7 cm · Higiene do períneo antes (frente-fundos) · Bolsa sempre abaixo da bexiga'
+  },
+  'sng': {
+    title: '🟡 Sonda Nasogástrica (SNG)',
+    items: ['Sonda nasogástrica tamanho adequado (12–18 Fr)','Seringa de 20 mL','Esparadrapo hipoalergênico','Gel lubrificante','Luvas de procedimento','Estetoscópio','Copo com água (se deglutição possível)','Lanterna (inspeção da narina)','Garrafa de drenagem ou equipo de alimentação','Frasco de SF 0,9% para flush'],
+    tips: '⚠️ Medir da ponta do nariz ao lóbulo da orelha + ao processo xifoide · Confirmar posição: aspirar conteúdo gástrico (pH ≤5) ou Rx · Nunca iniciar dieta sem confirmação · Fixar bem na narina e na testa'
+  },
+  'curativo': {
+    title: '🩹 Curativo Simples',
+    items: ['Bandeja de curativos limpa','Luvas de procedimento (e luvas estéreis se ferida cirúrgica)','SF 0,9% (lavagem da ferida)','PVPI degermante (se indicado)','Gaze estéril (quantidade suficiente)','Cobertura adequada (curativo simples, hidrocoloide, alginato — conforme ferida)','Esparadrapo / fita microporosa','Pinças: Kelly + anatômica (se curativo estéril)','Tesoura cirúrgica','Cuba redonda para soluções','Saco de lixo (resíduo infectante — lixo vermelho)'],
+    tips: '⚠️ Lavar sempre a ferida com SF 0,9% em jato · Limpar de dentro para fora · Registrar: aspecto, odor, exsudato, tamanho e bordas da ferida · Trocar curativo conforme protocolo ou quando úmido/sujo'
+  },
+  'nebul': {
+    title: '🫁 Nebulização',
+    items: ['Nebulizador + copo (máscara ou bocal — conforme prescrição)','Medicamento prescrito (Berotec®, Atrovent®, Fenoterol)','SF 0,9% para completar até 3–4 mL no copo','Seringa de 1–3 mL (para aspirar medicamento)','Ampola de SF 0,9% 5 mL','Toalha de papel (para higiene oral após corticoide inalado)','Estetoscópio (para ausculta pré e pós-nebulização)','Oxímetro de pulso'],
+    tips: '⚠️ Copo SEMPRE vertical · Respiração lenta e profunda pelo nariz · Monitorar FC e SpO₂ · Após corticoide inalado: lavar a boca · Auscultar antes e após'
+  },
+  'pcr': {
+    title: '🚨 Carro de Emergência (PCR)',
+    items: ['Desfibrilador/DEA + pás + gel','Bolsa-valva-máscara (Ambu)','Laringoscópio + lâminas (curva e reta)','Tubos orotraqueais vários tamanhos + fio-guia','Aspirador de secreções + sondas de aspiração','Adrenalina 1mg/mL (10 ampolas)','Amiodarona 150mg','Atropina 0,5mg/mL (5 ampolas)','Bicarbonato de Sódio 8,4% (3 frascos)','SF 0,9% 250 mL (4 bolsas)','Equipo + cateteres IV (14G, 16G)','Seringa 10 mL e 20 mL','Glicose 50% (2 ampolas)','Oxigênio (cilindro cheio ou ponto de O₂)','Estetoscópio + esfigmomanômetro','Prancha rígida para compressões'],
+    tips: '✅ Checar o carro no início de cada plantão · Verificar lacre, validade, carga do desfibrilador · Após uso: repor e reselar imediatamente · Registrar em impresso de checagem'
+  },
+  'coleta': {
+    title: '🩸 Coleta de Sangue Venoso',
+    items: ['Luvas de procedimento','Agulha 25×7 ou 21×7 + seringa 10–20 mL (ou sistema a vácuo)','Garrote','Algodão + álcool 70% (ou clorexidina)','Tubos de coleta (seguir ordem: amarelo → vermelho → verde → lilas → cinza)','Etiquetas de identificação do paciente','Bandeja limpa','Descartex','Curativo adesivo','Identificação dos tubos antes da coleta'],
+    tips: '⚠️ Identificar os tubos antes de coletar · Ordem dos tubos (sistema a vácuo): amarelo → verde → lilás → cinza · Homogeneizar tubos com anticoagulante (8 inversões suaves) · Não agitar'
+  }
+};
+let currentBandeja = null;
+function showBandeja(key) {
+  currentBandeja = key;
+  document.querySelectorAll('#bandejaTabs button').forEach(b => b.style.background = '');
+  const btn = document.getElementById('btn-'+key);
+  if (btn) { btn.style.background = 'var(--teal)'; btn.style.color = '#fff'; }
+  const d = bandejas[key];
+  if (!d) return;
+  const content = document.getElementById('bandejaContent');
+  content.innerHTML = `
+    <h4 style="margin-bottom:10px;color:var(--teal-dark)">${d.title}</h4>
+    <div style="background:var(--teal-light);border-radius:10px;padding:12px;margin-bottom:12px">
+      <b style="font-size:0.82rem">📦 Materiais necessários:</b>
+      <ul style="margin-top:6px;padding-left:18px;font-size:0.82rem;line-height:1.8">
+        ${d.items.map(i=>`<li>${i}</li>`).join('')}
+      </ul>
+    </div>
+    <div class="info-box warning">${d.tips}</div>`;
+}
+// Initialize with first bandeja
+setTimeout(() => { if (document.getElementById('bandejaContent')) showBandeja('puncao'); }, 100);
+
+/* ── Simulado ── */
+const simQuestoes = [
+  { q:'Qual é a velocidade correta das compressões torácicas na RCP do adulto (AHA 2020)?', opts:['60–80/min','100–120/min','80–100/min','120–140/min'], r:1, e:'A AHA recomenda 100–120 compressões/min, profundidade de 5–6 cm, com retorno total do tórax.' },
+  { q:'O protocolo FAST de triagem do AVC avalia:', opts:['Frequência, Ausculta, SpO₂, Temperatura','Face, Arm, Speech, Time','FC, PA, SatO₂, Temperatura','Fraqueza, Ataxia, Sudorese, Tontura'], r:1, e:'FAST: Face (rosto), Arm (braços), Speech (fala), Time (tempo/horário). Positivo em qualquer item = ativar protocolo AVC.' },
+  { q:'Na Escala de Glasgow, a pontuação MÍNIMA é:', opts:['0','1','3','5'], r:2, e:'O mínimo do Glasgow é 3 (O1+V1+M1). Zero não existe na escala.' },
+  { q:'O antídoto para intoxicação por opioides é:', opts:['Flumazenil','Naloxona','Atropina','Vitamina K'], r:1, e:'Naloxona é o antagonista dos receptores opioides. Flumazenil reverte benzodiazepínicos.' },
+  { q:'Para prevenir UPP, o reposicionamento do paciente acamado deve ocorrer a cada:', opts:['1 hora','2 horas','4 horas','8 horas'], r:1, e:'A mudança de decúbito a cada 2 horas é o padrão ouro para prevenção de LPP/UPP.' },
+  { q:'Qual é a concentração do SF utilizado para higiene de feridas e diluição de medicamentos?', opts:['0,45%','0,9%','3%','10%'], r:1, e:'SF 0,9% (cloreto de sódio 0,9%) é isotônico e o padrão para lavagem de feridas e diluição.' },
+  { q:'O Cloreto de Potássio (KCl) 19,1% pode ser administrado:', opts:['EV direto (bolus)','IM','Diluído em SF ou SG em infusão lenta','SC'], r:2, e:'⚠️ KCl NUNCA deve ser dado EV direto — risco de PARADA CARDÍACA. Sempre diluir e infundir lentamente com monitorização cardíaca.' },
+  { q:'Na prescrição "Dipirona 1g EV de 6/6h", quantas doses serão administradas em 24 horas?', opts:['3','4','6','8'], r:1, e:'24h ÷ 6h = 4 doses. 6/6h = a cada 6 horas = 4 vezes ao dia.' },
+  { q:'A Escala de Braden avalia o risco de UPP. Uma pontuação ≤ 9 indica risco:', opts:['Baixo','Moderado','Alto','Muito alto'], r:3, e:'Braden: ≤9 = muito alto; 10–12 = alto; 13–14 = moderado; 15–18 = baixo; ≥19 = sem risco.' },
+  { q:'Qual via de administração tem a MAIOR velocidade de ação dos medicamentos?', opts:['Via oral','Subcutânea','Intramuscular','Endovenosa'], r:3, e:'A via EV tem absorção imediata pois o medicamento entra diretamente na circulação.' },
+  { q:'A amiodarona deve ser diluída em:', opts:['SF 0,9%','SG 5%','Água para injeção','Ringer lactato'], r:1, e:'Amiodarona precipita em contato com SF (cloreto de sódio). Sempre usar SG 5%.' },
+  { q:'Na sondagem vesical de demora feminina, qual a distância aproximada a introduzir a sonda?', opts:['15–20 cm','10–15 cm','5–7 cm','2–3 cm'], r:2, e:'Na mulher, a uretra tem 3–5 cm. Introduzir 5–7 cm para garantir posicionamento na bexiga.' },
+  { q:'Sinais clínicos de hipoglicemia incluem:', opts:['Hipertensão, sede intensa, hálito cetônico','Taquicardia, sudorese fria, tremor, confusão','Poliúria, polidipsia, astenia','Bradicardia, hipertensão, febre'], r:1, e:'Hipoglicemia: taquicardia, sudorese, tremor, palidez, confusão, fome intensa. Tratar: glicose VO ou glicose 50% EV (grave).' },
+  { q:'Qual medicamento é o antídoto do benzodiazepínico?', opts:['Naloxona','Protamina','Flumazenil','Atropina'], r:2, e:'Flumazenil antagoniza competitivamente os receptores GABA-A dos benzodiazepínicos. Duração curta — reavaliar.' },
+  { q:'Na administração intramuscular (IM), o ângulo correto de inserção da agulha é:', opts:['15°–30°','45°','90°','10°–15°'], r:2, e:'Via IM: agulha a 90° em relação à pele. Via SC: 45°. Via EV: 15–30°.' },
+  { q:'No protocolo XABCDE do trauma, o X representa:', opts:['Exame neurológico','Controle de hemorragia exsanguinante','Exposição do paciente','Exame da coluna cervical'], r:1, e:'X = controle de hemorragia exsanguinante EXTERNA com torniquete/curativo compressivo. Veio antes do ABCDE no protocolo ATLS 2018.' },
+  { q:'A janela terapêutica para trombólise no AVC isquêmico é de:', opts:['1 hora','2 horas','4,5 horas','12 horas'], r:2, e:'"Time is Brain". A janela para rt-PA (trombólise) vai até 4,5 horas após o início dos sintomas.' },
+  { q:'O cálculo de gotejamento para macrogotas: 500 mL em 4 horas resulta em:', opts:['20 gts/min','42 gts/min','37 gts/min','15 gts/min'], r:1, e:'Fórmula: (500 ÷ 4) × 3 = 125 × 3 = 375 gts/h ÷ 9 = 41,6 ≈ 42 gts/min.' },
+  { q:'A principal medida de prevenção de infecções hospitalares é:', opts:['Uso de EPI','Higienização das mãos','Isolamento de todos os pacientes','Uso de antibióticos profiláticos'], r:1, e:'A higienização das mãos é a medida mais simples e eficaz para prevenção de IRAS, conforme a OMS.' },
+  { q:'Na nebulização, o copo do nebulizador deve estar:', opts:['Inclinado para melhor nebulização','Sempre vertical','Na horizontal durante inspiração','Na posição que o paciente preferir'], r:1, e:'O copo DEVE ficar SEMPRE vertical para que a solução seja nebulizada corretamente e não vaze.' },
+  { q:'Qual escala avalia o risco de QUEDA em pacientes hospitalizados?', opts:['Glasgow','Braden','Morse','APGAR'], r:2, e:'A Escala de Morse avalia risco de queda. Braden = UPP. Glasgow = nível de consciência. APGAR = vitalidade neonatal.' },
+  { q:'O APGAR neonatal é avaliado nos minutos:', opts:['1 e 5','2 e 10','5 e 15','1 e 3'], r:0, e:'APGAR é avaliado no 1º e 5º minuto de vida. Se <7 no 5º min, repete-se a cada 5 min até 20 min.' },
+  { q:'Na administração de medicamentos, os "9 certos" incluem TUDO EXCETO:', opts:['Paciente certo','Médico certo','Via certa','Dose certa'], r:1, e:'Os 9 certos são: paciente, medicamento, via, dose, hora, frequência, registro, orientação, validade. "Médico certo" não é um dos 9 certos.' },
+  { q:'Para reversão de anticoagulação com heparina não fracionada, usa-se:', opts:['Vitamina K','Protamina','Flumazenil','Naloxona'], r:1, e:'Protamina é o antídoto da heparina (fracionada e não fracionada). Vitamina K reverte varfarina.' },
+  { q:'A velocidade máxima de infusão de KCl é:', opts:['5 mEq/h','10–20 mEq/h','40 mEq/h','60 mEq/h'], r:1, e:'Máximo de 10–20 mEq/h. Concentração máxima periférica: 40 mEq/L. Via central se necessidade de concentração maior.' },
+  { q:'Qual a conduta imediata diante de uma PCR?', opts:['Chamar o médico e aguardar','Iniciar RCP imediatamente (30:2) e chamar ajuda','Administrar adrenalina e aguardar o DEA','Realizar ventilação boca a boca apenas'], r:1, e:'Reconhecer PCR → Pedir ajuda → Iniciar RCP 30:2 → Usar DEA assim que disponível. Cada minuto sem RCP reduz ~10% a sobrevivência.' },
+  { q:'A frequência cardíaca normal em adultos em repouso é:', opts:['40–60 bpm','60–100 bpm','100–120 bpm','50–80 bpm'], r:1, e:'FC normal adulto: 60–100 bpm. <60 = bradicardia. >100 = taquicardia.' },
+  { q:'Qual via de administração tem a absorção mais LENTA?', opts:['Endovenosa','Intramuscular','Subcutânea','Inalatória'], r:2, e:'SC tem absorção mais lenta que IM, EV e inalatória. Usada para insulina, heparina e outras.' },
+  { q:'Na nebulização com broncodilatador, deve-se monitorar durante o procedimento:', opts:['Glicemia e temperatura','FC e SpO₂','PA e peso','Diurese e PA'], r:1, e:'Broncodilatadores (Berotec®) podem causar taquicardia. Monitorar FC e SpO₂ durante e após a nebulização.' },
+  { q:'O curativo de uma ferida cirúrgica deve ser trocado:', opts:['Diariamente, sempre','A cada 3 dias','Conforme protocolo ou quando úmido/sujo','Somente quando retirar os pontos'], r:2, e:'A troca de curativo segue o protocolo institucional ou quando úmido, sujo, descolado. A frequência varia com o tipo de cobertura.' }
+];
+
+let simAtual = 0, simScore = 0, simQuestions = [], simTimer = null, simTimeLeft = 0, simAnswered = false;
+
+function startSimulado() {
+  simScore = 0; simAtual = 0; simAnswered = false;
+  // Shuffle and pick 20
+  simQuestions = [...simQuestoes].sort(() => Math.random() - 0.5).slice(0, 20);
+  document.getElementById('simInicio').style.display  = 'none';
+  document.getElementById('simResult').style.display  = 'none';
+  document.getElementById('simArea').style.display    = 'block';
+  // Timer 30 min
+  simTimeLeft = 30 * 60;
+  clearInterval(simTimer);
+  simTimer = setInterval(() => {
+    simTimeLeft--;
+    const m = Math.floor(simTimeLeft / 60), s = simTimeLeft % 60;
+    document.getElementById('simTimer').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    if (simTimeLeft <= 0) { clearInterval(simTimer); finishSimulado(); }
+  }, 1000);
+  renderSimQuestion();
+}
+
+function renderSimQuestion() {
+  const q = simQuestions[simAtual];
+  simAnswered = false;
+  document.getElementById('simQnum').textContent = simAtual + 1;
+  document.getElementById('simQuestion').textContent = q.q;
+  document.getElementById('simFeedback').style.display = 'none';
+  document.getElementById('simNextBtn').style.display = 'none';
+  const optDiv = document.getElementById('simOptions');
+  optDiv.innerHTML = '';
+  q.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'sim-opt';
+    btn.textContent = `${String.fromCharCode(65+i)}) ${opt}`;
+    btn.onclick = () => {
+      if (simAnswered) return;
+      simAnswered = true;
+      optDiv.querySelectorAll('.sim-opt').forEach(b => b.disabled = true);
+      if (i === q.r) { btn.classList.add('correct'); simScore++; }
+      else { btn.classList.add('wrong'); optDiv.querySelectorAll('.sim-opt')[q.r].classList.add('correct'); }
+      const fb = document.getElementById('simFeedback');
+      fb.style.display = 'block';
+      fb.style.background = i === q.r ? '#e8f5e9' : '#ffebee';
+      fb.style.color = i === q.r ? '#2e7d32' : '#b71c1c';
+      fb.textContent = q.e;
+      document.getElementById('simNextBtn').style.display = 'inline-block';
+    };
+    optDiv.appendChild(btn);
+  });
+}
+
+function simNext() {
+  simAtual++;
+  if (simAtual >= simQuestions.length) { clearInterval(simTimer); finishSimulado(); return; }
+  renderSimQuestion();
+}
+
+function finishSimulado() {
+  clearInterval(simTimer);
+  document.getElementById('simArea').style.display = 'none';
+  document.getElementById('simResult').style.display = 'block';
+  const pct = Math.round((simScore / 20) * 100);
+  document.getElementById('simScore').textContent = `${simScore}/20 (${pct}%)`;
+  const icon  = pct >= 80 ? '🏆' : pct >= 60 ? '📚' : '💪';
+  const title = pct >= 80 ? 'Parabéns! Excelente resultado!' : pct >= 60 ? 'Bom desempenho! Continue estudando!' : 'Continue praticando!';
+  const msg   = pct >= 80 ? 'Você está bem preparado para o dia a dia e concursos!' : pct >= 60 ? 'Revise os temas que errou para fixar melhor.' : 'Revise os conteúdos do app e tente novamente.';
+  document.getElementById('simResultIcon').textContent = icon;
+  document.getElementById('simResultTitle').textContent = title;
+  document.getElementById('simResultMsg').textContent = msg;
+}
+
+/* ── Anotador de plantão ── */
+let notes = JSON.parse(localStorage.getItem('enfStudyNotes') || '[]');
+
+function renderNotes() {
+  const area = document.getElementById('notesArea');
+  if (!area) return;
+  if (notes.length === 0) { area.innerHTML = '<p style="color:#aaa;font-size:0.82rem;text-align:center">Nenhuma anotação ainda.</p>'; return; }
+  area.innerHTML = notes.map((n, i) => `
+    <div style="background:#f9f9f9;border:1.5px solid #e0e0e0;border-radius:10px;padding:10px 14px;font-size:0.82rem;position:relative">
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:4px">
+        <span style="background:var(--teal);color:#fff;border-radius:6px;padding:2px 8px;font-size:0.72rem;font-weight:700">${n.tipo}</span>
+        <span style="font-weight:700">${n.leito}</span>
+        <span style="color:#888">${n.hora}</span>
+        <button onclick="deleteNote(${i})" style="margin-left:auto;background:#ffebee;color:#b71c1c;border:none;border-radius:6px;padding:2px 8px;cursor:pointer;font-size:0.72rem;font-weight:700">✕</button>
+      </div>
+      <div style="color:#333;line-height:1.5">${n.obs}</div>
+    </div>`).join('');
+}
+
+function addNote() {
+  const leito = document.getElementById('nt_leito').value.trim();
+  const hora  = document.getElementById('nt_hora').value;
+  const tipo  = document.getElementById('nt_tipo').value;
+  const obs   = document.getElementById('nt_obs').value.trim();
+  if (!obs) { alert('Preencha pelo menos a observação.'); return; }
+  notes.unshift({ leito: leito || 'Geral', hora: hora || new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}), tipo, obs, ts: Date.now() });
+  localStorage.setItem('enfStudyNotes', JSON.stringify(notes));
+  document.getElementById('nt_leito').value = '';
+  document.getElementById('nt_obs').value = '';
+  renderNotes();
+}
+
+function deleteNote(i) {
+  notes.splice(i, 1);
+  localStorage.setItem('enfStudyNotes', JSON.stringify(notes));
+  renderNotes();
+}
+
+function clearNotes() {
+  if (!confirm('Apagar todas as anotações?')) return;
+  notes = [];
+  localStorage.removeItem('enfStudyNotes');
+  renderNotes();
+}
+
+function exportNotes() {
+  const text = notes.map(n => `[${n.hora}] ${n.leito} — ${n.tipo}\n${n.obs}`).join('\n\n');
+  navigator.clipboard.writeText(text).then(() => alert('Anotações copiadas!')).catch(() => alert('Copie manualmente o conteúdo.'));
+}
+
+// Initialize EVA and notes on page load
+window.addEventListener('load', () => {
+  setTimeout(renderNotes, 200);
+  // Set default time for notes
+  const timeInput = document.getElementById('nt_hora');
+  if (timeInput) {
+    const now = new Date();
+    timeInput.value = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+  }
+});
+
+
 (function() {
   const nav = document.getElementById('mainNav');
   const fade = document.getElementById('navFade');
