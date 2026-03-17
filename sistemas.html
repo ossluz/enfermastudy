@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistemas do Corpo Humano — EnfermaStudy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--teal:#00796b;--teal-dark:#004d40;--bg:#f0f4f3}
+body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh}
+header{background:linear-gradient(135deg,#e65100,#f57c00);color:#fff;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.hd{display:flex;align-items:center;gap:14px;padding:14px 20px}
+.hi{width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ht h1{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800}
+.ht p{font-size:.72rem;opacity:.8;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.bk{margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:10px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;text-decoration:none}
+main{max-width:960px;margin:0 auto;padding:24px 16px 60px}
+.hero{background:linear-gradient(135deg,#bf360c,#e64a19,#ff7043);color:#fff;border-radius:16px;padding:28px 24px;margin-bottom:20px;position:relative;overflow:hidden}
+.hero::after{content:'🫀';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:80px;opacity:.12}
+.hero h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;margin-bottom:8px}
+.hero p{font-size:.88rem;opacity:.9;line-height:1.6}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.nb{padding:8px 16px;border-radius:20px;border:2px solid #e0e0e0;background:#fff;font-family:'Nunito',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s}
+.nb:hover,.nb.active{border-color:var(--teal);background:var(--teal);color:#fff}
+.sys{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.08);overflow:hidden;border:1px solid rgba(0,0,0,.06);display:none}
+.sys.show{display:block}
+.sys-hd{padding:20px;display:flex;gap:16px;align-items:center;border-bottom:1px solid #f0f0f0}
+.si{font-size:2.5rem}
+.st{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;color:#1a2332}
+.ss{font-size:.78rem;color:#888;font-weight:600;margin-top:2px}
+.body{padding:20px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:10px 0}
+@media(max-width:500px){.two{grid-template-columns:1fr}}
+.box{background:#f9f9f9;border-radius:10px;padding:14px}
+.box h4{font-size:.85rem;font-weight:800;color:#333;margin-bottom:8px}
+.box ul{padding-left:16px;font-size:.82rem;line-height:1.8;color:#555}
+.ib{border-radius:10px;padding:12px 14px;font-size:.82rem;line-height:1.6;margin:12px 0}
+.ia{background:#ffebee;border-left:4px solid #ef5350;color:#b71c1c}
+.it{background:#e8f5e9;border-left:4px solid #4caf50;color:#2e7d32}
+.io{background:#fff3e0;border-left:4px solid #ff9800;color:#e65100}
+.nb2{background:linear-gradient(135deg,#e0f2f1,#b2dfdb);border-radius:12px;padding:14px;margin-top:14px;border-left:4px solid var(--teal)}
+.nb2 h4{color:#004d40;font-size:.88rem;font-weight:800;margin-bottom:8px}
+.nb2 ul{padding-left:16px;font-size:.82rem;line-height:1.8;color:#00695c}
+.alt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px;margin:10px 0}
+.alt{background:#f9f9f9;border-radius:10px;padding:10px 12px;font-size:.8rem}
+.alt strong{display:block;color:#333;margin-bottom:3px;font-size:.82rem}
+.alt span{color:#666;line-height:1.5}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="hi">🫀</div>
+    <div class="ht"><h1>Sistemas do Corpo Humano</h1><p>EnfermaStudy — Recursos Extras</p></div>
+    <a href="recursos.html" class="bk">← Recursos</a>
+  </div>
+</header>
+<main>
+  <div class="hero">
+    <h2>🫀 Sistemas do Corpo Humano</h2>
+    <p>Anatomia, fisiologia, alterações comuns e cuidados de enfermagem para cada sistema. Selecione o sistema abaixo.</p>
+  </div>
+
+  <div class="nav">
+    <button class="nb active" onclick="show('cv',this)">❤️ Cardiovascular</button>
+    <button class="nb" onclick="show('resp',this)">🫁 Respiratório</button>
+    <button class="nb" onclick="show('nerv',this)">🧠 Nervoso</button>
+    <button class="nb" onclick="show('dig',this)">🍽️ Digestivo</button>
+    <button class="nb" onclick="show('uri',this)">💧 Urinário</button>
+    <button class="nb" onclick="show('ms',this)">💪 Músculo-Esq.</button>
+    <button class="nb" onclick="show('end',this)">⚗️ Endócrino</button>
+    <button class="nb" onclick="show('teg',this)">🩹 Tegumentar</button>
+    <button class="nb" onclick="show('imu',this)">🛡️ Imunológico</button>
+    <button class="nb" onclick="show('rep',this)">🔬 Reprodutor</button>
+  </div>
+
+  <!-- CARDIOVASCULAR -->
+  <div class="sys show" id="s-cv">
+    <div class="sys-hd"><div class="si">❤️</div><div><div class="st">Sistema Cardiovascular</div><div class="ss">Coração · Artérias · Veias · Capilares</div></div></div>
+    <div class="body">
+      <div class="two">
+        <div class="box"><h4>🔎 Função</h4><ul><li>Bombear sangue para todo o organismo</li><li>Distribuir O₂, nutrientes e hormônios</li><li>Recolher CO₂ e resíduos metabólicos</li><li>Regular a temperatura corporal</li></ul></div>
+        <div class="box"><h4>🫀 Estrutura</h4><ul><li>4 câmaras: AD, AE, VD, VE</li><li>Válvulas: mitral, tricúspide, aórtica, pulmonar</li><li>Circulação pulmonar: VD → pulmões → AE</li><li>Circulação sistêmica: VE → corpo → AD</li><li>FC normal: 60–100 bpm · PA: 100–139/60–89</li></ul></div>
+      </div>
+      <h4 style="margin:14px 0 8px;font-size:.88rem;font-weight:800">⚠️ Alterações comuns</h4>
+      <div class="alt-grid">
+        <div class="alt"><strong>Hipertensão (HAS)</strong><span>PA ≥140/90 crônico. Principal FR para AVC e IAM.</span></div>
+        <div class="alt"><strong>IAM</strong><span>Necrose por oclusão coronariana. Dor torácica irradiada. SAMU 192.</span></div>
+        <div class="alt"><strong>Arritmias</strong><span>FA, TV, bloqueios. Monitorar ECG. Pulso irregular.</span></div>
+        <div class="alt"><strong>Insuf. Cardíaca</strong><span>Edema, dispneia, ortopneia. Decúbito 30–45°.</span></div>
+        <div class="alt"><strong>Choque</strong><span>Hipoperfusão: hipovolêmico, séptico, cardiogênico, anafilático.</span></div>
+      </div>
+      <div class="nb2"><h4>🩺 Cuidados de Enfermagem</h4><ul><li>Monitorar PA, FC e ritmo cardíaco conforme frequência prescrita</li><li>Atentar para sinais de choque: hipotensão, taquicardia, palidez, sudorese fria</li><li>Decúbito 30–45° em IC (melhora retorno venoso e reduz dispneia)</li><li>Balanço hídrico rigoroso — ganho de peso súbito = retenção hídrica</li><li>Verificar FC antes da digoxina — se &lt;60 bpm: não administrar e comunicar</li><li>Registrar e interpretar traçados do ECG básicos (assistolia, FV, ritmo sinusal)</li></ul></div>
+    </div>
+  </div>
+
+  <!-- RESPIRATÓRIO -->
+  <div class="sys" id="s-resp">
+    <div class="sys-hd"><div class="si">🫁</div><div><div class="st">Sistema Respiratório</div><div class="ss">Vias aéreas · Pulmões · Hematose</div></div></div>
+    <div class="body">
+      <div class="two">
+        <div class="box"><h4>🔎 Função</h4><ul><li>Captação de O₂ e eliminação de CO₂ (hematose)</li><li>Regulação do pH sanguíneo</li><li>Filtração de partículas (muco + cílios)</li><li>Fonação (produção de voz)</li><li>Valores normais: FR 12–20 irpm · SpO₂ 95–100%</li></ul></div>
+        <div class="box"><h4>📋 Componentes</h4><ul><li>Vias superiores: nariz, faringe, laringe</li><li>Vias inferiores: traqueia, brônquios, bronquíolos</li><li>Alvéolos: trocas gasosas (O₂ ↔ CO₂)</li><li>Pulmão D: 3 lobos · Pulmão E: 2 lobos</li><li>Pleura: membrana dupla que reveste os pulmões</li><li>Diafragma: principal músculo respiratório</li></ul></div>
+      </div>
+      <h4 style="margin:14px 0 8px;font-size:.88rem;font-weight:800">⚠️ Alterações comuns</h4>
+      <div class="alt-grid">
+        <div class="alt"><strong>Pneumonia</strong><span>Infecção bacteriana/viral. Febre, tosse produtiva, estertores à ausculta.</span></div>
+        <div class="alt"><strong>DPOC</strong><span>Destruição alveolar progressiva (tabagismo). Dispneia crônica, cianose.</span></div>
+        <div class="alt"><strong>Asma</strong><span>Broncoespasmo reversível. Sibilo, dispneia, tosse noturna.</span></div>
+        <div class="alt"><strong>Pneumotórax</strong><span>Ar na cavidade pleural. Dor torácica + dispneia súbita + ausência de MV.</span></div>
+        <div class="alt"><strong>TEP</strong><span>Tromboembolia pulmonar. Dispneia súbita, dor pleurítica, taquicardia.</span></div>
+      </div>
+      <div class="ib ia">⚠️ SpO₂ &lt;94%: notificar enfermeiro e iniciar O₂. SpO₂ &lt;90%: EMERGÊNCIA — acionar equipe imediatamente.</div>
+      <div class="nb2"><h4>🩺 Cuidados de Enfermagem</h4><ul><li>Monitorar FR, SpO₂ e padrão respiratório (uso de musculatura acessória, cianose)</li><li>Posicionar em Fowler ou semi-Fowler para maximizar expansão pulmonar</li><li>Administrar O₂ conforme prescrição — verificar dispositivo, fluxo e umidificação</li><li>Aspirar secreções com técnica estéril quando necessário</li><li>Realizar ausculta pulmonar antes e após nebulização</li><li>Cuidados com traqueostomia: umidificação, limpeza da cânula interna, curativo estoma</li></ul></div>
+    </div>
+  </div>
+
+  <!-- NERVOSO -->
+  <div class="sys" id="s-nerv">
+    <div class="sys-hd"><div class="si">🧠</div><div><div class="st">Sistema Nervoso</div><div class="ss">SNC · SNP · Neurônios · Reflexos · Cognição</div></div></div>
+    <div class="body">
+      <div class="two">
+        <div class="box"><h4>📋 Divisões</h4><ul><li><strong>SNC:</strong> Encéfalo + Medula espinal</li><li><strong>SNP:</strong> 12 pares cranianos + 31 pares espinhais</li><li><strong>SNA Simpático:</strong> "Luta ou fuga" — adrenalina</li><li><strong>SNA Parassimpático:</strong> "Repouso" — acetilcolina</li></ul></div>
+        <div class="box"><h4>📊 Avaliação neurológica</h4><ul><li>Glasgow: motor (6) + verbal (5) + ocular (4) = máx 15</li><li>Pupilas: isocóricas, fotorreativas e simétricas?</li><li>FAST (AVC): Face + Arm + Speech + Time</li><li>Tríade de Cushing (HTIC): bradicardia + HAS + alt. resp.</li><li>Orientação: pessoa, tempo e lugar</li></ul></div>
+      </div>
+      <h4 style="margin:14px 0 8px;font-size:.88rem;font-weight:800">⚠️ Alterações comuns</h4>
+      <div class="alt-grid">
+        <div class="alt"><strong>AVC Isquêmico</strong><span>Oclusão arterial. FAST + TC sem contraste. Janela de 4,5h para trombólise.</span></div>
+        <div class="alt"><strong>AVC Hemorrágico</strong><span>Ruptura vascular. TC mostra hiperdensidade. Pior prognóstico.</span></div>
+        <div class="alt"><strong>TCE</strong><span>Trauma crânioencefálico. GCS para classificar leve/mod/grave.</span></div>
+        <div class="alt"><strong>Convulsão</strong><span>Descarga elétrica neuronal. Proteger VA, não conter, cronometrar.</span></div>
+        <div class="alt"><strong>Meningite</strong><span>Rigidez de nuca + fotofobia + febre. Punção lombar diagnóstica.</span></div>
+      </div>
+      <div class="ib ia">⚠️ Sinais de HTIC: cefaleia intensa + vômito em jato + Tríade de Cushing. Notificar IMEDIATAMENTE. Manter cabeceira a 30°.</div>
+      <div class="nb2"><h4>🩺 Cuidados de Enfermagem</h4><ul><li>Avaliar Glasgow e pupilas a cada 1–2h (conforme protocolo)</li><li>Manter cabeceira 30° em TCE e AVC (reduz PIC)</li><li>Na convulsão: proteger VA, não conter, registrar duração e tipo dos movimentos</li><li>Monitorar glicemia — hipo e hiperglicemia agravam lesões neurológicas</li><li>Orientar/reorientar paciente confusional (nome, lugar, data) a cada contato</li><li>Cuidados com paciente acamado: prevenção de LPP e contraturas</li></ul></div>
+    </div>
+  </div>
+
+  <!-- DIGESTIVO -->
+  <div class="sys" id="s-dig">
+    <div class="sys-hd"><div class="si">🍽️</div><div><div class="st">Sistema Digestivo</div><div class="ss">TGI · Absorção · Digestão · Eliminação</div></div></div>
+    <div class="body">
+      <div class="two">
+        <div class="box"><h4>📋 Em sequência</h4><ul><li>Boca → Faringe → Esôfago</li><li>Estômago (HCl, pepsina)</li><li>Intestino delgado: duodeno, jejuno, íleo (absorção)</li><li>Intestino grosso: cólon → reto → ânus</li><li>Glândulas anexas: fígado (bile), pâncreas, vesícula</li></ul></div>
+        <div class="box"><h4>⚠️ Alterações comuns</h4><ul><li>Apendicite: dor FID, Blumberg+, febre</li><li>Pancreatite: dor epigástrica em faixa, amilase↑</li><li>Hepatite: icterícia, TGO/TGP↑, fadiga</li><li>Hemorragia digestiva alta: hematêmese + melena</li><li>Hemorragia digestiva baixa: hematoquesia</li><li>Íleo paralítico: RHA abolidos, distensão</li></ul></div>
+      </div>
+      <div class="nb2"><h4>🩺 Cuidados de Enfermagem</h4><ul><li>Auscultar ruídos hidroaéreos antes de iniciar dieta (4 quadrantes, 1 min cada)</li><li>Controlar eliminações: frequência, consistência, cor e volume das fezes</li><li>Cuidados com SNG: confirmar posição antes de cada dieta, verificar resíduo gástrico</li><li>Cuidados com ostomia: higiene do estoma, troca de bolsa, registro do aspecto</li><li>Balanço hídrico rigoroso em pacientes com vômito, diarreia ou fístulas</li><li>Pré-op abdominal: jejum, preparo intestinal conforme protocolo</li></ul></div>
+    </div>
+  </div>
+
+  <!-- URINÁRIO -->
+  <div class="sys" id="s-uri">
+    <div class="sys-hd"><div class="si">💧</div><div><div class="st">Sistema Urinário</div><div class="ss">Rins · Ureteres · Bexiga · Uretra · Filtração</div></div></div>
+    <div class="body">
+      <div class="two">
+        <div class="box"><h4>🔎 Função dos rins</h4><ul><li>Filtração: ~180L/dia filtrados → ~1,5L urina</li><li>Regulação hídrica e eletrolítica</li><li>Controle do pH sanguíneo</li><li>Produção de eritropoietina (estimula hemácias)</li><li>Ativação da vitamina D</li></ul></div>
+        <div class="box"><h4>📊 Valores normais</h4><ul><li>Diurese: 0,5–1 mL/kg/h</li><li>Creatinina: 0,6–1,2 mg/dL (H) / 0,5–1,1 (M)</li><li>Ureia: 15–50 mg/dL</li><li>Oligúria: &lt;0,5 mL/kg/h · Anúria: &lt;100 mL/24h</li><li>Urina normal: amarelo claro, levemente ácida</li></ul></div>
+      </div>
+      <h4 style="margin:14px 0 8px;font-size:.88rem;font-weight:800">⚠️ Alterações comuns</h4>
+      <div class="alt-grid">
+        <div class="alt"><strong>IRA</strong><span>Queda abrupta da função renal. Oligúria, creatinina↑, edema.</span></div>
+        <div class="alt"><strong>IRC / DRC</strong><span>Perda progressiva e irreversível. Diálise em estágio 5.</span></div>
+        <div class="alt"><strong>ITU</strong><span>Disúria, polaciúria, piúria. Urina turva e fétida.</span></div>
+        <div class="alt"><strong>Cálculo renal</strong><span>Cólica renal: dor em flanco irradiada para virilha. Hematúria.</span></div>
+        <div class="alt"><strong>Retenção urinária</strong><span>Bexiga globosa, incapacidade de urinar. Cateterismo de alívio.</span></div>
+      </div>
+      <div class="nb2"><h4>🩺 Cuidados de Enfermagem</h4><ul><li>Medir e registrar diurese — &lt;0,5 mL/kg/h por 2h → comunicar enfermeiro</li><li>Registrar aspecto da urina: cor, turbidez, odor, hematúria</li><li>Cuidados com SVD: sistema fechado, bolsa abaixo da bexiga, higiene do meato 2x/dia</li><li>Controlar BH rigorosamente em nefropatas (restrição hídrica conforme prescrição)</li><li>Orientar técnica de coleta de urocultura: jato médio após higiene, sem tocar no frasco</li><li>Atentar para sinais de ITU em pacientes sondados (febre, urina turva, odor fétido)</li></ul></div>
+    </div>
+  </div>
+
+  <!-- MÚSCULO-ESQUELÉTICO -->
+  <div class="sys" id="s-ms">
+    <div class="sys-hd"><div class="si">💪</div><div><div class="st">Sistema Músculo-Esquelético</div><div class="ss">206 ossos · 600+ músculos · Articulações</div></div></div>
+    <div class="body">
+      <div class="two">
+        <div class="box"><h4>🔎 Funções</h4><ul><li>Sustentação e forma corporal</li><li>Proteção de órgãos vitais (crânio, costelas, coluna)</li><li>Movimentação (osso + músculo + articulação)</li><li>Hematopoiese (medula óssea produz células sanguíneas)</li><li>Reserva de cálcio, fósforo e gordura</li></ul></div>
+        <div class="box"><h4>⚠️ Alterações comuns</h4><ul><li>Fratura: simples, cominutiva, exposta, patológica</li><li>Osteoporose: densidade óssea reduzida — densitometria</li><li>Artrite/Artrose: degeneração articular</li><li>LPP/UPP: compressão prolongada em proeminências</li><li>Síndrome compartimental: emergência ortopédica</li><li>TVP: tromboembolia venosa por imobilidade</li></ul></div>
+      </div>
+      <div class="ib io">⚠️ <strong>Síndrome compartimental — 5 Ps:</strong> Pain (dor intensa e desproporcional) · Pressure (pressão aumentada) · Paralysis · Paresthesia · Pallor. EMERGÊNCIA — comunicar médico imediatamente.</div>
+      <div class="nb2"><h4>🩺 Cuidados de Enfermagem</h4><ul><li>Mudança de decúbito a cada 2h — prevenção de LPP em proeminências ósseas</li><li>Escala de Braden para avaliação do risco de LPP (avaliar a cada admissão)</li><li>Usar coxins, almofadas de silicone e colchões especiais conforme risco</li><li>Cuidados com tração e gesso: verificar pulso distal, sensibilidade e temperatura</li><li>Estimular mobilização precoce (fisioterapia passiva e ativa)</li><li>Meias de compressão elástica + heparina profilática em imobilizados (prescrição)</li></ul></div>
+    </div>
+  </div>
+
+  <!-- ENDÓCRINO -->
+  <div class="sys" id="s-end">
+    <div class="sys-hd"><div class="si">⚗️</div><div><div class="st">Sistema Endócrino</div><div class="ss">Hipófise · Tireoide · Adrenal · Pâncreas · Hormônios</div></div></div>
+    <div class="body">
+      <div class="two">
+        <div class="box"><h4>📋 Principais glândulas</h4><ul><li><strong>Hipófise:</strong> GH, ADH, TSH, ACTH, LH, FSH, ocitocina</li><li><strong>Tireoide:</strong> T3, T4 (metabolismo) · Calcitonina</li><li><strong>Adrenal córtex:</strong> Cortisol, aldosterona</li><li><strong>Adrenal medula:</strong> Adrenalina, noradrenalina</li><li><strong>Pâncreas:</strong> Insulina (↓glicose) · Glucagon (↑glicose)</li></ul></div>
+        <div class="box"><h4>⚠️ Alterações comuns</h4><ul><li>DM tipo 1: destruição autoimune das células β</li><li>DM tipo 2: resistência à insulina</li><li>Hipoglicemia: &lt;70 mg/dL → tratar imediatamente</li><li>CAD: cetoacidose diabética — urgência</li><li>Hipotireoidismo: fadiga, bradicardia, ganho peso</li><li>Crise adrenal: hipotensão grave, colapso</li></ul></div>
+      </div>
+      <div class="ib ia">🔴 Hipoglicemia grave (&lt;45 mg/dL): Glicose VO (consciente) ou Glicose 50% 20–50mL EV lento (inconsciente). Monitorar e prevenir nova hipoglicemia.</div>
+      <div class="nb2"><h4>🩺 Cuidados de Enfermagem</h4><ul><li>Monitorar glicemia capilar conforme protocolo (horário e pré/pós refeição)</li><li>Identificar tipo e dose de insulina corretamente — NPH, Regular ou Análogos</li><li>Reconhecer hipoglicemia: sudorese, tremor, taquicardia, confusão, palidez</li><li>Reconhecer hiperglicemia: poliúria, polidipsia, hálito cetônico, visão turva</li><li>Orientar paciente diabético: cuidados com pés, alimentação e atividade física</li><li>Verificar glicemia antes de aplicar insulina Regular — nunca aplicar em hipoglicemia</li></ul></div>
+    </div>
+  </div>
+
+  <!-- TEGUMENTAR -->
+  <div class="sys" id="s-teg">
+    <div class="sys-hd"><div class="si">🩹</div><div><div class="st">Sistema Tegumentar</div><div class="ss">Pele · Pelos · Unhas · Glândulas · 1ª barreira</div></div></div>
+    <div class="body">
+      <div class="two">
+        <div class="box"><h4>🔎 Funções</h4><ul><li>Barreira física contra microrganismos</li><li>Termorregulação (vasodilatação + suor)</li><li>Proteção contra radiação UV (melanina)</li><li>Síntese de vitamina D (exposição solar)</li><li>Percepção sensorial: tato, dor, temperatura, pressão</li></ul></div>
+        <div class="box"><h4>📋 Camadas da pele</h4><ul><li><strong>Epiderme:</strong> avascular, melanócitos, queratinócitos</li><li><strong>Derme:</strong> colágeno, vasos, nervos, glândulas</li><li><strong>Hipoderme:</strong> gordura, isolamento térmico, amortecimento</li></ul></div>
+      </div>
+      <h4 style="margin:14px 0 8px;font-size:.88rem;font-weight:800">⚠️ Lesão por Pressão (LPP) — Estadiamento NPUAP</h4>
+      <div class="alt-grid">
+        <div class="alt"><strong>Estágio 1</strong><span>Eritema não branqueável. Pele íntegra. Calor local.</span></div>
+        <div class="alt"><strong>Estágio 2</strong><span>Perda parcial da derme. Bolha ou úlcera superficial rasa.</span></div>
+        <div class="alt"><strong>Estágio 3</strong><span>Perda total da espessura. Tecido subcutâneo visível.</span></div>
+        <div class="alt"><strong>Estágio 4</strong><strong>Perda total. Osso, tendão ou músculo expostos.</strong></div>
+        <div class="alt"><strong>Queimadura 1º grau</strong><span>Eritema, sem bolha. Epiderme apenas.</span></div>
+        <div class="alt"><strong>Queimadura 2º grau</strong><span>Bolha, dor intensa, derme afetada. Suscetível a infecção.</span></div>
+      </div>
+      <div class="nb2"><h4>🩺 Cuidados de Enfermagem</h4><ul><li>Avaliar integridade cutânea diariamente, especialmente em proeminências ósseas</li><li>Hidratação com AGE (ácido graxo essencial) 2x/dia nas áreas de risco</li><li>Higiene da pele: banho diário, secar sem friccionar, trocar fralda imediatamente</li><li>Técnica de curativo: lavar com SF 0,9% em jato, secar suavemente, cobertura adequada</li><li>Em queimaduras: calcular área pela Regra dos 9, hidratação EV agressiva</li><li>Registrar estadiamento e evolução de todas as lesões em prontuário</li></ul></div>
+    </div>
+  </div>
+
+  <!-- IMUNOLÓGICO -->
+  <div class="sys" id="s-imu">
+    <div class="sys-hd"><div class="si">🛡️</div><div><div class="st">Sistema Imunológico</div><div class="ss">Defesa · Leucócitos · Anticorpos · Inflamação</div></div></div>
+    <div class="body">
+      <div class="two">
+        <div class="box"><h4>📋 Componentes</h4><ul><li>Leucócitos: neutrófilos, linfócitos, monócitos, eosinófilos</li><li>Anticorpos: IgG, IgA, IgM, IgE</li><li>Órgãos linfoides: medula, timo, baço, linfonodos</li><li>Sistema complemento: proteínas auxiliares da defesa</li></ul></div>
+        <div class="box"><h4>⚠️ Alterações comuns</h4><ul><li>Sepse: resposta inflamatória sistêmica a infecção</li><li>Sepse grave / Choque séptico: hipotensão + hipoperfusão</li><li>Anafilaxia: reação alérgica sistêmica grave e aguda</li><li>Neutropenia: risco elevado de infecções oportunistas</li><li>HIV/AIDS: imunossupressão progressiva</li><li>Doenças autoimunes: LES, artrite reumatoide</li></ul></div>
+      </div>
+      <div class="ib ia">🔴 Anafilaxia: urticária + edema + dispneia + hipotensão. Tratamento: Adrenalina 0,3–0,5mg IM coxa lateral → O₂ → anti-histamínico → corticoide → Trendelenburg se hipotensão.</div>
+      <div class="nb2"><h4>🩺 Cuidados de Enfermagem</h4><ul><li>Higienização das mãos: a principal medida de prevenção de IRAS</li><li>Precauções de isolamento: padrão, contato, gotículas ou aerossóis (conforme agente)</li><li>Bundle sepse: coletar hemoculturas ANTES do antibiótico · ABX na 1ª hora</li><li>Monitorar SIRS: febre/hipotermia, FC↑, FR↑, leucocitose/leucopenia</li><li>Em neutropênicos: técnica estéril em todos os procedimentos invasivos</li><li>Monitorar reações a medicamentos e transfusões — sempre ter adrenalina disponível</li></ul></div>
+    </div>
+  </div>
+
+  <!-- REPRODUTOR -->
+  <div class="sys" id="s-rep">
+    <div class="sys-hd"><div class="si">🔬</div><div><div class="st">Sistema Reprodutor</div><div class="ss">Feminino · Masculino · Obstetrícia · Neonatologia</div></div></div>
+    <div class="body">
+      <div class="two">
+        <div class="box"><h4>♀️ Sistema Feminino</h4><ul><li>Ovários: óvulos + estrogênio + progesterona</li><li>Tubas uterinas: captação do óvulo</li><li>Útero: implantação e desenvolvimento fetal</li><li>Vagina: canal de parto</li><li>Mama: lactação (prolactina + ocitocina)</li></ul></div>
+        <div class="box"><h4>♂️ Sistema Masculino</h4><ul><li>Testículos: espermatozoides + testosterona</li><li>Epidídimo + ducto deferente: maturação e transporte</li><li>Próstata: fluido seminal alcalino</li><li>HPB: hiperplasia prostática — retenção urinária em idosos</li></ul></div>
+      </div>
+      <h4 style="margin:14px 0 8px;font-size:.88rem;font-weight:800">⚠️ Emergências Obstétricas</h4>
+      <div class="alt-grid">
+        <div class="alt"><strong>Pré-eclâmpsia</strong><span>PA ≥140/90 + proteinúria. MgSO₄ profilático. Ter gluconato de Ca disponível.</span></div>
+        <div class="alt"><strong>Eclâmpsia</strong><span>Pré-eclâmpsia + convulsão. MgSO₄ + controle da PA + decúbito lateral E.</span></div>
+        <div class="alt"><strong>DPP</strong><span>Descolamento da placenta. Dor + sangramento + útero hipertônico. EMERGÊNCIA.</span></div>
+        <div class="alt"><strong>Hemorragia pós-parto</strong><span>Perda &gt;500mL. Principal causa de morte materna. Ocitocina + massagem uterina.</span></div>
+        <div class="alt"><strong>Diabetes gestacional</strong><span>Glicemia ↑ na gestação. Risco de macrossomia e hipoglicemia neonatal.</span></div>
+      </div>
+      <div class="nb2"><h4>🩺 Cuidados de Enfermagem</h4><ul><li>Aferir PA em gestantes corretamente: repouso prévio, braço na altura do coração</li><li>Monitorar edema: MMII, face, sacral — graduar de 1+ a 4+</li><li>Em pré-eclâmpsia: MgSO₄ conforme protocolo + gluconato de cálcio à beira leito</li><li>Cuidados com RN: APGAR 1' e 5', temperatura, identificação, clampeamento do cordão</li><li>Higiene perineal puerperal: chuveiro perineal, orientação sobre lóquios</li><li>Incentivar aleitamento materno exclusivo nas primeiras 6h após o parto</li></ul></div>
+    </div>
+  </div>
+
+</main>
+<script>
+function show(id,btn){
+  document.querySelectorAll('.sys').forEach(s=>s.classList.remove('show'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('s-'+id).classList.add('show');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnfermaStudy — Protocolo de Diluições</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--teal:#00796b;--teal-dark:#004d40;--teal-light:#e0f2f1;--bg:#f0f4f3;--shadow:0 2px 12px rgba(0,0,0,0.08)}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:#333}
+header{background:linear-gradient(135deg,#004d40,#00796b);color:#fff;padding:12px 16px;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.3);display:flex;align-items:center;gap:12px}
+.hinfo{flex:1}.hinfo h1{font-size:1.2rem;font-weight:800}.hinfo p{font-size:0.7rem;opacity:0.8}
+.back-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:10px;padding:7px 14px;font-family:'Nunito',sans-serif;font-size:0.8rem;font-weight:700;text-decoration:none;flex-shrink:0}
+main{max-width:960px;margin:0 auto;padding:20px 16px 60px}
+.hero{background:linear-gradient(135deg,var(--teal-dark),var(--teal));color:#fff;border-radius:20px;padding:26px 24px;margin-bottom:20px}
+.hero h2{font-size:1.5rem;font-weight:800;margin-bottom:4px}
+.hero p{opacity:0.9;font-size:0.86rem;line-height:1.5}
+.search-bar{position:relative;margin-bottom:12px}
+.search-bar input{width:100%;border:1.5px solid #e0e0e0;border-radius:12px;padding:11px 16px 11px 42px;font-family:'Nunito',sans-serif;font-size:0.9rem;outline:none;background:#fff}
+.search-bar input:focus{border-color:var(--teal)}
+.search-bar::before{content:'🔍';position:absolute;left:14px;top:50%;transform:translateY(-50%)}
+.filter-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.ftab{padding:6px 14px;border-radius:20px;border:1.5px solid #e0e0e0;background:#fff;font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.15s}
+.ftab.active,.ftab:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+.drug-count{font-size:0.8rem;color:#888;margin-bottom:12px;font-weight:600}
+.drug-list{display:flex;flex-direction:column;gap:10px}
+.drug-card{background:#fff;border-radius:14px;box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(0,0,0,0.06)}
+.drug-card.danger{border-left:4px solid #ef5350}
+.drug-header{display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer}
+.drug-cat{font-size:0.65rem;font-weight:800;padding:3px 8px;border-radius:10px;background:var(--teal-light);color:var(--teal-dark);white-space:nowrap}
+.drug-name{flex:1;font-size:0.92rem;font-weight:800;color:#1a2332}
+.drug-conc{font-size:0.72rem;color:#888;margin-top:1px}
+.danger-badge{font-size:0.65rem;font-weight:800;padding:2px 8px;border-radius:10px;background:#ffebee;color:#b71c1c;white-space:nowrap}
+.drug-toggle{color:#aaa;font-size:1.1rem;transition:transform 0.2s;flex-shrink:0}
+.drug-card.open .drug-toggle{transform:rotate(180deg)}
+.drug-body{display:none;padding:0 16px 16px}
+.drug-card.open .drug-body{display:block}
+.drug-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+@media(max-width:500px){.drug-grid{grid-template-columns:1fr}}
+.drug-item{background:#f9f9f9;border-radius:9px;padding:8px 12px}
+.drug-item .label{font-size:0.68rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:2px}
+.drug-item .value{font-size:0.84rem;font-weight:700;color:#333}
+.care-box{border-radius:9px;padding:10px 13px;margin-top:8px;font-size:0.8rem;line-height:1.5;border-left:4px solid}
+.care-box.tip{background:#e8f5e9;border-color:#4caf50;color:#2e7d32}
+.care-box.warn{background:#fff3e0;border-color:#ff9800;color:#e65100}
+.care-box.alert{background:#ffebee;border-color:#ef5350;color:#b71c1c}
+.no-results{text-align:center;padding:40px;color:#aaa;font-size:0.88rem}
+.info-note{background:#fff3e0;border-radius:12px;padding:12px 16px;margin-bottom:16px;border-left:4px solid #ff9800;font-size:0.82rem;color:#e65100;line-height:1.5}
+footer{text-align:center;padding:16px;font-size:0.72rem;color:#aaa;border-top:1px solid #e0e0e0}
+</style>
+</head>
+<body>
+<header>
+  <div class="hinfo"><h1>💊 Protocolo de Diluições</h1><p>Dose · Diluição · Via · Velocidade · Cuidados críticos</p></div>
+  <a href="recursos.html" class="back-btn">← Recursos</a>
+</header>
+<main>
+<div class="hero">
+  <h2>Protocolo de Diluições de Emergência</h2>
+  <p>60+ medicamentos essenciais com dose, diluente correto, velocidade de infusão e cuidados de enfermagem. Plantão seguro, sem improvisos.</p>
+</div>
+<div class="info-note">⚠️ <strong>Aviso:</strong> Este material é educativo. Sempre siga as prescrições médicas e os protocolos da sua instituição. Em caso de dúvida, consulte o enfermeiro responsável.</div>
+<div class="search-bar"><input type="text" id="searchInput" placeholder="Buscar medicamento... ex: adrenalina, furosemida" oninput="filterDrugs()"></div>
+<div class="filter-tabs" id="filterTabs"></div>
+<div class="drug-count" id="drugCount"></div>
+<div class="drug-list" id="drugList"></div>
+<div class="no-results" id="noResults" style="display:none">🔍 Medicamento não encontrado. Tente outro nome ou categoria.</div>
+</main>
+<footer>EnfermaStudy · Protocolo de Diluições · Criado por Saieso Seraos · 2026 · Material exclusivamente educativo</footer>
+<script>
+const drugs = [
+// EMERGÊNCIA CARDIOVASCULAR
+{cat:'Emergência CV',danger:true,name:'Adrenalina (Epinefrina)',conc:'1 mg/mL',dose:'PCR: 1 mg EV a cada 3–5 min | Anafilaxia: 0,3–0,5 mg IM',diluente:'SF 0,9% — bolus EV rápido na PCR',veloc:'PCR: bolus rápido | Infusão contínua: 0,05–2 mcg/kg/min',care:[{type:'alert',text:'🚨 Via central preferencial em infusão contínua. Extravasamento: necrose tissular grave.'}]},
+{cat:'Emergência CV',danger:false,name:'Atropina',conc:'0,5 mg/mL',dose:'0,5–1 mg EV (repetir a cada 3–5 min, máx 3 mg)',diluente:'Sem diluição ou SF 0,9% — bolus EV',veloc:'Bolus rápido EV',care:[{type:'warn',text:'⚠️ Dose <0,5 mg pode causar bradicardia paradoxal. Monitorar FC continuamente.'}]},
+{cat:'Emergência CV',danger:true,name:'Amiodarona',conc:'50 mg/mL (150 mg/3 mL)',dose:'FV/TVSP: 300 mg EV | Taquiarritmia estável: 150 mg EV em 10 min | Manutenção: 360 mg/6h',diluente:'SG 5% (NUNCA SF — precipita)',veloc:'FV: bolus rápido | Estável: 10 min | Manutenção: infusão contínua em bomba',care:[{type:'alert',text:'🚨 NUNCA diluir em SF 0,9% — precipita. Proteger da luz. Veia calibrosa (flebite).'}]},
+{cat:'Emergência CV',danger:true,name:'Noradrenalina (Norepinefrina)',conc:'1 mg/mL ou 4 mg/4 mL',dose:'0,01–3 mcg/kg/min — infusão contínua',diluente:'SG 5% — via central OBRIGATÓRIA',veloc:'Sempre em bomba de infusão',care:[{type:'alert',text:'🚨 VIA CENTRAL OBRIGATÓRIA. Extravasamento: necrose. Nunca interromper abruptamente. Desmame gradual.'}]},
+{cat:'Emergência CV',danger:true,name:'Dopamina',conc:'5 mg/mL',dose:'2–5 mcg/kg/min (renal) | 5–10 mcg/kg/min (inotrópico) | >10 mcg/kg/min (vasopressor)',diluente:'SG 5% ou SF 0,9% — via central preferencial',veloc:'Bomba de infusão. Calcular: mcg/kg/min',care:[{type:'warn',text:'⚠️ >10 mcg/kg/min: efeito vasopressor. Monitorar PA e diurese. Via central preferencial.'}]},
+{cat:'Emergência CV',danger:true,name:'Dobutamina',conc:'12,5 mg/mL',dose:'2–20 mcg/kg/min — infusão contínua',diluente:'SG 5% ou SF 0,9%',veloc:'Bomba de infusão exclusivamente',care:[{type:'warn',text:'⚠️ Pode causar taquicardia e arritmias. Monitorar ECG e PA continuamente.'}]},
+{cat:'Emergência CV',danger:false,name:'Nitroglicerina',conc:'1 mg/mL',dose:'5–200 mcg/min — titular conforme PA',diluente:'SG 5% — frasco de vidro âmbar',veloc:'Bomba de infusão. Titular a cada 5 min conforme PA.',care:[{type:'alert',text:'🚨 Usar equipo não absorvente (PVC absorve nitroglicerina). Monitorar PA a cada 5 min. Risco de hipotensão grave.'}]},
+{cat:'Emergência CV',danger:false,name:'Nitroprussiato de Sódio',conc:'50 mg/fr (reconstituir)',dose:'0,5–10 mcg/kg/min — infusão contínua',diluente:'SG 5% — proteger da luz (papel alumínio)',veloc:'Bomba de infusão. Titular cuidadosamente.',care:[{type:'alert',text:'🚨 PROTEGER DA LUZ (envolver bolsa e equipo com papel alumínio). Risco de intoxicação por cianeto em altas doses.'}]},
+// ANTIARRÍTMICOS
+{cat:'Antiarrítmicos',danger:false,name:'Adenosina',conc:'3 mg/mL',dose:'6 mg EV bolus rápido → se não reverter em 2 min: 12 mg',diluente:'Sem diluição — bolus EV direto + flush 20 mL rápido',veloc:'Bolus MUITO rápido em veia proximal',care:[{type:'warn',text:'⚠️ Meia-vida de 10 segundos. Administrar em veia proximal (antecubital ou central) com flush imediato. Pode causar assistolia transitória.'}]},
+{cat:'Antiarrítmicos',danger:false,name:'Verapamil',conc:'2,5 mg/mL',dose:'2,5–5 mg EV em 2 min (repetir 5–10 mg em 30 min se necessário)',diluente:'SF 0,9% — infusão lenta',veloc:'Mínimo 2 minutos de infusão',care:[{type:'alert',text:'🚨 CONTRAINDICADO em WPW, ICC descompensada, bloqueio AV. Monitorar ECG durante administração.'}]},
+{cat:'Antiarrítmicos',danger:false,name:'Metoprolol EV',conc:'1 mg/mL',dose:'5 mg EV em 5 min (repetir até 3x se necessário)',diluente:'SF 0,9% — infusão lenta',veloc:'1 mg/min',care:[{type:'warn',text:'⚠️ Contraindicado em broncoespasmo, bradicardia, bloqueio AV. Monitorar FC e PA.'}]},
+// ANALGESIA E SEDAÇÃO
+{cat:'Analgesia/Sedação',danger:true,name:'Morfina',conc:'10 mg/mL',dose:'2–5 mg EV lento | 5–10 mg SC/IM',diluente:'SF 0,9% — diluir para 1 mg/mL para EV',veloc:'EV: 2 mg/min (lento)',care:[{type:'alert',text:'🚨 TER NALOXONA DISPONÍVEL. Monitorar FR e SpO₂. Risco de depressão respiratória. Reduzir dose na IRC.'}]},
+{cat:'Analgesia/Sedação',danger:true,name:'Fentanil',conc:'50 mcg/mL',dose:'25–100 mcg EV | Infusão contínua: 25–200 mcg/h',diluente:'SF 0,9% ou SG 5%',veloc:'EV: lento (1–2 min) | Infusão: bomba',care:[{type:'alert',text:'🚨 100x mais potente que morfina. Risco alto de depressão respiratória. TER NALOXONA DISPONÍVEL.'}]},
+{cat:'Analgesia/Sedação',danger:true,name:'Midazolam',conc:'5 mg/mL',dose:'Sedação: 0,02–0,1 mg/kg EV | Status epilepticus: 0,1–0,2 mg/kg | Infusão: 0,02–0,2 mg/kg/h',diluente:'SF 0,9% ou SG 5%',veloc:'EV lento (2–3 min) | Infusão em bomba',care:[{type:'alert',text:'🚨 TER FLUMAZENIL DISPONÍVEL. Risco de apneia (especialmente com opioides). Monitorar FR e SpO₂.'}]},
+{cat:'Analgesia/Sedação',danger:false,name:'Propofol',conc:'10 mg/mL (1%)',dose:'Sedação: 5–50 mcg/kg/min | Indução anestésica: 1,5–2,5 mg/kg (médico)',diluente:'Pode ser administrado puro em bomba (via central preferencial)',veloc:'Bomba de infusão exclusivamente',care:[{type:'warn',text:'⚠️ SÍNDROME DO INFUSÃO DO PROPOFOL: acidose + rabdomiólise em altas doses prolongadas. Monitorar TG e CPK.'}]},
+{cat:'Analgesia/Sedação',danger:false,name:'Ketamina',conc:'50 mg/mL',dose:'Analgesia: 0,1–0,5 mg/kg EV | Sedação/indução: 1–2 mg/kg EV',diluente:'SF 0,9% ou SG 5% — diluir para 1 mg/mL',veloc:'Analgesia: 2–3 min | Induçao: bolus lento',care:[{type:'tip',text:'✅ Único sedoanalgésico que mantém tônus das VA e estabilidade hemodinâmica. Pode causar hipersalivação e alucinações.'}]},
+{cat:'Analgesia/Sedação',danger:false,name:'Tramadol',conc:'50 mg/mL',dose:'100 mg EV/IM a cada 6–8h',diluente:'SF 0,9% 100 mL — infundir em 30 min',veloc:'30 minutos EV',care:[{type:'warn',text:'⚠️ Monitorar PA (risco de hipotensão se rápido). Risco de convulsão em altas doses. Reduzir dose na IRC.'}]},
+{cat:'Analgesia/Sedação',danger:false,name:'Dipirona',conc:'500 mg/mL',dose:'1–2 g EV lento | 500 mg–1 g VO/IM',diluente:'SF 0,9% 100 mL — EV lento (3–5 min mínimo)',veloc:'Mínimo 3–5 min EV. Nunca bolus rápido.',care:[{type:'warn',text:'⚠️ Hipotensão se administrada rapidamente. Verificar alergias antes. Evitar em agranulocitose.'}]},
+// ANTIBIÓTICOS
+{cat:'Antibióticos',danger:false,name:'Oxacilina 500 mg',conc:'500 mg/fr',dose:'1–2 g EV a cada 4–6h (500 mg = 1 frasco)',diluente:'SF 0,9% 50–100 mL',veloc:'30–60 min EV',care:[{type:'warn',text:'⚠️ Estável por apenas 1h após reconstituição. Preparar próximo ao horário de administração.'}]},
+{cat:'Antibióticos',danger:false,name:'Ceftriaxona 1g',conc:'1 g/fr',dose:'1–2 g EV a cada 12–24h',diluente:'SF 0,9% 50–100 mL (NUNCA com RL — precipita com cálcio)',veloc:'30 min EV',care:[{type:'warn',text:'⚠️ NUNCA administrar concomitantemente com soluções contendo cálcio (inclusive RL). Precipita e pode causar morte.'}]},
+{cat:'Antibióticos',danger:false,name:'Vancomicina',conc:'500 mg ou 1g/fr',dose:'15–20 mg/kg EV a cada 8–12h (dose conforme função renal)',diluente:'SF 0,9% ou SG 5% — concentração máx 5 mg/mL',veloc:'Mínimo 60 min (10 mg/min). Nunca rápido!',care:[{type:'alert',text:'🚨 SÍNDROME DO HOMEM VERMELHO: flushing, eritema, hipotensão por infusão rápida. Reduzir velocidade. Nefrotóxica — monitorar creatinina.'}]},
+{cat:'Antibióticos',danger:false,name:'Meropeném 1g',conc:'1 g/fr',dose:'1–2 g EV a cada 8h (meningite: 2 g cada 8h)',diluente:'SF 0,9% 50–100 mL',veloc:'30 min EV (ou 3h em infusão prolongada para CNS)',care:[{type:'tip',text:'✅ Antibiótico de amplo espectro (carbapenêmico). Reservar para infecções graves. Monitorar função renal.'}]},
+{cat:'Antibióticos',danger:false,name:'Metronidazol (Metronizol®)',conc:'5 mg/mL',dose:'500 mg EV a cada 8h',diluente:'Já diluído (frasco pronto) — infundir diretamente',veloc:'30–60 min EV',care:[{type:'warn',text:'⚠️ Causa sabor metálico na boca. Reação tipo dissulfiram com álcool. Não refrigerar após abertura.'}]},
+{cat:'Antibióticos',danger:false,name:'Azitromicina 500 mg',conc:'500 mg/fr',dose:'500 mg EV 1x/dia',diluente:'SF 0,9% ou SG 5% 250 mL',veloc:'60 min EV (mínimo — risco de arritmia)',care:[{type:'warn',text:'⚠️ Pode prolongar o QT. Nunca infundir rápido. Monitorar ECG em pacientes de risco.'}]},
+// ANTICOAGULANTES
+{cat:'Anticoagulantes',danger:true,name:'Heparina não fracionada',conc:'5.000 UI/mL ou 25.000 UI/5 mL',dose:'Profilaxia: 5.000 UI SC a cada 8–12h | Terapêutica: 80 UI/kg bolus + 18 UI/kg/h',diluente:'SF 0,9% — bomba de infusão (terapêutica)',veloc:'Infusão contínua em bomba. Ajustar conforme TTPA.',care:[{type:'alert',text:'🚨 TER PROTAMINA DISPONÍVEL (antídoto). Monitorar TTPA. Não massagear local da injeção SC.'}]},
+{cat:'Anticoagulantes',danger:false,name:'Enoxaparina (Clexane®)',conc:'100 mg/mL',dose:'Profilaxia: 40 mg SC/dia | Tratamento: 1 mg/kg SC a cada 12h',diluente:'Sem diluição — SC abdominal',veloc:'SC',care:[{type:'warn',text:'⚠️ Não remover a bolha de ar da seringa pré-cheia. Rodizar o local. Ajustar dose na IRC (ClCr <30 mL/min).'}]},
+// ELETRÓLITOS
+{cat:'Eletrólitos',danger:true,name:'KCl 19,1% (Cloreto de Potássio)',conc:'2 mEq/mL (19,1%)',dose:'Máx 10–20 mEq/h | Concentração máx periférica: 40 mEq/L',diluente:'SF 0,9% — SEMPRE DILUIR (NUNCA DIRETO)',veloc:'Máx 20 mEq/h em bomba. Via central se >40 mEq/L.',care:[{type:'alert',text:'🚨 NUNCA EV DIRETO — PARADA CARDÍACA. Rotular obrigatoriamente "DILUIR — ALTO RISCO". Monitorar ECG e K⁺ sérico.'}]},
+{cat:'Eletrólitos',danger:false,name:'Bicarbonato de Sódio 8,4%',conc:'1 mEq/mL',dose:'1–2 mEq/kg EV | Guiar pela gasometria',diluente:'SG 5% (nunca SF — hipernatremia)',veloc:'Infusão lenta (exceto PCR: bolus rápido)',care:[{type:'alert',text:'🚨 NUNCA misturar com cálcio (precipita com gluconato de cálcio). Monitorar gasometria, Na⁺ e osmolaridade.'}]},
+{cat:'Eletrólitos',danger:false,name:'Gluconato de Cálcio 10%',conc:'100 mg/mL (9 mg Ca/mL)',dose:'10 mL EV lento (10 min)',diluente:'SF 0,9% — EV lento monitorando ECG',veloc:'Mínimo 10 minutos',care:[{type:'alert',text:'🚨 NUNCA misturar com bicarbonato ou fosfato (precipita). Risco de bradicardia e assistolia se rápido. Monitorar ECG.'}]},
+{cat:'Eletrólitos',danger:false,name:'Sulfato de Magnésio 50%',conc:'500 mg/mL',dose:'Pré-eclâmpsia/eclâmpsia: 4 g EV ataque + 1–2 g/h manutenção | Torsades: 1–2 g EV',diluente:'SG 5% — infusão lenta (ataque em 20 min)',veloc:'Ataque: 20 min | Manutenção: bomba infusão',care:[{type:'alert',text:'🚨 TER GLUCONATO DE CÁLCIO DISPONÍVEL (antídoto). Monitorar: reflexo patelar (abolido precede apneia), FR, diurese.'}]},
+{cat:'Eletrólitos',danger:false,name:'Fosfato de Potássio',conc:'1 mmol/mL',dose:'0,08–0,24 mmol/kg em 6–12h',diluente:'SF 0,9% ou SG 5% — bomba',veloc:'Nunca >0,06 mmol/kg/h',care:[{type:'warn',text:'⚠️ Incompatível com cálcio (precipita). Monitorar Ca²⁺, K⁺ e função renal durante infusão.'}]},
+// ANTICONVULSIVANTES
+{cat:'Anticonvulsivantes',danger:false,name:'Diazepam',conc:'5 mg/mL',dose:'5–10 mg EV lento (2 mg/min) | 10 mg IM',diluente:'Sem diluição — EV lento',veloc:'2 mg/min',care:[{type:'alert',text:'🚨 RISCO DE APNEIA (especialmente com opioides). TER FLUMAZENIL DISPONÍVEL. Monitorar FR e SpO₂.'}]},
+{cat:'Anticonvulsivantes',danger:false,name:'Fenitoína',conc:'50 mg/mL',dose:'15–20 mg/kg EV | Manutenção: 5 mg/kg/dia',diluente:'SF 0,9% (NUNCA SG — precipita)',veloc:'Máx 50 mg/min (risco de arritmia). Monitorar ECG.',care:[{type:'alert',text:'🚨 NUNCA em SG — precipita imediatamente. Monitorar ECG e PA durante infusão. Extravasamento causa necrose (purple glove syndrome).'}]},
+{cat:'Anticonvulsivantes',danger:false,name:'Valproato EV (Depakene®)',conc:'100 mg/mL',dose:'15–45 mg/kg EV | Manutenção: 1–2 mg/kg/h',diluente:'SF 0,9% ou SG 5%',veloc:'Ataque: 6 mg/kg/min. Manutenção: bomba.',care:[{type:'warn',text:'⚠️ Monitorar função hepática e amônia. Hepatotóxico. Contraindicado em hepatopatia.'}]},
+// GLICEMIA
+{cat:'Glicemia',danger:true,name:'Insulina Regular',conc:'100 UI/mL',dose:'CAD: 0,1 UI/kg/h infusão | Sliding scale: conforme glicemia',diluente:'SF 0,9% — concentração 1 UI/mL (100 mL SF + 100 UI)',veloc:'Bomba de infusão exclusivamente',care:[{type:'alert',text:'🚨 DUPLA CHECAGEM OBRIGATÓRIA. Monitorar glicemia capilar a cada 1–2h. Risco de hipoglicemia grave.'}]},
+{cat:'Glicemia',danger:true,name:'Glicose 50% (hipertônica)',conc:'500 mg/mL',dose:'Hipoglicemia grave: 20–50 mL EV',diluente:'Sem diluição — EV rápido em veia calibrosa',veloc:'Bolus EV em 1–2 min',care:[{type:'alert',text:'🚨 Veia grossa (flebite e necrose por extravasamento). Verificar glicemia 15 min após. Não refrigerar.'}]},
+// ANTÍDOTOS
+{cat:'Antídotos',danger:false,name:'Naloxona',conc:'0,4 mg/mL',dose:'0,4–2 mg EV | Repetir a cada 2–3 min | Máx 10 mg',diluente:'SF 0,9% — EV direto ou diluído',veloc:'Bolus EV rápido',care:[{type:'warn',text:'⚠️ Meia-vida 30–90 min (menor que opioides). Monitorar ressedação — nova dose pode ser necessária. Síndrome de abstinência aguda.'}]},
+{cat:'Antídotos',danger:false,name:'Flumazenil',conc:'0,1 mg/mL',dose:'0,2 mg EV em 30 seg | Repetir até 1 mg total',diluente:'SF 0,9% — EV lento',veloc:'0,2 mg em 30 segundos',care:[{type:'alert',text:'🚨 CONTRAINDICADO EM EPILÉPTICOS tratados com BZD (precipita status). Meia-vida curta — risco de ressedação.'}]},
+{cat:'Antídotos',danger:false,name:'Protamina',conc:'10 mg/mL',dose:'1 mg protamina neutraliza ~100 UI heparina (calculada conforme dose de heparina usada)',diluente:'SF 0,9% — infusão lenta',veloc:'Máx 50 mg em 10 min',care:[{type:'warn',text:'⚠️ Risco de reação anafilática (especialmente em alérgicos a peixe e vasectomizados). Ter adrenalina disponível.'}]},
+// OUTROS ESSENCIAIS
+{cat:'Outros Essenciais',danger:false,name:'Ondansetrona',conc:'2 mg/mL',dose:'4–8 mg EV | 8 mg VO',diluente:'SF 0,9% 50 mL — 15 min',veloc:'15 minutos EV',care:[{type:'warn',text:'⚠️ Monitorar QT (risco de arritmia em altas doses). Evitar em hepatopatia grave.'}]},
+{cat:'Outros Essenciais',danger:false,name:'Metoclopramida',conc:'5 mg/mL',dose:'10 mg EV/IM/VO a cada 8h',diluente:'SF 0,9% — EV lento (mín 3 min)',veloc:'Mínimo 3 minutos EV',care:[{type:'warn',text:'⚠️ Reações extrapiramidais (distonia aguda, acatisia). Evitar em crianças <1 ano e Parkinson.'}]},
+{cat:'Outros Essenciais',danger:false,name:'Omeprazol EV',conc:'40 mg/fr',dose:'40 mg EV a cada 12–24h',diluente:'SF 0,9% 100 mL — 30 min',veloc:'30 minutos EV',care:[{type:'tip',text:'✅ VO: 30 min antes das refeições, em jejum. Não triturar comprimidos de liberação lenta.'}]},
+{cat:'Outros Essenciais',danger:false,name:'Dexametasona',conc:'4 mg/mL',dose:'Edema cerebral: 10 mg ataque + 4 mg cada 6h | Anafilaxia: 10–20 mg EV',diluente:'SF 0,9% ou direto EV lento',veloc:'2–3 min EV (ou direto em emergência)',care:[{type:'warn',text:'⚠️ Monitorar glicemia (hiperglicemia). Não suspender abruptamente após uso prolongado (insuficiência adrenal).'}]},
+{cat:'Outros Essenciais',danger:false,name:'Hidrocortisona',conc:'100 mg/mL',dose:'Anafilaxia/insuf. adrenal: 100–500 mg EV | Choque séptico: 200–300 mg/dia',diluente:'SF 0,9% ou SG 5%',veloc:'100 mg em 30 seg (anafilaxia) | Mais lento em outras indicações',care:[{type:'warn',text:'⚠️ Monitorar glicemia, PA, Na⁺ e K⁺. Hiperglicemia e hipertensão são efeitos frequentes.'}]},
+{cat:'Outros Essenciais',danger:false,name:'Furosemida',conc:'10 mg/mL',dose:'20–80 mg EV/IM | Infusão: 10–40 mg/h',diluente:'SF 0,9% (proteger da luz)',veloc:'Máx 4 mg/min EV (ototoxicidade acima disso)',care:[{type:'warn',text:'⚠️ Monitorar balanço hídrico, potássio (hipocalemia), creatinina e peso diário.'}]},
+{cat:'Outros Essenciais',danger:false,name:'Manitol 20%',conc:'200 mg/mL',dose:'0,25–1 g/kg EV | Infundir em 30–60 min',diluente:'Já diluído (uso direto)',veloc:'30–60 min EV',care:[{type:'warn',text:'⚠️ Verificar cristalização (aquecer se cristalizado). Monitorar osmolaridade sérica, eletrólitos e diurese. Não usar se anúria.'}]},
+{cat:'Outros Essenciais',danger:false,name:'Fentanil Intranasal',conc:'50 mcg/mL',dose:'1–2 mcg/kg via nasal (mucoatômica ou seringa nasal)',diluente:'Concentração 150 mcg/mL (sem diluição adicional)',veloc:'Via nasal — 0,5 mL por narina',care:[{type:'tip',text:'✅ Boa opção em pediatria, dificuldade de acesso venoso, dor aguda pré-hospitalar. Onset 5–10 min.'}]},
+{cat:'Outros Essenciais',danger:false,name:'Ocitocina (Oxytocin)',conc:'10 UI/mL',dose:'Indução: 1–4 mUI/min | Pós-parto: 10–40 UI em SF',diluente:'SF 0,9% ou RL 500 mL',veloc:'Bomba de infusão — titular conforme contrações',care:[{type:'alert',text:'🚨 Risco de hipercontratilidade uterina e sofrimento fetal. Monitorar CTG e FC materna/fetal continuamente.'}]},
+];
+
+const cats = ['Todos', ...new Set(drugs.map(d => d.cat))];
+let activeCat = 'Todos';
+
+function buildFilterTabs() {
+  const c = document.getElementById('filterTabs');
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'ftab' + (cat === activeCat ? ' active' : '');
+    btn.textContent = cat;
+    btn.onclick = () => { activeCat = cat; document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderDrugs(); };
+    c.appendChild(btn);
+  });
+}
+
+function renderDrugs() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const list = document.getElementById('drugList');
+  const nr = document.getElementById('noResults');
+  const count = document.getElementById('drugCount');
+  list.innerHTML = '';
+  const filtered = drugs.filter(d => {
+    const matchCat = activeCat === 'Todos' || d.cat === activeCat;
+    const matchSearch = !query || d.name.toLowerCase().includes(query) || d.cat.toLowerCase().includes(query) || d.dose.toLowerCase().includes(query) || d.diluente.toLowerCase().includes(query);
+    return matchCat && matchSearch;
+  });
+  count.textContent = `Exibindo ${filtered.length} medicamento${filtered.length !== 1 ? 's' : ''}`;
+  if (filtered.length === 0) { nr.style.display = 'block'; return; }
+  nr.style.display = 'none';
+  filtered.forEach(d => {
+    const card = document.createElement('div');
+    card.className = 'drug-card' + (d.danger ? ' danger' : '');
+    card.innerHTML = `
+      <div class="drug-header" onclick="this.parentElement.classList.toggle('open')">
+        <span class="drug-cat">${d.cat}</span>
+        <div style="flex:1"><div class="drug-name">${d.name}</div><div class="drug-conc">${d.conc}</div></div>
+        ${d.danger ? '<span class="danger-badge">⚠️ ALTO RISCO</span>' : ''}
+        <div class="drug-toggle">▾</div>
+      </div>
+      <div class="drug-body">
+        <div class="drug-grid">
+          <div class="drug-item"><div class="label">💊 Dose</div><div class="value">${d.dose}</div></div>
+          <div class="drug-item"><div class="label">🧪 Diluente</div><div class="value">${d.diluente}</div></div>
+          <div class="drug-item"><div class="label">⏱️ Velocidade</div><div class="value">${d.veloc}</div></div>
+          <div class="drug-item"><div class="label">💉 Concentração</div><div class="value">${d.conc}</div></div>
+        </div>
+        ${d.care.map(c=>`<div class="care-box ${c.type}">${c.text}</div>`).join('')}
+      </div>`;
+    list.appendChild(card);
+  });
+}
+
+function filterDrugs() { renderDrugs(); }
+buildFilterTabs();
+renderDrugs();
+</script>
+</body>
+</html>

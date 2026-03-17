@@ -1,6 +1,5 @@
-// EnfermaStudy Service Worker v3
-// Coloque este arquivo na mesma pasta que index.html e chat.html
-const CACHE = 'enfermastudy-v3';
+// EnfermaStudy Service Worker v4
+const CACHE = 'enfermastudy-v4';
 
 self.addEventListener('install', e => {
   e.waitUntil(
@@ -8,11 +7,18 @@ self.addEventListener('install', e => {
       c.addAll([
         './',
         './index.html',
-        './chat.html'
-      ]).catch(() => {}) // ignora erros de arquivos inexistentes
+        './chat.html',
+        './recursos.html',
+        './jelco.html',
+        './procedimentos.html',
+        './diluicoes.html',
+        './exames.html',
+        './sistemas.html',
+        './fichas.html'
+      ]).catch(() => {})
     )
   );
-  self.skipWaiting();
+  // NÃO chama skipWaiting aqui — espera o usuário clicar "Atualizar"
 });
 
 self.addEventListener('activate', e => {
@@ -24,26 +30,24 @@ self.addEventListener('activate', e => {
   self.clients.claim();
 });
 
+// Escuta mensagem do app para aplicar a atualização
+self.addEventListener('message', e => {
+  if (e.data && e.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
 
-  // ── Sempre da REDE (nunca cachear) ──────────────────────────────
   const sempreRede = [
-    'youtube.com',
-    'youtu.be',
-    'ytimg.com',            // thumbnails YouTube
-    'googleapis.com',       // Google APIs
-    'gstatic.com',          // Firebase SDK CDN
-    'firebaseio.com',       // Realtime Database
-    'firebaseapp.com',      // Firebase Auth
-    'firebase.google.com',  // Firebase console
-    'accounts.google.com',  // Login Google
-    'sketchfab.com',        // Modelos 3D
-    'zygotebody.com',       // Atlas 3D
+    'youtube.com','youtu.be','ytimg.com',
+    'googleapis.com','gstatic.com',
+    'firebaseio.com','firebaseapp.com','firebase.google.com',
+    'accounts.google.com','sketchfab.com','zygotebody.com',
   ];
   if (sempreRede.some(d => url.hostname.includes(d))) return;
 
-  // ── Cache-first para tudo mais ───────────────────────────────────
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached;

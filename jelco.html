@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnfermaStudy — Guia de Calibres de Jelco</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--teal:#00796b;--teal-dark:#004d40;--teal-light:#e0f2f1;--bg:#f0f4f3;--shadow:0 2px 12px rgba(0,0,0,0.08)}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:#333}
+header{background:linear-gradient(135deg,#004d40,#00796b);color:#fff;padding:12px 16px;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.3);display:flex;align-items:center;gap:12px}
+header h1{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;flex:1}
+header p{font-size:0.7rem;opacity:0.8}
+.back-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:10px;padding:7px 14px;font-family:'Nunito',sans-serif;font-size:0.8rem;font-weight:700;text-decoration:none;flex-shrink:0}
+main{max-width:960px;margin:0 auto;padding:24px 16px 60px}
+.hero{background:linear-gradient(135deg,var(--teal-dark),var(--teal));color:#fff;border-radius:20px;padding:28px 24px;margin-bottom:24px;position:relative;overflow:hidden}
+.hero h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;margin-bottom:6px}
+.hero p{opacity:0.9;font-size:0.88rem;line-height:1.6}
+.card{background:#fff;border-radius:16px;box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden;border:1px solid rgba(0,0,0,0.06)}
+.card-header{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none}
+.card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.card-title h3{font-size:0.95rem;font-weight:800;color:#1a2332}
+.card-title .sub{font-size:0.75rem;color:#888}
+.toggle{margin-left:auto;font-size:1.2rem;transition:transform 0.2s;color:#aaa}
+.card.open .toggle{transform:rotate(180deg)}
+.card-body{display:none;padding:0 20px 20px}
+.card.open .card-body{display:block}
+.info-box{border-radius:10px;padding:12px 16px;margin:12px 0;font-size:0.83rem;line-height:1.6}
+.info-box.tip{background:#e8f5e9;border-left:4px solid #4caf50;color:#2e7d32}
+.info-box.warn{background:#fff3e0;border-left:4px solid #ff9800;color:#e65100}
+.info-box.alert{background:#ffebee;border-left:4px solid #ef5350;color:#b71c1c}
+
+/* Jelco infographic */
+.jelco-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:16px 0}
+@media(max-width:600px){.jelco-grid{grid-template-columns:repeat(4,1fr)}}
+.jelco-item{border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;border:2px solid transparent}
+.jelco-item:hover,.jelco-item.active{transform:scale(1.06);box-shadow:0 4px 16px rgba(0,0,0,0.2);border-color:rgba(0,0,0,0.2)}
+.jelco-num{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:2px}
+.jelco-name{font-size:0.62rem;font-weight:700;color:rgba(255,255,255,0.9)}
+.jelco-flow{font-size:0.65rem;color:rgba(255,255,255,0.8);margin-top:2px}
+
+/* Detail panel */
+.detail-panel{background:var(--teal-light);border-radius:14px;padding:18px;margin-top:14px;display:none}
+.detail-panel.show{display:block}
+.detail-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.detail-badge{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:#fff;flex-shrink:0}
+.detail-title{font-size:1.1rem;font-weight:800;color:var(--teal-dark)}
+.detail-sub{font-size:0.78rem;color:#555}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.detail-item{background:#fff;border-radius:10px;padding:10px 14px}
+.detail-item .label{font-size:0.7rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px}
+.detail-item .value{font-size:0.88rem;font-weight:700;color:#333}
+.use-list{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.use-list li{background:#fff;border-radius:8px;padding:8px 12px;font-size:0.82rem;font-weight:600;display:flex;align-items:center;gap:8px}
+
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:0.8rem;margin-top:14px}
+th{background:var(--teal);color:#fff;padding:9px;text-align:left}
+td{padding:8px 9px;border-bottom:1px solid #eee;vertical-align:middle}
+tr:nth-child(even){background:#f9f9f9}
+tr:hover{background:var(--teal-light)}
+.color-dot{width:18px;height:18px;border-radius:50%;display:inline-block;vertical-align:middle;margin-right:6px;border:2px solid rgba(0,0,0,0.15)}
+
+/* Tips */
+.tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media(max-width:500px){.tips-grid{grid-template-columns:1fr}}
+.tip-card{background:#fff;border-radius:12px;padding:14px;border-left:4px solid var(--teal)}
+.tip-card h4{font-size:0.82rem;font-weight:800;color:var(--teal-dark);margin-bottom:6px}
+.tip-card p{font-size:0.78rem;color:#555;line-height:1.5}
+
+footer{text-align:center;padding:20px;font-size:0.73rem;color:#aaa;border-top:1px solid #e0e0e0}
+</style>
+</head>
+<body>
+<header>
+  <div style="display:flex;flex-direction:column">
+    <h1>💉 Guia de Calibres de Jelco</h1>
+    <p>Escolha o calibre correto para cada situação clínica</p>
+  </div>
+  <a href="recursos.html" class="back-btn">← Recursos</a>
+</header>
+<main>
+
+<div class="hero">
+  <h2>Calibre certo = Punção segura</h2>
+  <p>A escolha do calibre do cateter IV influencia o conforto do paciente, a velocidade de infusão e o sucesso do procedimento. Não é detalhe — é decisão clínica.</p>
+</div>
+
+<!-- INFOGRÁFICO INTERATIVO -->
+<div class="card open">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-icon" style="background:#e3f2fd">🎨</div>
+    <div class="card-title"><h3>Infográfico Interativo — Clique no calibre</h3><div class="sub">Veja detalhes de cada jelco</div></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="jelco-grid">
+      <div class="jelco-item" style="background:#7b1fa2" onclick="showDetail(0)"><div class="jelco-num">26G</div><div class="jelco-name">Roxa</div><div class="jelco-flow">13 mL/min</div></div>
+      <div class="jelco-item" style="background:#f9a825" onclick="showDetail(1)"><div class="jelco-num">24G</div><div class="jelco-name">Amarela</div><div class="jelco-flow">20 mL/min</div></div>
+      <div class="jelco-item" style="background:#1976d2" onclick="showDetail(2)"><div class="jelco-num">22G</div><div class="jelco-name">Azul</div><div class="jelco-flow">36 mL/min</div></div>
+      <div class="jelco-item" style="background:#e91e8c" onclick="showDetail(3)"><div class="jelco-num">20G</div><div class="jelco-name">Rosa</div><div class="jelco-flow">60 mL/min</div></div>
+      <div class="jelco-item" style="background:#388e3c" onclick="showDetail(4)"><div class="jelco-num">18G</div><div class="jelco-name">Verde</div><div class="jelco-flow">90 mL/min</div></div>
+      <div class="jelco-item" style="background:#616161" onclick="showDetail(5)"><div class="jelco-num">16G</div><div class="jelco-name">Cinza</div><div class="jelco-flow">180 mL/min</div></div>
+      <div class="jelco-item" style="background:#e65100" onclick="showDetail(6)"><div class="jelco-num">14G</div><div class="jelco-name">Laranja</div><div class="jelco-flow">240 mL/min</div></div>
+    </div>
+
+    <div class="detail-panel" id="detailPanel">
+      <div class="detail-header">
+        <div class="detail-badge" id="detailBadge" style="background:#7b1fa2">26G</div>
+        <div><div class="detail-title" id="detailTitle">Jelco 26G — Roxo</div><div class="detail-sub" id="detailSub">Calibre mais fino disponível</div></div>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-item"><div class="label">Fluxo</div><div class="value" id="dFlow">13 mL/min</div></div>
+        <div class="detail-item"><div class="label">Indicação Principal</div><div class="value" id="dIndic">Neonatos</div></div>
+        <div class="detail-item"><div class="label">Tamanho da Agulha</div><div class="value" id="dSize">26G × ¾"</div></div>
+        <div class="detail-item"><div class="label">Dor na Punção</div><div class="value" id="dPain">Mínima</div></div>
+      </div>
+      <ul class="use-list" id="dUses"></ul>
+    </div>
+  </div>
+</div>
+
+<!-- TABELA COMPARATIVA -->
+<div class="card open">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-icon" style="background:#e8f5e9">📊</div>
+    <div class="card-title"><h3>Tabela Comparativa Completa</h3><div class="sub">Todos os calibres lado a lado</div></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div style="overflow-x:auto">
+    <table>
+      <tr><th>Calibre</th><th>Cor</th><th>Fluxo</th><th>Indicação Principal</th><th>Tipo de Paciente</th></tr>
+      <tr><td><strong>26G</strong></td><td><span class="color-dot" style="background:#7b1fa2"></span>Roxa</td><td>13 mL/min</td><td>Hidratação mínima, coleta</td><td>Neonatos prematuros</td></tr>
+      <tr><td><strong>24G</strong></td><td><span class="color-dot" style="background:#f9a825"></span>Amarela</td><td>20 mL/min</td><td>Fluidos, medicações</td><td>Pediatria, veias frágeis</td></tr>
+      <tr><td><strong>22G</strong></td><td><span class="color-dot" style="background:#1976d2"></span>Azul</td><td>36 mL/min</td><td>Fluidos IV, medicamentos</td><td>Adultos com veias finas</td></tr>
+      <tr><td><strong>20G</strong></td><td><span class="color-dot" style="background:#e91e8c"></span>Rosa</td><td>60 mL/min</td><td>Fluidos IV, soroterapia</td><td>Adultos em geral</td></tr>
+      <tr><td><strong>18G</strong></td><td><span class="color-dot" style="background:#388e3c"></span>Verde</td><td>90 mL/min</td><td>Transfusão sanguínea</td><td>Adultos, pré-operatório</td></tr>
+      <tr><td><strong>16G</strong></td><td><span class="color-dot" style="background:#616161"></span>Cinza</td><td>180 mL/min</td><td>Infusão rápida, cirurgia</td><td>Trauma, cirurgia eletiva</td></tr>
+      <tr><td><strong>14G</strong></td><td><span class="color-dot" style="background:#e65100"></span>Laranja</td><td>240 mL/min</td><td>Grande volume, emergência</td><td>Politrauma, choque</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- COMO ESCOLHER -->
+<div class="card open">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-icon" style="background:#fff3e0">🎯</div>
+    <div class="card-title"><h3>Como Escolher o Calibre Correto</h3><div class="sub">Raciocínio clínico passo a passo</div></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="info-box warn"><strong>⚠️ Regra de ouro:</strong> Não existe "melhor calibre" isolado. Existe o calibre mais adequado para cada situação. Avalie sempre: objetivo da terapia, estado clínico, tipo de solução e condição da rede venosa.</div>
+    <div class="tips-grid">
+      <div class="tip-card"><h4>🍼 Neonatos e Prematuros</h4><p>Use 26G ou 24G. Veias extremamente delicadas — força mínima na punção. Prefira veias do couro cabeludo ou mão.</p></div>
+      <div class="tip-card"><h4>👶 Pediatria</h4><p>24G como padrão. 22G se necessidade de maior fluxo. Evite calibres maiores sem indicação clínica clara.</p></div>
+      <div class="tip-card"><h4>💊 Medicamentos e Fluidos</h4><p>22G ou 20G para a maioria das medicações EV e soroterapia de rotina em adultos.</p></div>
+      <div class="tip-card"><h4>🩸 Transfusão Sanguínea</h4><p>Mínimo 18G — calibres menores hemolisam as hemácias por pressão. Prefira 16G quando possível.</p></div>
+      <div class="tip-card"><h4>🚨 Emergência e Trauma</h4><p>16G ou 14G — dois acessos calibrosos, preferencialmente em fossas antecubitais bilaterais.</p></div>
+      <div class="tip-card"><h4>👵 Idosos e Veias Frágeis</h4><p>Comece pelo 22G. Não force calibre maior em veia frágil — risco de hematoma e perda do acesso.</p></div>
+      <div class="tip-card"><h4>🏥 Contraste para Exames</h4><p>TC com contraste: mínimo 20G (preferível 18G) pela pressão de injeção do contraste.</p></div>
+      <div class="tip-card"><h4>💉 Quimioterapia</h4><p>Prefira 20G ou 22G. Sempre em veia calibrosa e de fluxo livre — extravasamento pode causar necrose.</p></div>
+    </div>
+    <div class="info-box tip" style="margin-top:14px"><strong>✅ Mnemônico:</strong> Quanto MAIOR o número G, MENOR o calibre da agulha e MENOR o fluxo. 26G (menor/mais fino) → 14G (maior/mais grosso).</div>
+  </div>
+</div>
+
+<!-- TÉCNICA DE PUNÇÃO -->
+<div class="card">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-icon" style="background:#fce4ec">🩺</div>
+    <div class="card-title"><h3>Técnica de Punção Venosa Periférica</h3><div class="sub">Passo a passo + erros comuns</div></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#f9f9f9;border-radius:10px;padding:12px"><div style="width:28px;height:28px;background:var(--teal);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">1</div><div><strong>Higienize as mãos</strong> e coloque as luvas de procedimento.</div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#f9f9f9;border-radius:10px;padding:12px"><div style="width:28px;height:28px;background:var(--teal);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">2</div><div><strong>Escolha o calibre</strong> conforme a indicação clínica e a condição da veia.</div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#f9f9f9;border-radius:10px;padding:12px"><div style="width:28px;height:28px;background:var(--teal);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">3</div><div><strong>Garroteie a 10 cm</strong> acima do local escolhido. Peça ao paciente para fechar o punho.</div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#f9f9f9;border-radius:10px;padding:12px"><div style="width:28px;height:28px;background:var(--teal);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">4</div><div><strong>Antissepsia</strong> com álcool 70% — movimento único de dentro para fora. Aguarde secar.</div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#f9f9f9;border-radius:10px;padding:12px"><div style="width:28px;height:28px;background:var(--teal);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">5</div><div><strong>Bisel para cima, ângulo 15–30°.</strong> Introduza com movimento firme e contínuo.</div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#f9f9f9;border-radius:10px;padding:12px"><div style="width:28px;height:28px;background:var(--teal);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">6</div><div><strong>Confirme retorno venoso</strong> (sangue na câmara). Avance o cateter, retire a agulha.</div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#f9f9f9;border-radius:10px;padding:12px"><div style="width:28px;height:28px;background:var(--teal);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">7</div><div><strong>Retire o garrote</strong>, fixe com curativo adesivo (técnica H ou borboleta). Descarte a agulha.</div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start;background:#f9f9f9;border-radius:10px;padding:12px"><div style="width:28px;height:28px;background:var(--teal);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">8</div><div><strong>Registre</strong>: data, hora, calibre utilizado e local de inserção.</div></div>
+    </div>
+    <div class="info-box alert" style="margin-top:14px"><strong>❌ Erros comuns:</strong> Garrote muito apertado ou por tempo longo (hemólise) · Não aguardar o álcool secar · Inserir em ângulo muito alto · Não confirmar retorno antes de fixar · Massagear o local após tentativa frustrada</div>
+  </div>
+</div>
+
+<!-- COMPLICAÇÕES -->
+<div class="card">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-icon" style="background:#ffebee">⚠️</div>
+    <div class="card-title"><h3>Complicações e Como Prevenir</h3><div class="sub">Flebite · Infiltração · Hematoma · Obstrução</div></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <table>
+      <tr><th>Complicação</th><th>Sinais</th><th>Causa Comum</th><th>Conduta</th></tr>
+      <tr><td><strong>Flebite</strong></td><td>Dor, calor, eritema, edema no trajeto</td><td>Medicação irritante, cateter fino, tempo prolongado</td><td>Retirar cateter, compressa morna, trocar acesso</td></tr>
+      <tr><td><strong>Infiltração</strong></td><td>Edema local, infusão lenta, sem retorno</td><td>Saída do cateter da veia</td><td>Suspender infusão, retirar cateter, elevar membro</td></tr>
+      <tr><td><strong>Hematoma</strong></td><td>Equimose, edema doloroso</td><td>Múltiplas punções, veia frágil</td><td>Comprimir por 5 min, compressa fria</td></tr>
+      <tr><td><strong>Obstrução</strong></td><td>Resistência ao flush, infusão lenta</td><td>Coagulação no cateter, dobra</td><td>Verificar posição, tentar flush suave, trocar acesso</td></tr>
+      <tr><td><strong>Embolia gasosa</strong></td><td>Dispneia súbita, cianose, hipotensão</td><td>Ar no equipo, conexões abertas</td><td>Decúbito lateral esquerdo + Trendelenburg, O₂, chamar médico</td></tr>
+    </table>
+    <div class="info-box tip" style="margin-top:14px"><strong>✅ Prevenção:</strong> Trocar o acesso venoso periférico a cada 72–96h conforme protocolo institucional · Inspecionar o local a cada passagem de medicamento · Nunca empurrar com força se houver resistência.</div>
+  </div>
+</div>
+
+</main>
+<footer>EnfermaStudy · Guia de Jelco · Criado por Saieso Seraos · 2026 · Material educativo</footer>
+
+<script>
+const jelcos = [
+  {g:'26G',color:'#7b1fa2',name:'Roxo',sub:'Calibre mais fino — neonatos e prematuros',flow:'13 mL/min',indic:'Hidratação mínima',size:'26G × ¾"',pain:'Mínima',uses:['🍼 Neonatos prematuros','👼 RN de baixo peso','💊 Medicamentos diluídos em pequeno volume','🩸 Coleta de amostras venosas mínimas']},
+  {g:'24G',color:'#f9a825',name:'Amarelo',sub:'Pediatria e veias muito frágeis',flow:'20 mL/min',indic:'Fluidos e medicações pediátricas',size:'24G × ¾"',pain:'Leve',uses:['👶 Pediatria (lactentes e pré-escolares)','👵 Idosos com veias muito frágeis','💊 Quimioterapia em veias delicadas','🔬 Coleta de sangue difícil']},
+  {g:'22G',color:'#1976d2',name:'Azul',sub:'Adultos com veias finas — uso geral',flow:'36 mL/min',indic:'Fluidos IV e medicamentos',size:'22G × 1"',pain:'Moderada',uses:['💊 Administração de medicamentos EV','💧 Soroterapia de manutenção','👵 Adultos com veias finas','🤰 Gestantes (quando veia adequada)']},
+  {g:'20G',color:'#e91e8c',name:'Rosa',sub:'Adultos em geral — mais usado na rotina',flow:'60 mL/min',indic:'Soroterapia e medicamentos',size:'20G × 1¼"',pain:'Moderada',uses:['💉 Soroterapia de rotina em adultos','💊 A maioria dos medicamentos EV','🤰 Gestantes e obstetrícia','🏥 Internações clínicas gerais']},
+  {g:'18G',color:'#388e3c',name:'Verde',sub:'Transfusão e maior fluxo',flow:'90 mL/min',indic:'Transfusão sanguínea',size:'18G × 1¼"',pain:'Alta',uses:['🩸 Transfusão de sangue e hemocomponentes','🏥 Pré-operatório eletivo','💉 Contraste para TC e RM','📥 Expansão volêmica moderada']},
+  {g:'16G',color:'#616161',name:'Cinza',sub:'Infusão rápida e cirurgia',flow:'180 mL/min',indic:'Infusão rápida e cirurgia',size:'16G × 1¾"',pain:'Muito alta',uses:['🚑 Trauma com necessidade de volume','🏥 Cirurgias de grande porte','📥 Expansão volêmica rápida','🩸 Transfusão maciça']},
+  {g:'14G',color:'#e65100',name:'Laranja',sub:'Emergência e politrauma — maior calibre',flow:'240 mL/min',indic:'Grande volume · Emergência',size:'14G × 2"',pain:'Máxima',uses:['🚨 Politrauma e choque hemorrágico','📥 Reposição volêmica de emergência','🔴 Hemorragia grave','💉 Acesso rápido em PCR']}
+];
+
+let currentIdx = -1;
+function showDetail(idx) {
+  const d = jelcos[idx];
+  const panel = document.getElementById('detailPanel');
+  const items = document.querySelectorAll('.jelco-item');
+  items.forEach((el,i)=>{el.classList.toggle('active',i===idx)});
+  if(currentIdx===idx){panel.classList.remove('show');currentIdx=-1;return;}
+  currentIdx=idx;
+  document.getElementById('detailBadge').textContent=d.g;
+  document.getElementById('detailBadge').style.background=d.color;
+  document.getElementById('detailTitle').textContent=`Jelco ${d.g} — ${d.name}`;
+  document.getElementById('detailSub').textContent=d.sub;
+  document.getElementById('dFlow').textContent=d.flow;
+  document.getElementById('dIndic').textContent=d.indic;
+  document.getElementById('dSize').textContent=d.size;
+  document.getElementById('dPain').textContent=d.pain;
+  const ul=document.getElementById('dUses');
+  ul.innerHTML=d.uses.map(u=>`<li style="border-left:3px solid ${d.color}">${u}</li>`).join('');
+  panel.classList.add('show');
+}
+// open first card
+document.querySelectorAll('.card')[0].classList.add('open');
+</script>
+</body>
+</html>

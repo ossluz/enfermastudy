@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnfermaStudy — Exames Diagnósticos</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--teal:#00796b;--teal-dark:#004d40;--teal-light:#e0f2f1;--bg:#f0f4f3;--shadow:0 2px 12px rgba(0,0,0,0.08)}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:#333}
+header{background:linear-gradient(135deg,#004d40,#00796b);color:#fff;padding:12px 16px;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.3);display:flex;align-items:center;gap:12px}
+.hinfo{flex:1}.hinfo h1{font-size:1.2rem;font-weight:800}.hinfo p{font-size:0.7rem;opacity:0.8}
+.back-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:10px;padding:7px 14px;font-family:'Nunito',sans-serif;font-size:0.8rem;font-weight:700;text-decoration:none;flex-shrink:0}
+main{max-width:960px;margin:0 auto;padding:20px 16px 60px}
+.hero{background:linear-gradient(135deg,var(--teal-dark),var(--teal));color:#fff;border-radius:20px;padding:26px 24px;margin-bottom:20px}
+.hero h2{font-size:1.5rem;font-weight:800;margin-bottom:4px}
+.hero p{opacity:0.9;font-size:0.86rem;line-height:1.5}
+.card{background:#fff;border-radius:16px;box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden;border:1px solid rgba(0,0,0,0.06)}
+.card-header{display:flex;align-items:center;gap:14px;padding:16px 18px;cursor:pointer}
+.exam-icon{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.card-title h3{font-size:1rem;font-weight:800;color:#1a2332}
+.card-title p{font-size:0.76rem;color:#888;margin-top:2px}
+.toggle{margin-left:auto;color:#aaa;font-size:1.2rem;transition:transform 0.2s;flex-shrink:0}
+.card.open .toggle{transform:rotate(180deg)}
+.card-body{display:none;padding:0 18px 18px}
+.card.open .card-body{display:block}
+.exam-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:12px 0}
+.exam-item{background:#f9f9f9;border-radius:10px;padding:10px 14px}
+.exam-item .label{font-size:0.68rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:3px}
+.exam-item .value{font-size:0.84rem;font-weight:600;color:#333;line-height:1.4}
+.info-box{border-radius:10px;padding:10px 14px;margin:8px 0;font-size:0.8rem;line-height:1.5}
+.info-box.tip{background:#e8f5e9;border-left:4px solid #4caf50;color:#2e7d32}
+.info-box.warn{background:#fff3e0;border-left:4px solid #ff9800;color:#e65100}
+.info-box.alert{background:#ffebee;border-left:4px solid #ef5350;color:#b71c1c}
+.steps{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.step{display:flex;gap:10px;align-items:flex-start;background:#f9f9f9;border-radius:10px;padding:10px 12px}
+.step-num{width:26px;height:26px;background:var(--teal);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:800;flex-shrink:0;margin-top:1px}
+.step-content{font-size:0.82rem;line-height:1.5}
+.step-content strong{color:#1a2332}
+.comparison-table{width:100%;border-collapse:collapse;font-size:0.78rem;margin-top:14px;overflow-x:auto;display:block}
+th{background:var(--teal);color:#fff;padding:8px;text-align:left;white-space:nowrap}
+td{padding:7px 8px;border-bottom:1px solid #eee;vertical-align:top}
+tr:nth-child(even){background:#f9f9f9}
+.svg-diagram{width:100%;max-width:400px;margin:12px auto;display:block;border-radius:12px;overflow:hidden}
+footer{text-align:center;padding:16px;font-size:0.72rem;color:#aaa;border-top:1px solid #e0e0e0}
+</style>
+</head>
+<body>
+<header>
+  <div class="hinfo"><h1>🔬 Exames Diagnósticos</h1><p>Preparo do paciente · Papel do técnico · Cuidados pós-exame</p></div>
+  <a href="recursos.html" class="back-btn">← Recursos</a>
+</header>
+<main>
+<div class="hero">
+  <h2>Exames Diagnósticos por Imagem</h2>
+  <p>Raio-X, TC, RM, Ultrassom, PET Scan e mais — tudo que o técnico de enfermagem precisa saber sobre preparo, cuidados e acompanhamento.</p>
+</div>
+
+<!-- Raio-X -->
+<div class="card open">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="exam-icon" style="background:#e3f2fd">
+      <svg width="30" height="30" viewBox="0 0 60 60" fill="none"><rect width="60" height="60" rx="8" fill="#e3f2fd"/><rect x="10" y="8" width="40" height="50" rx="4" fill="#1565c0" opacity="0.15"/><rect x="10" y="8" width="40" height="50" rx="4" stroke="#1565c0" stroke-width="2"/><ellipse cx="30" cy="28" rx="8" ry="10" fill="none" stroke="#1565c0" stroke-width="2"/><line x1="20" y1="22" x2="40" y2="22" stroke="#1565c0" stroke-width="1.5"/><line x1="18" y1="38" x2="42" y2="38" stroke="#1565c0" stroke-width="1.5"/><line x1="15" y1="43" x2="45" y2="43" stroke="#1565c0" stroke-width="1.5"/><line x1="15" y1="48" x2="45" y2="48" stroke="#1565c0" stroke-width="1.5"/></svg>
+    </div>
+    <div class="card-title"><h3>☢️ Raio-X (Radiografia)</h3><p>Ossos · Fraturas · Tórax · Abdome</p></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="exam-grid">
+      <div class="exam-item"><div class="label">Radiação</div><div class="value">Sim (baixa dose)</div></div>
+      <div class="exam-item"><div class="label">Tempo</div><div class="value">5–15 minutos</div></div>
+      <div class="exam-item"><div class="label">Contraste</div><div class="value">Sem contraste (padrão) / Bário (digestivo)</div></div>
+      <div class="exam-item"><div class="label">Indicações</div><div class="value">Fraturas, pneumonia, derrame pleural, ICC, corpos estranhos</div></div>
+    </div>
+    <div class="info-box tip"><strong>🩺 Papel do Técnico:</strong> Retirar adornos metálicos (brincos, colares, piercing, sutiãs com arame). Verificar se gestante ou possível gestação. Auxiliar no posicionamento. Fornecer avental de chumbo para acompanhantes.</div>
+    <h4 style="margin:12px 0 8px;font-size:0.88rem;color:var(--teal-dark)">Preparo do Paciente</h4>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Identificar contraindicações:</strong> Gestação (1º trimestre = contraindicação relativa). Informar o médico.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Remover objetos metálicos:</strong> Toda joia, piercing, sutiã com arame, cintos, óculos devem ser retirados.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Orientar o paciente:</strong> Explicar o procedimento. Orientar sobre ficar imóvel durante a captura da imagem (apneia se solicitado).</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Proteção radiológica:</strong> Avental de chumbo para proteger regiões não examinadas (gônadas, tireoide, tórax em RX de membros).</div></div>
+    </div>
+    <div class="info-box warn">⚠️ Gravidez: se houver possibilidade de gestação, avisar SEMPRE antes do exame. O RX é contraindicado no 1º trimestre salvo situação de risco de vida.</div>
+  </div>
+</div>
+
+<!-- Tomografia -->
+<div class="card">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="exam-icon" style="background:#e8f5e9">
+      <svg width="30" height="30" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="24" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/><circle cx="30" cy="30" r="15" fill="none" stroke="#2e7d32" stroke-width="2"/><circle cx="30" cy="30" r="6" fill="#2e7d32"/><line x1="30" y1="6" x2="30" y2="15" stroke="#2e7d32" stroke-width="2"/><line x1="30" y1="45" x2="30" y2="54" stroke="#2e7d32" stroke-width="2"/><line x1="6" y1="30" x2="15" y2="30" stroke="#2e7d32" stroke-width="2"/><line x1="45" y1="30" x2="54" y2="30" stroke="#2e7d32" stroke-width="2"/></svg>
+    </div>
+    <div class="card-title"><h3>🔄 Tomografia Computadorizada (TC)</h3><p>Imagens detalhadas em cortes · Com ou sem contraste</p></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="exam-grid">
+      <div class="exam-item"><div class="label">Radiação</div><div class="value">Sim (dose maior que RX)</div></div>
+      <div class="exam-item"><div class="label">Tempo</div><div class="value">10–30 minutos</div></div>
+      <div class="exam-item"><div class="label">Contraste</div><div class="value">Iodado EV (frequente) ou sem contraste</div></div>
+      <div class="exam-item"><div class="label">Indicações</div><div class="value">AVC, trauma, neoplasias, aneurismas, hemorragias</div></div>
+    </div>
+    <div class="info-box tip"><strong>🩺 Papel do Técnico:</strong> Garantir acesso venoso calibroso (18G mínimo para contraste). Verificar creatinina/TFG (contraste nefrotóxico). Verificar alergias ao contraste. Hidratação pré e pós (se contraste). Orientar sobre manter-se imóvel.</div>
+    <h4 style="margin:12px 0 8px;font-size:0.88rem;color:var(--teal-dark)">Preparo para TC com Contraste</h4>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Jejum:</strong> 4–6 horas para contraste EV (protocolo institucional).</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Verificar creatinina:</strong> TFG <30 mL/min: contraindicação relativa ao contraste. Comunicar ao médico.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Alergias:</strong> Perguntar sobre alergia a contraste, frutos do mar, iodo. Se alérgico: pré-medicação (corticoide + anti-histamínico).</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Acesso venoso:</strong> 18G no mínimo, preferencialmente 16G, em veia de bom calibre (antecubital ou cefálica).</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Metformina:</strong> Suspender 48h antes e 48h após contraste (risco de acidose lática).</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-content"><strong>Hidratação pós-exame:</strong> 500–1000 mL de água nas horas seguintes ao contraste.</div></div>
+    </div>
+    <div class="info-box alert">🚨 REAÇÃO AO CONTRASTE: urticária, broncoespasmo, hipotensão, anafilaxia. Ter adrenalina, anti-histamínico e corticoide disponíveis. Ficar junto ao paciente nos primeiros 30 min.</div>
+  </div>
+</div>
+
+<!-- Ressonância -->
+<div class="card">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="exam-icon" style="background:#f3e5f5">
+      <svg width="30" height="30" viewBox="0 0 60 60" fill="none"><rect x="5" y="20" width="50" height="20" rx="10" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="2"/><rect x="15" y="15" width="30" height="30" rx="15" fill="none" stroke="#6a1b9a" stroke-width="1.5" stroke-dasharray="4 2"/><circle cx="30" cy="30" r="5" fill="#6a1b9a"/><line x1="5" y1="30" x2="15" y2="30" stroke="#6a1b9a" stroke-width="2"/><line x1="45" y1="30" x2="55" y2="30" stroke="#6a1b9a" stroke-width="2"/></svg>
+    </div>
+    <div class="card-title"><h3>🧲 Ressonância Magnética (RM)</h3><p>Sem radiação · Cérebro · Coluna · Tecidos moles</p></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="exam-grid">
+      <div class="exam-item"><div class="label">Radiação</div><div class="value">❌ Sem radiação ionizante</div></div>
+      <div class="exam-item"><div class="label">Tempo</div><div class="value">30–90 minutos</div></div>
+      <div class="exam-item"><div class="label">Contraste</div><div class="value">Gadolínio EV (menos nefrotóxico)</div></div>
+      <div class="exam-item"><div class="label">Indicações</div><div class="value">Cérebro, coluna, articulações, tumores, tecidos moles</div></div>
+    </div>
+    <div class="info-box tip"><strong>🩺 Papel do Técnico:</strong> TRIAGEM RIGOROSA de implantes metálicos. Verificar claustrofobia (ansiolítico prescrito se necessário). Sedação em crianças. Proteger da pulsação do aparelho (tampões de ouvido).</div>
+    <h4 style="margin:12px 0 8px;font-size:0.88rem;color:var(--teal-dark)">Triagem — Objetos/Implantes Contraindicados</h4>
+    <div class="steps">
+      <div class="step"><div class="step-num">✅</div><div class="step-content"><strong>SEGUROS (em geral):</strong> Titânio, próteses ortopédicas modernas, stents coronários ≥6 semanas após implante, próteses de quadril/joelho certificadas.</div></div>
+      <div class="step"><div class="step-num">🚨</div><div class="step-content"><strong>CONTRAINDICADOS ABSOLUTOS:</strong> Marcapasso (maioria dos antigos), clipes de aneurisma ferromagnéticos, implantes cocleares não compatíveis, corpos estranhos metálicos nos olhos, neuroestimuladores.</div></div>
+      <div class="step"><div class="step-num">⚠️</div><div class="step-content"><strong>VERIFICAR INDIVIDUALMENTE:</strong> DIU metálico, piercing, implantes dentários, válvulas cardíacas, bombas de insulina. Consultar fabricante e radiologista.</div></div>
+    </div>
+    <div class="info-box alert">🚨 Objetos metálicos no campo magnético = projétil. NENHUM objeto metálico pode entrar na sala da RM sem triagem prévia e autorização do radiologista.</div>
+  </div>
+</div>
+
+<!-- Ultrassom -->
+<div class="card">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="exam-icon" style="background:#e0f7fa">
+      <svg width="30" height="30" viewBox="0 0 60 60" fill="none"><path d="M10 30 Q20 15 30 30 Q40 45 50 30" stroke="#006064" stroke-width="2.5" fill="none"/><path d="M10 20 Q20 5 30 20 Q40 35 50 20" stroke="#006064" stroke-width="1.5" fill="none" opacity="0.5"/><path d="M10 40 Q20 25 30 40 Q40 55 50 40" stroke="#006064" stroke-width="1.5" fill="none" opacity="0.5"/><circle cx="30" cy="30" r="4" fill="#006064"/></svg>
+    </div>
+    <div class="card-title"><h3>🔊 Ultrassom (Sonografia)</h3><p>Sem radiação · Abdominal · Obstétrico · Vascular</p></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="exam-grid">
+      <div class="exam-item"><div class="label">Radiação</div><div class="value">❌ Sem radiação — ondas sonoras</div></div>
+      <div class="exam-item"><div class="label">Tempo</div><div class="value">15–45 minutos</div></div>
+      <div class="exam-item"><div class="label">Contraste</div><div class="value">Sem contraste (geralmente)</div></div>
+      <div class="exam-item"><div class="label">Indicações</div><div class="value">Gravidez, órgãos abdominais, vascular, guia de procedimentos</div></div>
+    </div>
+    <div class="info-box tip"><strong>🩺 Papel do Técnico:</strong> Orientar jejum conforme indicação. Para US pélvico: bexiga cheia (ingerir 1L de água, não urinar 1h antes). Para US obstétrico de 1º tri: bexiga cheia. US abdominal: jejum 4–6h.</div>
+    <h4 style="margin:12px 0 8px;font-size:0.88rem;color:var(--teal-dark)">Preparos Específicos por Região</h4>
+    <table class="comparison-table">
+      <tr><th>Região</th><th>Jejum</th><th>Bexiga</th><th>Observações</th></tr>
+      <tr><td>Abdominal total</td><td>4–6h</td><td>Vazia</td><td>Evitar gases: não comer feijão, repolho, refrigerante</td></tr>
+      <tr><td>Pélvico (transabdominal)</td><td>Não necessário</td><td>Cheia (1L água, 1h antes)</td><td>Bexiga cheia cria "janela" acústica</td></tr>
+      <tr><td>Obstétrico 1º trimestre</td><td>Não necessário</td><td>Cheia</td><td>Confirmar DUM e semanas</td></tr>
+      <tr><td>Obstétrico 2º/3º tri</td><td>Não necessário</td><td>Semi-cheia</td><td>—</td></tr>
+      <tr><td>Doppler vascular</td><td>Não necessário</td><td>—</td><td>Repouso 10 min antes. Não fumar 2h antes.</td></tr>
+      <tr><td>Tireóide / pescoço</td><td>Não necessário</td><td>—</td><td>Nenhum preparo especial</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- PET Scan -->
+<div class="card">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="exam-icon" style="background:#fff3e0">
+      <svg width="30" height="30" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="20" fill="#fff3e0" stroke="#e65100" stroke-width="2"/><circle cx="30" cy="30" r="12" fill="none" stroke="#e65100" stroke-width="1.5"/><circle cx="30" cy="30" r="5" fill="#e65100"/><circle cx="18" cy="18" r="3" fill="#e65100" opacity="0.5"/><circle cx="42" cy="18" r="3" fill="#e65100" opacity="0.5"/><circle cx="18" cy="42" r="3" fill="#e65100" opacity="0.5"/><circle cx="42" cy="42" r="3" fill="#e65100" opacity="0.5"/></svg>
+    </div>
+    <div class="card-title"><h3>⚛️ PET Scan (PET-CT)</h3><p>Atividade celular · Oncologia · Metabolismo</p></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="exam-grid">
+      <div class="exam-item"><div class="label">Radiação</div><div class="value">Sim (radiofármaco + TC)</div></div>
+      <div class="exam-item"><div class="label">Tempo</div><div class="value">2–3 horas (espera + exame)</div></div>
+      <div class="exam-item"><div class="label">Substância</div><div class="value">FDG (glicose marcada com F-18)</div></div>
+      <div class="exam-item"><div class="label">Indicações</div><div class="value">Estadiamento de tumores, detecção de metástases, avaliação de resposta ao tratamento</div></div>
+    </div>
+    <div class="info-box tip"><strong>🩺 Papel do Técnico:</strong> Orientar jejum rigoroso de 6h. Verificar e registrar glicemia antes do exame (se >200 mg/dL pode comprometer o resultado). Garantir repouso e evitar atividade física intensa por 24h antes.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Jejum 6h:</strong> Apenas água permitida. Glicemia alta (diabetes não controlado) pode comprometer o exame.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Sem exercício:</strong> Não fazer atividade física intensa por 24h antes. Músculos captam FDG e interferem na imagem.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Glicemia pré-exame:</strong> Verificar glicemia capilar. Ideal: <150 mg/dL. Informar o médico se >200 mg/dL.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Repouso pós-injeção:</strong> Após injetar o FDG, paciente fica em repouso 45–60 min (período de distribuição) — em ambiente aquecido, sem falar.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Precauções pós-exame:</strong> Paciente é levemente radioativo por 6–12h. Evitar contato prolongado com grávidas e crianças. Hidratação abundante.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Cintilografia -->
+<div class="card">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="exam-icon" style="background:#e8eaf6">
+      <svg width="30" height="30" viewBox="0 0 60 60" fill="none"><rect x="8" y="8" width="44" height="44" rx="8" fill="#e8eaf6" stroke="#3949ab" stroke-width="2"/><circle cx="20" cy="25" r="4" fill="#3949ab" opacity="0.8"/><circle cx="40" cy="25" r="4" fill="#3949ab" opacity="0.8"/><circle cx="30" cy="40" r="4" fill="#3949ab"/><circle cx="20" cy="40" r="2" fill="#3949ab" opacity="0.5"/><circle cx="40" cy="40" r="2" fill="#3949ab" opacity="0.5"/></svg>
+    </div>
+    <div class="card-title"><h3>☢️ Cintilografia</h3><p>Medicina Nuclear · Óssea · Cardíaca · Tireóide</p></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="exam-grid">
+      <div class="exam-item"><div class="label">Radiação</div><div class="value">Sim (radiofármaco)</div></div>
+      <div class="exam-item"><div class="label">Tempo</div><div class="value">2–6 horas (distribuição + imagem)</div></div>
+      <div class="exam-item"><div class="label">Substâncias</div><div class="value">Tc-99m (ossos, coração), I-131 (tireóide)</div></div>
+      <div class="exam-item"><div class="label">Indicações</div><div class="value">Metástases ósseas, isquemia cardíaca, hipertireoidismo, nódulo tireóideo</div></div>
+    </div>
+    <div class="info-box tip"><strong>🩺 Papel do Técnico:</strong> Explicar que o paciente voltará em 2–4h após a injeção do radiofármaco para a captura das imagens. Orientar hidratação abundante (acelera eliminação do radiofármaco). Garantir acesso venoso.</div>
+    <div class="info-box warn">⚠️ Cintilografia de tireóide com iodo: suspender hormônio tireóideo e antitireóideos conforme orientação (geralmente 3–6 semanas). Dieta pobre em iodo.</div>
+  </div>
+</div>
+
+<!-- Angiografia -->
+<div class="card">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="exam-icon" style="background:#fce4ec">
+      <svg width="30" height="30" viewBox="0 0 60 60" fill="none"><path d="M10 30 C10 20 20 15 30 20 C40 25 50 20 50 30 C50 40 40 45 30 40 C20 35 10 40 10 30Z" fill="#fce4ec" stroke="#b71c1c" stroke-width="2"/><path d="M20 30 C20 25 25 22 30 24 C35 26 38 30 35 34 C32 38 25 36 22 32" fill="none" stroke="#b71c1c" stroke-width="1.5"/></svg>
+    </div>
+    <div class="card-title"><h3>🩸 Angiografia / Cateterismo</h3><p>Vasos sanguíneos · Coronárias · Artérias</p></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="exam-grid">
+      <div class="exam-item"><div class="label">Radiação</div><div class="value">Sim (fluoroscopia)</div></div>
+      <div class="exam-item"><div class="label">Tempo</div><div class="value">30 min – 3 horas</div></div>
+      <div class="exam-item"><div class="label">Contraste</div><div class="value">Iodado intra-arterial obrigatório</div></div>
+      <div class="exam-item"><div class="label">Indicações</div><div class="value">DAC, estenose arterial, AVC, aneurismas, embolização</div></div>
+    </div>
+    <div class="info-box tip"><strong>🩺 Papel do Técnico:</strong> Preparar o campo: tricotomia da região inguinal ou radial (conforme acesso). Verificar coagulograma, plaquetas, creatinina. Suspender anticoagulantes conforme prescrição. Acesso venoso calibroso.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Pré-exame:</strong> Jejum 4–6h. Tricotomia inguinal (acesso femoral) ou não (acesso radial). Verificar: creatinina, coagulograma, ECG basal, alergias.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Medicamentos:</strong> Suspender metformina 48h antes. Manter aspirina (geralmente). Anticoagulação: verificar com médico.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Pós-exame (acesso femoral):</strong> Compressão do local por 20 min + curativo compressivo 4–6h. Repouso no leito 4–6h. Membro esticado. Verificar pulso e hematoma.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Pós-exame (acesso radial):</strong> Pulseira compressiva radial por 2–4h. Monitorar mão (cor, temperatura, pulso radial). Orientar: não fazer esforço com o braço.</div></div>
+    </div>
+    <div class="info-box alert">🚨 Sinais de alerta pós-cateterismo: hematoma expansivo, ausência de pulso distal, hipotensão, dor intensa no acesso → NOTIFICAR IMEDIATAMENTE.</div>
+  </div>
+</div>
+
+<!-- Mamografia -->
+<div class="card">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="exam-icon" style="background:#fce4ec"><div style="font-size:28px">🎗️</div></div>
+    <div class="card-title"><h3>🎗️ Mamografia</h3><p>Detecção precoce de câncer de mama · Rastreamento</p></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="exam-grid">
+      <div class="exam-item"><div class="label">Radiação</div><div class="value">Sim (baixa dose, mama)</div></div>
+      <div class="exam-item"><div class="label">Tempo</div><div class="value">15–30 minutos</div></div>
+      <div class="exam-item"><div class="label">Periodicidade</div><div class="value">Anual a partir dos 50 anos (SUS) ou 40 anos (SBM)</div></div>
+      <div class="exam-item"><div class="label">Indicações</div><div class="value">Rastreamento, nódulo palpável, descarga papilar</div></div>
+    </div>
+    <div class="info-box tip"><strong>🩺 Orientações ao paciente:</strong> Não usar desodorante, talco ou creme no dia do exame (interferem na imagem). Usar roupas de fácil remoção. Trazer exames anteriores para comparação. Melhor período: após a menstruação (mama menos sensível).</div>
+    <div class="info-box warn">⚠️ Mastectomizadas: informar o técnico/radiologista. Portadoras de prótese de silicone: informar — técnicas especiais podem ser necessárias.</div>
+  </div>
+</div>
+
+<!-- Densitometria -->
+<div class="card">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="exam-icon" style="background:#e8f5e9"><div style="font-size:28px">🦴</div></div>
+    <div class="card-title"><h3>🦴 Densitometria Óssea (DXA)</h3><p>Osteoporose · Massa óssea · Risco de fratura</p></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="exam-grid">
+      <div class="exam-item"><div class="label">Radiação</div><div class="value">Sim (dose mínima)</div></div>
+      <div class="exam-item"><div class="label">Tempo</div><div class="value">15–20 minutos</div></div>
+      <div class="exam-item"><div class="label">Resultado (T-score)</div><div class="value">Normal: ≥-1,0 | Osteopenia: -1 a -2,5 | Osteoporose: ≤-2,5</div></div>
+      <div class="exam-item"><div class="label">Indicações</div><div class="value">Mulheres >65 anos, homens >70, uso crônico de corticoide</div></div>
+    </div>
+    <div class="info-box tip"><strong>🩺 Orientações:</strong> Não tomar cálcio ou suplementos nas 24h anteriores. Roupas sem metal. Informar próteses ortopédicas (interfere no resultado). Não realizar se TC ou cintilografia nos últimos 7 dias (contraste residual interfere).</div>
+  </div>
+</div>
+
+<!-- Tabela comparativa -->
+<div class="card open">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="exam-icon" style="background:var(--teal-light)">📊</div>
+    <div class="card-title"><h3>Tabela Comparativa dos Exames</h3><p>Visão geral rápida para o técnico</p></div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div style="overflow-x:auto">
+    <table class="comparison-table">
+      <tr><th>Exame</th><th>Radiação</th><th>Contraste</th><th>Jejum</th><th>Especial</th></tr>
+      <tr><td><strong>Raio-X</strong></td><td>Sim (baixa)</td><td>Não</td><td>Não</td><td>Retirar metais</td></tr>
+      <tr><td><strong>TC</strong></td><td>Sim (média)</td><td>Iodado EV</td><td>4–6h (c/contraste)</td><td>Creatinina, acesso 18G+</td></tr>
+      <tr><td><strong>RM</strong></td><td>❌ Não</td><td>Gadolínio (às vezes)</td><td>Não</td><td>Triagem implantes metálicos</td></tr>
+      <tr><td><strong>Ultrassom</strong></td><td>❌ Não</td><td>Não</td><td>4–6h (abdominal)</td><td>Bexiga cheia (pélvico)</td></tr>
+      <tr><td><strong>PET Scan</strong></td><td>Sim (media)</td><td>FDG (glicose)</td><td>6h</td><td>Glicemia <150 mg/dL</td></tr>
+      <tr><td><strong>Cintilografia</strong></td><td>Sim (radiofármaco)</td><td>Tc-99m / I-131</td><td>Varia</td><td>Hidratação pós-exame</td></tr>
+      <tr><td><strong>Angiografia</strong></td><td>Sim (fluoroscopia)</td><td>Iodado intra-arterial</td><td>4–6h</td><td>Tricotomia, coagulograma</td></tr>
+      <tr><td><strong>Mamografia</strong></td><td>Sim (baixa)</td><td>Não</td><td>Não</td><td>Sem desodorante/talco</td></tr>
+      <tr><td><strong>Densitometria</strong></td><td>Sim (mínima)</td><td>Não</td><td>Não</td><td>Sem cálcio 24h antes</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.card:not(.card:first-of-type)').forEach(c => { if(!c.classList.contains('open')) c.querySelector('.card-header').addEventListener('click', () => c.classList.toggle('open')); });
+</script>
+</body>
+</html>

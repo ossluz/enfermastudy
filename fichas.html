@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fichas e Checklists — EnfermaStudy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--teal:#00796b;--teal-dark:#004d40;--bg:#f0f4f3}
+body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh}
+header{background:linear-gradient(135deg,#004d40,#00796b);color:#fff;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.hd{display:flex;align-items:center;gap:14px;padding:14px 20px}
+.hi{width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ht h1{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800}
+.ht p{font-size:.72rem;opacity:.8;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.bk{margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:10px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;text-decoration:none}
+main{max-width:960px;margin:0 auto;padding:24px 16px 60px}
+.hero{background:linear-gradient(135deg,var(--teal-dark),var(--teal));color:#fff;border-radius:16px;padding:28px 24px;margin-bottom:24px;position:relative;overflow:hidden}
+.hero::after{content:'📋';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:80px;opacity:.12}
+.hero h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;margin-bottom:8px}
+.hero p{font-size:.88rem;opacity:.9;line-height:1.6}
+.card{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.08);margin-bottom:20px;overflow:hidden;border:1px solid rgba(0,0,0,.06)}
+.card-header{padding:16px 20px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.ci{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.ct h3{font-size:.95rem;font-weight:800;color:#1a2332}
+.ct .sub{font-size:.75rem;color:#888}
+.card-body{display:none;padding:0 20px 20px}
+.card.open .card-body{display:block}
+.tg{margin-left:auto;font-size:1.2rem;transition:transform .2s}
+.card.open .tg{transform:rotate(180deg)}
+.info-box{border-radius:10px;padding:12px 16px;font-size:.83rem;line-height:1.6;margin:10px 0}
+.iw{background:#fff8e1;border-left:4px solid #ffc107;color:#e65100}
+.it{background:#e8f5e9;border-left:4px solid #4caf50;color:#2e7d32}
+.cl{list-style:none;display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.cl li{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#f9f9f9;border-radius:10px;cursor:pointer;transition:background .15s;font-size:.85rem;font-weight:600;border:2px solid transparent}
+.cl li:hover{background:#e0f2f1}
+.cl li.checked{background:#e8f5e9;border-color:#4caf50;text-decoration:line-through;color:#888}
+.cb{width:22px;height:22px;border:2px solid #ccc;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .15s}
+.cl li.checked .cb{background:#4caf50;border-color:#4caf50;color:#fff}
+.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.ch h4{font-size:.9rem;font-weight:800;color:#333}
+.rb{background:#f0f0f0;border:none;border-radius:8px;padding:5px 12px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
+.pb{height:6px;background:#e0e0e0;border-radius:3px;margin:6px 0}
+.pf{height:100%;background:var(--teal);border-radius:3px;transition:width .3s}
+.pl{font-size:.72rem;color:#888;text-align:right}
+.sv-form{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:12px 0}
+.sf{background:#f9f9f9;border-radius:10px;padding:10px}
+.sf label{display:block;font-size:.7rem;font-weight:800;color:#666;text-transform:uppercase;margin-bottom:4px}
+.sf input{width:100%;border:1.5px solid #e0e0e0;border-radius:7px;padding:7px 10px;font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:700;outline:none}
+.sf input:focus{border-color:var(--teal)}
+.bp{background:var(--teal);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.88rem;cursor:pointer;margin-top:8px;margin-right:8px}
+.bc{background:#e0f2f1;color:var(--teal-dark);border:none;border-radius:10px;padding:10px 18px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;margin-top:8px}
+.sv-result{background:#e0f2f1;border-radius:10px;padding:14px;margin-top:10px;font-size:.82rem;line-height:1.8;display:none}
+table{width:100%;border-collapse:collapse;font-size:.82rem;margin:10px 0}
+th{background:var(--teal);color:#fff;padding:10px;text-align:left}
+td{padding:9px 10px;border-bottom:1px solid #eee}
+tr:hover td{background:#f5f5f5}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="hi">📋</div>
+    <div class="ht"><h1>Fichas e Checklists</h1><p>EnfermaStudy — Recursos Extras</p></div>
+    <a href="recursos.html" class="bk">← Recursos</a>
+  </div>
+</header>
+<main>
+  <div class="hero">
+    <h2>📋 Fichas e Checklists de Enfermagem</h2>
+    <p>Checklists interativos, fichas de registro e tabelas de referência para o dia a dia clínico. Clique nos itens para marcar!</p>
+  </div>
+
+  <!-- Carro de Emergência -->
+  <div class="card open">
+    <div class="card-header" onclick="this.closest('.card').classList.toggle('open')">
+      <div class="ci" style="background:#ffebee">🚨</div>
+      <div class="ct"><h3>Checklist — Carro de Emergência</h3><div class="sub">Início de plantão — marque cada item verificado</div></div>
+      <span class="tg">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="info-box iw">⚠️ Checar o carro de emergência no INÍCIO de cada plantão. Registrar número do lacre em impresso próprio. Carro violado → checar e reselar imediatamente.</div>
+      <div class="ch"><h4>🔒 Lacre e Estrutura</h4><button class="rb" onclick="resetCL('l1')">🔄 Limpar</button></div>
+      <div class="pb"><div class="pf" id="pf-l1" style="width:0%"></div></div>
+      <div class="pl" id="pl-l1">0/4 itens</div>
+      <ul class="cl" id="l1">
+        <li onclick="toggleItem(this,'l1')"><div class="cb"></div>Lacre intacto — registrar número</li>
+        <li onclick="toggleItem(this,'l1')"><div class="cb"></div>Sem danos físicos no carro</li>
+        <li onclick="toggleItem(this,'l1')"><div class="cb"></div>Data e hora registradas no impresso</li>
+        <li onclick="toggleItem(this,'l1')"><div class="cb"></div>Assinatura do técnico responsável</li>
+      </ul>
+      <div class="ch" style="margin-top:16px"><h4>💊 Medicamentos</h4><button class="rb" onclick="resetCL('l2')">🔄 Limpar</button></div>
+      <div class="pb"><div class="pf" id="pf-l2" style="width:0%"></div></div>
+      <div class="pl" id="pl-l2">0/8 itens</div>
+      <ul class="cl" id="l2">
+        <li onclick="toggleItem(this,'l2')"><div class="cb"></div>Adrenalina 1mg/mL — validade e quantidade OK</li>
+        <li onclick="toggleItem(this,'l2')"><div class="cb"></div>Amiodarona — validade OK</li>
+        <li onclick="toggleItem(this,'l2')"><div class="cb"></div>Atropina 0,5mg/mL OK</li>
+        <li onclick="toggleItem(this,'l2')"><div class="cb"></div>Bicarbonato de Sódio 8,4% OK</li>
+        <li onclick="toggleItem(this,'l2')"><div class="cb"></div>Glicose 50% (2 ampolas) OK</li>
+        <li onclick="toggleItem(this,'l2')"><div class="cb"></div>SF 0,9% 250mL (mínimo 4 bolsas)</li>
+        <li onclick="toggleItem(this,'l2')"><div class="cb"></div>Vasopressores conforme protocolo</li>
+        <li onclick="toggleItem(this,'l2')"><div class="cb"></div>Todos os medicamentos dentro da validade</li>
+      </ul>
+      <div class="ch" style="margin-top:16px"><h4>🔧 Equipamentos</h4><button class="rb" onclick="resetCL('l3')">🔄 Limpar</button></div>
+      <div class="pb"><div class="pf" id="pf-l3" style="width:0%"></div></div>
+      <div class="pl" id="pl-l3">0/8 itens</div>
+      <ul class="cl" id="l3">
+        <li onclick="toggleItem(this,'l3')"><div class="cb"></div>Desfibrilador — ligar e testar carga</li>
+        <li onclick="toggleItem(this,'l3')"><div class="cb"></div>Pás limpas + gel disponível</li>
+        <li onclick="toggleItem(this,'l3')"><div class="cb"></div>Ambu — máscara e reservatório íntegros</li>
+        <li onclick="toggleItem(this,'l3')"><div class="cb"></div>Laringoscópio — lâmpada e pilhas OK</li>
+        <li onclick="toggleItem(this,'l3')"><div class="cb"></div>TOT (vários tamanhos) + fio guia</li>
+        <li onclick="toggleItem(this,'l3')"><div class="cb"></div>Aspirador funcionando + sondas</li>
+        <li onclick="toggleItem(this,'l3')"><div class="cb"></div>Oxigênio disponível e fluxômetro OK</li>
+        <li onclick="toggleItem(this,'l3')"><div class="cb"></div>Prancha rígida para RCP</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Sinais Vitais -->
+  <div class="card open">
+    <div class="card-header" onclick="this.closest('.card').classList.toggle('open')">
+      <div class="ci" style="background:#e0f2f1">❤️</div>
+      <div class="ct"><h3>Ficha de Sinais Vitais</h3><div class="sub">Preencha e analise em tempo real</div></div>
+      <span class="tg">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="sv-form">
+        <div class="sf"><label>Paciente / Leito</label><input type="text" id="sv_pac" placeholder="Ex: Leito 05"></div>
+        <div class="sf"><label>Horário</label><input type="time" id="sv_hora"></div>
+        <div class="sf"><label>PA (mmHg)</label><input type="text" id="sv_pa" placeholder="120/80"></div>
+        <div class="sf"><label>FC (bpm)</label><input type="number" id="sv_fc" placeholder="80"></div>
+        <div class="sf"><label>FR (irpm)</label><input type="number" id="sv_fr" placeholder="18"></div>
+        <div class="sf"><label>Temperatura (°C)</label><input type="number" id="sv_temp" step="0.1" placeholder="36.5"></div>
+        <div class="sf"><label>SpO₂ (%)</label><input type="number" id="sv_spo2" placeholder="98"></div>
+        <div class="sf"><label>Glicemia (mg/dL)</label><input type="number" id="sv_gli" placeholder="100"></div>
+        <div class="sf"><label>Dor EVA (0–10)</label><input type="number" id="sv_dor" min="0" max="10" placeholder="0"></div>
+        <div class="sf"><label>Glasgow (3–15)</label><input type="number" id="sv_gcs" min="3" max="15" placeholder="15"></div>
+      </div>
+      <button class="bp" onclick="avaliarSV()">📊 Analisar</button>
+      <button class="bc" onclick="copiarSV()">📋 Copiar Anotação</button>
+      <div class="sv-result" id="sv-result"></div>
+    </div>
+  </div>
+
+  <!-- SVD -->
+  <div class="card">
+    <div class="card-header" onclick="this.closest('.card').classList.toggle('open')">
+      <div class="ci" style="background:#e3f2fd">🔵</div>
+      <div class="ct"><h3>Checklist — Cuidados com SVD</h3><div class="sub">Sonda Vesical de Demora — por plantão</div></div>
+      <span class="tg">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="ch"><h4>Verificações obrigatórias</h4><button class="rb" onclick="resetCL('l4')">🔄 Limpar</button></div>
+      <div class="pb"><div class="pf" id="pf-l4" style="width:0%"></div></div>
+      <div class="pl" id="pl-l4">0/10 itens</div>
+      <ul class="cl" id="l4">
+        <li onclick="toggleItem(this,'l4')"><div class="cb"></div>Sistema coletor ABAIXO da bexiga (nunca no chão)</li>
+        <li onclick="toggleItem(this,'l4')"><div class="cb"></div>Sonda fixada corretamente (coxa/abdome)</li>
+        <li onclick="toggleItem(this,'l4')"><div class="cb"></div>Sem dobras ou torções no cateter</li>
+        <li onclick="toggleItem(this,'l4')"><div class="cb"></div>Meato uretral higienizado (2x/dia)</li>
+        <li onclick="toggleItem(this,'l4')"><div class="cb"></div>Diurese anotada (ml e aspecto)</li>
+        <li onclick="toggleItem(this,'l4')"><div class="cb"></div>Sistema de coleta fechado</li>
+        <li onclick="toggleItem(this,'l4')"><div class="cb"></div>Sem sinais de ITU (febre, urina turva, odor)</li>
+        <li onclick="toggleItem(this,'l4')"><div class="cb"></div>Bolsa esvaziada (&lt;2/3 da capacidade)</li>
+        <li onclick="toggleItem(this,'l4')"><div class="cb"></div>Data de instalação registrada</li>
+        <li onclick="toggleItem(this,'l4')"><div class="cb"></div>Balanço hídrico registrado em prontuário</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Curativo -->
+  <div class="card">
+    <div class="card-header" onclick="this.closest('.card').classList.toggle('open')">
+      <div class="ci" style="background:#fce4ec">🩹</div>
+      <div class="ct"><h3>Checklist — Curativo e Avaliação de Ferida</h3><div class="sub">Registro de cada troca de curativo</div></div>
+      <span class="tg">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="ch"><h4>Avaliação e técnica</h4><button class="rb" onclick="resetCL('l5')">🔄 Limpar</button></div>
+      <div class="pb"><div class="pf" id="pf-l5" style="width:0%"></div></div>
+      <div class="pl" id="pl-l5">0/10 itens</div>
+      <ul class="cl" id="l5">
+        <li onclick="toggleItem(this,'l5')"><div class="cb"></div>Higienizar mãos antes do procedimento</li>
+        <li onclick="toggleItem(this,'l5')"><div class="cb"></div>Preparar material estéril antes de iniciar</li>
+        <li onclick="toggleItem(this,'l5')"><div class="cb"></div>Lavar ferida com SF 0,9% em jato</li>
+        <li onclick="toggleItem(this,'l5')"><div class="cb"></div>Avaliar bordas: aproximadas/abertas/necróticas</li>
+        <li onclick="toggleItem(this,'l5')"><div class="cb"></div>Avaliar exsudato: ausente/seroso/purulento</li>
+        <li onclick="toggleItem(this,'l5')"><div class="cb"></div>Verificar sinais de infecção (rubor, calor, edema, pus)</li>
+        <li onclick="toggleItem(this,'l5')"><div class="cb"></div>Aplicar cobertura adequada conforme prescrição</li>
+        <li onclick="toggleItem(this,'l5')"><div class="cb"></div>Fixar sem compressão excessiva</li>
+        <li onclick="toggleItem(this,'l5')"><div class="cb"></div>Higienizar mãos após o procedimento</li>
+        <li onclick="toggleItem(this,'l5')"><div class="cb"></div>Registrar aspecto, medidas e conduta no prontuário</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Tabela valores referência -->
+  <div class="card open">
+    <div class="card-header" onclick="this.closest('.card').classList.toggle('open')">
+      <div class="ci" style="background:#fff8e1">📊</div>
+      <div class="ct"><h3>Valores de Referência — Adulto</h3><div class="sub">Sinais vitais e parâmetros laboratoriais essenciais</div></div>
+      <span class="tg">▾</span>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr><th>Parâmetro</th><th>Normal</th><th>⚠️ Alerta</th><th>🔴 Crítico</th></tr>
+        <tr><td>PA sistólica</td><td>100–139 mmHg</td><td>&lt;90 ou &gt;160</td><td>&lt;80 ou &gt;180</td></tr>
+        <tr><td>PA diastólica</td><td>60–89 mmHg</td><td>&lt;50 ou &gt;100</td><td>&lt;40 ou &gt;120</td></tr>
+        <tr><td>FC</td><td>60–100 bpm</td><td>&lt;50 ou &gt;110</td><td>&lt;40 ou &gt;130</td></tr>
+        <tr><td>FR</td><td>12–20 irpm</td><td>&lt;10 ou &gt;24</td><td>&lt;8 ou &gt;30</td></tr>
+        <tr><td>Temperatura</td><td>36,0–37,5°C</td><td>&lt;35,5 ou &gt;38,5</td><td>&lt;35,0 ou &gt;40,0</td></tr>
+        <tr><td>SpO₂</td><td>95–100%</td><td>90–94%</td><td>&lt;90%</td></tr>
+        <tr><td>Glicemia (jejum)</td><td>70–99 mg/dL</td><td>&lt;60 ou &gt;200</td><td>&lt;45 ou &gt;400</td></tr>
+        <tr><td>Glasgow</td><td>15</td><td>13–14</td><td>≤12</td></tr>
+        <tr><td>Diurese</td><td>0,5–1 mL/kg/h</td><td>&lt;0,5 mL/kg/h</td><td>&lt;0,3 mL/kg/h</td></tr>
+        <tr><td>Creatinina (H/M)</td><td>0,6–1,2 / 0,5–1,1 mg/dL</td><td>&gt;1,5</td><td>&gt;3,0</td></tr>
+        <tr><td>Sódio (Na⁺)</td><td>135–145 mEq/L</td><td>&lt;130 ou &gt;150</td><td>&lt;120 ou &gt;160</td></tr>
+        <tr><td>Potássio (K⁺)</td><td>3,5–5,0 mEq/L</td><td>&lt;3,0 ou &gt;5,5</td><td>&lt;2,5 ou &gt;6,5</td></tr>
+      </table>
+      <div class="info-box it">💡 Valores são referências para adultos em repouso. Sempre comparar com o basal do paciente e comunicar alterações ao enfermeiro responsável.</div>
+    </div>
+  </div>
+</main>
+<script>
+function toggleItem(li, id) {
+  li.classList.toggle('checked');
+  const list = document.getElementById(id);
+  const all = list.querySelectorAll('li').length;
+  const checked = list.querySelectorAll('li.checked').length;
+  const pct = Math.round(checked/all*100);
+  document.getElementById('pf-'+id).style.width = pct+'%';
+  document.getElementById('pl-'+id).textContent = checked+'/'+all+' itens'+(pct===100?' — ✅ Completo!':'');
+}
+function resetCL(id) {
+  document.getElementById(id).querySelectorAll('li').forEach(li=>li.classList.remove('checked'));
+  document.getElementById('pf-'+id).style.width='0%';
+  const all=document.getElementById(id).querySelectorAll('li').length;
+  document.getElementById('pl-'+id).textContent='0/'+all+' itens';
+}
+function avaliarSV(){
+  const pac=document.getElementById('sv_pac').value||'Paciente';
+  const hora=document.getElementById('sv_hora').value||'--:--';
+  const pa=document.getElementById('sv_pa').value;
+  const fc=parseInt(document.getElementById('sv_fc').value);
+  const fr=parseInt(document.getElementById('sv_fr').value);
+  const temp=parseFloat(document.getElementById('sv_temp').value);
+  const spo2=parseInt(document.getElementById('sv_spo2').value);
+  const gli=parseInt(document.getElementById('sv_gli').value);
+  const dor=parseInt(document.getElementById('sv_dor').value);
+  const gcs=parseInt(document.getElementById('sv_gcs').value);
+  let al=[];
+  if(fc<60)al.push('⚠️ Bradicardia (FC '+fc+' bpm)');
+  if(fc>100)al.push('⚠️ Taquicardia (FC '+fc+' bpm)');
+  if(fr<12)al.push('⚠️ Bradipneia (FR '+fr+' irpm)');
+  if(fr>20)al.push('⚠️ Taquipneia (FR '+fr+' irpm)');
+  if(temp<35.5)al.push('🔴 Hipotermia ('+temp+'°C)');
+  if(temp>37.8)al.push('⚠️ Febre ('+temp+'°C)');
+  if(spo2<94)al.push('🔴 Hipoxemia (SpO₂ '+spo2+'%)');
+  if(gli<60)al.push('🔴 HIPOGLICEMIA GRAVE ('+gli+' mg/dL) — TRATAR IMEDIATAMENTE');
+  else if(gli<70)al.push('⚠️ Hipoglicemia ('+gli+' mg/dL)');
+  if(gli>200)al.push('⚠️ Hiperglicemia ('+gli+' mg/dL)');
+  if(gcs<=12)al.push('🔴 Glasgow '+gcs+' — Alteração de consciência');
+  if(dor>=7)al.push('⚠️ Dor intensa (EVA '+dor+'/10)');
+  const r=document.getElementById('sv-result');
+  r.style.display='block';
+  r.innerHTML='<strong>📋 '+pac+' — '+hora+'</strong><br>PA: '+pa+' | FC: '+fc+' bpm | FR: '+fr+' irpm | T: '+temp+'°C | SpO₂: '+spo2+'% | Glicemia: '+gli+' mg/dL | EVA: '+dor+' | GCS: '+gcs+'<br><br>'+(al.length?'<strong>🚨 Alertas:</strong><br>'+al.join('<br>'):'<span style="color:#2e7d32">✅ Sinais vitais dentro dos parâmetros normais</span>');
+}
+function copiarSV(){
+  const pac=document.getElementById('sv_pac').value||'Paciente';
+  const hora=document.getElementById('sv_hora').value||new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  const pa=document.getElementById('sv_pa').value;
+  const fc=document.getElementById('sv_fc').value;
+  const fr=document.getElementById('sv_fr').value;
+  const temp=document.getElementById('sv_temp').value;
+  const spo2=document.getElementById('sv_spo2').value;
+  const gli=document.getElementById('sv_gli').value;
+  const dor=document.getElementById('sv_dor').value;
+  const gcs=document.getElementById('sv_gcs').value;
+  const t='['+hora+'] '+pac+'\nPA: '+pa+' mmHg | FC: '+fc+' bpm | FR: '+fr+' irpm | T: '+temp+'°C | SpO₂: '+spo2+'% | Glicemia: '+gli+' mg/dL | EVA: '+dor+'/10 | GCS: '+gcs+'/15';
+  navigator.clipboard.writeText(t).then(()=>alert('✅ Copiado!')).catch(()=>alert('Copie manualmente.'));
+}
+document.querySelectorAll('.card-header').forEach(h=>{h.addEventListener('click',function(){this.closest('.card').classList.toggle('open')})});
+const now=new Date();
+const ti=document.getElementById('sv_hora');
+if(ti)ti.value=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+</script>
+</body>
+</html>

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnfermaStudy — 70+ Procedimentos</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--teal:#00796b;--teal-dark:#004d40;--teal-light:#e0f2f1;--bg:#f0f4f3;--shadow:0 2px 12px rgba(0,0,0,0.08)}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:#333}
+header{background:linear-gradient(135deg,#004d40,#00796b);color:#fff;padding:12px 16px;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.3);display:flex;align-items:center;gap:12px}
+.hinfo{flex:1}.hinfo h1{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800}.hinfo p{font-size:0.7rem;opacity:0.8}
+.back-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:10px;padding:7px 14px;font-family:'Nunito',sans-serif;font-size:0.8rem;font-weight:700;text-decoration:none;flex-shrink:0}
+main{max-width:960px;margin:0 auto;padding:20px 16px 60px}
+.hero{background:linear-gradient(135deg,var(--teal-dark),var(--teal));color:#fff;border-radius:20px;padding:26px 24px;margin-bottom:20px;position:relative;overflow:hidden}
+.hero h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;margin-bottom:4px}
+.hero p{opacity:0.9;font-size:0.86rem;line-height:1.5}
+.search-bar{position:relative;margin-bottom:16px}
+.search-bar input{width:100%;border:1.5px solid #e0e0e0;border-radius:12px;padding:12px 16px 12px 44px;font-family:'Nunito',sans-serif;font-size:0.9rem;outline:none;background:#fff;transition:border 0.2s}
+.search-bar input:focus{border-color:var(--teal)}
+.search-bar::before{content:'🔍';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:1rem}
+.filter-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.ftab{padding:6px 14px;border-radius:20px;border:1.5px solid #e0e0e0;background:#fff;font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.15s}
+.ftab.active,.ftab:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+.proc-count{font-size:0.8rem;color:#888;margin-bottom:12px;font-weight:600}
+.proc-list{display:flex;flex-direction:column;gap:10px}
+.proc-card{background:#fff;border-radius:14px;box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(0,0,0,0.06);transition:box-shadow 0.2s}
+.proc-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.12)}
+.proc-header{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer}
+.proc-emoji{font-size:1.5rem;width:40px;text-align:center;flex-shrink:0}
+.proc-meta{flex:1}
+.proc-meta h3{font-size:0.9rem;font-weight:800;color:#1a2332}
+.proc-meta p{font-size:0.74rem;color:#888;margin-top:2px}
+.proc-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+.tag{font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:12px;background:var(--teal-light);color:var(--teal-dark)}
+.tag.alert{background:#ffebee;color:#b71c1c}
+.proc-toggle{color:#aaa;font-size:1.2rem;transition:transform 0.2s;flex-shrink:0}
+.proc-card.open .proc-toggle{transform:rotate(180deg)}
+.proc-body{display:none;padding:0 16px 16px}
+.proc-card.open .proc-body{display:block}
+.steps{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.step{display:flex;gap:10px;align-items:flex-start;background:#f9f9f9;border-radius:10px;padding:10px 12px}
+.step-num{width:26px;height:26px;background:var(--teal);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:800;flex-shrink:0;margin-top:1px}
+.step-content{font-size:0.83rem;line-height:1.5}
+.step-content strong{color:#1a2332}
+.mat-list{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.mat{background:#e3f2fd;color:#1565c0;border-radius:8px;padding:4px 10px;font-size:0.75rem;font-weight:700}
+.info-box{border-radius:10px;padding:10px 14px;margin:8px 0;font-size:0.8rem;line-height:1.5}
+.info-box.tip{background:#e8f5e9;border-left:4px solid #4caf50;color:#2e7d32}
+.info-box.warn{background:#fff3e0;border-left:4px solid #ff9800;color:#e65100}
+.info-box.alert{background:#ffebee;border-left:4px solid #ef5350;color:#b71c1c}
+.sec-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#888;margin:6px 0 4px;padding:0 2px}
+.no-results{text-align:center;padding:40px 20px;color:#aaa;font-size:0.88rem}
+footer{text-align:center;padding:16px;font-size:0.72rem;color:#aaa;border-top:1px solid #e0e0e0}
+</style>
+</head>
+<body>
+<header>
+  <div class="hinfo"><h1>📋 70+ Procedimentos</h1><p>Passo a passo completo para Técnico de Enfermagem</p></div>
+  <a href="recursos.html" class="back-btn">← Recursos</a>
+</header>
+<main>
+<div class="hero">
+  <h2>70+ Procedimentos de Enfermagem</h2>
+  <p>Passo a passo detalhado, materiais necessários e alertas de segurança. Clique em qualquer procedimento para expandir.</p>
+</div>
+<div class="search-bar"><input type="text" id="searchInput" placeholder="Buscar procedimento... ex: curativo, sonda, punção" oninput="filterProcs()"></div>
+<div class="filter-tabs" id="filterTabs"></div>
+<div class="proc-count" id="procCount"></div>
+<div class="proc-list" id="procList"></div>
+<div class="no-results" id="noResults" style="display:none">🔍 Nenhum procedimento encontrado. Tente outro termo.</div>
+</main>
+<footer>EnfermaStudy · Procedimentos · Criado por Saieso Seraos · 2026 · Material educativo</footer>
+<script>
+const procs = [
+  // SINAIS VITAIS
+  {id:1,cat:'Sinais Vitais',emoji:'❤️',title:'Aferição da Pressão Arterial',sub:'Esfigmomanômetro · Técnica auscultatória · Valores de referência',tags:['Básico','Rotina'],
+  mats:['Esfigmomanômetro calibrado','Estetoscópio','Registros de enfermagem'],
+  steps:[
+    {t:'Preparar o paciente',d:'Paciente em repouso por 5 minutos. Sentado ou deitado. Braço em nível cardíaco. Sem café, cigarro ou exercício nos 30 min anteriores.'},
+    {t:'Posicionar o manguito',d:'Coloque 2–3 cm acima da fossa antecubital. Alinhado com a artéria braquial. Ajuste sem apertar demais (deve caber 2 dedos).'},
+    {t:'Inflar e desinflar',d:'Inflar até 30 mmHg acima do valor esperado. Desinflar lentamente (2–3 mmHg/segundo) enquanto ausculta na artéria braquial.'},
+    {t:'Identificar sons de Korotkoff',d:'1º som (sistólica) → PA máxima. Desaparecimento do som (diastólica) → PA mínima.'},
+    {t:'Registrar',d:'Anote: valor, membro, posição, horário, intercorrências. Ex: "PA 120/80 mmHg, MSD, sentado, 08h00".'}
+  ],
+  tips:[{type:'tip',text:'✅ Valores normais: <120/80 mmHg. Hipertensão: ≥140/90 mmHg. Hipotensão: <90/60 mmHg.'},
+       {type:'warn',text:'⚠️ Manguito inadequado altera o resultado. Use o tamanho correto para o braço do paciente.'}]},
+
+  {id:2,cat:'Sinais Vitais',emoji:'🌡️',title:'Verificação de Temperatura',sub:'Axilar · Oral · Retal · Timpânica',tags:['Básico','Rotina'],
+  mats:['Termômetro calibrado (mercúrio ou digital)','Gaze ou algodão','Álcool 70%'],
+  steps:[
+    {t:'Higienizar o termômetro',d:'Limpar com algodão + álcool 70%. Verificar se está abaixo de 35°C (mercúrio) ou zerar (digital).'},
+    {t:'Via axilar (mais comum)',d:'Secar a axila com gaze. Posicionar o termômetro com o bulbo no centro da axila. Braço cruzado sobre o tórax. Aguardar 5 min (mercúrio) ou sinal sonoro (digital).'},
+    {t:'Ler e registrar',d:'Ler imediatamente após retirar. Registrar valor, via e horário.'}
+  ],
+  tips:[{type:'tip',text:'✅ Normal axilar: 36,0–37,0°C. Subfebril: 37,1–37,9°C. Febre: ≥38°C. Hipotermia: <35°C.'},
+       {type:'warn',text:'⚠️ Via retal = 0,5°C acima da axilar. Via oral = 0,3°C acima. Ajuste na interpretação.'}]},
+
+  {id:3,cat:'Sinais Vitais',emoji:'💓',title:'Aferição de Pulso e Frequência Cardíaca',sub:'Radial · Apical · Técnica manual',tags:['Básico','Rotina'],
+  mats:['Relógio com segundeiro ou cronômetro','Estetoscópio (para pulso apical)'],
+  steps:[
+    {t:'Localizar o pulso radial',d:'Posicionar 3 dedos (indicador, médio e anelar) na face interna do punho, no sulco do pulso radial. Nunca use o polegar.'},
+    {t:'Contar as batidas',d:'Contar por 60 segundos completos. Se irregular, contar sempre 60s.'},
+    {t:'Avaliar características',d:'Frequência (bpm), ritmo (regular/irregular), amplitude (forte/fraco), tensão.'},
+    {t:'Registrar',d:'FC, ritmo, características e horário.'}
+  ],
+  tips:[{type:'tip',text:'✅ FC normal adulto: 60–100 bpm. Bradicardia: <60 bpm. Taquicardia: >100 bpm. RN: 120–160 bpm.'}]},
+
+  {id:4,cat:'Sinais Vitais',emoji:'🫁',title:'Contagem da Frequência Respiratória',sub:'Técnica discreta · Padrão respiratório',tags:['Básico','Rotina'],
+  mats:['Relógio com segundeiro'],
+  steps:[
+    {t:'Observar discretamente',d:'Após verificar o pulso, mantenha os dedos no pulso do paciente. Observe o tórax ou abdome sem avisar — o paciente não deve saber que está sendo observado (poderia alterar).'},
+    {t:'Contar os movimentos',d:'Cada ciclo (inspiração + expiração) = 1 movimento. Contar por 60 segundos.'},
+    {t:'Avaliar o padrão',d:'Frequência, profundidade, ritmo, esforço respiratório, uso de musculatura acessória, sons.'},
+    {t:'Registrar',d:'FR e características do padrão respiratório.'}
+  ],
+  tips:[{type:'tip',text:'✅ Normal adulto: 12–20 irpm. Taquipneia: >20 irpm. Bradipneia: <12 irpm. RN: 40–60 irpm.'},
+       {type:'warn',text:'⚠️ Nunca avise o paciente que vai contar a FR — altera o resultado involuntariamente.'}]},
+
+  {id:5,cat:'Sinais Vitais',emoji:'🩸',title:'Glicemia Capilar (Dextro)',sub:'Glicosímetro · Técnica · Interpretação',tags:['Básico','Rotina'],
+  mats:['Glicosímetro calibrado','Tira reagente','Lanceta','Algodão ou gaze','Álcool 70%'],
+  steps:[
+    {t:'Preparar o material',d:'Verificar a data de validade da tira. Calibrar o aparelho se necessário. Preparar lanceta.'},
+    {t:'Higienizar o dedo',d:'Limpar a polpa do dedo com álcool 70%. Aguardar secar completamente.'},
+    {t:'Realizar a punção',d:'Puncionar a lateral da polpa digital (menos doloroso). Descartar a primeira gota de sangue com gaze seca.'},
+    {t:'Coletar e ler',d:'Aproximar a tira à segunda gota de sangue. Aguardar o resultado no glicosímetro.'},
+    {t:'Comprimir e registrar',d:'Comprimir o local com gaze seca. Registrar: valor, horário, se em jejum ou pós-prandial.'}
+  ],
+  tips:[{type:'tip',text:'✅ Normal em jejum: 70–99 mg/dL. Hipoglicemia: <70 mg/dL (tratar imediatamente). Hiperglicemia: >200 mg/dL.'},
+       {type:'alert',text:'🚨 Hipoglicemia grave (<50 mg/dL): administrar glicose 50% EV ou glicose oral se consciente. Chamar médico.'}]},
+
+  {id:6,cat:'Sinais Vitais',emoji:'🫀',title:'Oximetria de Pulso (SpO₂)',sub:'Oxímetro de pulso · Valores · Cuidados',tags:['Básico','Rotina'],
+  mats:['Oxímetro de pulso','Álcool para limpeza do sensor'],
+  steps:[
+    {t:'Preparar o local',d:'Remover esmalte ou prótese ungueal. Limpar o dedo. Aquecer se extremidades frias.'},
+    {t:'Posicionar o sensor',d:'Colocar no dedo indicador ou médio. O sensor deve estar bem posicionado e a luz deve atravessar o tecido.'},
+    {t:'Aguardar estabilização',d:'Aguardar 30–60 segundos para estabilização. A forma de onda ou barra de pulso deve ser consistente.'},
+    {t:'Ler e registrar',d:'Registrar SpO₂ e FC exibida no monitor. Observar tendências.'}
+  ],
+  tips:[{type:'tip',text:'✅ Normal: SpO₂ ≥95%. Atenção: <94%. Grave: <90% — notificar imediatamente e oferecer O₂.'},
+       {type:'warn',text:'⚠️ Resultados falsos: esmalte escuro, hipotermia, vasoconstrição, anemia grave, intoxicação por CO.'}]},
+
+  // HIGIENE E CONFORTO
+  {id:7,cat:'Higiene e Conforto',emoji:'🛁',title:'Banho no Leito',sub:'Técnica · Sequência · Privacidade',tags:['Rotina','Home Care'],
+  mats:['Bacia com água morna','Sabonete neutro','Toalhas (2)','Luvas de procedimento','Biombo','Roupas limpas','Lençóis limpos'],
+  steps:[
+    {t:'Preparar o ambiente',d:'Fechar portas/janelas, biombo. Verificar temperatura da água (36–38°C). Preparar todo o material antes de iniciar.'},
+    {t:'Sequência de higiene',d:'Face → pescoço → tórax → braços → abdome → genitais/períneo → pernas → pés → dorso. Sempre da área mais limpa para a mais contaminada.'},
+    {t:'Genitais e períneo',d:'Troca de luvas. Na mulher: movimento de frente para trás. No homem: retrair prepúcio, limpar e recolocar. Usar água morna e sabonete neutro.'},
+    {t:'Dorso',d:'Virar o paciente em decúbito lateral com auxílio. Aproveitar para verificar pele, pontos de pressão e realizar mudança de decúbito.'},
+    {t:'Finalizar',d:'Secar bem todas as dobras (axilas, virilhas, entre dedos). Aplicar hidratante. Vestir, arrumar leito, registrar.'}
+  ],
+  tips:[{type:'tip',text:'✅ Banho: oportunidade de avaliação completa da pele, identificar escaras, curativos que precisam de troca.'},
+       {type:'warn',text:'⚠️ Respeitar a privacidade do paciente em todo momento. Expor apenas a área sendo higienizada.'}]},
+
+  {id:8,cat:'Higiene e Conforto',emoji:'🪥',title:'Higiene Oral',sub:'Paciente consciente · Intubado · Cuidados',tags:['Rotina'],
+  mats:['Escova de dentes (ou espátula com gaze para paciente intubado)','Creme dental ou clorexidina 0,12%','Copo com água','Cuba rim','Luvas'],
+  steps:[
+    {t:'Paciente consciente',d:'Elevar cabeceira 30–45°. Oferecer material. Auxiliar se necessário. Gargarejo com água após escovação.'},
+    {t:'Paciente inconsciente/intubado',d:'Elevar cabeceira 30°. Aspirar secreções antes. Usar espátula com gaze embebida em clorexidina 0,12%. Limpar dentes, mucosa, língua e prótese se houver.'},
+    {t:'Proteger as vias aéreas',d:'Manter a cabeceira elevada durante e após o procedimento. Aspirar se necessário.'}
+  ],
+  tips:[{type:'tip',text:'✅ Higiene oral 2x/dia com clorexidina 0,12% reduz pneumonia associada à VM (PAV) em UTI.'},
+       {type:'alert',text:'🚨 Nunca realize higiene oral com paciente deitado — risco de broncoaspiração.'}]},
+
+  {id:9,cat:'Higiene e Conforto',emoji:'🛏️',title:'Arrumação do Leito',sub:'Leito fechado · Leito aberto · Leito operado',tags:['Rotina'],
+  mats:['Lençóis limpos (2)','Fronha limpa','Cobertor','Capa do travesseiro','Protetor de colchão'],
+  steps:[
+    {t:'Leito fechado',d:'Usado para receber novo paciente. Lençol inferior com meia-meia, canto em envelope. Lençol superior dobrado no rodapé. Travesseiro na cabeceira.'},
+    {t:'Leito aberto',d:'Lençol superior dobrado para o lado, deixando metade exposta para facilitar entrada do paciente.'},
+    {t:'Leito com paciente (leito ocupado)',d:'Trabalhar lado a lado. Virar o paciente em decúbito lateral. Retirar o lençol sujo de um lado. Colocar o limpo enrolado no centro. Virar o paciente para o outro lado. Puxar o lençol e arrumar.'},
+    {t:'Leito operado',d:'Dobrar o lençol em sanfona (acordeão) do rodapé para a cabeceira para facilitar a transferência do paciente que vem da cirurgia.'}
+  ],
+  tips:[{type:'tip',text:'✅ Verificar integridade da pele ao trocar o lençol. Observar pontos de pressão, umidade e curativos.'}]},
+
+  {id:10,cat:'Higiene e Conforto',emoji:'🧴',title:'Prevenção e Cuidados com LPP/UPP',sub:'Escalas · Reposicionamento · Coberturas',tags:['Rotina','Home Care'],
+  mats:['AGE (Ácido Graxo Essencial)','Coxins/travesseiros','Colchão piramidal ou pneumático','Escala de Braden'],
+  steps:[
+    {t:'Avaliar o risco',d:'Aplicar Escala de Braden: ≤18 pontos = risco. Iniciar protocolo de prevenção.'},
+    {t:'Reposicionamento',d:'Mudar o decúbito a cada 2 horas. Registrar a sequência: DD → DLE → DD → DLD → DD. Usar escala de cama se disponível.'},
+    {t:'Proteger proeminências',d:'Coxins em calcâneos, trocânteres, maléolos, occipital, cotovelos. Manter calcâneos sem contato com o colchão ("calcâneo flutuante").'},
+    {t:'Cuidar da pele',d:'Aplicar AGE nas proeminências ósseas 2x/dia. Manter pele hidratada, seca e limpa. Trocar fraldas imediatamente.'},
+    {t:'Nutrição e hidratação',d:'Garantir ingestão proteica e hídrica adequada. Comunicar ao nutricionista se necessário.'}
+  ],
+  tips:[{type:'tip',text:'✅ Estágios: I (hiperemia) · II (flictena/erosão) · III (perda total espessura pele) · IV (tecido profundo). Comunicar qualquer lesão ao enfermeiro.'},
+       {type:'alert',text:'🚨 NUNCA massagear proeminências ósseas ruborizadas — aumenta a lesão por frição.'}]},
+
+  // MEDICAMENTOS
+  {id:11,cat:'Medicamentos',emoji:'💊',title:'Administração de Medicamento Via Oral (VO)',sub:'Comprimido · Cápsula · Xarope · Cuidados',tags:['Medicamentos'],
+  mats:['Medicamento prescrito','Copo com água','Cuba rim','Luvas de procedimento','Seringa para xarope (se necessário)'],
+  steps:[
+    {t:'Verificar os 9 Certos',d:'Paciente, medicamento, dose, via, horário, frequência, validade, registro, orientação.'},
+    {t:'Preparar o medicamento',d:'Separar o medicamento da prescrição. Conferir nome, dose e validade. NÃO abrir cápsulas de revestimento entérico.'},
+    {t:'Identificar o paciente',d:'Perguntar o nome completo. Verificar pulseira de identificação. Explicar o medicamento.'},
+    {t:'Administrar',d:'Oferecer água suficiente (150–200 mL). Certificar-se de que o paciente deglutiu. Observar 2 minutos após administração.'},
+    {t:'Registrar',d:'Anotar no prontuário: medicamento, dose, horário e observações.'}
+  ],
+  tips:[{type:'tip',text:'✅ Comprimidos sublinguais: colocar sob a língua — não engolir. Ex: nitroglicerina, captopril SL.'},
+       {type:'warn',text:'⚠️ Jejum: IBP e levotiroxina devem ser tomados 30 min antes das refeições. Conferir horário.'},
+       {type:'alert',text:'🚨 Paciente com disfagia: não administrar VO sem avaliação da fonoaudiologia. Risco de broncoaspiração.'}]},
+
+  {id:12,cat:'Medicamentos',emoji:'💉',title:'Administração Intramuscular (IM)',sub:'Ventroglúteo · Deltóide · Vasto Lateral',tags:['Medicamentos'],
+  mats:['Seringa adequada (2–5 mL)','Agulha IM (25×8 ou 30×7)','Algodão','Álcool 70%','Luvas','Bandeja'],
+  steps:[
+    {t:'Preparar e verificar',d:'Verificar os 9 Certos. Aspirar o medicamento com técnica asséptica. Trocar a agulha após aspirar.'},
+    {t:'Escolher o local',d:'Ventroglúteo (mais seguro): triangular os pontos (trocânter maior + espinha ilíaca anterossuperior + crista ilíaca). Deltóide: músculo do braço, indicado para volumes <1 mL. Vasto lateral: crianças e adultos.'},
+    {t:'Antissepsia',d:'Álcool 70% em movimento único e circular. Aguardar secar.'},
+    {t:'Inserir a agulha',d:'Pele estirada ou em prega (magros). Inserir em 90°, rápido e firme. Aspirar (verificar se há sangue). Injetar lentamente.'},
+    {t:'Retirar e comprimir',d:'Retirar em movimento rápido. Comprimir com algodão seco sem massagear (exceto técnica em Z). Descartar no descartex.'}
+  ],
+  tips:[{type:'tip',text:'✅ Técnica em Z: tracionar a pele lateralmente antes de inserir, soltar ao retirar. Evita extravasamento de medicamentos irritantes.'},
+       {type:'warn',text:'⚠️ Volume máximo por local: deltóide 1 mL · vasto lateral 3 mL · ventroglúteo 4 mL.'},
+       {type:'alert',text:'🚨 NUNCA administrar IM em região com hematoma, inflamação, edema ou lipodistrofia.'}]},
+
+  {id:13,cat:'Medicamentos',emoji:'🩸',title:'Administração Subcutânea (SC)',sub:'Insulina · Heparina · Técnica correta',tags:['Medicamentos'],
+  mats:['Seringa de insulina ou seringa 1 mL','Agulha SC (13×4,5 ou 8×0,3)','Algodão seco','Álcool 70%','Luvas'],
+  steps:[
+    {t:'Preparar',d:'Verificar os 9 Certos. Insulina: verificar tipo (regular, NPH, análogos). Deixar em temperatura ambiente 30 min antes.'},
+    {t:'Escolher o local',d:'Rodiziar: abdome (maior absorção), coxas, braços, glúteos. Manter distância de 2 cm do umbigo para insulina.'},
+    {t:'Antissepsia e prega',d:'Álcool 70%. Fazer prega subcutânea com polegar e indicador.'},
+    {t:'Inserir',d:'Ângulo 45° (magros) ou 90° (obesos). Introduzir toda a agulha. Soltar a prega. Injetar lentamente.'},
+    {t:'Heparina SC',d:'NÃO remover a bolha de ar da seringa de heparina (cria tampão que evita extravasamento). NÃO massagear o local após a injeção.'},
+    {t:'Registrar',d:'Local, dose, horário, intercorrências.'}
+  ],
+  tips:[{type:'warn',text:'⚠️ Insulina NPH: rolar o frasco 10x nas palmas antes de usar (não agitar). Nunca misturar insulinas sem prescrição específica.'},
+       {type:'alert',text:'🚨 Lipodistrofia: não usar locais com nódulos ou endurecimento — altera absorção da insulina.'}]},
+
+  {id:14,cat:'Medicamentos',emoji:'🔵',title:'Administração Endovenosa (EV)',sub:'Infusão contínua · Bolus · Verificações',tags:['Medicamentos'],
+  mats:['Medicamento diluído conforme prescrição','Equipo de soro / bomba de infusão','Gaze / algodão + álcool 70%','Luvas'],
+  steps:[
+    {t:'Verificar os 9 Certos',d:'Especialmente via, concentração, velocidade e incompatibilidades.'},
+    {t:'Preparar a diluição',d:'Conferir: diluente (SF 0,9%, SG 5%, RL), volume, concentração. Amiodarona → SG 5%. Fenitoína → SF 0,9% NUNCA SG.'},
+    {t:'Verificar o acesso',d:'Confirmar retorno venoso (aspirar ou flush suave com SF). Verificar sinais de flebite, infiltração ou obstrução.'},
+    {t:'Conectar e regular',d:'Antissepsia do hub com álcool 70%. Conectar o equipo. Regular o gotejamento conforme prescrição ou programar a bomba.'},
+    {t:'Monitorar',d:'A cada passagem de medicação: verificar o acesso, sinais de flebite, retorno venoso e velocidade de infusão.'},
+    {t:'Registrar',d:'Horário de início, medicamento, diluição, velocidade, intercorrências.'}
+  ],
+  tips:[{type:'alert',text:'🚨 KCl (Cloreto de Potássio) NUNCA EV direto. Sempre diluído, sempre em bomba, máx 20 mEq/h.'},
+       {type:'warn',text:'⚠️ Extravasamento de medicamentos vesicantes (quimio, noradrenalina, vancomicina): PARAR IMEDIATAMENTE, chamar enfermeiro/médico.'}]},
+
+  {id:15,cat:'Medicamentos',emoji:'🌫️',title:'Nebulização',sub:'Preparo · Técnica · Broncodilatadores',tags:['Medicamentos','Respiratório'],
+  mats:['Nebulizador + copo + máscara ou bocal','Medicamento (Berotec®, Atrovent®, Fenoterol)','SF 0,9% para completar 3–4 mL','Seringa','Estetoscópio'],
+  steps:[
+    {t:'Confirmar prescrição',d:'Verificar: medicamento, dose, frequência, via (máscara ou bocal).'},
+    {t:'Preparar o copo',d:'Pingar o medicamento + SF 0,9% até atingir 3–4 mL total. Copo SEMPRE vertical.'},
+    {t:'Auscultar',d:'Realizar ausculta pulmonar antes da nebulização. Registrar sons encontrados.'},
+    {t:'Posicionar o paciente',d:'Cabeceira elevada 45–90°. Máscara bem adaptada ao rosto ou bocal entre os lábios.'},
+    {t:'Realizar a nebulização',d:'Respiração lenta e profunda pelo nariz, expiração pela boca. Duração: 10–15 min ou até esgotar o medicamento.'},
+    {t:'Auscultar e registrar',d:'Ausculta pós-nebulização. Higiene oral após corticoide inalado. Registrar: tolerância, FC, SpO₂, sons pulmonares.'}
+  ],
+  tips:[{type:'warn',text:'⚠️ Broncodilatadores podem causar taquicardia. Monitorar FC durante e após. Notificar se FC >120 bpm.'},
+       {type:'tip',text:'✅ Após corticoide inalado (budesonida): SEMPRE realizar higiene oral para prevenir candidíase oral.'}]},
+
+  // ACESSO VENOSO
+  {id:16,cat:'Acesso Venoso',emoji:'💉',title:'Punção Venosa Periférica',sub:'Técnica completa · Calibres · Fixação',tags:['Procedimento'],
+  mats:['Cateter IV (jelco) calibre adequado','Garrote','Algodão/gaze','Álcool 70%','Curativo adesivo (tegaderm ou fita)','Luvas','Descartex','Etiqueta identificação'],
+  steps:[
+    {t:'Higienizar e preparar',d:'Higienização das mãos. Luvas de procedimento. Explicar ao paciente.'},
+    {t:'Escolher o local e o calibre',d:'Veia distalmente a qualquer acesso anterior. Escolher calibre conforme indicação. Evitar: face interna do punho, fossa antecubital (reservar para emergências), MSE em mastectomizada à esquerda.'},
+    {t:'Garrotear',d:'Garrote 10 cm acima do local escolhido. Não manter por mais de 2 minutos. Palpar a veia escolhida.'},
+    {t:'Antissepsia',d:'Álcool 70% movimento único de dentro para fora. Aguardar secar completamente.'},
+    {t:'Puncionar',d:'Bisel para cima. Ângulo 15–30°. Introduzir até confirmar retorno venoso (câmara). Avançar o cateter. Retirar a agulha.'},
+    {t:'Fixar',d:'Retirar garrote. Conectar equipo ou obturador. Fixar com curativo: técnica H (borboleta). Etiquetar: data, hora, calibre.'},
+    {t:'Descartar e registrar',d:'Agulha diretamente no descartex sem reencapar. Registrar: local, calibre, data/hora, responsável.'}
+  ],
+  tips:[{type:'warn',text:'⚠️ Trocar o acesso periférico a cada 72–96h (protocolo institucional) ou na presença de sinais de flebite.'},
+       {type:'alert',text:'🚨 Nunca reencapar agulha. Descarte imediato no descartex após uso.'}]},
+
+  {id:17,cat:'Acesso Venoso',emoji:'🔄',title:'Flush e Manutenção do Acesso Venoso',sub:'Heparinização · Salinização · Verificação',tags:['Procedimento'],
+  mats:['SF 0,9% 10 mL','Seringa 10 mL','Alcool 70%','Luvas'],
+  steps:[
+    {t:'Verificar o acesso',d:'Inspecionar: dor, eritema, edema, calor local. Verificar fixação do curativo.'},
+    {t:'Antissepsia do hub',d:'Álcool 70% por 15 segundos no hub/conector. Aguardar secar.'},
+    {t:'Flush pulsátil',d:'Injetar SF 0,9% com movimentos pulsáteis (push-pause) para criar turbilhonamento e limpar o cateter.'},
+    {t:'Avaliar permeabilidade',d:'Se resistência: NÃO forçar. Verificar dobra no equipo. Se persistir: trocar o acesso.'},
+    {t:'Registrar',d:'Condição do acesso, permeabilidade, horário do flush.'}
+  ],
+  tips:[{type:'tip',text:'✅ Volume do flush: 10 mL para adultos após cada medicamento. Usar seringa de 10 mL ou maior (menor pressão por mL).'}]},
+
+  // SONDAGENS
+  {id:18,cat:'Sondagem e Cateterismo',emoji:'🟡',title:'Sondagem Nasogástrica (SNG)',sub:'Inserção · Confirmação · Manutenção',tags:['Procedimento'],
+  mats:['Sonda Levin nº 12–18 Fr','Seringa de 20 mL','Gel lubrificante','Esparadrapo','Lanterna','Estetoscópio','Cuba rim','Luvas de procedimento'],
+  steps:[
+    {t:'Medir o comprimento',d:'Da ponta do nariz → lóbulo da orelha → processo xifoide. Marcar com esparadrapo na sonda.'},
+    {t:'Posicionar o paciente',d:'Cabeceira elevada 45–90°. Pescoço levemente fletido.'},
+    {t:'Lubrificar e inserir',d:'Lubrificar os primeiros 15–20 cm da sonda com gel. Introduzir pela narina, direcionando para baixo e para trás. Ao chegar à orofaringe, pedir para engolir (ou inclinar a cabeça para frente).'},
+    {t:'Confirmar posição',d:'Aspirar conteúdo gástrico com seringa (pH ≤5 = gástrico). Ou: injetar 20–30 mL de ar e auscultar no epigástrio (som de turbilhonamento). O RX é o padrão ouro.'},
+    {t:'Fixar',d:'Esparadrapo hipoalergênico na narina + testa. Deixar laço de segurança.'},
+    {t:'Registrar',d:'Número da sonda, narina utilizada, comprimento inserido, método de confirmação, drenagem (volume e características).'}
+  ],
+  tips:[{type:'alert',text:'🚨 NUNCA iniciar dieta ou medicação sem confirmar a posição da sonda. Se tosse, cianose ou dispneia ao inserir: retirar imediatamente — sonda entrou na traqueia.'},
+       {type:'warn',text:'⚠️ Trocar a sonda a cada 7–14 dias ou conforme protocolo. Alternar narinas a cada troca.'}]},
+
+  {id:19,cat:'Sondagem e Cateterismo',emoji:'🔵',title:'Cateterismo Vesical de Demora — Feminino',sub:'SVD Feminino · Técnica asséptica',tags:['Procedimento'],
+  mats:['Kit SVD estéril (campo, pinças, gazes, cuba)','Sonda Foley 12–16 Fr','Bolsa coletora','Seringa 10 mL + água destilada','PVPI aquoso / clorexidina 0,5%','Gel lubrificante estéril','Luvas estéreis','Boa iluminação'],
+  steps:[
+    {t:'Posicionar',d:'Posição ginecológica (dorsal com joelhos fletidos). Boa iluminação. Privacidade garantida.'},
+    {t:'Higiene perineal',d:'Higiene com água e sabão antes do procedimento (não estéril). Secar.'},
+    {t:'Montar o campo estéril',d:'Abrir kit estéril sobre a paciente. Calçar luvas estéreis. Montar material na cuba: gaze + antisséptico, seringa com água destilada, gel.'},
+    {t:'Antissepsia',d:'Expor o meato uretral. Antissepsia de cima para baixo, de dentro para fora, usando cada gaze uma vez. Identificar CLARAMENTE o meato antes de introduzir.'},
+    {t:'Introduzir a sonda',d:'Lubrificar os primeiros 5 cm. Introduzir 5–7 cm até saída de urina. Avançar mais 2–3 cm. Inflar o balonete com água destilada (volume indicado no balonete).'},
+    {t:'Conectar e fixar',d:'Conectar bolsa coletora. Fixar a sonda na coxa (sem tração). Bolsa sempre abaixo do nível da bexiga.'},
+    {t:'Registrar',d:'Número da sonda, balonete, volume drenado na inserção, aspecto da urina, data/hora.'}
+  ],
+  tips:[{type:'alert',text:'🚨 Se não identificar o meato com clareza, chamar auxiliar para segurar lanterna. Nunca introduzir às cegas.'},
+       {type:'warn',text:'⚠️ Nunca esvaziar mais de 500 mL de uma vez em bexiga distendida (risco de hemorragia vesical).'}]},
+
+  {id:20,cat:'Sondagem e Cateterismo',emoji:'🔵',title:'Cateterismo Vesical de Demora — Masculino',sub:'SVD Masculino · Técnica asséptica',tags:['Procedimento'],
+  mats:['Kit SVD estéril','Sonda Foley 14–18 Fr','Bolsa coletora','Seringa 10 mL + água destilada','PVPI aquoso / clorexidina 0,5%','Gel lidocaína a 2% (anestésico urológico)','Luvas estéreis'],
+  steps:[
+    {t:'Posicionar',d:'Decúbito dorsal. Expor o pênis. Privacidade garantida.'},
+    {t:'Retrair o prepúcio',d:'Retrair o prepúcio e manter retraído durante todo o procedimento.'},
+    {t:'Antissepsia',d:'Limpar a glande com movimentos circulares de dentro para fora. Cada gaze uma vez.'},
+    {t:'Instilação de lidocaína gel',d:'Instalar 10–15 mL de gel de lidocaína 2% no meato uretral. Aguardar 3–5 minutos (ação anestésica e lubrificante).'},
+    {t:'Introduzir a sonda',d:'Pênis perpendicular ao corpo (90°). Introduzir a sonda suavemente. Se resistência na próstata: pedir para o paciente respirar fundo. NÃO forçar.'},
+    {t:'Balonete e conexão',d:'Ao sair urina, introduzir mais 2–3 cm. Inflar o balonete. Conectar bolsa. Tracionar suavemente para confirmar posição. Recolocar prepúcio.'},
+    {t:'Fixar e registrar',d:'Fixar o pênis apontado para o abdome (previne fístula pressão-escrotal). Bolsa abaixo da bexiga. Registrar.'}
+  ],
+  tips:[{type:'alert',text:'🚨 Se resistência persistente: PARE. Nunca force — risco de perfuração uretral. Chamar enfermeiro/médico.'},
+       {type:'warn',text:'⚠️ RECOLOCAR o prepúcio após o procedimento. Parafilmose é emergência urológica.'}]},
+
+  {id:21,cat:'Sondagem e Cateterismo',emoji:'🟣',title:'Sondagem Vesical de Alívio (SVA)',sub:'Sonda uretral de alívio · Esvaziamento pontual',tags:['Procedimento'],
+  mats:['Sonda uretral 12–14 Fr (sem balonete)','Kit com gazes, cuba, pinças','Antisséptico','Gel lubrificante','Luvas estéreis','Recipiente graduado'],
+  steps:[
+    {t:'Indicação',d:'Retenção urinária, coleta de amostra estéril de urina, esvaziamento pré/pós-cirúrgico pontual (sem deixar a sonda).'},
+    {t:'Técnica similar ao SVD',d:'Mesma técnica asséptica do SVD. Diferença: não há balonete — a sonda é retirada após o esvaziamento.'},
+    {t:'Esvaziar e medir',d:'Deixar drenar completamente. Medir o volume drenado (diurese de alívio).'},
+    {t:'Retirar',d:'Retirar a sonda suavemente após esvaziar. Recolocar o prepúcio (homens). Registrar volume e características.'}
+  ],
+  tips:[{type:'warn',text:'⚠️ Máximo de 500 mL por esvaziamento em bexiga muito distendida. Aguardar 30 minutos para drenar o restante.'}]},
+
+  // CURATIVOS
+  {id:22,cat:'Curativos',emoji:'🩹',title:'Curativo Simples',sub:'Ferida limpa · Passo a passo completo',tags:['Procedimento'],
+  mats:['Luvas de procedimento (e estéreis se ferida cirúrgica)','SF 0,9% (seringa de lavagem)','Gaze estéril','Cobertura adequada','Esparadrapo / micropore','Pinças Kelly e anatômica','Saco de lixo infectante'],
+  steps:[
+    {t:'Preparar o material',d:'Montar bandeja. Luvas de procedimento. Retirar curativo anterior (descartar em saco de lixo infectante).'},
+    {t:'Avaliar a ferida',d:'Observar: tamanho, profundidade, bordas, tipo de tecido (granulação, esfacelo, necrose), exsudato (quantidade, cor, odor), sinais de infecção.'},
+    {t:'Lavar a ferida',d:'SF 0,9% em jato (seringa de 20 mL + agulha 40×12 ou cateter EV) para mecanoabrasão. Movimento de dentro para fora. Volume: suficiente para remover debris.'},
+    {t:'Secar as bordas',d:'Secar delicadamente as bordas com gaze. NÃO secar o leito da ferida (mantém umidade).'},
+    {t:'Aplicar cobertura',d:'Conforme avaliação: gaze simples (ferida limpa seca), hidrocoloide (UPP I-II), alginato (ferida exsudativa), PVPI degermante somente se infectada.'},
+    {t:'Fixar e registrar',d:'Fixar sem comprimir. Registrar: data, avaliação da ferida, cobertura utilizada, próxima troca prevista.'}
+  ],
+  tips:[{type:'tip',text:'✅ Curativo deve manter umidade ideal: úmido no leito, seco nas bordas. Não há mais indicação de PVPI como rotina.'},
+       {type:'warn',text:'⚠️ Trocar conforme protocolo ou quando: saturado, descolado, sujo ou com odor intenso.'}]},
+
+  {id:23,cat:'Curativos',emoji:'🔥',title:'Curativo de Queimaduras',sub:'Avaliação · Classificação · Técnica',tags:['Procedimento','Emergência'],
+  mats:['SF 0,9% (grande volume para irrigação)','Gaze vaselinada ou cobertura específica para queimaduras','Ataduras','Luvas estéreis','Analgesia prévia (verificar prescrição)'],
+  steps:[
+    {t:'Classificação da queimadura',d:'1º grau: eritema sem bolhas (epiderme). 2º grau superficial: bolhas, dor intensa. 2º grau profundo: bolhas grandes, menos dor. 3º grau: destruição total, sem dor local.'},
+    {t:'Resfriamento (urgente)',d:'Água corrente limpa (15–20°C) por 10–20 minutos. NÃO gelo, NÃO pasta de dente, NÃO manteiga.'},
+    {t:'Cuidado com bolhas',d:'NÃO romper bolhas intactas — proteção natural contra infecção. Se rotas, debridar tecido necrótico com SF.'},
+    {t:'Aplicar cobertura',d:'Gaze vaselinada ou cobertura biológica/sintética. Atadura sem comprimir. Manter extremidades elevadas.'},
+    {t:'Monitorar',d:'Dor (EVA), sinais vitais, diurese (meta 0,5–1 mL/kg/h no grande queimado), sinais de infecção.'}
+  ],
+  tips:[{type:'alert',text:'🚨 Grande queimado: >20% superfície corporal → risco de choque distributivo. Acesso EV calibroso imediato.'},
+       {type:'warn',text:'⚠️ Queimadura de vias aéreas: suspeitar se queimadura de face, cílios chamuscados, rouquidão. Risco de obstrução — intubação precoce.'}]},
+
+  {id:24,cat:'Curativos',emoji:'🌀',title:'Retirada de Pontos',sub:'Simples · Colchoeiro · Técnica asséptica',tags:['Procedimento'],
+  mats:['Pinça anatômica','Tesoura íris ou fio cortador','Gaze estéril','SF 0,9%','PVPI aquoso (se indicado)','Luvas de procedimento'],
+  steps:[
+    {t:'Avaliar a cicatrização',d:'Antes de retirar: confirmar com médico/enfermeiro se a ferida está em condições (pele unida, sem infecção, sem deiscência).'},
+    {t:'Lavar a ferida',d:'SF 0,9% suave sobre a linha de sutura. Secar.'},
+    {t:'Ponto simples',d:'Prender a nó com a pinça. Cortar o fio junto à pele de um lado do nó (não ao meio). Puxar o nó na direção da sutura para evitar contaminar o trajeto.'},
+    {t:'Curativo pós-retirada',d:'Cobrir com gaze + micropore por 24–48h. Orientar o paciente a evitar esforço e umidade por 48h.'}
+  ],
+  tips:[{type:'tip',text:'✅ Tempo padrão: face 5–7 dias · tronco 7–10 dias · membros 10–14 dias · dorso 14 dias. Sempre confirmar com a prescrição.'}]},
+
+  // OSTOMIAS
+  {id:25,cat:'Ostomias e Home Care',emoji:'🦠',title:'Troca de Bolsa de Colostomia/Ileostomia',sub:'Técnica · Cuidados com o estoma · Complicações',tags:['Home Care'],
+  mats:['Bolsa de ostomia (sistema 1 ou 2 peças)','Recortador ou molde do estoma','Pasta de ostomia','Removedor de adesivo','Gaze','Água morna e sabonete neutro','Luvas'],
+  steps:[
+    {t:'Remover a bolsa antiga',d:'Usar removedor de adesivo. Retirar de cima para baixo, segurando a pele. Descartar o conteúdo, medir o volume.'},
+    {t:'Higiene do estoma',d:'Limpar o estoma e a pele periestoma com água morna e sabonete neutro. Secar completamente (pele úmida impede aderência).'},
+    {t:'Avaliar o estoma',d:'Cor (deve ser róseo-avermelhado), tamanho, protrusão. Sinais de alerta: palidez, necrose (escurecimento), retração, prolapso, hérnia.'},
+    {t:'Recortar a placa',d:'Medir o estoma com o molde. Recortar a abertura 2 mm maior que o estoma (não deixar pele exposta ao efluente).'},
+    {t:'Aplicar a bolsa',d:'Aplicar pasta de ostomia ao redor do estoma. Retirar o protetor adesivo. Pressionar a placa firmemente por 30–60 segundos. Dobrar o clamp da bolsa.'},
+    {t:'Registrar',d:'Volume e características do efluente, aspecto do estoma e pele periestoma, troca realizada.'}
+  ],
+  tips:[{type:'warn',text:'⚠️ Dermatite periestoma: pele vermelha e irritada. Causa: efluente em contato com a pele. Solução: recortar corretamente e usar pasta de ostomia.'},
+       {type:'alert',text:'🚨 Estoma escurecido ou negro: isquemia. Notificar imediatamente o enfermeiro/médico.'}]},
+
+  {id:26,cat:'Ostomias e Home Care',emoji:'🫁',title:'Cuidados com Traqueostomia',sub:'Higiene · Troca de cadarço · Aspiração',tags:['Home Care','Respiratório'],
+  mats:['Kit de higiene de traqueo estéril','Gaze estéril','SF 0,9%','H2O2 a 3% (água oxigenada — se indicado)','Cadarço para fixação','Luvas estéreis','Aspirador de secreções','Sondas de aspiração'],
+  steps:[
+    {t:'Higiene da cânula interna (se existir)',d:'Retirar a cânula interna. Limpar com escova + SF 0,9% ou H2O2 a 3% diluído. Enxaguar com SF. Recolocar.'},
+    {t:'Higiene do estoma',d:'Limpar ao redor da traqueostomia com gaze umedecida em SF. Secar. Trocar a gaze de proteção.'},
+    {t:'Trocar o cadarço',d:'NUNCA retirar o cadarço antigo antes de colocar o novo (risco de decanulação acidental). Manter 2 dedos de folga entre o cadarço e o pescoço.'},
+    {t:'Aspiração de secreções',d:'Indicação: secreções visíveis, SpO₂ caindo, sons respiratórios com ruídos. Técnica estéril. Pré-oxigenar. Sonda: metade do diâmetro interno da cânula. Introduzir sem aspirar. Aspirar ao retirar, movimentos rotatórios. Máx 15 segundos.'},
+    {t:'Registrar',d:'Quantidade, cor, consistência das secreções, SpO₂ pré e pós, intercorrências.'}
+  ],
+  tips:[{type:'alert',text:'🚨 Decanulação acidental: manter estoma aberto (afastar bordas), ofertar O₂, chamar médico/enfermeiro IMEDIATAMENTE.'},
+       {type:'warn',text:'⚠️ Pressão do cuff (balão): verificar com manômetro. Manter 25 cmH2O. Hiperpressão = lesão traqueal.'}]},
+
+  // ADMINISTRAÇÃO DE O2
+  {id:27,cat:'Respiratório',emoji:'💨',title:'Oxigenoterapia — Dispositivos e Técnicas',sub:'Cateter nasal · Máscara simples · Venturi · CPAP',tags:['Respiratório'],
+  mats:['Cateter nasal (cânula de O₂)','Máscara facial simples','Máscara de Venturi','Umidificador (frasco com água destilada)','Fluxômetro'],
+  steps:[
+    {t:'Cateter nasal (óculos)',d:'Indicado para fluxo 1–5 L/min. FiO₂ aproximada: 24–44%. Posicionar pontas 1 cm nas narinas. Verificar integridade da pele.'},
+    {t:'Máscara simples',d:'Fluxo 6–10 L/min. FiO₂ 35–55%. Adaptar bem ao rosto. Mínimo de 5 L/min (evitar reinalação de CO₂).'},
+    {t:'Máscara de Venturi',d:'Controle preciso da FiO₂. Indicada para DPOC. Cada cor de adaptador = FiO₂ fixa (azul 24%, branco 28%, amarelo 35%, vermelho 40%, verde 60%).'},
+    {t:'Monitorar',d:'SpO₂ antes e após ajuste. Meta SpO₂: ≥95% (adulto saudável). DPOC: 88–92% (evitar apneia hipercápnica).'},
+    {t:'Registrar',d:'Dispositivo, fluxo/FiO₂, SpO₂ antes e após, tolerância do paciente.'}
+  ],
+  tips:[{type:'warn',text:'⚠️ DPOC: meta SpO₂ 88–92%. Hiperóxia pode suprimir o drive respiratório hipóxico e causar apneia.'},
+       {type:'tip',text:'✅ Sempre usar umidificador para fluxos acima de 4 L/min (previne ressecamento da mucosa).'}]},
+
+  // ELETROCARDIOGRAMA
+  {id:28,cat:'Diagnóstico',emoji:'📈',title:'Eletrocardiograma (ECG)',sub:'Posicionamento dos eletrodos · Técnica · Interferências',tags:['Diagnóstico'],
+  mats:['Eletrocardiógrafo','Eletrodos descartáveis (10)','Gel condutor (se eletrodos sem gel)','Gazes','Barbeador (se necessário)'],
+  steps:[
+    {t:'Posicionar o paciente',d:'Decúbito dorsal, braços ao longo do corpo. Exposição do tórax (sem sutiens com arame). Ambiente aquecido (tremor altera o traçado).'},
+    {t:'Posicionar eletrodos de membros',d:'RA (vermelho) = punho direito. LA (amarelo) = punho esquerdo. LL (verde/preto) = tornozelo esquerdo. RL (preto/branco) = tornozelo direito. Mnemônico: "Roda Amarela no Lado Limpo".'},
+    {t:'Eletrodos precordiais (V1–V6)',d:'V1: 4° espaço intercostal, borda direita do esterno. V2: 4° EIC, borda esquerda. V3: entre V2 e V4. V4: 5° EIC, linha hemiclavicular esquerda. V5: linha axilar anterior. V6: linha axilar média.'},
+    {t:'Realizar o traçado',d:'Paciente imóvel e em silêncio. Registrar 12 derivações. Verificar qualidade do traçado (ausência de artefatos).'},
+    {t:'Remover e registrar',d:'Retirar os eletrodos. Limpar o gel. Identificar o ECG com dados do paciente, data e hora.'}
+  ],
+  tips:[{type:'warn',text:'⚠️ Artefatos: tremor muscular, eletrodos mal posicionados, fios cruzados, movimento. Pedir ao paciente para relaxar e não falar durante.'}]},
+
+  // COLETA
+  {id:29,cat:'Diagnóstico',emoji:'🩸',title:'Coleta de Sangue Venoso',sub:'Ordem dos tubos · Técnica · Identificação',tags:['Diagnóstico'],
+  mats:['Agulha 21–25G ou sistema a vácuo','Seringas ou tubos de coleta','Garrote','Algodão + álcool 70%','Luvas','Descartex','Etiquetas identificação'],
+  steps:[
+    {t:'Identificar tubos ANTES',d:'NUNCA coleta sem identificar primeiro. Verificar prescrição e quais exames pedidos.'},
+    {t:'Preparar o paciente',d:'Verificar jejum se necessário. Posição confortável. Palpação da veia.'},
+    {t:'Coletar na ordem correta',d:'Ordem dos tubos (sistema a vácuo): 1° AMARELO (sem anticoagulante - bioquímica) → 2° AZUL claro (citrato - coagulação) → 3° VERMELHO (sem aditivo) → 4° VERDE (heparina) → 5° LILÁS/ROXO (EDTA - hemograma) → 6° CINZA (fluoreto - glicemia).'},
+    {t:'Homogeneizar',d:'Tubos com anticoagulante: homogeneizar com 5–8 inversões suaves e lentas. NUNCA agitar.'},
+    {t:'Comprimir e descartar',d:'Comprimir o local por 3–5 min. Agulha diretamente no descartex. Registrar.'}
+  ],
+  tips:[{type:'alert',text:'🚨 Hemocultura: ANTES de qualquer antibiótico. Antissepsia rigorosa com clorexidina alcoólica. Dois frascos (aeróbio e anaeróbio).'},
+       {type:'tip',text:'✅ Mnemônico da ordem: "Amarelo Azul Vermelho Verde Lilás Cinza" = AAVVLC'}]},
+
+  // GLICEMIA
+  {id:30,cat:'Diagnóstico',emoji:'🔬',title:'Gasometria Arterial — Assistência',sub:'Assistência ao procedimento · Material · Pós-coleta',tags:['Diagnóstico'],
+  mats:['Seringa para gasometria (heparinizada)','Capuchão para seringa (vedamento)','Gelo em copo (transporte)','Luvas','Gazes','Algodão + álcool 70%'],
+  steps:[
+    {t:'Papel do técnico',d:'O técnico auxilia o médico/enfermeiro na coleta. A punção arterial (radial, braquial, femoral) é realizada pelo profissional habilitado.'},
+    {t:'Preparar o material',d:'Seringa heparinizada (ou específica para gasometria), gelo no copo para transporte, identificação da amostra.'},
+    {t:'Pós-coleta',d:'Comprimir o local por 5–10 minutos (artéria!). Verificar coloração da mão, pulso radial, temperatura.'},
+    {t:'Transporte',d:'Enviar imediatamente ao laboratório em gelo. Prazo: máximo 15–30 minutos.'},
+    {t:'Registrar',d:'Horário da coleta, FiO₂ do paciente no momento da coleta, temperatura corporal.'}
+  ],
+  tips:[{type:'warn',text:'⚠️ COMPRIMIR 5–10 MINUTOS após punção arterial. Se anticoagulado: 15 minutos. Hematoma pode comprimir nervos.'},
+       {type:'tip',text:'✅ Teste de Allen ANTES: comprimir radial e ulnar. Soltar a ulnar — se mão ficar rósea em <5 seg, circulação colateral adequada.'}]},
+
+  // HIGIENIZAÇÃO DAS MÃOS
+  {id:31,cat:'Segurança e Controle de Infecção',emoji:'🧼',title:'Higienização das Mãos — 5 Momentos',sub:'Com água e sabão · Fricção alcoólica · OMS',tags:['Segurança'],
+  mats:['Sabonete líquido ou barra','Álcool gel 70%','Papel toalha'],
+  steps:[
+    {t:'Os 5 momentos da OMS',d:'1) Antes de tocar o paciente. 2) Antes de procedimento asséptico. 3) Após risco de exposição a fluidos. 4) Após tocar o paciente. 5) Após tocar áreas próximas ao paciente.'},
+    {t:'Fricção alcoólica (30–60 seg)',d:'Palma com palma → dorso das mãos → espaços interdigitais → dorso dos dedos → polegar → pontas dos dedos. Até evaporar completamente.'},
+    {t:'Lavagem com água e sabão (40–60 seg)',d:'Molhar as mãos → sabonete → técnica de fricção (igual ao álcool) → enxaguar → secar com papel toalha → fechar torneira com papel toalha.'}
+  ],
+  tips:[{type:'tip',text:'✅ Higienização das mãos é a medida MAIS eficaz de prevenção de infecções hospitalares (OMS).'},
+       {type:'warn',text:'⚠️ Álcool gel não é eficaz para: Clostridioides difficile (C. diff), esporos de fungos. Nesses casos: água e sabão obrigatoriamente.'}]},
+
+  {id:32,cat:'Segurança e Controle de Infecção',emoji:'🥼',title:'Precauções e Isolamentos',sub:'Padrão · Contato · Gotículas · Aerossol',tags:['Segurança'],
+  mats:['Luvas','Máscara cirúrgica / N95','Avental','Óculos de proteção ou protetor facial'],
+  steps:[
+    {t:'Precaução Padrão (todos os pacientes)',d:'Luvas para contato com sangue/secreções. Máscara/óculos se risco de respingo. Higienização das mãos sempre.'},
+    {t:'Precaução de Contato',d:'Luvas + avental ao entrar no quarto. Ex: C. diff, MRSA, VRE, escabiose. EPI: colocar ao entrar, retirar ao sair do quarto.'},
+    {t:'Precaução de Gotículas',d:'Máscara cirúrgica. Ex: influenza, coqueluche, meningite meningocócica. Quarto privativo ou coorte a 1 m.'},
+    {t:'Precaução de Aerossol',d:'Máscara N95/PFF2 + quarto com pressão negativa. Ex: TB ativa, sarampo, varicela. Verificar vedação da N95.'},
+    {t:'Ordem de colocar EPI',d:'Avental → máscara → óculos → luvas.'},
+    {t:'Ordem de retirar EPI',d:'Luvas → óculos → avental → máscara. Higienizar mãos entre cada retirada.'}
+  ],
+  tips:[{type:'alert',text:'🚨 Nunca reutilizar EPI descartável. N95 pode ser reutilizada por turno (sem contaminação visível) mas segue protocolo institucional.'}]},
+
+  // EMERGÊNCIAS
+  {id:33,cat:'Emergências',emoji:'🚨',title:'Reconhecimento e Atendimento à PCR',sub:'RCP · DEA · Cadeia da Sobrevivência',tags:['Emergência'],
+  mats:['Prancha de reanimação','DEA/Desfibrilador','Ambu + máscara','O₂','Medicamentos de emergência (carro)'],
+  steps:[
+    {t:'Reconhecer a PCR',d:'Sem resposta (chamar, chamar, sacudir ombros) + sem respiração normal (ausência ou gasping) = PCR. Agir em menos de 10 segundos.'},
+    {t:'Pedir ajuda',d:'Chamar ajuda com voz alta: "PCR! Tragam o carro de emergência e o DEA!" Acionar o time de resposta rápida.'},
+    {t:'Iniciar compressões torácicas',d:'Colocar prancha. Mãos no centro do tórax (metade inferior do esterno). Comprimir 5–6 cm, 100–120/min. Retorno total do tórax. 30 compressões : 2 ventilações.'},
+    {t:'DEA assim que disponível',d:'Ligar o DEA → seguir as instruções de voz → aplicar eletrodos → afastar → analisar → CHOQUE se indicado → retomar RCP imediatamente.'},
+    {t:'Medicamentos (conforme prescrição/protocolo)',d:'Adrenalina 1 mg EV a cada 3–5 min. Amiodarona 300 mg (FV refratária). Seguir protocolo da instituição.'},
+    {t:'Pós-RCP',d:'Monitorização contínua · Manter SpO₂ 94–98% · PA sistólica >90 mmHg · Transferência para UTI.'}
+  ],
+  tips:[{type:'alert',text:'🚨 CADA MINUTO SEM RCP REDUZ ~10% A CHANCE DE SOBREVIVÊNCIA. Prioridade absoluta: não interromper as compressões.'},
+       {type:'warn',text:'⚠️ RCP de qualidade: 30:2, profundidade 5–6 cm, 100–120/min, retorno total, mínima interrupção.'}]},
+
+  {id:34,cat:'Emergências',emoji:'🧠',title:'Atendimento ao AVC — Protocolo',sub:'FAST · Cincinnati · Condutas · "Time is Brain"',tags:['Emergência'],
+  mats:['Glicosímetro','Dois cateteres EV calibrosos (14 ou 16G)','Monitor cardíaco','Oxímetro','Material para TC urgência'],
+  steps:[
+    {t:'Identificar com o FAST',d:'Face: desvio facial ao sorrir? Arm: um braço cai ao elevar os dois? Speech: fala arrastada ou sem sentido? Time: anotar EXATAMENTE o horário do início dos sintomas.'},
+    {t:'Ativar protocolo AVC',d:'Chamar o médico imediatamente. Todo AVC é emergência médica. Janela para trombólise: até 4,5 horas.'},
+    {t:'Sinais vitais e monitorização',d:'PA, FC, FR, SpO₂, temperatura, glicemia capilar. PA em AMBOS os braços (diferença >15 mmHg sugere dissecção).'},
+    {t:'Dois acessos venosos',d:'14G ou 16G. Coletar sangue (hemograma, coagulograma, glicemia, eletrólitos). NÃO atrasar a TC.'},
+    {t:'Tratar hipoglicemia',d:'Se glicemia <60 mg/dL: corrigir com glicose — hipoglicemia pode simular AVC.'},
+    {t:'TC de crânio urgência',d:'SEM contraste para diferenciar isquêmico de hemorrágico. Acompanhar o paciente ao exame.'}
+  ],
+  tips:[{type:'alert',text:'🚨 NÃO reduzir a PA bruscamente no AVC agudo (salvo PAS >220 ou DAD >120 mmHg). Hipotensão piora o infarto.'},
+       {type:'warn',text:'⚠️ NUNCA: deixar paciente desacompanhado · retardar TC · dar hipoglicemiante sem checar glicemia.'}]},
+
+  {id:35,cat:'Emergências',emoji:'😮',title:'Primeiros Socorros — Engasgo (Obstrução de VA)',sub:'Heimlich · Adulto · Criança · Lactente · Gestante',tags:['Emergência'],
+  mats:['Sem materiais — técnica manual'],
+  steps:[
+    {t:'Avaliar a gravidade',d:'Engasgo LEVE: consegue tossir, falar, respirar → estimular a tossir. Engasgo GRAVE: não consegue tossir, falar ou respira com dificuldade → agir imediatamente.'},
+    {t:'Adulto consciente — Heimlich',d:'Posicionar atrás do paciente. Uma perna entre as dele. Punho fechado na região epigástrica (entre umbigo e processo xifoide). Outra mão sobre o punho. Compressões rápidas para dentro e para cima.'},
+    {t:'Lactente (<1 ano)',d:'5 tapas nas costas (região interescapular) + 5 compressões torácicas (centro do tórax, 2 dedos). Alternar até desobstruir.'},
+    {t:'Gestante ou obeso',d:'Compressões torácicas no centro do externo (como RCP) em vez de abdominal.'},
+    {t:'Paciente inconsciente',d:'Deitar. Verificar na boca (dedo em gancho se visível). Iniciar RCP — cada vez que abrir a via aérea para ventilar, verificar se há corpo estranho visível.'}
+  ],
+  tips:[{type:'alert',text:'🚨 Nunca faça varredura digital às cegas na boca — pode empurrar o objeto para mais fundo.'}]},
+
+  // GASOMETRIA E DRENOS
+  {id:36,cat:'Diagnóstico',emoji:'🫧',title:'Cuidados com Dreno de Tórax',sub:'Sistema de drenagem · Monitorização · Complicações',tags:['Procedimento'],
+  mats:['Sistema de drenagem a água (selo d\'água)','SF 0,9% para o lacre','Luvas','Gaze','Esparadrapo'],
+  steps:[
+    {t:'Monitorar o sistema',d:'Verificar: nível da água no selo d\'água (2 cm acima da marca), flutuação da coluna (confirma posição correta), borbulhamento (escape aéreo). Registrar drenagem: volume, cor, características.'},
+    {t:'Manter o sistema fechado',d:'Nunca elevar o frasco acima do tórax do paciente. Clampear o dreno APENAS durante trocas de frasco (brevemente).'},
+    {t:'Verificar a inserção',d:'Curativo ao redor do dreno, fixação, sem dobras no tubo. Posicionar o dreno sem alças dependentes.'},
+    {t:'Complicações',d:'Borbulhamento excessivo: escape aéreo grande. Ausência de flutuação: dreno obstruído ou pulmão reexpandido. Drenagem hemática >200 mL/h por 2h: notificar médico.'}
+  ],
+  tips:[{type:'alert',text:'🚨 NUNCA clampear dreno de tórax em paciente com escape aéreo ativo — risco de pneumotórax hipertensivo.'}]},
+
+  {id:37,cat:'Emergências',emoji:'⚡',title:'Assistência no Trauma — XABCDE',sub:'Protocolo ATLS · Abordagem primária',tags:['Emergência'],
+  mats:['EPI completo','Prancha longa + colar cervical','Monitor cardíaco','O₂','Dois acessos calibrosos (14–16G)','Aquecimento'],
+  steps:[
+    {t:'X — Hemorragia exsanguinante',d:'Controlar sangramentos externos MASSIVOS com pressão direta, curativo compressivo ou torniquete ANTES de qualquer coisa.'},
+    {t:'A — Via aérea + colar cervical',d:'Checar perviedade. Mandíbula, subluxação. Aspirar secreções. Intubação se indicado. Colar cervical em todo trauma.'},
+    {t:'B — Respiração',d:'FR, expansão torácica, SpO₂. Oferecer O₂. Suspeita de pneumotórax hipertensivo: descompressão imediata.'},
+    {t:'C — Circulação',d:'PA, FC, TEC, pulso. Dois acessos calibrosos. Repor volume conforme prescrição. Aquecimento (hipotermia piora a coagulação).'},
+    {t:'D — Disfunção neurológica',d:'Glasgow, pupilas (tamanho, isocoria, fotorreagentes), resposta motora, glicemia.'},
+    {t:'E — Exposição',d:'Despir completamente o paciente. Avaliar todo o corpo (frente E dorso). Aquecer em seguida para prevenir hipotermia.'}
+  ],
+  tips:[{type:'tip',text:'✅ Tríade da morte no trauma: hipotermia + acidose + coagulopatia. Prevenir desde o início com aquecimento e controle de sangramento.'}]},
+
+  // NUTRIÇÃO E HIDRATAÇÃO
+  {id:38,cat:'Nutrição e Hidratação',emoji:'🍼',title:'Administração de Dieta Enteral por SNE/Gastrostomia',sub:'Verificação · Administração · Cuidados',tags:['Home Care'],
+  mats:['Seringa de 60 mL (cateter tip)','SF 0,9% para flush','Dieta prescrita','Equipo de nutrição enteral','Bomba de infusão (se prescrita)'],
+  steps:[
+    {t:'CONFIRMAR POSIÇÃO DA SONDA',d:'OBRIGATÓRIO antes de TODA dieta. Aspirar e verificar pH ≤5. Qualquer dúvida: solicitar Rx.'},
+    {t:'Verificar residuo gástrico',d:'Aspirar o conteúdo gástrico antes. Se >200 mL: aguardar 1h e reavalisar. Se persistir: notificar enfermeiro.'},
+    {t:'Cabeceira elevada',d:'Elevar cabeceira 30–45° DURANTE e por 30 minutos APÓS a dieta. Previne broncoaspiração.'},
+    {t:'Administrar',d:'Infusão por bomba: programar conforme prescrição. Infusão por seringa: gravitacional, lenta. Temperatura ambiente.'},
+    {t:'Flush',d:'Antes e após a dieta: 20–30 mL de água (ou SF) para manter a sonda permeável.'},
+    {t:'Registrar',d:'Volume administrado, tolerância, resíduo gástrico, intercorrências.'}
+  ],
+  tips:[{type:'alert',text:'🚨 Broncoaspiração: tosse, vômito, queda da SpO₂, febre, piora respiratória após dieta. Suspender dieta, aspirar VA, decúbito lateral, chamar médico.'}]},
+
+  // VERIFICAÇÃO DE EQUIPO E BOMBA
+  {id:39,cat:'Acesso Venoso',emoji:'⚙️',title:'Instalação e Regulagem de Soroterapia',sub:'Equipo · Gotejamento · Bomba de infusão',tags:['Procedimento'],
+  mats:['Soro prescrito','Equipo de macrogotas ou microgotas','Suporte de soro','Bomba de infusão (se prescrito)','Esparadrapo para identificação'],
+  steps:[
+    {t:'Calcular o gotejamento',d:'Macrogotas: (Volume ÷ horas) × 3 = gotas/min. Microgotas: Volume ÷ horas = microgotas/min.'},
+    {t:'Instalar o equipo',d:'Remover a tampa do soro com antissepsia. Introduzir o equipo com movimento firme. Fechar o regulador. Preencher o reservatório até a metade.'},
+    {t:'Purgar o equipo',d:'Abrir lentamente o regulador e preencher toda a extensão, eliminando bolhas de ar. Fechar ao terminar.'},
+    {t:'Conectar ao acesso venoso',d:'Antissepsia do hub. Conectar o equipo. Abrir e regular o gotejamento conforme cálculo.'},
+    {t:'Identificar o soro',d:'Etiqueta: nome do paciente, data/hora de instalação, prazo de validade, volume, medicamentos adicionados (se houver).'},
+    {t:'Monitorar',d:'A cada passagem: verificar volume restante, velocidade, acesso venoso.'}
+  ],
+  tips:[{type:'warn',text:'⚠️ Trocar equipo a cada 24–72h conforme protocolo. Soro com medicamento: trocar a cada 24h.'},
+       {type:'alert',text:'🚨 Bolhas de ar no equipo: fechar imediatamente, retirar as bolhas. Embolia gasosa é emergência.'}]},
+
+  {id:40,cat:'Emergências',emoji:'💊',title:'Preparo e Administração de Medicamento no PS',sub:'Alta vigilância · Verificações · 9 Certos',tags:['Emergência','Medicamentos'],
+  mats:['Medicamento prescrito','Diluente adequado','Seringa e agulha','Bomba de infusão','Rótulo de identificação'],
+  steps:[
+    {t:'Regra dos 9 Certos',d:'Paciente ✓ · Medicamento ✓ · Dose ✓ · Via ✓ · Hora ✓ · Frequência ✓ · Validade ✓ · Registro ✓ · Orientação ✓.'},
+    {t:'Preparar a medicação',d:'Área limpa. Técnica asséptica. Diluição correta (conforme protocolo ou bulário). Identificar a seringa imediatamente após o preparo.'},
+    {t:'Dupla checagem',d:'Para medicamentos de alto risco (KCl, insulina, heparina, opioides): dupla checagem com outro profissional antes de administrar.'},
+    {t:'Verificar o acesso',d:'Confirmar retorno venoso, permeabilidade. Inspecionar o sítio de inserção.'},
+    {t:'Administrar e monitorar',d:'Velocidade conforme protocolo. Monitorar sinais vitais antes, durante e após.'},
+    {t:'Registrar',d:'Nome do medicamento, dose, via, hora, responsável pela administração.'}
+  ],
+  tips:[{type:'alert',text:'🚨 Medicamentos de alta vigilância (ISMP): KCl, insulina, heparina, morfina, metotrexato. Requerem dupla checagem obrigatória.'}]}
+];
+
+const cats = ['Todos', ...new Set(procs.map(p => p.cat))];
+let activeCat = 'Todos';
+
+function buildFilterTabs() {
+  const c = document.getElementById('filterTabs');
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'ftab' + (cat === activeCat ? ' active' : '');
+    btn.textContent = cat;
+    btn.onclick = () => { activeCat = cat; document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderProcs(); };
+    c.appendChild(btn);
+  });
+}
+
+function renderProcs() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const list = document.getElementById('procList');
+  const nr = document.getElementById('noResults');
+  const count = document.getElementById('procCount');
+  list.innerHTML = '';
+  const filtered = procs.filter(p => {
+    const matchCat = activeCat === 'Todos' || p.cat === activeCat;
+    const matchSearch = !query || p.title.toLowerCase().includes(query) || p.sub.toLowerCase().includes(query) || p.cat.toLowerCase().includes(query) || p.tags.some(t => t.toLowerCase().includes(query));
+    return matchCat && matchSearch;
+  });
+  count.textContent = `Exibindo ${filtered.length} procedimento${filtered.length !== 1 ? 's' : ''}`;
+  if (filtered.length === 0) { nr.style.display = 'block'; return; }
+  nr.style.display = 'none';
+  filtered.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'proc-card';
+    card.innerHTML = `
+      <div class="proc-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="proc-emoji">${p.emoji}</div>
+        <div class="proc-meta">
+          <h3>${p.title}</h3>
+          <p>${p.sub}</p>
+          <div class="proc-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        </div>
+        <div class="proc-toggle">▾</div>
+      </div>
+      <div class="proc-body">
+        <div class="sec-label">📦 Materiais necessários</div>
+        <div class="mat-list">${p.mats.map(m=>`<span class="mat">${m}</span>`).join('')}</div>
+        <div class="sec-label">📋 Passo a passo</div>
+        <div class="steps">${p.steps.map((s,i)=>`<div class="step"><div class="step-num">${i+1}</div><div class="step-content"><strong>${s.t}</strong><br>${s.d}</div></div>`).join('')}</div>
+        ${p.tips.map(t=>`<div class="info-box ${t.type}">${t.text}</div>`).join('')}
+      </div>`;
+    list.appendChild(card);
+  });
+}
+
+function filterProcs() { renderProcs(); }
+
+buildFilterTabs();
+renderProcs();
+</script>
+</body>
+</html>
+ chance de sobrevida. Compressões de QUALIDADE são mais importantes que ventilação. Minimize interrupções.</div>
+    </div>
+  </div>
+
+  <div class="proc-card" data-cat="emergencia" data-search="engasgo obstrucao via aerea manobra heimlich adulto crianca">
+    <div class="proc-header" onclick="this.closest('.proc-card').classList.toggle('open')">
+      <span class="proc-icon">🍽️</span>
+      <span class="proc-name">Desobstrução de Via Aérea (Engasgo / Manobra de Heimlich)</span>
+      <span class="proc-tag">Emergência</span>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="proc-body">
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Avaliar a gravidade</strong>Obstrução LEVE: paciente tosse, fala, respira → estimular a tossir com força. NÃO interferir.<br>Obstrução GRAVE: paciente não fala, não tosse efetivamente, cianose → AGIR IMEDIATAMENTE.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Adulto consciente — Manobra de Heimlich</strong>Posicionar-se atrás do paciente. Uma perna entre as pernas dele. Mão em punho entre umbigo e processo xifoide. Outra mão por cima. Compressões para dentro e para cima até desobstruir ou paciente perder consciência.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Adulto inconsciente</strong>Deitar no chão. Iniciar RCP. A cada abertura de via aérea para ventilar: visualizar corpo estranho na boca → remover se visível. NUNCA fazer varredura às cegas com o dedo.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Lactente (&lt;1 ano)</strong>5 tapas nas costas (região interescapular) + 5 compressões torácicas. Alternados até desobstruir.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proc-card" data-cat="emergencia" data-search="nebulizacao broncoespasmo crise asmatica mascara">
+    <div class="proc-header" onclick="this.closest('.proc-card').classList.toggle('open')">
+      <span class="proc-icon">💨</span>
+      <span class="proc-name">Nebulização / Inalação</span>
+      <span class="proc-tag">Emergência</span>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="proc-body">
+      <div class="materials"><strong>📦 Material:</strong><ul><li>Nebulizador + máscara ou bucal · SF 0,9% 5mL · Medicação prescrita</li><li>Fonte de O₂ ou ar comprimido · Luvas · Estetoscópio (ausculta pré e pós)</li></ul></div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Preparar a medicação</strong>Diluir a medicação prescrita em SF 0,9% até 5mL total no copo nebulizador.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Posicionar o paciente</strong>Fowler alto (45–90°) para maximizar a expansão pulmonar durante a inalação.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Ajustar o fluxo e orientar respiração</strong>Fluxo de O₂ ou ar: 6–8 L/min (até formar névoa). Orientar respirações lentas e profundas pela boca. Duração: até acabar o líquido (~10–15 min).</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Ausculta e registro pós-nebulização</strong>Realizar ausculta pulmonar após o procedimento. Registrar resposta ao tratamento (melhora dos sibilos, SpO₂, FR). Estimular higiene oral após corticoide inalatório.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLETA -->
+  <div class="cat-title" data-cat="coleta">🩸 Coleta de Exames</div>
+
+  <div class="proc-card" data-cat="coleta" data-search="hemocultura coleta bacteremia sepse assepsia frasco">
+    <div class="proc-header" onclick="this.closest('.proc-card').classList.toggle('open')">
+      <span class="proc-icon">🧫</span>
+      <span class="proc-name">Hemocultura</span>
+      <span class="proc-tag">Coleta</span>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="proc-body">
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><strong>ANTES: checar solicitação e COLETAR ANTES DO ANTIBIÓTICO</strong>A hemocultura DEVE ser coletada antes da primeira dose do antibiótico. Esta é a regra mais importante.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Preparar 2 conjuntos (aeróbio + anaeróbio)</strong>Frasco de hemocultura aeróbio (tampa azul) + anaeróbio (tampa roxa). 2 conjuntos de locais diferentes.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Antissepsia rigorosa</strong>Clorexidina alcoólica 0,5% no braço — aguardar 30–60 seg secar COMPLETAMENTE. Trocar luva e antisseptizar a tampa dos frascos com álcool 70°.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Coletar 10mL por frasco (adulto)</strong>Puncionar sem tocar no campo antisséptico. 10mL no frasco aeróbio → 10mL no anaeróbio. Injetar SEM agulha (usar seringa com adaptador).</div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Encaminhar imediatamente ao laboratório</strong>Nunca refrigerar. Nunca agitar. Encaminhar em até 2h à temperatura ambiente. Registrar local de coleta, horário e temperatura do paciente.</div></div>
+      </div>
+      <div class="info-box info-alert">🔴 Hemocultura coletada APÓS antibiótico = alto risco de resultado falso-negativo. Informar ao enfermeiro e médico se não for possível coletar antes.</div>
+    </div>
+  </div>
+
+  <div class="proc-card" data-cat="coleta" data-search="urocultura urina jato medio coleta itu infeccao urinaria">
+    <div class="proc-header" onclick="this.closest('.proc-card').classList.toggle('open')">
+      <span class="proc-icon">💛</span>
+      <span class="proc-name">Urocultura — Coleta de Urina (Jato Médio)</span>
+      <span class="proc-tag">Coleta</span>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="proc-body">
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Orientar higiene prévia</strong>Lavar a região genital com água e sabão (sem antisséptico). Secar com papel higiênico do frente para o fundo (mulheres).</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Desprezar o 1º jato</strong>Iniciar a micção normalmente. Desprezar os primeiros 20–30mL (eliminam flora periuretral).</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Coletar o jato médio</strong>Sem interromper a micção, posicionar o frasco estéril sob o jato. Coletar 20–50mL. Tampar imediatamente.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Encaminhar refrigerado em 2h</strong>Refrigerar a 4°C se não enviar imediatamente. Máximo 4h em geladeira. Registrar horário da coleta.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="noResults" class="no-results" style="display:none">🔍 Nenhum procedimento encontrado. Tente outro termo.</div>
+  </div><!-- /procList -->
+</main>
+<script>
+function filterProc(q) {
+  const lq = q.toLowerCase();
+  const cards = document.querySelectorAll('.proc-card');
+  const cats = document.querySelectorAll('.cat-title');
+  let found = 0;
+  cards.forEach(c => {
+    const match = !q || c.dataset.search.includes(lq) || c.querySelector('.proc-name').textContent.toLowerCase().includes(lq);
+    c.style.display = match ? '' : 'none';
+    if(match) found++;
+  });
+  cats.forEach(c => c.style.display = q ? 'none' : '');
+  document.getElementById('noResults').style.display = found === 0 ? 'block' : 'none';
+}
+
+function filterCat(cat, btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('procSearch').value = '';
+  const cards = document.querySelectorAll('.proc-card');
+  const cats = document.querySelectorAll('.cat-title');
+  let found = 0;
+  cards.forEach(c => {
+    const match = cat === 'all' || c.dataset.cat === cat;
+    c.style.display = match ? '' : 'none';
+    if(match) found++;
+  });
+  cats.forEach(c => {
+    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
+  });
+  document.getElementById('noResults').style.display = found === 0 ? 'block' : 'none';
+}
+
+document.querySelectorAll('.proc-header').forEach(h => {
+  h.addEventListener('click', function() {
+    this.closest('.proc-card').classList.toggle('open');
+  });
+});
+</script>
+</body>
+</html>
