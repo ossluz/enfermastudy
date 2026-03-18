@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FR02Y9XJX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FR02Y9XJX1');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cronômetro de Plantão — EnfermaStudy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#0d1117;min-height:100vh;color:#fff}
+header{background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.1);padding:0}
+.hd{display:flex;align-items:center;gap:14px;padding:14px 20px}
+.hi{width:44px;height:44px;background:rgba(255,255,255,.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ht h1{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800}
+.ht p{font-size:.72rem;opacity:.6;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.bk{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:10px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;text-decoration:none}
+main{max-width:500px;margin:0 auto;padding:24px 16px 60px}
+
+/* Clock display */
+.clock-wrap{text-align:center;padding:32px 20px 24px;background:rgba(255,255,255,.04);border-radius:24px;border:1px solid rgba(255,255,255,.08);margin-bottom:20px}
+.clock-label{font-size:.72rem;text-transform:uppercase;letter-spacing:2px;color:#888;margin-bottom:8px;font-weight:700}
+.clock-time{font-size:4.5rem;font-weight:900;letter-spacing:4px;line-height:1;margin-bottom:4px;font-variant-numeric:tabular-nums}
+.clock-time.running{color:#4caf50}
+.clock-time.paused{color:#ffc107}
+.clock-time.stopped{color:#888}
+.shift-info{font-size:.78rem;color:#888;margin-top:8px}
+
+/* Botões principais */
+.ctrl-btns{display:flex;gap:10px;margin-bottom:20px}
+.cb{flex:1;border:none;border-radius:14px;padding:14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;cursor:pointer;transition:transform .1s}
+.cb:active{transform:scale(.97)}
+.cb-start{background:#2e7d32;color:#fff}
+.cb-pause{background:#e65100;color:#fff}
+.cb-reset{background:rgba(255,255,255,.1);color:#ccc}
+.cb-mark{background:#1565c0;color:#fff}
+
+/* Timers de medicação */
+.section-title{font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:#888;font-weight:700;margin-bottom:10px}
+.med-timers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.med-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;cursor:pointer;transition:border-color .2s}
+.med-card:hover{border-color:rgba(255,255,255,.2)}
+.med-card.active{border-color:#4caf50}
+.med-card.alert{border-color:#ef5350;animation:pulse .8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.mc-name{font-size:.8rem;font-weight:800;margin-bottom:6px}
+.mc-time{font-size:1.3rem;font-weight:900;font-variant-numeric:tabular-nums}
+.mc-time.ok{color:#4caf50}
+.mc-time.warn{color:#ffc107}
+.mc-time.alert{color:#ef5350}
+.mc-interval{font-size:.65rem;color:#888;margin-top:2px}
+.mc-btn{width:100%;margin-top:8px;background:rgba(255,255,255,.1);border:none;color:#ccc;border-radius:8px;padding:6px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.72rem;cursor:pointer}
+.mc-btn.running{background:rgba(76,175,80,.2);color:#4caf50}
+
+/* Marcadores */
+.marks-list{display:flex;flex-direction:column;gap:6px;margin-bottom:20px;max-height:200px;overflow-y:auto}
+.mark-item{background:rgba(255,255,255,.04);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;font-size:.82rem}
+.mark-time{font-weight:900;color:#ab47bc;font-variant-numeric:tabular-nums}
+.mark-del{background:none;border:none;color:#888;cursor:pointer;font-size:1rem}
+
+/* Shift progress */
+.shift-prog{margin-bottom:20px}
+.sp-bar{height:8px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden;margin:6px 0}
+.sp-fill{height:100%;background:linear-gradient(90deg,#1565c0,#42a5f5);border-radius:4px;transition:width 1s}
+.sp-labels{display:flex;justify-content:space-between;font-size:.7rem;color:#888}
+
+/* Som */
+.beep{display:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="hi">⏱️</div>
+    <div class="ht"><h1>Cronômetro de Plantão</h1><p>EnfermaStudy</p></div>
+    <a href="recursos.html" class="bk">← Recursos</a>
+  </div>
+</header>
+<main>
+
+  <!-- Relógio principal -->
+  <div class="clock-wrap">
+    <div class="clock-label">Tempo de Plantão</div>
+    <div class="clock-time stopped" id="mainClock">00:00:00</div>
+    <div class="shift-info" id="shiftInfo">Plantão não iniciado</div>
+  </div>
+
+  <!-- Controles -->
+  <div class="ctrl-btns">
+    <button class="cb cb-start" id="btnStart" onclick="toggleTimer()">▶ Iniciar</button>
+    <button class="cb cb-mark" onclick="addMark()">📍 Marcar</button>
+    <button class="cb cb-reset" onclick="resetTimer()">↺ Resetar</button>
+  </div>
+
+  <!-- Progresso do plantão -->
+  <div class="shift-prog">
+    <div class="section-title">Progresso do Plantão (12h)</div>
+    <div class="sp-bar"><div class="sp-fill" id="shiftFill" style="width:0%"></div></div>
+    <div class="sp-labels">
+      <span>00:00</span>
+      <span id="progPct">0%</span>
+      <span>12:00</span>
+    </div>
+  </div>
+
+  <!-- Timers de medicação -->
+  <div class="section-title">⏰ Timers de Medicação</div>
+  <div class="med-timers">
+    <div class="med-card" id="med0">
+      <div class="mc-name">💊 2h em 2h</div>
+      <div class="mc-time ok" id="mt0">02:00:00</div>
+      <div class="mc-interval">próxima medicação</div>
+      <button class="mc-btn" id="mb0" onclick="toggleMedTimer(0)">▶ Iniciar</button>
+    </div>
+    <div class="med-card" id="med1">
+      <div class="mc-name">💉 4h em 4h</div>
+      <div class="mc-time ok" id="mt1">04:00:00</div>
+      <div class="mc-interval">próxima medicação</div>
+      <button class="mc-btn" id="mb1" onclick="toggleMedTimer(1)">▶ Iniciar</button>
+    </div>
+    <div class="med-card" id="med2">
+      <div class="mc-name">🩸 6h em 6h</div>
+      <div class="mc-time ok" id="mt2">06:00:00</div>
+      <div class="mc-interval">próxima medicação</div>
+      <button class="mc-btn" id="mb2" onclick="toggleMedTimer(2)">▶ Iniciar</button>
+    </div>
+    <div class="med-card" id="med3">
+      <div class="mc-name">🔄 8h em 8h</div>
+      <div class="mc-time ok" id="mt3">08:00:00</div>
+      <div class="mc-interval">próxima medicação</div>
+      <button class="mc-btn" id="mb3" onclick="toggleMedTimer(3)">▶ Iniciar</button>
+    </div>
+  </div>
+
+  <!-- Marcadores -->
+  <div class="section-title">📍 Marcadores de Tempo</div>
+  <div class="marks-list" id="marksList">
+    <div style="color:#666;font-size:.8rem;text-align:center;padding:8px">Nenhum marcador ainda</div>
+  </div>
+
+</main>
+<script>
+// Main timer
+let mainSec = 0, mainRunning = false, mainInterval = null;
+let startTimestamp = null;
+
+// Med timers: [segundos restantes, rodando, interval]
+const MED_INTERVALS = [7200, 14400, 21600, 28800];
+const MED_NAMES = ['2h em 2h','4h em 4h','6h em 6h','8h em 8h'];
+let medTimers = [
+  {rem:7200, running:false, iv:null},
+  {rem:14400, running:false, iv:null},
+  {rem:21600, running:false, iv:null},
+  {rem:28800, running:false, iv:null},
+];
+
+let marks = [];
+
+function fmt(s) {
+  const h = Math.floor(s/3600);
+  const m = Math.floor((s%3600)/60);
+  const sec = s%60;
+  return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+}
+
+function toggleTimer() {
+  if (!mainRunning) {
+    mainRunning = true;
+    if (!startTimestamp) startTimestamp = new Date();
+    mainInterval = setInterval(() => {
+      mainSec++;
+      updateMain();
+    }, 1000);
+    document.getElementById('btnStart').textContent = '⏸ Pausar';
+    document.getElementById('btnStart').className = 'cb cb-pause';
+    document.getElementById('mainClock').className = 'clock-time running';
+    document.getElementById('shiftInfo').textContent = 'Iniciado às ' + startTimestamp.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  } else {
+    mainRunning = false;
+    clearInterval(mainInterval);
+    document.getElementById('btnStart').textContent = '▶ Continuar';
+    document.getElementById('btnStart').className = 'cb cb-start';
+    document.getElementById('mainClock').className = 'clock-time paused';
+  }
+}
+
+function updateMain() {
+  document.getElementById('mainClock').textContent = fmt(mainSec);
+  const pct = Math.min(Math.round((mainSec/43200)*100),100);
+  document.getElementById('shiftFill').style.width = pct+'%';
+  document.getElementById('progPct').textContent = pct+'%';
+}
+
+function resetTimer() {
+  if (!confirm('Resetar o cronômetro principal?')) return;
+  mainRunning = false;
+  clearInterval(mainInterval);
+  mainSec = 0;
+  startTimestamp = null;
+  document.getElementById('mainClock').textContent = '00:00:00';
+  document.getElementById('mainClock').className = 'clock-time stopped';
+  document.getElementById('btnStart').textContent = '▶ Iniciar';
+  document.getElementById('btnStart').className = 'cb cb-start';
+  document.getElementById('shiftInfo').textContent = 'Plantão não iniciado';
+  document.getElementById('shiftFill').style.width = '0%';
+  document.getElementById('progPct').textContent = '0%';
+  marks = [];
+  renderMarks();
+}
+
+function addMark() {
+  if (!mainRunning && mainSec === 0) return;
+  const label = prompt('Descrição do marcador:', 'Medicação administrada');
+  if (label === null) return;
+  marks.unshift({time: fmt(mainSec), label: label || 'Marcador'});
+  renderMarks();
+}
+
+function renderMarks() {
+  const el = document.getElementById('marksList');
+  if (marks.length === 0) {
+    el.innerHTML = '<div style="color:#666;font-size:.8rem;text-align:center;padding:8px">Nenhum marcador ainda</div>';
+    return;
+  }
+  el.innerHTML = marks.map((m,i) => `
+    <div class="mark-item">
+      <span class="mark-time">${m.time}</span>
+      <span style="flex:1;margin:0 10px;color:#ccc">${m.label}</span>
+      <button class="mark-del" onclick="removeMark(${i})">🗑</button>
+    </div>`).join('');
+}
+
+function removeMark(i) {
+  marks.splice(i,1);
+  renderMarks();
+}
+
+function toggleMedTimer(i) {
+  const mt = medTimers[i];
+  if (mt.running) {
+    mt.running = false;
+    clearInterval(mt.iv);
+    document.getElementById('mb'+i).textContent = '▶ Continuar';
+    document.getElementById('mb'+i).className = 'mc-btn';
+  } else {
+    mt.rem = MED_INTERVALS[i]; // reset ao iniciar
+    mt.running = true;
+    mt.iv = setInterval(() => {
+      mt.rem--;
+      updateMed(i);
+      if (mt.rem <= 0) {
+        mt.running = false;
+        clearInterval(mt.iv);
+        alertMed(i);
+      }
+    }, 1000);
+    document.getElementById('mb'+i).textContent = '⏸ Pausar';
+    document.getElementById('mb'+i).className = 'mc-btn running';
+    document.getElementById('med'+i).classList.add('active');
+  }
+}
+
+function updateMed(i) {
+  const mt = medTimers[i];
+  const el = document.getElementById('mt'+i);
+  el.textContent = fmt(mt.rem);
+  const pct = mt.rem / MED_INTERVALS[i];
+  if (pct > 0.3) { el.className = 'mc-time ok'; }
+  else if (pct > 0.1) { el.className = 'mc-time warn'; }
+  else { el.className = 'mc-time alert'; document.getElementById('med'+i).classList.add('alert'); }
+}
+
+function alertMed(i) {
+  document.getElementById('med'+i).classList.remove('active');
+  document.getElementById('med'+i).classList.add('alert');
+  document.getElementById('mt'+i).textContent = '⚠️ AGORA';
+  document.getElementById('mt'+i).className = 'mc-time alert';
+  document.getElementById('mb'+i).textContent = '↺ Reiniciar';
+  document.getElementById('mb'+i).className = 'mc-btn';
+  if ('vibrate' in navigator) navigator.vibrate([300,100,300,100,300]);
+  alert('⏰ Timer '+MED_NAMES[i]+': hora da medicação!');
+}
+</script>
+</body>
+</html>

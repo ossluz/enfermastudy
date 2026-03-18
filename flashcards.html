@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FR02Y9XJX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FR02Y9XJX1');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcards — EnfermaStudy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--teal:#00796b;--teal-dark:#004d40;--bg:#f0f4f3}
+body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh}
+header{background:linear-gradient(135deg,#6a1b9a,#8e24aa);color:#fff;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.hd{display:flex;align-items:center;gap:14px;padding:14px 20px}
+.hi{width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ht h1{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800}
+.ht p{font-size:.72rem;opacity:.8;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.bk{margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:10px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;text-decoration:none}
+main{max-width:700px;margin:0 auto;padding:24px 16px 60px}
+
+/* Seletor de categoria */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:24px}
+.cat-btn{border:none;border-radius:14px;padding:14px 10px;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;text-align:center;transition:transform .15s,box-shadow .15s;color:#fff}
+.cat-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.cat-btn .ci{font-size:1.8rem;display:block;margin-bottom:6px}
+.cat-btn .cn{display:block}
+.cat-btn .cc{display:block;font-size:.7rem;opacity:.85;margin-top:2px}
+
+/* Área do jogo */
+#gameArea{display:none}
+.progress-bar{height:6px;background:#e0e0e0;border-radius:3px;margin-bottom:16px}
+.progress-fill{height:100%;background:linear-gradient(90deg,#8e24aa,#ab47bc);border-radius:3px;transition:width .4s}
+.progress-label{display:flex;justify-content:space-between;font-size:.75rem;color:#888;font-weight:700;margin-bottom:8px}
+
+/* Card flip */
+.card-wrap{perspective:1000px;height:260px;margin-bottom:20px;cursor:pointer}
+.card-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card-wrap.flipped .card-inner{transform:rotateY(180deg)}
+.card-face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.12)}
+.card-front{background:linear-gradient(135deg,#6a1b9a,#8e24aa)}
+.card-back{background:linear-gradient(135deg,#004d40,#00796b);transform:rotateY(180deg)}
+.card-label{font-size:.7rem;text-transform:uppercase;letter-spacing:2px;opacity:.75;font-weight:800;margin-bottom:12px;color:#fff}
+.card-text{font-size:1.1rem;font-weight:800;color:#fff;line-height:1.5}
+.card-hint{font-size:.75rem;opacity:.7;color:#fff;margin-top:14px}
+
+/* Botões de resposta */
+.answer-btns{display:flex;gap:10px;margin-bottom:20px}
+.ans-btn{flex:1;padding:13px;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.88rem;cursor:pointer;transition:transform .1s}
+.ans-btn:active{transform:scale(.97)}
+.btn-wrong{background:#ffebee;color:#c62828}
+.btn-hard{background:#fff3e0;color:#e65100}
+.btn-good{background:#e8f5e9;color:#2e7d32}
+.btn-easy{background:#e3f2fd;color:#1565c0}
+
+/* Resultado */
+#resultArea{display:none;text-align:center;padding:28px 20px;background:#fff;border-radius:20px;box-shadow:0 2px 16px rgba(0,0,0,.08)}
+.result-emoji{font-size:3rem;margin-bottom:12px}
+.result-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:#1a2332;margin-bottom:8px}
+.result-sub{font-size:.88rem;color:#888;margin-bottom:20px}
+.score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
+.score-box{border-radius:10px;padding:10px 6px;text-align:center}
+.score-box span{display:block;font-size:1.4rem;font-weight:900}
+.score-box small{font-size:.65rem;font-weight:700;opacity:.8}
+.restart-btn{background:linear-gradient(135deg,#6a1b9a,#8e24aa);color:#fff;border:none;border-radius:12px;padding:13px 28px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.92rem;cursor:pointer;margin-right:8px}
+.menu-btn{background:#f0f0f0;color:#333;border:none;border-radius:12px;padding:13px 20px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;cursor:pointer}
+.info-box{border-radius:10px;padding:12px 14px;font-size:.82rem;line-height:1.6;margin-bottom:16px;background:#f3e5f5;border-left:4px solid #8e24aa;color:#4a148c}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="hi">🃏</div>
+    <div class="ht"><h1>Flashcards</h1><p>EnfermaStudy — Revisão Rápida</p></div>
+    <a href="recursos.html" class="bk">← Recursos</a>
+  </div>
+</header>
+<main>
+
+  <!-- Menu de categorias -->
+  <div id="menuArea">
+    <div class="info-box">🃏 Escolha uma categoria e vire os cards! Avalie seu conhecimento em cada um para acompanhar seu progresso.</div>
+    <div class="cat-grid">
+      <button class="cat-btn" style="background:linear-gradient(135deg,#c62828,#e53935)" onclick="startDeck('sv')">
+        <span class="ci">❤️</span><span class="cn">Sinais Vitais</span><span class="cc">15 cards</span>
+      </button>
+      <button class="cat-btn" style="background:linear-gradient(135deg,#1565c0,#1976d2)" onclick="startDeck('proc')">
+        <span class="ci">💉</span><span class="cn">Procedimentos</span><span class="cc">18 cards</span>
+      </button>
+      <button class="cat-btn" style="background:linear-gradient(135deg,#e65100,#f57c00)" onclick="startDeck('farm')">
+        <span class="ci">💊</span><span class="cn">Farmacologia</span><span class="cc">16 cards</span>
+      </button>
+      <button class="cat-btn" style="background:linear-gradient(135deg,#2e7d32,#388e3c)" onclick="startDeck('emer')">
+        <span class="ci">🚨</span><span class="cn">Emergências</span><span class="cc">14 cards</span>
+      </button>
+      <button class="cat-btn" style="background:linear-gradient(135deg,#00695c,#00897b)" onclick="startDeck('esc')">
+        <span class="ci">📊</span><span class="cn">Escalas</span><span class="cc">10 cards</span>
+      </button>
+      <button class="cat-btn" style="background:linear-gradient(135deg,#37474f,#546e7a)" onclick="startDeck('leg')">
+        <span class="ci">⚖️</span><span class="cn">Legislação</span><span class="cc">12 cards</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Área do jogo -->
+  <div id="gameArea">
+    <div class="progress-label">
+      <span id="progLabel">Card 1 de 15</span>
+      <span id="catLabel">Sinais Vitais</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+    <div class="card-wrap" id="cardWrap" onclick="flipCard()">
+      <div class="card-inner" id="cardInner">
+        <div class="card-face card-front">
+          <div class="card-label">PERGUNTA</div>
+          <div class="card-text" id="cardFront">—</div>
+          <div class="card-hint">Toque para ver a resposta</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-label">RESPOSTA</div>
+          <div class="card-text" id="cardBack">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="answer-btns" id="answerBtns" style="display:none">
+      <button class="ans-btn btn-wrong" onclick="rate(0)">❌ Errei</button>
+      <button class="ans-btn btn-hard" onclick="rate(1)">😅 Difícil</button>
+      <button class="ans-btn btn-good" onclick="rate(2)">✅ Sabia</button>
+      <button class="ans-btn btn-easy" onclick="rate(3)">⭐ Fácil</button>
+    </div>
+  </div>
+
+  <!-- Resultado -->
+  <div id="resultArea">
+    <div class="result-emoji" id="resultEmoji">🎉</div>
+    <div class="result-title" id="resultTitle">Deck concluído!</div>
+    <div class="result-sub" id="resultSub">Veja como foi seu desempenho</div>
+    <div class="score-grid">
+      <div class="score-box" style="background:#ffebee"><span id="sWrong" style="color:#c62828">0</span><small style="color:#c62828">Errei</small></div>
+      <div class="score-box" style="background:#fff3e0"><span id="sHard" style="color:#e65100">0</span><small style="color:#e65100">Difícil</small></div>
+      <div class="score-box" style="background:#e8f5e9"><span id="sGood" style="color:#2e7d32">0</span><small style="color:#2e7d32">Sabia</small></div>
+      <div class="score-box" style="background:#e3f2fd"><span id="sEasy" style="color:#1565c0">0</span><small style="color:#1565c0">Fácil</small></div>
+    </div>
+    <button class="restart-btn" onclick="restartDeck()">🔄 Repetir deck</button>
+    <button class="menu-btn" onclick="goMenu()">← Menu</button>
+  </div>
+
+</main>
+<script>
+const DECKS = {
+  sv: {
+    name:'Sinais Vitais',
+    cards:[
+      {q:'Qual a frequência cardíaca normal em adultos?',a:'60 a 100 bpm. Abaixo de 60 = bradicardia. Acima de 100 = taquicardia.'},
+      {q:'Qual a frequência respiratória normal em adultos?',a:'12 a 20 irpm. Abaixo = bradipneia. Acima = taquipneia.'},
+      {q:'Qual a pressão arterial considerada normal em adultos?',a:'Normal: &lt;120/80 mmHg (Diretriz SBC 2025). Pré-hipertensão: 120–139/80–89 mmHg (incluindo o antigo "12x8"). HAS confirmada: ≥140/90 mmHg.'},
+      {q:'Qual a temperatura corporal normal?',a:'36,0 a 37,5°C. Febre: ≥ 37,8°C. Hipotermia: < 35°C.'},
+      {q:'Qual a saturação de O₂ (SpO₂) normal?',a:'95 a 100%. Entre 90–94%: atenção. Abaixo de 90%: hipoxemia grave — EMERGÊNCIA.'},
+      {q:'O que é pulso paradoxal?',a:'Queda da PA sistólica > 10 mmHg na inspiração. Sinal de tamponamento cardíaco, DPOC grave.'},
+      {q:'Como auscultar a PA corretamente?',a:'Paciente sentado ou deitado, repouso 5 min, braço na altura do coração, bexiga deflada, sem café/cigarro recente.'},
+      {q:'O que é pressão de pulso?',a:'Diferença entre PA sistólica e diastólica. Normal: 30–50 mmHg. Aumentada em choque hiperdinâmico.'},
+      {q:'Qual a diurese mínima aceitável em adultos?',a:'0,5 mL/kg/hora. Abaixo disso = oligúria → comunicar o enfermeiro.'},
+      {q:'O que a Escala de Glasgow avalia?',a:'Nível de consciência: abertura ocular (4pts) + resposta verbal (5pts) + resposta motora (6pts) = máx 15.'},
+      {q:'Qual o valor mínimo da Escala de Glasgow?',a:'3 pontos (sem abertura ocular, sem resposta verbal, sem resposta motora). Indica coma profundo.'},
+      {q:'O que é EVA?',a:'Escala Visual Analógica de dor. De 0 (sem dor) a 10 (pior dor). ≥ 7 = dor intensa → intervir.'},
+      {q:'Como avaliar pupilas na neurologia?',a:'Isocóricas (iguais), fotorreativas e simétricas é o normal. Anisocoria pode indicar herniação cerebral.'},
+      {q:'O que é Tríade de Cushing?',a:'Sinal de hipertensão intracraniana: bradicardia + hipertensão arterial + alteração do padrão respiratório.'},
+      {q:'Qual glicemia capilar indica hipoglicemia grave?',a:'Abaixo de 45 mg/dL. Tratar imediatamente: glicose VO (se consciente) ou glicose 50% EV (se inconsciente).'},
+    ]
+  },
+  proc: {
+    name:'Procedimentos',
+    cards:[
+      {q:'Qual o ângulo de inserção para punção venosa periférica?',a:'15 a 30 graus, com o bisel voltado para cima. Confirmar refluxo de sangue antes de fixar.'},
+      {q:'Qual a técnica de lavagem das mãos simples? Quantos segundos?',a:'40 a 60 segundos com água e sabão. Fricção de todas as superfícies: palmas, dorso, entre os dedos, polegar, pontas dos dedos e punhos.'},
+      {q:'Qual a diferença entre assepsia e antissepsia?',a:'Assepsia = conjunto de medidas para evitar contaminação. Antissepsia = uso de agente químico em tecido vivo para reduzir microrganismos.'},
+      {q:'Como verificar a posição de uma sonda nasogástrica?',a:'Aspirar conteúdo gástrico e verificar pH (≤5,5), auscultar insuflação de ar no epigástrio, e/ou raio-X (padrão ouro).'},
+      {q:'Qual o volume a ser insuflado no balonete da SVD feminina?',a:'10 mL de água destilada ou SF 0,9%. Nunca ar. Confirmar fixação tracionando suavemente.'},
+      {q:'Quais os 5 certos da medicação?',a:'Paciente certo, medicamento certo, dose certa, via certa, horário certo. Alguns protocolos adicionam: registro certo e razão certa.'},
+      {q:'Qual o ângulo para aplicação IM no deltoide?',a:'90 graus em relação à pele. Volume máximo: 2 mL. Localizar 3 dedos abaixo do acrômio.'},
+      {q:'Onde aplicar injeção SC?',a:'Abdome (região periumbilical), braço (face lateral), coxa (face anterolateral). Ângulo 45° ou 90° dependendo da adiposidade.'},
+      {q:'O que verificar antes de iniciar uma dieta por SNE?',a:'Confirmar posicionamento da sonda, verificar resíduo gástrico (se > 200mL, pausar), posicionar em Fowler 30–45°.'},
+      {q:'Qual a solução padrão para limpeza de feridas?',a:'SF 0,9% em jato, com seringa de 20mL e agulha 40x12 ou cateter, para remoção mecânica de debris sem agredir o tecido.'},
+      {q:'O que é curativo oclusivo?',a:'Cobre completamente a ferida, protegendo de contaminação externa. Indicado para feridas cirúrgicas limpas e lesões com baixo exsudato.'},
+      {q:'Qual a posição correta para a bolsa coletora da SVD?',a:'Sempre abaixo do nível da bexiga, sem tocar o chão. Nunca elevar acima do nível da bexiga (risco de refluxo e ITU).'},
+      {q:'Como realizar a higiene oral em paciente intubado?',a:'Escovação 3x/dia, clorexidina 0,12% a cada 8–12h, aspiração de secreções antes do procedimento. Prevenção de PAV.'},
+      {q:'O que é punção lombar?',a:'Procedimento médico para coleta de LCR no espaço subaracnóideo (L3-L4 ou L4-L5). Técnico prepara material e posiciona paciente.'},
+      {q:'Qual a posição para coleta de hemocultura?',a:'Decúbito ou sentado. Antissepsia com clorexidina alcoólica 0,5%, aguardar secar (30–60s), coletar ANTES do antibiótico.'},
+      {q:'Quais os cuidados com acesso venoso central?',a:'Curativo estéril a cada 7 dias (ou se úmido/sujo), fixação adequada, observar sinais de infecção, flush com SF após cada uso.'},
+      {q:'O que é técnica asséptica cirúrgica?',a:'Conjunto de medidas para manter campo estéril em procedimentos invasivos: paramentação completa, campo estéril, manejo correto de materiais.'},
+      {q:'Qual a frequência de troca da sonda nasogástrica?',a:'Geralmente a cada 4–6 semanas, conforme protocolo institucional e tipo de sonda. Sempre checar posicionamento antes de cada uso.'},
+    ]
+  },
+  farm: {
+    name:'Farmacologia',
+    cards:[
+      {q:'Qual o antídoto da heparina?',a:'Sulfato de protamina. 1 mg neutraliza 100 UI de heparina. Risco de reação anafilática.'},
+      {q:'Qual o antídoto da varfarina?',a:'Vitamina K (fitonadiona) + plasma fresco congelado em casos urgentes. Efeito da vitamina K demora 6–12h.'},
+      {q:'O que é efeito colateral × reação adversa?',a:'Efeito colateral: previsível, dose-dependente (ex: sonolência com anti-histamínico). Reação adversa: imprevisível, pode ser grave (ex: anafilaxia).'},
+      {q:'Quais os sinais de toxicidade por digoxina?',a:'Bradicardia, náusea, vômito, visão amarelada/borrada, arritmias. FC < 60 bpm = não administrar → comunicar.'},
+      {q:'O que verificar antes de administrar insulina NPH?',a:'Glicemia capilar, prescrição (dose e horário), aspecto (turva = normal, mas sem grumos), via SC, rodízio do local.'},
+      {q:'Qual a diferença entre insulina Regular e NPH?',a:'Regular: ação rápida (30min–6h), transparente, pode ser EV. NPH: ação intermediária (1–12h), turva, apenas SC ou IM.'},
+      {q:'Por que verificar FC antes de administrar betabloqueador?',a:'Betabloqueadores reduzem FC. Se FC < 60 bpm, há risco de bradicardia grave. Protocolo: não administrar e comunicar médico.'},
+      {q:'O que é sinergismo de medicamentos?',a:'Quando dois medicamentos em conjunto produzem efeito maior do que a soma dos efeitos individuais. Ex: morfina + benzodiazepínico = depressão respiratória.'},
+      {q:'Quais os cuidados ao administrar KCl EV?',a:'NUNCA em bolus (parada cardíaca). Sempre diluído (max 40 mEq/L), em acesso calibroso, infusão lenta com bomba, monitoramento cardíaco.'},
+      {q:'O que é meia-vida de um medicamento?',a:'Tempo necessário para que a concentração plasmática do fármaco seja reduzida à metade. Importante para definir intervalos de dose.'},
+      {q:'Qual a diferença entre genérico, similar e referência?',a:'Referência: primeiro aprovado, com nome de marca. Genérico: mesma fórmula, sem marca, intercambiável. Similar: mesmo princípio ativo, pode ter excipientes diferentes.'},
+      {q:'O que verificar antes de administrar antibiótico EV?',a:'Alergias, hemocultura colhida (se solicitada), diluição correta, velocidade de infusão, compatibilidade com outros medicamentos na mesma via.'},
+      {q:'Quais os sinais de anafilaxia?',a:'Urticária + edema (especialmente glote) + broncoespasmo + hipotensão. Tratamento: adrenalina 0,3–0,5 mg IM coxa lateral.'},
+      {q:'O que é medicamento ototóxico?',a:'Causa danos ao nervo auditivo. Ex: aminoglicosídeos (gentamicina, amicacina), furosemida em altas doses. Monitorar audição.'},
+      {q:'Qual a via de administração mais rápida?',a:'Endovenosa (EV) — absorção imediata (100% de biodisponibilidade). Por isso requer maior atenção e monitoramento.'},
+      {q:'O que é dose de ataque?',a:'Dose inicial maior para atingir concentração terapêutica rapidamente. Seguida de doses de manutenção. Ex: amiodarona, digoxina.'},
+    ]
+  },
+  emer: {
+    name:'Emergências',
+    cards:[
+      {q:'Qual a sequência do BLS (Suporte Básico de Vida)?',a:'C-A-B: Circulação (compressões 30x) → Abertura de via aérea → Ventilação (2x). Freq: 100–120 compressões/min, profundidade 5–6 cm.'},
+      {q:'Quais os sinais do AVC? Protocolo FAST.',a:'Face (assimetria facial) + Arm (fraqueza em braço) + Speech (alteração de fala) + Time (acionar SAMU 192 imediatamente).'},
+      {q:'O que fazer em caso de engasgo com obstrução grave em adulto?',a:'Manobra de Heimlich: posição atrás do paciente, compressões para dentro e para cima entre umbigo e xifoide, até desobstruir ou inconsciência.'},
+      {q:'Quais os 4 ritmos de parada cardiorrespiratória?',a:'FV (fibrilação ventricular), TV sem pulso, AESP (atividade elétrica sem pulso), Assistolia. FV e TV = chocáveis.'},
+      {q:'Qual a energia para desfibrilação em adultos?',a:'Bifásico: 120–200J. Monofásico: 360J. Checar ritmo a cada 2min. RCP de alta qualidade entre os choques.'},
+      {q:'O que é choque anafilático? Tratamento imediato.',a:'Reação alérgica sistêmica grave. Tratamento: adrenalina 0,3–0,5 mg IM coxa lateral (1ª linha), O₂, decúbito dorsal, acesso EV, anti-histamínico.'},
+      {q:'Como reconhecer choque hipovolêmico?',a:'Hipotensão + taquicardia + pele fria e pálida + sudorese + oligúria. Tratar: reposição volêmica agressiva, identificar e controlar sangramento.'},
+      {q:'O que é síndrome coronariana aguda (SCA)?',a:'Espectro de IAM e angina instável. Sinais: dor torácica opressiva irradiada, sudorese, dispneia, náusea. Protocolo: MONA (morfina, O₂, nitrato, AAS).'},
+      {q:'Quais os sinais de insuficiência respiratória aguda?',a:'Taquipneia > 30 irpm, SpO₂ < 90%, uso de musculatura acessória, tiragem, cianose, rebaixamento do nível de consciência.'},
+      {q:'O que é XABCDE do trauma?',a:'X: hemorragia exsanguinante. A: via aérea com controle cervical. B: respiração. C: circulação. D: déficit neurológico. E: exposição/ambiente.'},
+      {q:'Quando suspeitar de pneumotórax hipertensivo?',a:'Dispneia grave + ausência de murmúrio vesicular unilateral + desvio de traqueia + hipotensão + distensão de jugulares. EMERGÊNCIA — descompressão imediata.'},
+      {q:'O que é CAD (cetoacidose diabética)?',a:'Complicação do DM tipo 1: hiperglicemia > 250 mg/dL + pH < 7,3 + cetonas. Sintomas: hálito cetônico, poliúria, Kussmaul, vômitos, desidratação.'},
+      {q:'Quais os sinais de hipertensão intracraniana (HTIC)?',a:'Cefaleia intensa + vômito em jato + Tríade de Cushing (bradicardia + HAS + alt. respiratória) + anisocoria. Cabeceira 30°.'},
+      {q:'O que é sepse? Critérios SOFA.',a:'Disfunção orgânica ameaçadora à vida causada por resposta desregulada à infecção. SOFA ≥ 2 pontos. Bundle: ATB em 1h, hemoculturas, lactato, volume.'},
+    ]
+  },
+  esc: {
+    name:'Escalas Clínicas',
+    cards:[
+      {q:'O que avalia a Escala de Braden? Qual o ponto de corte para risco?',a:'Risco de lesão por pressão. 6 domínios: percepção sensorial, umidade, atividade, mobilidade, nutrição, fricção. ≤ 16 = em risco.'},
+      {q:'O que avalia a Escala de Morse?',a:'Risco de queda. Avalia: histórico de quedas, diagnóstico secundário, auxílio para deambulação, terapia EV, marcha, estado mental. ≥ 45 = alto risco.'},
+      {q:'Como calcular o APGAR? Quando aplicar?',a:'1° e 5° minutos de vida. Avalia: cor, FC, reflexo, tônus, respiração. 0–2 pts cada = máx 10. ≥ 7 = bom. < 7 = requer intervenção.'},
+      {q:'O que é a Escala de Coma de Glasgow? Pontuação mínima e máxima.',a:'Avalia nível de consciência: ocular (1–4) + verbal (1–5) + motor (1–6) = 3 a 15 pontos. ≤ 8 = coma.'},
+      {q:'O que avalia a EVA? Como aplicar?',a:'Escala Visual Analógica de dor. 0 = sem dor, 10 = pior dor. Perguntar ao paciente ou usar a escala facial para crianças/idosos.'},
+      {q:'O que é a Escala FAST?',a:'Triagem de AVC: Face (assimetria) + Arm (fraqueza) + Speech (dificuldade) + Time. Qualquer sinal positivo = acionar emergência imediatamente.'},
+      {q:'O que é o escore de Pittsburgh?',a:'Avalia qualidade do sono. 7 domínios, pontuação 0–21. > 5 = qualidade ruim do sono. Usado em pacientes com distúrbios do sono ou internados prolongados.'},
+      {q:'O que avalia a Escala de Ramsay?',a:'Nível de sedação em pacientes sedados. 1 = agitado, 2 = cooperativo (ideal), até 6 = sem resposta. Meta geralmente = Ramsay 2–3.'},
+      {q:'O que é o índice de Barthel?',a:'Avalia independência funcional em 10 atividades da vida diária (banho, alimentação, higiene, etc.). 0–100 pts. < 60 = dependência moderada/grave.'},
+      {q:'O que avalia o PAD (Padrão de Atividade Diária)?',a:'Capacidade funcional do paciente: alimentação, higiene, vestuário, mobilidade, continência. Base para o planejamento dos cuidados de enfermagem.'},
+    ]
+  },
+  leg: {
+    name:'Legislação',
+    cards:[
+      {q:'O que regulamenta o exercício da enfermagem no Brasil?',a:'Lei nº 7.498/1986 e Decreto nº 94.406/1987. Define as atribuições de Enfermeiro, Técnico e Auxiliar de Enfermagem.'},
+      {q:'Quais são as atribuições PRIVATIVAS do Enfermeiro?',a:'Consulta de enfermagem, prescrição de enfermagem, cuidados em UTI, parto normal sem distócia, chefia e direção de serviços de enfermagem.'},
+      {q:'O que pode fazer o Técnico em Enfermagem?',a:'Atividades de nível médio sob supervisão do Enfermeiro: assistência ao paciente, procedimentos técnicos (punção, sondagem, curativo), administração de medicamentos.'},
+      {q:'O que é o COFEN?',a:'Conselho Federal de Enfermagem — órgão nacional que normatiza, fiscaliza e disciplina o exercício da profissão de enfermagem. Sede em Brasília.'},
+      {q:'O que são os COREns?',a:'Conselhos Regionais de Enfermagem — representações estaduais do COFEN. Responsáveis pelo registro profissional, fiscalização e julgamentos éticos no estado.'},
+      {q:'O que é sigilo profissional em enfermagem?',a:'Obrigação de guardar informações obtidas no exercício profissional. Pode ser quebrado em casos de risco à vida do paciente ou de terceiros, ou por determinação judicial.'},
+      {q:'O que é negligência, imprudência e imperícia?',a:'Negligência: omissão de cuidados. Imprudência: ação sem precaução. Imperícia: falta de habilidade técnica. Todos são formas de erro profissional puníveis.'},
+      {q:'O que é o Código de Ética dos Profissionais de Enfermagem?',a:'Resolução COFEN 564/2017. Estabelece deveres, direitos, proibições e responsabilidades éticas do profissional no exercício da enfermagem.'},
+      {q:'Qual a carga horária semanal do técnico em enfermagem?',a:'30 horas semanais, conforme Lei nº 13.085/2015. Plantões de 12h com 36h de descanso são comuns na prática hospitalar.'},
+      {q:'O que é anotação de enfermagem?',a:'Registro escrito e datado de todas as ações e observações de enfermagem no prontuário do paciente. É documento legal, parte do cuidado e da responsabilidade profissional.'},
+      {q:'O que é SAE (Sistematização da Assistência de Enfermagem)?',a:'Metodologia científica que organiza o cuidado: coleta de dados, diagnóstico, planejamento, implementação e avaliação. Obrigatória pelo COFEN.'},
+      {q:'O que é o princípio da beneficência em saúde?',a:'Princípio bioético que obriga o profissional a agir sempre em benefício do paciente, promovendo seu bem-estar e reduzindo danos. Um dos 4 princípios da bioética.'},
+    ]
+  }
+};
+
+let currentDeck = [];
+let currentIndex = 0;
+let scores = {0:0, 1:0, 2:0, 3:0};
+let deckKey = '';
+let flipped = false;
+
+function startDeck(key) {
+  deckKey = key;
+  const deck = DECKS[key];
+  currentDeck = [...deck.cards].sort(() => Math.random() - 0.5);
+  currentIndex = 0;
+  scores = {0:0,1:0,2:0,3:0};
+  document.getElementById('menuArea').style.display = 'none';
+  document.getElementById('resultArea').style.display = 'none';
+  document.getElementById('gameArea').style.display = 'block';
+  document.getElementById('catLabel').textContent = deck.name;
+  showCard();
+}
+
+function showCard() {
+  flipped = false;
+  const wrap = document.getElementById('cardWrap');
+  wrap.classList.remove('flipped');
+  document.getElementById('answerBtns').style.display = 'none';
+  const card = currentDeck[currentIndex];
+  document.getElementById('cardFront').textContent = card.q;
+  document.getElementById('cardBack').textContent = card.a;
+  const total = currentDeck.length;
+  document.getElementById('progLabel').textContent = `Card ${currentIndex+1} de ${total}`;
+  document.getElementById('progressFill').style.width = ((currentIndex/total)*100)+'%';
+}
+
+function flipCard() {
+  if (flipped) return;
+  flipped = true;
+  document.getElementById('cardWrap').classList.add('flipped');
+  document.getElementById('answerBtns').style.display = 'flex';
+}
+
+function rate(score) {
+  scores[score]++;
+  currentIndex++;
+  if (currentIndex >= currentDeck.length) {
+    showResult();
+  } else {
+    showCard();
+  }
+}
+
+function showResult() {
+  document.getElementById('gameArea').style.display = 'none';
+  document.getElementById('resultArea').style.display = 'block';
+  const total = currentDeck.length;
+  const pct = Math.round(((scores[2]+scores[3])/total)*100);
+  document.getElementById('sWrong').textContent = scores[0];
+  document.getElementById('sHard').textContent = scores[1];
+  document.getElementById('sGood').textContent = scores[2];
+  document.getElementById('sEasy').textContent = scores[3];
+  const emojis = pct>=80?'🎉':pct>=60?'👍':'📚';
+  const titles = pct>=80?'Excelente!':pct>=60?'Bom trabalho!':'Continue estudando!';
+  const subs = pct>=80?`Você acertou ${pct}% — domínio incrível!`:pct>=60?`Você acertou ${pct}% — quase lá!`:`Você acertou ${pct}% — revise os cards e tente de novo.`;
+  document.getElementById('resultEmoji').textContent = emojis;
+  document.getElementById('resultTitle').textContent = titles;
+  document.getElementById('resultSub').textContent = subs;
+}
+
+function restartDeck() { startDeck(deckKey); }
+function goMenu() {
+  document.getElementById('resultArea').style.display = 'none';
+  document.getElementById('gameArea').style.display = 'none';
+  document.getElementById('menuArea').style.display = 'block';
+}
+</script>
+</body>
+</html>

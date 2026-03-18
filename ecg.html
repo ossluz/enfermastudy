@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FR02Y9XJX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FR02Y9XJX1');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECG Básico — EnfermaStudy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#f0f4f3;min-height:100vh}
+header{background:linear-gradient(135deg,#b71c1c,#c62828);color:#fff;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.hd{display:flex;align-items:center;gap:14px;padding:14px 20px}
+.hi{width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ht h1{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800}
+.ht p{font-size:.72rem;opacity:.8;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.bk{margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:10px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;text-decoration:none}
+main{max-width:900px;margin:0 auto;padding:20px 16px 60px}
+.hero{background:linear-gradient(135deg,#7f0000,#b71c1c);color:#fff;border-radius:16px;padding:24px;margin-bottom:20px;position:relative;overflow:hidden}
+.hero::after{content:'❤️';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:70px;opacity:.1}
+.hero h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;margin-bottom:6px}
+.hero p{font-size:.84rem;opacity:.9;line-height:1.6}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.nb{padding:8px 16px;border-radius:20px;border:2px solid #e0e0e0;background:#fff;font-family:'Nunito',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s}
+.nb.active,.nb:hover{border-color:#b71c1c;background:#b71c1c;color:#fff}
+.rhythm{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.08);overflow:hidden;border:1px solid rgba(0,0,0,.06);display:none}
+.rhythm.show{display:block}
+.rh{padding:18px 20px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:14px}
+.ri{font-size:2rem}
+.rt h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:#1a2332}
+.rt .sub{font-size:.75rem;color:#888;font-weight:600;margin-top:2px}
+.rb{padding:18px 20px}
+/* SVG ECG trace */
+.ecg-wrap{background:#0d1a0d;border-radius:10px;padding:10px;margin:12px 0;overflow:hidden}
+.ecg-wrap svg{width:100%;height:80px;display:block}
+.ecg-line{stroke:#00e676;stroke-width:2;fill:none}
+.grid-line{stroke:#1a3a1a;stroke-width:.5}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+@media(max-width:480px){.two{grid-template-columns:1fr}}
+.info{background:#f9f9f9;border-radius:10px;padding:12px 14px;font-size:.82rem;line-height:1.7}
+.info h4{font-weight:800;font-size:.86rem;margin-bottom:6px;color:#333}
+.info ul{padding-left:16px;color:#555}
+.alert-box{border-radius:10px;padding:12px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
+.ab-red{background:#ffebee;border-left:4px solid #ef5350;color:#b71c1c}
+.ab-green{background:#e8f5e9;border-left:4px solid #4caf50;color:#2e7d32}
+.ab-orange{background:#fff3e0;border-left:4px solid #ff9800;color:#e65100}
+.wave-guide{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.wg{background:#f5f5f5;border-radius:8px;padding:8px 12px;font-size:.78rem;font-weight:700;text-align:center}
+.wg span{display:block;font-size:1rem;margin-bottom:2px}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="hi">❤️</div>
+    <div class="ht"><h1>ECG Básico</h1><p>EnfermaStudy — Ritmos Cardíacos</p></div>
+    <a href="recursos.html" class="bk">← Recursos</a>
+  </div>
+</header>
+<main>
+  <div class="hero">
+    <h2>❤️ Interpretação de ECG Básico</h2>
+    <p>Conheça os principais ritmos cardíacos: traçado, como identificar e conduta de enfermagem. Clique em cada ritmo para ver os detalhes.</p>
+  </div>
+
+  <div class="nav">
+    <button class="nb active" onclick="show('sinusal',this)">💚 Ritmo Sinusal</button>
+    <button class="nb" onclick="show('bradi',this)">⬇️ Bradicardia</button>
+    <button class="nb" onclick="show('taqui',this)">⬆️ Taquicardia</button>
+    <button class="nb" onclick="show('fa',this)">〰️ Fibrilação A.</button>
+    <button class="nb" onclick="show('tv',this)">⚡ Taquicardia V.</button>
+    <button class="nb" onclick="show('fv',this)">🔴 Fibrilação V.</button>
+    <button class="nb" onclick="show('assistolia',this)">⬛ Assistolia</button>
+    <button class="nb" onclick="show('bloqueio',this)">🔲 Bloqueio AV</button>
+  </div>
+
+  <!-- RITMO SINUSAL -->
+  <div class="rhythm show" id="r-sinusal">
+    <div class="rh"><div class="ri">💚</div><div class="rt"><h3>Ritmo Sinusal Normal</h3><div class="sub">60–100 bpm · Regular · Ondas P normais</div></div></div>
+    <div class="rb">
+      <div class="ecg-wrap">
+        <svg viewBox="0 0 800 80"><line class="grid-line" x1="0" y1="40" x2="800" y2="40"/><polyline class="ecg-line" points="0,40 40,40 50,38 55,20 60,55 65,40 90,40 130,40 140,38 145,20 150,55 155,40 180,40 220,40 230,38 235,20 240,55 245,40 270,40 310,40 320,38 325,20 330,55 335,40 360,40 400,40 410,38 415,20 420,55 425,40 450,40 490,40 500,38 505,20 510,55 515,40 540,40 580,40 590,38 595,20 600,55 605,40 630,40 670,40 680,38 685,20 690,55 695,40 720,40 760,40 800,40"/></svg>
+      </div>
+      <div class="wave-guide">
+        <div class="wg"><span>P</span>Despolarização atrial</div>
+        <div class="wg"><span>QRS</span>Despolarização ventricular</div>
+        <div class="wg"><span>T</span>Repolarização ventricular</div>
+        <div class="wg"><span>PR</span>0,12–0,20s</div>
+        <div class="wg"><span>QRS</span>&lt;0,12s</div>
+      </div>
+      <div class="two">
+        <div class="info"><h4>✅ Características</h4><ul><li>FC: 60–100 bpm</li><li>Ritmo regular</li><li>Onda P antes de cada QRS</li><li>PR constante (0,12–0,20s)</li><li>QRS estreito (&lt;0,12s)</li></ul></div>
+        <div class="info"><h4>🩺 Conduta de Enfermagem</h4><ul><li>Monitoramento de rotina</li><li>Registrar FC e ritmo</li><li>Nenhuma intervenção urgente</li><li>Manter observação contínua</li></ul></div>
+      </div>
+      <div class="alert-box ab-green">💚 Ritmo normal. Paciente estável. Manter monitoramento de rotina conforme protocolo.</div>
+    </div>
+  </div>
+
+  <!-- BRADICARDIA -->
+  <div class="rhythm" id="r-bradi">
+    <div class="rh"><div class="ri">⬇️</div><div class="rt"><h3>Bradicardia Sinusal</h3><div class="sub">&lt;60 bpm · Regular · Pode ser sintomática</div></div></div>
+    <div class="rb">
+      <div class="ecg-wrap">
+        <svg viewBox="0 0 800 80"><line class="grid-line" x1="0" y1="40" x2="800" y2="40"/><polyline class="ecg-line" points="0,40 70,40 80,38 85,20 90,55 95,40 190,40 200,38 205,20 210,55 215,40 310,40 320,38 325,20 330,55 335,40 430,40 440,38 445,20 450,55 455,40 550,40 560,38 565,20 570,55 575,40 670,40 680,38 685,20 690,55 695,40 800,40"/></svg>
+      </div>
+      <div class="two">
+        <div class="info"><h4>🔍 Características</h4><ul><li>FC &lt; 60 bpm</li><li>Ritmo regular</li><li>Ondas P normais presentes</li><li>Causa: atletas, hipotireoidismo, medicamentos (betabloqueador, digital)</li></ul></div>
+        <div class="info"><h4>⚠️ Sintomas de Alarme</h4><ul><li>Hipotensão</li><li>Síncope ou tontura</li><li>Dispneia</li><li>Dor torácica</li><li>Rebaixamento do nível de consciência</li></ul></div>
+      </div>
+      <div class="alert-box ab-orange">⚠️ Se sintomática: posicionar em decúbito dorsal, O₂, acesso EV, comunicar médico. Atropina 0,5mg EV pode ser indicada. Se FC &lt;40 ou instabilidade: acionar emergência.</div>
+    </div>
+  </div>
+
+  <!-- TAQUICARDIA -->
+  <div class="rhythm" id="r-taqui">
+    <div class="rh"><div class="ri">⬆️</div><div class="rt"><h3>Taquicardia Sinusal</h3><div class="sub">&gt;100 bpm · Regular · QRS estreito</div></div></div>
+    <div class="rb">
+      <div class="ecg-wrap">
+        <svg viewBox="0 0 800 80"><line class="grid-line" x1="0" y1="40" x2="800" y2="40"/><polyline class="ecg-line" points="0,40 15,40 20,38 23,20 27,55 30,40 55,40 60,38 63,20 67,55 70,40 95,40 100,38 103,20 107,55 110,40 135,40 140,38 143,20 147,55 150,40 175,40 180,38 183,20 187,55 190,40 215,40 220,38 223,20 227,55 230,40 255,40 260,38 263,20 267,55 270,40 295,40 300,38 303,20 307,55 310,40 335,40 340,38 343,20 347,55 350,40 375,40 380,38 383,20 387,55 390,40"/></svg>
+      </div>
+      <div class="two">
+        <div class="info"><h4>🔍 Características</h4><ul><li>FC &gt; 100 bpm</li><li>Ritmo regular</li><li>QRS estreito</li><li>Causa: febre, dor, ansiedade, hipovolemia, sepse, TEP, tireotoxicose</li></ul></div>
+        <div class="info"><h4>🩺 Conduta</h4><ul><li>Identificar e tratar a CAUSA</li><li>Controlar dor e febre</li><li>Repor volume se hipovolemia</li><li>Verificar pressão e SpO₂</li><li>Comunicar se FC &gt;130 bpm</li></ul></div>
+      </div>
+      <div class="alert-box ab-orange">⚠️ Taquicardia sinusal é um SINTOMA, não uma doença. Identificar e tratar a causa subjacente é a conduta principal. FC &gt;150 com instabilidade = emergência.</div>
+    </div>
+  </div>
+
+  <!-- FIBRILAÇÃO ATRIAL -->
+  <div class="rhythm" id="r-fa">
+    <div class="rh"><div class="ri">〰️</div><div class="rt"><h3>Fibrilação Atrial (FA)</h3><div class="sub">Irregular · Sem ondas P · QRS estreito</div></div></div>
+    <div class="rb">
+      <div class="ecg-wrap">
+        <svg viewBox="0 0 800 80"><line class="grid-line" x1="0" y1="40" x2="800" y2="40"/><polyline class="ecg-line" points="0,40 5,38 8,42 12,39 15,41 18,40 22,22 26,55 30,40 35,39 38,41 42,40 46,39 50,42 55,40 58,22 62,55 66,40 70,39 74,42 78,40 82,39 86,41 90,40 95,22 99,55 103,40 107,39 112,42 116,40 120,39 124,41 130,40 135,22 139,55 143,40 147,39 150,41 155,40 159,39 163,42 168,40 174,22 178,55 182,40 187,39 190,42 195,40 199,39 203,41 207,40 213,22 217,55 221,40 225,39 230,42 234,40 238,39 242,41 248,40 252,22 256,55 260,40"/></svg>
+      </div>
+      <div class="two">
+        <div class="info"><h4>🔍 Características</h4><ul><li>Ausência de ondas P visíveis</li><li>Linha de base irregular (fibrilação)</li><li>Intervalo RR completamente irregular</li><li>QRS geralmente estreito</li><li>Causa: HAS, IC, hipertireoidismo, cirurgia cardíaca</li></ul></div>
+        <div class="info"><h4>⚠️ Riscos e Conduta</h4><ul><li>Risco de tromboembolismo (AVC)</li><li>Monitorar PA e FC frequentemente</li><li>Anticoagulação é frequente</li><li>FC alta + instabilidade = emergência</li><li>Registrar pulso irregular no prontuário</li></ul></div>
+      </div>
+      <div class="alert-box ab-red">🔴 FA com FC elevada + hipotensão + dor torácica = cardioversão elétrica urgente. Acionar médico e preparar material de emergência.</div>
+    </div>
+  </div>
+
+  <!-- TAQUICARDIA VENTRICULAR -->
+  <div class="rhythm" id="r-tv">
+    <div class="rh"><div class="ri">⚡</div><div class="rt"><h3>Taquicardia Ventricular (TV)</h3><div class="sub">QRS largo · &gt;100 bpm · POTENCIALMENTE GRAVE</div></div></div>
+    <div class="rb">
+      <div class="ecg-wrap">
+        <svg viewBox="0 0 800 80"><line class="grid-line" x1="0" y1="40" x2="800" y2="40"/><polyline class="ecg-line" points="0,40 20,40 25,10 35,65 45,40 65,40 70,10 80,65 90,40 110,40 115,10 125,65 135,40 155,40 160,10 170,65 180,40 200,40 205,10 215,65 225,40 245,40 250,10 260,65 270,40 290,40 295,10 305,65 315,40 335,40 340,10 350,65 360,40 380,40 385,10 395,65 405,40 425,40"/></svg>
+      </div>
+      <div class="two">
+        <div class="info"><h4>🔍 Características</h4><ul><li>FC &gt; 100 bpm (geralmente 150–250)</li><li>QRS largo e bizarro (&gt;0,12s)</li><li>Ritmo regular ou levemente irregular</li><li>Pode haver ondas P dissociadas</li><li>Causa: IAM, miocardiopatia, distúrbios eletrolíticos</li></ul></div>
+        <div class="info"><h4>🚨 Conduta Imediata</h4><ul><li>Verificar pulso IMEDIATAMENTE</li><li>Com pulso: acionar médico, O₂, acesso EV</li><li>Sem pulso: iniciar RCP — ritmo chocável</li><li>Amiodarona pode ser indicada</li><li>NÃO aguardar — conduta é urgente</li></ul></div>
+      </div>
+      <div class="alert-box ab-red">🔴 EMERGÊNCIA. TV sem pulso = RCP imediata + desfibrilação (ritmo chocável). TV com pulso + instabilidade hemodinâmica = cardioversão sincronizada. Acionar IMEDIATAMENTE.</div>
+    </div>
+  </div>
+
+  <!-- FIBRILAÇÃO VENTRICULAR -->
+  <div class="rhythm" id="r-fv">
+    <div class="rh"><div class="ri">🔴</div><div class="rt"><h3>Fibrilação Ventricular (FV)</h3><div class="sub">Caótico · Sem pulso · PCR — CHOCÁVEL</div></div></div>
+    <div class="rb">
+      <div class="ecg-wrap">
+        <svg viewBox="0 0 800 80"><line class="grid-line" x1="0" y1="40" x2="800" y2="40"/><polyline class="ecg-line" points="0,40 5,30 10,55 15,25 20,60 25,35 30,50 35,20 40,65 45,30 50,55 55,15 60,65 65,30 70,50 75,20 80,60 85,35 90,50 95,18 100,62 105,32 110,55 115,22 120,65 125,28 130,55 135,18 140,65 145,35 150,50 155,25 160,60 165,30 170,55 175,20 180,62 185,32 190,55 195,22 200,65 205,28 210,55 215,18 220,65 225,35 230,50 235,25 240,60 245,30 250,55 255,22 260,65 265,35 270,50 275,18 280,62 285,32 290,55 295,22 300,65"/></svg>
+      </div>
+      <div class="two">
+        <div class="info"><h4>🔍 Características</h4><ul><li>Traçado completamente caótico e irregular</li><li>Sem ondas P, QRS ou T identificáveis</li><li>SEM PULSO — parada cardiorrespiratória</li><li>Ritmo mais comum na PCR súbita em adultos</li></ul></div>
+        <div class="info"><h4>🚨 Protocolo PCR</h4><ul><li>1. Confirmar inconsciência e ausência de pulso</li><li>2. Chamar ajuda + acionar código azul</li><li>3. Iniciar RCP (30:2)</li><li>4. Desfibrilar assim que disponível</li><li>5. Adrenalina 1mg EV após 2º choque</li></ul></div>
+      </div>
+      <div class="alert-box ab-red">🔴 PCR — RITMO CHOCÁVEL. Desfibrilação imediata é a conduta de escolha. Cada minuto sem desfibrilação reduz 10% a chance de sobrevida. Compressões de qualidade são essenciais.</div>
+    </div>
+  </div>
+
+  <!-- ASSISTOLIA -->
+  <div class="rhythm" id="r-assistolia">
+    <div class="rh"><div class="ri">⬛</div><div class="rt"><h3>Assistolia</h3><div class="sub">Linha reta · Sem atividade elétrica · PCR — NÃO CHOCÁVEL</div></div></div>
+    <div class="rb">
+      <div class="ecg-wrap">
+        <svg viewBox="0 0 800 80"><line class="grid-line" x1="0" y1="40" x2="800" y2="40"/><polyline class="ecg-line" points="0,40 800,40"/></svg>
+      </div>
+      <div class="two">
+        <div class="info"><h4>🔍 Características</h4><ul><li>Linha isoelétrica (completamente reta)</li><li>Ausência total de atividade elétrica</li><li>Confirmar em 2 derivações antes de declarar</li><li>Verificar cabos e ganho do monitor</li><li>Pior prognóstico entre os ritmos de PCR</li></ul></div>
+        <div class="info"><h4>🚨 Protocolo</h4><ul><li>RCP de alta qualidade contínua</li><li>NÃO desfibrilar — ritmo não chocável</li><li>Adrenalina 1mg EV a cada 3–5 min</li><li>Identificar e tratar causas reversíveis (5H/5T)</li><li>Acesso EV/IO e via aérea avançada</li></ul></div>
+      </div>
+      <div class="alert-box ab-red">🔴 PCR — NÃO CHOCÁVEL. Manter RCP, adrenalina e buscar causas reversíveis. As 5H: hipóxia, hipovolemia, hidrogênio (acidose), hipo/hipercalemia, hipotermia. As 5T: tensão (pneumotórax), tamponamento, trombose (coronária/pulmonar), tóxicos, trauma.</div>
+    </div>
+  </div>
+
+  <!-- BLOQUEIO AV -->
+  <div class="rhythm" id="r-bloqueio">
+    <div class="rh"><div class="ri">🔲</div><div class="rt"><h3>Bloqueio Atrioventricular</h3><div class="sub">Graus I, II e III — Variam em gravidade</div></div></div>
+    <div class="rb">
+      <div class="two">
+        <div class="info"><h4>Bloqueio AV 1º Grau</h4><ul><li>Intervalo PR prolongado (&gt;0,20s)</li><li>Todas as ondas P conduzidas</li><li>Geralmente benigno</li><li>Pode ser fisiológico (atletas, vagotonia)</li></ul></div>
+        <div class="info"><h4>Bloqueio AV 2º Grau — Mobitz I</h4><ul><li>PR progressivamente mais longo</li><li>Até que um QRS é bloqueado (não conduzido)</li><li>Padrão: "P-P-P-QRS ausente"</li><li>Pode ser benigno, monitorar</li></ul></div>
+        <div class="info"><h4>Bloqueio AV 2º Grau — Mobitz II</h4><ul><li>PR constante seguido de QRS bloqueado</li><li>Mais grave que Mobitz I</li><li>Pode progredir para bloqueio total</li><li>Comunicar médico imediatamente</li></ul></div>
+        <div class="info"><h4>Bloqueio AV 3º Grau (Total)</h4><ul><li>Dissociação AV completa</li><li>Ondas P sem relação com QRS</li><li>FC ventricular 20–40 bpm (ritmo de escape)</li><li>EMERGÊNCIA — marca-passo indicado</li></ul></div>
+      </div>
+      <div class="alert-box ab-orange">⚠️ Bloqueio AV de 3º grau ou 2º grau Mobitz II com instabilidade hemodinâmica = emergência. Atropina e/ou marca-passo transcutâneo podem ser indicados. Comunicar médico urgentemente.</div>
+    </div>
+  </div>
+</main>
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.rhythm').forEach(r => r.classList.remove('show'));
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('active'));
+  document.getElementById('r-'+id).classList.add('show');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

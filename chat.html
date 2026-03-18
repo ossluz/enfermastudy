@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FR02Y9XJX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FR02Y9XJX1');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EnfermaStudy — Comunidade</title>
@@ -369,17 +377,13 @@ body { font-family: 'Segoe UI', sans-serif; background: var(--bg); height: 100vh
    Substitua os valores abaixo pelos do seu projeto!
    Você encontra em: Firebase Console → Configurações do projeto → Seus apps
 ══════════════════════════════════════════════ */
-const firebaseConfig = {
-  apiKey:            "AIzaSyAsw1hXAAGromYStvW3M7WINX6PJI5dfgk",
-  authDomain:        "enfermastudychat.firebaseapp.com",
-  databaseURL:       "https://enfermastudychat-default-rtdb.firebaseio.com",
-  projectId:         "enfermastudychat",
-  storageBucket:     "enfermastudychat.firebasestorage.app",
-  messagingSenderId: "215095827927",
-  appId:             "1:215095827927:web:c123069b2b9480ca4cff92"
-};
-
-firebase.initializeApp(firebaseConfig);
+// Configuração Firebase carregada de arquivo externo (fora do GitHub)
+// Arquivo: firebase-config.js (no .gitignore)
+if (typeof window.FIREBASE_CONFIG === 'undefined') {
+  document.body.innerHTML = '<div style="font-family:sans-serif;padding:40px;text-align:center;color:#c62828"><h2>⚙️ Configuração necessária</h2><p>Arquivo <strong>firebase-config.js</strong> não encontrado.<br>Copie <code>firebase-config.example.js</code> → renomeie → preencha suas credenciais.</p></div>';
+} else {
+  firebase.initializeApp(window.FIREBASE_CONFIG);
+}
 const auth = firebase.auth();
 const db   = firebase.database();
 
@@ -703,4 +707,7 @@ function escHtml(str) {
 </script>
 </body>
 </html>
+  <!-- Configuração Firebase (arquivo local, fora do GitHub) -->
+  <script src="firebase-config.js"></script>
+
 

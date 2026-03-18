@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FR02Y9XJX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FR02Y9XJX1');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EnfermaStudy — 70+ Procedimentos</title>
@@ -493,11 +501,11 @@ const procs = [
   tips:[{type:'alert',text:'🚨 NÃO reduzir a PA bruscamente no AVC agudo (salvo PAS >220 ou DAD >120 mmHg). Hipotensão piora o infarto.'},
        {type:'warn',text:'⚠️ NUNCA: deixar paciente desacompanhado · retardar TC · dar hipoglicemiante sem checar glicemia.'}]},
 
-  {id:35,cat:'Emergências',emoji:'😮',title:'Primeiros Socorros — Engasgo (Obstrução de VA)',sub:'Heimlich · Adulto · Criança · Lactente · Gestante',tags:['Emergência'],
+  {id:35,cat:'Emergências',emoji:'😮',title:'Primeiros Socorros — Engasgo (Obstrução de VA)',sub:'AHA 2025 · Golpes + Compressões · Adulto · Criança · Gestante',tags:['Emergência'],
   mats:['Sem materiais — técnica manual'],
   steps:[
     {t:'Avaliar a gravidade',d:'Engasgo LEVE: consegue tossir, falar, respirar → estimular a tossir. Engasgo GRAVE: não consegue tossir, falar ou respira com dificuldade → agir imediatamente.'},
-    {t:'Adulto consciente — Heimlich',d:'Posicionar atrás do paciente. Uma perna entre as dele. Punho fechado na região epigástrica (entre umbigo e processo xifoide). Outra mão sobre o punho. Compressões rápidas para dentro e para cima.'},
+    {t:'Adulto consciente — AHA 2025: 5+5',d:'NOVO protocolo AHA 2025: iniciar com 5 GOLPES NAS COSTAS (entre as escápulas, firmes) → depois 5 COMPRESSÕES ABDOMINAIS (punho entre umbigo e xifoide). Alternar ciclos de 5+5 até desobstruir ou inconsciência.'},
     {t:'Lactente (<1 ano)',d:'5 tapas nas costas (região interescapular) + 5 compressões torácicas (centro do tórax, 2 dedos). Alternar até desobstruir.'},
     {t:'Gestante ou obeso',d:'Compressões torácicas no centro do externo (como RCP) em vez de abdominal.'},
     {t:'Paciente inconsciente',d:'Deitar. Verificar na boca (dedo em gancho se visível). Iniciar RCP — cada vez que abrir a via aérea para ventilar, verificar se há corpo estranho visível.'}
@@ -633,14 +641,14 @@ renderProcs();
   <div class="proc-card" data-cat="emergencia" data-search="engasgo obstrucao via aerea manobra heimlich adulto crianca">
     <div class="proc-header" onclick="this.closest('.proc-card').classList.toggle('open')">
       <span class="proc-icon">🍽️</span>
-      <span class="proc-name">Desobstrução de Via Aérea (Engasgo / Manobra de Heimlich)</span>
+      <span class="proc-name">Desobstrução de Via Aérea — Engasgo (AHA 2025)</span>
       <span class="proc-tag">Emergência</span>
       <span class="toggle">▾</span>
     </div>
     <div class="proc-body">
       <div class="steps">
         <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Avaliar a gravidade</strong>Obstrução LEVE: paciente tosse, fala, respira → estimular a tossir com força. NÃO interferir.<br>Obstrução GRAVE: paciente não fala, não tosse efetivamente, cianose → AGIR IMEDIATAMENTE.</div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Adulto consciente — Manobra de Heimlich</strong>Posicionar-se atrás do paciente. Uma perna entre as pernas dele. Mão em punho entre umbigo e processo xifoide. Outra mão por cima. Compressões para dentro e para cima até desobstruir ou paciente perder consciência.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Adulto consciente — Protocolo AHA 2025 (atualizado)</strong><strong style="color:#c62828">🆕 MUDANÇA:</strong> Iniciar com <strong>5 golpes nas costas</strong> (região interescapular, firmes com a palma) → depois <strong>5 compressões abdominais</strong> (punho entre umbigo e xifoide, para dentro e para cima). Repetir ciclos de 5+5 até desobstruir ou inconsciência. <em>Antes o protocolo adulto iniciava direto com Heimlich — agora alinha-se ao padrão pediátrico.</em></div></div>
         <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Adulto inconsciente</strong>Deitar no chão. Iniciar RCP. A cada abertura de via aérea para ventilar: visualizar corpo estranho na boca → remover se visível. NUNCA fazer varredura às cegas com o dedo.</div></div>
         <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Lactente (&lt;1 ano)</strong>5 tapas nas costas (região interescapular) + 5 compressões torácicas. Alternados até desobstruir.</div></div>
       </div>

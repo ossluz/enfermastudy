@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FR02Y9XJX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FR02Y9XJX1');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cateteres Centrais — EnfermaStudy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#f0f4f3;min-height:100vh}
+header{background:linear-gradient(135deg,#0d47a1,#1565c0);color:#fff;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.hd{display:flex;align-items:center;gap:14px;padding:14px 20px}
+.hi{width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ht h1{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800}
+.ht p{font-size:.72rem;opacity:.8;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.bk{margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:10px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;text-decoration:none}
+main{max-width:900px;margin:0 auto;padding:20px 16px 60px}
+.hero{background:linear-gradient(135deg,#0d47a1,#1565c0);color:#fff;border-radius:16px;padding:24px;margin-bottom:20px;position:relative;overflow:hidden}
+.hero::after{content:'🩺';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:70px;opacity:.1}
+.hero h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;margin-bottom:6px}
+.hero p{font-size:.84rem;opacity:.9;line-height:1.6}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.nb{padding:9px 16px;border-radius:20px;border:2px solid #e0e0e0;background:#fff;font-family:'Nunito',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s}
+.nb.active,.nb:hover{border-color:#1565c0;background:#1565c0;color:#fff}
+.panel{display:none}
+.panel.show{display:block}
+.card{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.08);overflow:hidden;border:1px solid rgba(0,0,0,.06);margin-bottom:14px}
+.card-head{padding:18px 20px;display:flex;align-items:center;gap:14px;border-bottom:1px solid #f0f0f0}
+.ci{font-size:2rem}
+.ct h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:#1a2332}
+.ct .sub{font-size:.75rem;color:#888;font-weight:600;margin-top:2px}
+.card-body{padding:18px 20px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:10px 0}
+@media(max-width:560px){.two,.three{grid-template-columns:1fr}}
+.box{background:#f9f9f9;border-radius:10px;padding:13px}
+.box h4{font-size:.84rem;font-weight:800;margin-bottom:7px;color:#333}
+.box ul{padding-left:15px;font-size:.81rem;line-height:1.8;color:#555}
+.box p{font-size:.81rem;line-height:1.6;color:#555}
+.ib{border-radius:10px;padding:12px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
+.ib-red{background:#ffebee;border-left:4px solid #ef5350;color:#b71c1c}
+.ib-green{background:#e8f5e9;border-left:4px solid #4caf50;color:#2e7d32}
+.ib-blue{background:#e3f2fd;border-left:4px solid #2196f3;color:#0d47a1}
+.ib-orange{background:#fff3e0;border-left:4px solid #ff9800;color:#e65100}
+table{width:100%;border-collapse:collapse;font-size:.8rem;margin:10px 0}
+th{background:#1565c0;color:#fff;padding:9px 10px;text-align:left}
+td{padding:8px 10px;border-bottom:1px solid #eee}
+tr:hover td{background:#f9f9f9}
+.step{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start}
+.sn{width:26px;height:26px;background:#1565c0;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;flex-shrink:0;margin-top:1px}
+.sc{font-size:.83rem;line-height:1.6;color:#444}
+.sc strong{color:#1a2332}
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:10px 0}
+.comp-card{border-radius:12px;padding:14px;border:2px solid #e0e0e0}
+.comp-card h4{font-size:.85rem;font-weight:800;margin-bottom:8px}
+.comp-card ul{padding-left:14px;font-size:.78rem;line-height:1.8;color:#555}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.68rem;font-weight:800;margin-left:6px}
+.b-red{background:#ffcdd2;color:#b71c1c}
+.b-green{background:#c8e6c9;color:#1b5e20}
+.b-orange{background:#ffe0b2;color:#e65100}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="hi">🩺</div>
+    <div class="ht"><h1>Cateteres Centrais</h1><p>EnfermaStudy — PICC · CVC · Swan-Ganz</p></div>
+    <a href="recursos.html" class="bk">← Recursos</a>
+  </div>
+</header>
+<main>
+  <div class="hero">
+    <h2>🩺 Cateteres Vasculares Centrais</h2>
+    <p>PICC, CVC, Swan-Ganz e cateter de diálise — tipos, indicações, cuidados de enfermagem, manutenção e complicações. Conteúdo essencial para UTI e áreas críticas.</p>
+  </div>
+
+  <div class="nav">
+    <button class="nb active" onclick="show('geral',this)">📊 Comparativo</button>
+    <button class="nb" onclick="show('picc',this)">🔵 PICC</button>
+    <button class="nb" onclick="show('cvc',this)">🔴 CVC</button>
+    <button class="nb" onclick="show('swan',this)">🟡 Swan-Ganz</button>
+    <button class="nb" onclick="show('dialise',this)">🟢 Diálise</button>
+    <button class="nb" onclick="show('cuidados',this)">🩺 Cuidados Gerais</button>
+    <button class="nb" onclick="show('complic',this)">⚠️ Complicações</button>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div class="panel show" id="p-geral">
+    <div class="card">
+      <div class="card-head"><div class="ci">📊</div><div class="ct"><h3>Comparativo Geral dos Cateteres Centrais</h3><div class="sub">Tipos, características e indicações</div></div></div>
+      <div class="card-body">
+        <table>
+          <tr><th>Cateter</th><th>Acesso</th><th>Ponta</th><th>Permanência</th><th>Principal indicação</th></tr>
+          <tr><td><strong>PICC</strong></td><td>Veia periférica (basílica, cefálica, braquial)</td><td>Veia cava superior</td><td>Semanas a meses</td><td>ATB prolongado, quimioterapia, NPT</td></tr>
+          <tr><td><strong>CVC (não tunelizado)</strong></td><td>Veia central (jugular, subclávia, femoral)</td><td>Veia cava superior</td><td>Dias a semanas</td><td>UTI, drogas vasoativas, PVC</td></tr>
+          <tr><td><strong>CVC (tunelizado/Port)</strong></td><td>Tunelizado sob a pele → subclávia</td><td>Veia cava superior</td><td>Meses a anos</td><td>Quimioterapia longa, hemodiálise crônica</td></tr>
+          <tr><td><strong>Swan-Ganz (CAP)</strong></td><td>Jugular ou subclávia → câmaras cardíacas</td><td>Artéria pulmonar</td><td>Horas a dias</td><td>Monitorização hemodinâmica invasiva em UTI</td></tr>
+          <tr><td><strong>Cateter de Diálise</strong></td><td>Jugular interna (preferencial) ou femoral</td><td>Veia cava superior</td><td>Dias a semanas</td><td>Hemodiálise aguda / IRA</td></tr>
+        </table>
+        <div class="ib ib-blue">💡 <strong>Regra geral:</strong> Qualquer cateter de ponta central = cuidados com técnica estéril, curativo padronizado, flush com SF após cada uso e monitoramento diário de sinais de infecção.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PICC -->
+  <div class="panel" id="p-picc">
+    <div class="card">
+      <div class="card-head"><div class="ci">🔵</div><div class="ct"><h3>PICC — Cateter Central de Inserção Periférica</h3><div class="sub">Peripherally Inserted Central Catheter</div></div></div>
+      <div class="card-body">
+        <div class="two">
+          <div class="box"><h4>✅ Indicações</h4><ul>
+            <li>Antibioticoterapia prolongada (≥6 dias)</li>
+            <li>Nutrição parenteral total (NPT)</li>
+            <li>Quimioterapia em regime ambulatorial</li>
+            <li>Medicamentos vesicantes/irritantes</li>
+            <li>Acesso venoso periférico difícil</li>
+            <li>Terapia EV domiciliar</li>
+          </ul></div>
+          <div class="box"><h4>🚫 Contraindicações</h4><ul>
+            <li>Infecção ou lesão no local de inserção</li>
+            <li>Trombose venosa no membro escolhido</li>
+            <li>Coagulopatias graves</li>
+            <li>Cirurgia radical de mama ipsilateral</li>
+            <li>Linfedema no membro</li>
+          </ul></div>
+        </div>
+        <div class="ib ib-green">✅ Vantagens do PICC: menor risco de pneumotórax e hemotórax que o CVC, pode ser inserido pela enfermagem especializada, permite movimentação do paciente, permanência prolongada.</div>
+        <div class="box" style="margin:10px 0"><h4>📍 Locais de Inserção (preferência)</h4>
+          <ul style="columns:2;column-gap:20px">
+            <li>1ª opção: Veia basílica (braço direito)</li>
+            <li>2ª opção: Veia braquial</li>
+            <li>3ª opção: Veia cefálica</li>
+            <li>Em neonatos: couro cabeludo e safena</li>
+          </ul>
+        </div>
+        <h4 style="font-size:.88rem;font-weight:800;margin:12px 0 8px">🩺 Cuidados de Enfermagem com PICC</h4>
+        <div class="step"><div class="sn">1</div><div class="sc"><strong>Confirmação radiológica:</strong> a ponta do PICC deve ser confirmada por Raio-X antes da 1ª infusão. Ponta ideal: junção cavo-atrial (veia cava superior).</div></div>
+        <div class="step"><div class="sn">2</div><div class="sc"><strong>Curativo:</strong> película transparente estéril (Tegaderm) a cada 7 dias ou quando úmido/sujo/despegado. Anotar data da troca.</div></div>
+        <div class="step"><div class="sn">3</div><div class="sc"><strong>Flush:</strong> SF 0,9% 10 mL (seringa 10mL — pressão menor) antes e após cada infusão. Técnica SASH: SF → Antibiótico → SF → Heparina (se protocolo).</div></div>
+        <div class="step"><div class="sn">4</div><div class="sc"><strong>Oclusão do cateter:</strong> NUNCA forçar. Tentar flush com 0,9% suave. Se persistir, comunicar enfermeiro. Alteplase pode ser indicado pelo médico.</div></div>
+        <div class="step"><div class="sn">5</div><div class="sc"><strong>Monitorar diariamente:</strong> dor, eritema, edema, exsudato, febre, comprimento externo do cateter (migração). Registrar em prontuário.</div></div>
+        <div class="step"><div class="sn">6</div><div class="sc"><strong>Compatibilidade:</strong> verificar antes de misturar medicamentos. Usar lúmen correto em PICC de múltiplos lúmens.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CVC -->
+  <div class="panel" id="p-cvc">
+    <div class="card">
+      <div class="card-head"><div class="ci">🔴</div><div class="ct"><h3>CVC — Cateter Venoso Central</h3><div class="sub">Não tunelizado · Uso em UTI e emergências</div></div></div>
+      <div class="card-body">
+        <div class="two">
+          <div class="box"><h4>✅ Indicações</h4><ul>
+            <li>Drogas vasoativas (dopamina, noradrenalina)</li>
+            <li>Monitorização de PVC</li>
+            <li>NPT de curta duração</li>
+            <li>Sem acesso periférico viável</li>
+            <li>Hemodiálise de urgência</li>
+            <li>Infusão de múltiplos medicamentos</li>
+          </ul></div>
+          <div class="box"><h4>🔍 Locais de Inserção</h4><ul>
+            <li><strong>Jugular interna:</strong> 1ª opção em UTI — menor risco de pneumotórax</li>
+            <li><strong>Subclávia:</strong> melhor fixação, maior risco de pneumotórax</li>
+            <li><strong>Femoral:</strong> acesso rápido em emergências — maior risco de ITU e TVP</li>
+          </ul></div>
+        </div>
+        <h4 style="font-size:.88rem;font-weight:800;margin:12px 0 8px">🩺 Cuidados de Enfermagem com CVC</h4>
+        <div class="step"><div class="sn">1</div><div class="sc"><strong>Pós-inserção:</strong> Raio-X de tórax obrigatório para confirmar posição e descartar pneumotórax (inserção subclávia/jugular).</div></div>
+        <div class="step"><div class="sn">2</div><div class="sc"><strong>Curativo:</strong> gaze e esparadrapo estéril a cada 48–72h, ou película transparente a cada 7 dias. Clorexidina alcoólica 0,5% para limpeza do sítio.</div></div>
+        <div class="step"><div class="sn">3</div><div class="sc"><strong>PVC (Pressão Venosa Central):</strong> Normal: 8–12 cmH₂O. &lt;5 = hipovolemia. &gt;15 = sobrecarga ou IC. Medir sempre com o paciente em decúbito dorsal.</div></div>
+        <div class="step"><div class="sn">4</div><div class="sc"><strong>Manutenção dos lúmens:</strong> flush com SF 0,9% após cada uso. Tampar imediatamente. Não deixar torneira aberta.</div></div>
+        <div class="step"><div class="sn">5</div><div class="sc"><strong>Remoção:</strong> paciente em decúbito dorsal, Trendelenburg. Compressão no local por 5 min. Curativo estéril. Enviar ponta para cultura se suspeita de infecção (protocolo).</div></div>
+        <div class="ib ib-red">🔴 Embolia aérea: RISCO na manipulação do CVC. Manter patient sempre deitado durante trocas. Conectar e desconectar equipos rapidamente. Se embolia suspeita: Trendelenburg + decúbito lateral ESQUERDO + O₂ + acionar médico.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SWAN-GANZ -->
+  <div class="panel" id="p-swan">
+    <div class="card">
+      <div class="card-head"><div class="ci">🟡</div><div class="ct"><h3>Swan-Ganz — Cateter de Artéria Pulmonar (CAP)</h3><div class="sub">Monitorização hemodinâmica invasiva · Uso exclusivo em UTI</div></div></div>
+      <div class="card-body">
+        <div class="ib ib-orange">⚠️ O cateter de Swan-Ganz é inserido e interpretado pelo médico. O papel do técnico/enfermeiro é o cuidado, manutenção, monitoramento e reconhecimento de complicações.</div>
+        <div class="two">
+          <div class="box"><h4>📊 O que monitora</h4><ul>
+            <li>PVC (Pressão Venosa Central)</li>
+            <li>PAP (Pressão de Artéria Pulmonar)</li>
+            <li>PCWP (Pressão de oclusão / "wedge")</li>
+            <li>Débito cardíaco (método de termodiluição)</li>
+            <li>Saturação venosa mista (SvO₂)</li>
+          </ul></div>
+          <div class="box"><h4>✅ Indicações</h4><ul>
+            <li>Choque cardiogênico refratário</li>
+            <li>Insuficiência cardíaca grave</li>
+            <li>Diferenciação de SARA vs IC</li>
+            <li>Grandes cirurgias de alto risco</li>
+            <li>Monitorização pós-IAM</li>
+          </ul></div>
+        </div>
+        <h4 style="font-size:.88rem;font-weight:800;margin:12px 0 8px">🩺 Cuidados do Técnico/Enfermeiro</h4>
+        <div class="step"><div class="sn">1</div><div class="sc"><strong>Monitorar continuamente:</strong> traçado da PAP no monitor. Alteração do traçado pode indicar migração do cateter.</div></div>
+        <div class="step"><div class="sn">2</div><div class="sc"><strong>Balonete:</strong> NUNCA insuflar sem orientação médica. Insuflar lentamente com ar (1–1,5 mL máximo). Esvaziar após leitura. Balonete insuflado por tempo prolongado = infarto pulmonar.</div></div>
+        <div class="step"><div class="sn">3</div><div class="sc"><strong>Zeros e calibrações:</strong> sistema deve ser zerado a cada 8–12h e sempre que o paciente mudar de posição. Linha axilar média é o ponto de referência (4º espaço intercostal).</div></div>
+        <div class="step"><div class="sn">4</div><div class="sc"><strong>Observar:</strong> arritmias (cateter irritando o VD durante passagem), deslocamento (curva de PVC no lugar de PAP), rompimento do balonete (ausência de resistência ao insuflar).</div></div>
+        <div class="ib ib-red">🔴 Ruptura de artéria pulmonar: hemoptise súbita em paciente com Swan-Ganz = EMERGÊNCIA. Acionar médico imediatamente. Decúbito lateral no lado afetado. Preparar para broncoscopia de urgência.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIÁLISE -->
+  <div class="panel" id="p-dialise">
+    <div class="card">
+      <div class="card-head"><div class="ci">🟢</div><div class="ct"><h3>Cateter de Hemodiálise</h3><div class="sub">Acesso temporário para terapia renal substitutiva</div></div></div>
+      <div class="card-body">
+        <div class="two">
+          <div class="box"><h4>🔍 Características</h4><ul>
+            <li>Duplo lúmen: vermelho (arterial) e azul (venoso)</li>
+            <li>Calibre maior que CVC convencional</li>
+            <li>Locais: jugular interna (1ª opção) &gt; femoral &gt; subclávia</li>
+            <li>Subclávia é evitada (risco de estenose venosa)</li>
+            <li>Volume de preenchimento: registrado na tampa</li>
+          </ul></div>
+          <div class="box"><h4>⚠️ Cuidados Específicos</h4><ul>
+            <li>NUNCA usar para outras infusões (somente emergências)</li>
+            <li>Flush com heparina (volume do lúmen) após diálise</li>
+            <li>Tampar sempre com tampa estéril</li>
+            <li>Acessar apenas com técnica asséptica rigorosa</li>
+            <li>Registrar volume de heparina nos lúmens no prontuário</li>
+          </ul></div>
+        </div>
+        <div class="ib ib-blue">💡 O técnico de enfermagem NÃO realiza a sessão de hemodiálise, mas é responsável pelos cuidados do cateter entre as sessões: curativo, observação do sítio de inserção e flush com heparina (conforme protocolo).</div>
+        <table>
+          <tr><th>Parâmetro</th><th>Valor de Referência</th><th>Obs.</th></tr>
+          <tr><td>Débito urinário IRA</td><td>&lt;0,5 mL/kg/h</td><td>Indicativo de diálise se persistente</td></tr>
+          <tr><td>Creatinina grave</td><td>&gt;10 mg/dL</td><td>Associada a indicação de diálise</td></tr>
+          <tr><td>K⁺ para diálise urgente</td><td>&gt;6,5 mEq/L</td><td>Risco de PCR</td></tr>
+          <tr><td>pH para diálise</td><td>&lt;7,1 refratário</td><td>Acidose grave</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUIDADOS GERAIS -->
+  <div class="panel" id="p-cuidados">
+    <div class="card">
+      <div class="card-head"><div class="ci">🩺</div><div class="ct"><h3>Cuidados Gerais com Cateteres Centrais</h3><div class="sub">Bundle de prevenção de ICSRC</div></div></div>
+      <div class="card-body">
+        <div class="ib ib-blue">📌 ICSRC = Infecção da Corrente Sanguínea Relacionada ao Cateter. É uma das principais causas de mortalidade em UTI e pode ser prevenida com medidas simples e consistentes.</div>
+        <h4 style="font-size:.88rem;font-weight:800;margin:12px 0 8px">Bundle de Inserção (responsabilidade médica — técnico prepara e colabora)</h4>
+        <div class="step"><div class="sn">1</div><div class="sc">Higiene das mãos com água e sabão ou álcool gel</div></div>
+        <div class="step"><div class="sn">2</div><div class="sc">Barreira máxima: capote, luvas estéreis, máscara, gorro, campo estéril grande</div></div>
+        <div class="step"><div class="sn">3</div><div class="sc">Clorexidina alcoólica 0,5–2% para antissepsia da pele — aguardar secar completamente</div></div>
+        <div class="step"><div class="sn">4</div><div class="sc">Evitar acesso femoral sempre que possível (maior risco de infecção)</div></div>
+        <div class="step"><div class="sn">5</div><div class="sc">Remover cateter assim que não for mais necessário — avaliar diariamente</div></div>
+        <h4 style="font-size:.88rem;font-weight:800;margin:12px 0 8px">Bundle de Manutenção (técnico e enfermeiro)</h4>
+        <div class="two">
+          <div class="box"><h4>🧼 Curativo</h4><ul>
+            <li>Película transparente: troca a cada 7 dias</li>
+            <li>Gaze e fita: troca a cada 48–72h</li>
+            <li>Troca imediata se úmido, sujo ou despegado</li>
+            <li>Clorexidina alcoólica para limpeza do sítio</li>
+            <li>Anotar data e hora da troca</li>
+          </ul></div>
+          <div class="box"><h4>💧 Flush e Manutenção</h4><ul>
+            <li>SF 0,9% 10 mL em seringa 10mL após cada uso</li>
+            <li>Técnica SASH quando indicado</li>
+            <li>Tampar lúmen imediatamente após uso</li>
+            <li>Trocar equipos: a cada 96h (rotina) ou 24h (lipídios/sangue)</li>
+            <li>Verificar conexões: sem vazamentos, sem dobras</li>
+          </ul></div>
+        </div>
+        <h4 style="font-size:.88rem;font-weight:800;margin:12px 0 8px">👁️ Monitoramento Diário</h4>
+        <table>
+          <tr><th>O que avaliar</th><th>Normal</th><th>Ação se alterado</th></tr>
+          <tr><td>Sítio de inserção</td><td>Limpo, sem eritema/exsudato</td><td>Comunicar enfermeiro, trocar curativo</td></tr>
+          <tr><td>Comprimento externo (PICC)</td><td>Igual ao registrado na inserção</td><td>Migração — comunicar enfermeiro, não usar</td></tr>
+          <tr><td>Temperatura do paciente</td><td>&lt;37,8°C</td><td>Febre sem foco → suspeitar ICSRC</td></tr>
+          <tr><td>Permeabilidade</td><td>Flush sem resistência</td><td>NUNCA forçar — comunicar</td></tr>
+          <tr><td>Fixação</td><td>Firme, sem tração</td><td>Refixar com técnica estéril</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPLICAÇÕES -->
+  <div class="panel" id="p-complic">
+    <div class="card">
+      <div class="card-head"><div class="ci">⚠️</div><div class="ct"><h3>Complicações dos Cateteres Centrais</h3><div class="sub">Reconhecimento e conduta de enfermagem</div></div></div>
+      <div class="card-body">
+        <div class="comp-grid">
+          <div class="comp-card" style="border-color:#ef5350">
+            <h4>🔴 Pneumotórax <span class="badge b-red">Emergência</span></h4>
+            <ul>
+              <li>Causa: inserção CVC subclávia/jugular</li>
+              <li>Sinais: dispneia súbita, ausência de MV, hipoxemia</li>
+              <li>Conduta: acionar médico, O₂, preparar material para drenagem</li>
+            </ul>
+          </div>
+          <div class="comp-card" style="border-color:#ef5350">
+            <h4>🔴 Embolia Aérea <span class="badge b-red">Emergência</span></h4>
+            <ul>
+              <li>Causa: conexão aberta, troca de equipo</li>
+              <li>Sinais: dispneia, hipotensão, som de "roda d'água" no coração</li>
+              <li>Conduta: Trendelenburg + decúbito lateral E + O₂ 100%</li>
+            </ul>
+          </div>
+          <div class="comp-card" style="border-color:#ff9800">
+            <h4>🟠 ICSRC <span class="badge b-orange">Grave</span></h4>
+            <ul>
+              <li>Causa: quebra da técnica asséptica</li>
+              <li>Sinais: febre, calafrios, sinais locais de infecção</li>
+              <li>Conduta: comunicar, coletar hemoculturas, antibiótico</li>
+            </ul>
+          </div>
+          <div class="comp-card" style="border-color:#ff9800">
+            <h4>🟠 Trombose <span class="badge b-orange">Grave</span></h4>
+            <ul>
+              <li>Causa: coagulopatia, pouco flush, cateter longo</li>
+              <li>Sinais: edema no membro, resistência ao flush, dor</li>
+              <li>Conduta: não forçar, comunicar médico, ecodoppler</li>
+            </ul>
+          </div>
+          <div class="comp-card" style="border-color:#ffc107">
+            <h4>🟡 Oclusão do Cateter</h4>
+            <ul>
+              <li>Causa: coágulo, precipitação de medicamento, dobra</li>
+              <li>Sinais: resistência ou impossibilidade ao flush</li>
+              <li>Conduta: verificar dobras, não forçar, comunicar</li>
+            </ul>
+          </div>
+          <div class="comp-card" style="border-color:#ffc107">
+            <h4>🟡 Migração do Cateter</h4>
+            <ul>
+              <li>Causa: movimentação excessiva, fixação inadequada</li>
+              <li>Sinais: mudança no comprimento externo (PICC)</li>
+              <li>Conduta: NÃO usar, confirmar com Rx, comunicar</li>
+            </ul>
+          </div>
+          <div class="comp-card" style="border-color:#4caf50">
+            <h4>🟢 Flebite (PICC)</h4>
+            <ul>
+              <li>Causa: irritação mecânica ou química</li>
+              <li>Sinais: dor, eritema, edema ao longo da veia</li>
+              <li>Conduta: compressa morna, elevar o membro, avaliar remoção</li>
+            </ul>
+          </div>
+          <div class="comp-card" style="border-color:#4caf50">
+            <h4>🟢 Saída acidental</h4>
+            <ul>
+              <li>Causa: fixação inadequada, agitação do paciente</li>
+              <li>Sinais: cateter parcial ou totalmente exteriorizado</li>
+              <li>Conduta: comprimir sítio, curativi oclusivo, comunicar</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ib ib-red">🔴 Pneumotórax e embolia aérea são as complicações imediatas mais graves e exigem ação em segundos. O técnico de enfermagem deve reconhecê-las e acionar a equipe imediatamente.</div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('show'));
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('active'));
+  document.getElementById('p-' + id).classList.add('show');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

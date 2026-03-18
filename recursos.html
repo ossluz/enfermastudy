@@ -1,71 +1,126 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FR02Y9XJX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FR02Y9XJX1');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EnfermaStudy — Recursos Adicionais</title>
+<title>Recursos Extras — EnfermaStudy</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--teal:#00796b;--teal-dark:#004d40;--teal-light:#e0f2f1;--bg:#f0f4f3;--shadow:0 2px 12px rgba(0,0,0,0.08)}
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:#333;min-height:100vh}
-header{background:linear-gradient(135deg,#004d40 0%,#00796b 60%,#00897b 100%);color:#fff;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
-.header-top{display:flex;align-items:center;gap:12px;padding:12px 16px}
-.logo-icon{width:42px;height:42px;background:rgba(255,255,255,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.logo-text h1{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800}
-.logo-text p{font-size:0.68rem;opacity:0.8;text-transform:uppercase;font-weight:600;letter-spacing:1px}
-.back-btn{margin-left:auto;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:10px;padding:7px 14px;font-family:'Nunito',sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer;text-decoration:none;flex-shrink:0}
-main{max-width:960px;margin:0 auto;padding:24px 16px 60px}
-.hero{background:linear-gradient(135deg,var(--teal-dark),var(--teal));color:#fff;border-radius:20px;padding:30px 24px;margin-bottom:24px;position:relative;overflow:hidden}
-.hero::after{content:'📚';position:absolute;right:-10px;bottom:-20px;font-size:110px;opacity:0.07;line-height:1}
-.hero h2{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:800;margin-bottom:6px}
-.hero p{opacity:0.9;font-size:0.88rem;line-height:1.6;max-width:480px}
-.sec-title{font-size:0.95rem;font-weight:800;color:var(--teal-dark);margin:24px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--teal-light)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;margin-bottom:8px}
-a.rcard{background:#fff;border-radius:16px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.06);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s}
-a.rcard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.13)}
-.rcard-top{padding:18px 18px 12px;display:flex;gap:12px;align-items:flex-start}
-.rcard-icon{width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
-.rcard-info h3{font-size:0.92rem;font-weight:800;color:#1a2332;margin-bottom:3px}
-.rcard-info p{font-size:0.76rem;color:#666;line-height:1.5}
-.rcard-bot{padding:8px 18px 14px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #f0f0f0;margin-top:auto}
-.badge{font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--teal-light);color:var(--teal-dark)}
-.arr{color:var(--teal);font-size:1.1rem;font-weight:800}
-.info-note{background:#e8f5e9;border-radius:12px;padding:14px 18px;margin-bottom:20px;border-left:4px solid #4caf50;font-size:0.83rem;color:#2e7d32;line-height:1.6}
-footer{text-align:center;padding:20px;font-size:0.73rem;color:#aaa;border-top:1px solid #e0e0e0;margin-top:20px}
+body{font-family:'Nunito',sans-serif;background:#f0f4f3;min-height:100vh}
+header{background:linear-gradient(135deg,#ff6f00,#ffa000);color:#fff;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.hd{display:flex;align-items:center;gap:14px;padding:14px 20px}
+.hi{width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ht h1{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800}
+.ht p{font-size:.72rem;opacity:.8;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.bk{margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:10px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;text-decoration:none}
+main{max-width:900px;margin:0 auto;padding:24px 16px 60px}
+.hero{background:linear-gradient(135deg,#e65100,#ff6f00,#ffa000);color:#fff;border-radius:16px;padding:28px 24px;margin-bottom:24px;position:relative;overflow:hidden}
+.hero::after{content:'📚';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:80px;opacity:.12}
+.hero h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;margin-bottom:8px}
+.hero p{font-size:.88rem;opacity:.9;line-height:1.6}
+.sec-title{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#888;margin:20px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+a.card{border-radius:16px;padding:18px 14px;color:#fff;text-decoration:none;text-align:center;display:block;transition:transform .15s,box-shadow .15s}
+a.card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.ci{font-size:2rem;display:block;margin-bottom:8px}
+.cn{display:block;font-weight:800;font-size:.86rem}
+.cd{display:block;font-size:.71rem;opacity:.85;margin-top:3px;line-height:1.4}
+a.home{background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);color:#e65100;border-radius:12px;padding:12px 18px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:.85rem;margin-bottom:4px}
 </style>
 </head>
 <body>
 <header>
-  <div class="header-top">
-    <div class="logo-icon">🩺</div>
-    <div class="logo-text"><h1>EnfermaStudy</h1><p>Hub de Recursos</p></div>
-    <a href="index.html" class="back-btn">← App Principal</a>
+  <div class="hd">
+    <div class="hi">🗂️</div>
+    <div class="ht"><h1>Recursos Extras</h1><p>EnfermaStudy — Hub</p></div>
+    <a href="index.html" class="bk">← App Principal</a>
   </div>
 </header>
 <main>
   <div class="hero">
-    <h2>📚 Recursos Adicionais</h2>
-    <p>Materiais complementares de estudo para Técnico de Enfermagem. Tudo gratuito e offline.</p>
-  </div>
-  <div class="info-note">✅ Todos os recursos funcionam offline após o primeiro acesso. Adicione à tela inicial para acesso rápido!</div>
-
-  <div class="sec-title">🏠 Plataforma Principal</div>
-  <div class="grid">
-    <a href="index.html" class="rcard"><div class="rcard-top"><div class="rcard-icon" style="background:#e0f2f1">🩺</div><div class="rcard-info"><h3>EnfermaStudy — App Principal</h3><p>Prioridades, procedimentos, doenças, exercícios, glossário e ferramentas clínicas.</p></div></div><div class="rcard-bot"><span class="badge">PWA · Offline</span><span class="arr">→</span></div></a>
-    <a href="chat.html" class="rcard"><div class="rcard-top"><div class="rcard-icon" style="background:#e8f5e9">💬</div><div class="rcard-info"><h3>Comunidade EnfermaStudy</h3><p>Chat em tempo real com técnicos e estudantes. Login com Google.</p></div></div><div class="rcard-bot"><span class="badge">Firebase · Online</span><span class="arr">→</span></div></a>
+    <h2>🗂️ Hub de Recursos</h2>
+    <p>Todos os recursos extras do EnfermaStudy em um só lugar. Offline, gratuito e sempre à mão.</p>
+    <a href="index.html" class="home" style="margin-top:14px;background:rgba(255,255,255,.25)">🩺 Ir para o App Principal</a>
   </div>
 
-  <div class="sec-title">🔧 Recursos de Estudo Extras</div>
+  <div class="sec-title">📚 Conteúdo Clínico</div>
   <div class="grid">
-    <a href="jelco.html" class="rcard"><div class="rcard-top"><div class="rcard-icon" style="background:#e3f2fd">💉</div><div class="rcard-info"><h3>Guia de Calibres de Jelco</h3><p>26G ao 14G — cores, fluxo, indicações clínicas e dicas de punção.</p></div></div><div class="rcard-bot"><span class="badge">Interativo · Offline</span><span class="arr">→</span></div></a>
-    <a href="procedimentos.html" class="rcard"><div class="rcard-top"><div class="rcard-icon" style="background:#fff3e0">📋</div><div class="rcard-info"><h3>70+ Procedimentos de Enfermagem</h3><p>Passo a passo detalhado com materiais e alertas de segurança.</p></div></div><div class="rcard-bot"><span class="badge">70+ procedimentos</span><span class="arr">→</span></div></a>
-    <a href="diluicoes.html" class="rcard"><div class="rcard-top"><div class="rcard-icon" style="background:#fce4ec">💊</div><div class="rcard-info"><h3>Protocolo de Diluições</h3><p>60+ medicamentos: dose, diluição, via, velocidade e cuidados críticos.</p></div></div><div class="rcard-bot"><span class="badge">60+ medicamentos</span><span class="arr">→</span></div></a>
-    <a href="exames.html" class="rcard"><div class="rcard-top"><div class="rcard-icon" style="background:#e8eaf6">🔬</div><div class="rcard-info"><h3>Exames Diagnósticos</h3><p>Raio-X, TC, RM, Ultrassom e mais — preparo e papel do técnico.</p></div></div><div class="rcard-bot"><span class="badge">9 exames</span><span class="arr">→</span></div></a>
-    <a href="sistemas.html" class="rcard"><div class="rcard-top"><div class="rcard-icon" style="background:#f3e5f5">🫀</div><div class="rcard-info"><h3>Sistemas do Corpo Humano</h3><p>12 sistemas com diagramas, funções e relação com a enfermagem.</p></div></div><div class="rcard-bot"><span class="badge">12 sistemas</span><span class="arr">→</span></div></a>
-    <a href="fichas.html" class="rcard"><div class="rcard-top"><div class="rcard-icon" style="background:#fffde7">📄</div><div class="rcard-info"><h3>Fichas e Checklists</h3><p>Modelos prontos: checklist de plantão, controle de materiais e registros.</p></div></div><div class="rcard-bot"><span class="badge">Prontos para usar</span><span class="arr">→</span></div></a>
+    <a href="procedimentos.html" class="card" style="background:linear-gradient(135deg,#1565c0,#1976d2)">
+      <span class="ci">💉</span><span class="cn">Procedimentos</span><span class="cd">20+ passo a passo · Busca · SVG</span>
+    </a>
+    <a href="diluicoes.html" class="card" style="background:linear-gradient(135deg,#6a1b9a,#8e24aa)">
+      <span class="ci">🧪</span><span class="cn">Diluições</span><span class="cd">Emergências · Protocolos</span>
+    </a>
+    <a href="sistemas.html" class="card" style="background:linear-gradient(135deg,#bf360c,#e64a19)">
+      <span class="ci">🫀</span><span class="cn">Sistemas do Corpo</span><span class="cd">10 sistemas · Anatomia</span>
+    </a>
+    <a href="exames.html" class="card" style="background:linear-gradient(135deg,#00695c,#00897b)">
+      <span class="ci">🔬</span><span class="cn">Exames Diagnósticos</span><span class="cd">Preparo · Papel do técnico</span>
+    </a>
+    <a href="ecg.html" class="card" style="background:linear-gradient(135deg,#b71c1c,#c62828)">
+      <span class="ci">❤️</span><span class="cn">ECG Básico</span><span class="cd">8 ritmos · Traçados SVG</span>
+    </a>
+    <a href="compatibilidade.html" class="card" style="background:linear-gradient(135deg,#1a237e,#283593)">
+      <span class="ci">💊</span><span class="cn">Compatibilidade EV</span><span class="cd">20 medicamentos · Tabela</span>
+    </a>
   </div>
+
+  <div class="sec-title">🔬 Ferramentas Clínicas</div>
+  <div class="grid">
+    <a href="gasometria.html" class="card" style="background:linear-gradient(135deg,#4a148c,#6a1b9a)">
+      <span class="ci">🫁</span><span class="cn">Gasometria</span><span class="cd">Interpretador + Balanço Hídrico</span>
+    </a>
+    <a href="fichas.html" class="card" style="background:linear-gradient(135deg,#37474f,#546e7a)">
+      <span class="ci">📋</span><span class="cn">Fichas e Checklists</span><span class="cd">Carro emergência · SVD · SV</span>
+    </a>
+    <a href="cronometro.html" class="card" style="background:linear-gradient(135deg,#1a2332,#2a3a52)">
+      <span class="ci">⏱️</span><span class="cn">Cronômetro Plantão</span><span class="cd">Timer · Medicação · Marcadores</span>
+    </a>
+    <a href="jelco.html" class="card" style="background:linear-gradient(135deg,#558b2f,#689f38)">
+      <span class="ci">🩸</span><span class="cn">Calibres de Jelco</span><span class="cd">26G→14G · Cores · Fluxos</span>
+    </a>
+  </div>
+
+  <div class="sec-title">🎓 Estudo e Concursos</div>
+  <div class="grid">
+    <a href="flashcards.html" class="card" style="background:linear-gradient(135deg,#6a1b9a,#8e24aa)">
+      <span class="ci">🃏</span><span class="cn">Flashcards</span><span class="cd">85 cards · 6 categorias</span>
+    </a>
+    <a href="legislacao.html" class="card" style="background:linear-gradient(135deg,#37474f,#455a64)">
+      <span class="ci">⚖️</span><span class="cn">Legislação e Ética</span><span class="cd">COFEN · Lei 7498 · Bioética</span>
+    </a>
+  </div>
+
+  <div class="sec-title">🏥 Clínica Especializada</div>
+  <div class="grid">
+    <a href="cateteres.html" class="card" style="background:linear-gradient(135deg,#0d47a1,#1565c0)">
+      <span class="ci">🩺</span><span class="cn">Cateteres Centrais</span><span class="cd">PICC · CVC · Swan-Ganz · Diálise</span>
+    </a>
+  </div>
+
+  <div class="sec-title">🖨️ Estudo e Impressão</div>
+  <div class="grid">
+    <a href="resumos.html" class="card" style="background:linear-gradient(135deg,#004d40,#00796b)">
+      <span class="ci">🖨️</span><span class="cn">Resumos para Impressão</span><span class="cd">8 fichas A4 · Sinais Vitais · Glasgow · Braden</span>
+    </a>
+  </div>
+
+  <div class="sec-title">💬 Comunidade</div>
+  <div class="grid">
+    <a href="chat.html" class="card" style="background:linear-gradient(135deg,#004d40,#00796b)">
+      <span class="ci">💬</span><span class="cn">Chat Comunitário</span><span class="cd">Firebase · Login Google</span>
+    </a>
+  </div>
+
 </main>
-<footer>EnfermaStudy · Criado por Saieso Seraos · 2026 · Material exclusivamente educativo</footer>
 </body>
 </html>

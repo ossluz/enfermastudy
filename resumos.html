@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FR02Y9XJX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FR02Y9XJX1');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumos para Impressão — EnfermaStudy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* ── TELA ── */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#f0f4f3;min-height:100vh}
+header{background:linear-gradient(135deg,#004d40,#00796b);color:#fff;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.hd{display:flex;align-items:center;gap:14px;padding:14px 20px}
+.hi{width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ht h1{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800}
+.ht p{font-size:.72rem;opacity:.8;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.bk{margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:10px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;text-decoration:none}
+main{max-width:960px;margin:0 auto;padding:20px 16px 60px}
+.hero{background:linear-gradient(135deg,#004d40,#00796b);color:#fff;border-radius:16px;padding:24px;margin-bottom:20px;position:relative;overflow:hidden}
+.hero::after{content:'🖨️';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:70px;opacity:.1}
+.hero h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;margin-bottom:6px}
+.hero p{font-size:.84rem;opacity:.9;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:24px}
+.rc{background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.07);overflow:hidden;border:1px solid rgba(0,0,0,.06)}
+.rc-head{padding:14px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f0f0f0}
+.rc-ico{font-size:1.6rem}
+.rc-info h3{font-size:.88rem;font-weight:800;color:#1a2332}
+.rc-info small{font-size:.7rem;color:#888}
+.rc-body{padding:14px 16px}
+.rc-body ul{padding-left:14px;font-size:.78rem;line-height:1.9;color:#555}
+.rc-body ul li{margin-bottom:1px}
+.print-btn{display:block;width:100%;margin-top:12px;padding:10px;background:linear-gradient(135deg,#004d40,#00796b);color:#fff;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;text-align:center}
+.print-btn:hover{opacity:.9}
+.ib{border-radius:10px;padding:12px 14px;font-size:.82rem;line-height:1.6;margin-bottom:18px;background:#e0f2f1;border-left:4px solid #00796b;color:#004d40}
+
+/* ── IMPRESSÃO ── */
+.print-area{display:none}
+
+@media print {
+  header, main > .hero, main > .ib, main > .grid, .print-btn, .no-print { display:none !important; }
+  body { background:#fff; font-size:10pt; }
+  .print-area { display:block !important; }
+  .page { page-break-after: always; padding:8mm; font-family:'Nunito',sans-serif; }
+  .page:last-child { page-break-after: avoid; }
+  .p-title { font-size:14pt; font-weight:900; color:#004d40; border-bottom:2px solid #004d40; padding-bottom:4pt; margin-bottom:8pt; display:flex; align-items:center; gap:6pt; }
+  .p-subtitle { font-size:8pt; color:#666; margin-bottom:10pt; }
+  .p-grid { display:grid; grid-template-columns:1fr 1fr; gap:6pt; margin-bottom:8pt; }
+  .p-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:6pt; margin-bottom:8pt; }
+  .p-box { border:1px solid #ccc; border-radius:4pt; padding:6pt 8pt; }
+  .p-box h4 { font-size:8pt; font-weight:900; color:#004d40; margin-bottom:4pt; border-bottom:1px solid #e0e0e0; padding-bottom:2pt; }
+  .p-box ul { padding-left:10pt; font-size:7.5pt; line-height:1.7; color:#333; }
+  .p-box table { width:100%; border-collapse:collapse; font-size:7pt; }
+  .p-box table th { background:#004d40; color:#fff; padding:3pt 4pt; text-align:left; }
+  .p-box table td { padding:3pt 4pt; border-bottom:1px solid #eee; }
+  .p-box table tr:nth-child(even) td { background:#f9f9f9; }
+  .p-full { border:1px solid #ccc; border-radius:4pt; padding:6pt 8pt; margin-bottom:6pt; }
+  .p-full h4 { font-size:8pt; font-weight:900; color:#004d40; margin-bottom:4pt; }
+  .p-full table { width:100%; border-collapse:collapse; font-size:7pt; }
+  .p-full table th { background:#004d40; color:#fff; padding:3pt 4pt; text-align:left; }
+  .p-full table td { padding:3pt 4pt; border-bottom:1px solid #eee; }
+  .p-row { display:flex; gap:6pt; margin-bottom:6pt; }
+  .p-row > * { flex:1; }
+  .tag-red { background:#ffebee; color:#b71c1c; padding:1pt 4pt; border-radius:3pt; font-size:6.5pt; font-weight:700; }
+  .tag-green { background:#e8f5e9; color:#2e7d32; padding:1pt 4pt; border-radius:3pt; font-size:6.5pt; font-weight:700; }
+  .tag-orange { background:#fff3e0; color:#e65100; padding:1pt 4pt; border-radius:3pt; font-size:6.5pt; font-weight:700; }
+  .footer-print { text-align:center; font-size:6.5pt; color:#aaa; border-top:1px solid #eee; padding-top:4pt; margin-top:8pt; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="hi">🖨️</div>
+    <div class="ht"><h1>Resumos para Impressão</h1><p>EnfermaStudy — Fichas A4</p></div>
+    <a href="recursos.html" class="bk">← Recursos</a>
+  </div>
+</header>
+<main>
+  <div class="hero">
+    <h2>🖨️ Resumos para Impressão</h2>
+    <p>Fichas compactas e formatadas para imprimir em A4. Ideais para colar na porta do armário, na pasta do estágio ou revisar rapidamente antes da prova.</p>
+  </div>
+
+  <div class="ib">💡 Clique em <strong>"Imprimir"</strong> em qualquer ficha para abrir a janela de impressão já formatada para A4. Recomendado: imprimir em <strong>paisagem</strong> para fichas com tabelas largas.</div>
+
+  <div class="grid">
+    <div class="rc">
+      <div class="rc-head"><div class="rc-ico">❤️</div><div class="rc-info"><h3>Sinais Vitais</h3><small>Valores normais e alertas</small></div></div>
+      <div class="rc-body">
+        <ul>
+          <li>PA normal, alerta e crítico</li>
+          <li>FC, FR, Temperatura, SpO₂</li>
+          <li>Glicemia e diurese</li>
+          <li>Glasgow e EVA</li>
+        </ul>
+        <button class="print-btn" onclick="printPage('sv')">🖨️ Imprimir Ficha</button>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="rc-head"><div class="rc-ico">🧠</div><div class="rc-info"><h3>Escala de Glasgow</h3><small>Avaliação neurológica completa</small></div></div>
+      <div class="rc-body">
+        <ul>
+          <li>Abertura ocular (1–4)</li>
+          <li>Resposta verbal (1–5)</li>
+          <li>Resposta motora (1–6)</li>
+          <li>Interpretação e conduta</li>
+        </ul>
+        <button class="print-btn" onclick="printPage('glasgow')">🖨️ Imprimir Ficha</button>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="rc-head"><div class="rc-ico">🩹</div><div class="rc-info"><h3>Escala de Braden</h3><small>Risco de lesão por pressão</small></div></div>
+      <div class="rc-body">
+        <ul>
+          <li>6 domínios com pontuação</li>
+          <li>Ponto de corte e classificação</li>
+          <li>Proeminências ósseas</li>
+          <li>Medidas preventivas</li>
+        </ul>
+        <button class="print-btn" onclick="printPage('braden')">🖨️ Imprimir Ficha</button>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="rc-head"><div class="rc-ico">💉</div><div class="rc-info"><h3>Calendário Vacinal 2024</h3><small>PNI — Nascimento ao idoso</small></div></div>
+      <div class="rc-body">
+        <ul>
+          <li>Vacinas do nascimento</li>
+          <li>Criança, adolescente, adulto</li>
+          <li>Gestante e idoso</li>
+          <li>Intervalos e doses</li>
+        </ul>
+        <button class="print-btn" onclick="printPage('vacinas')">🖨️ Imprimir Ficha</button>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="rc-head"><div class="rc-ico">🚨</div><div class="rc-info"><h3>PCR e RCP</h3><small>Protocolo BLS — 5 ritmos</small></div></div>
+      <div class="rc-body">
+        <ul>
+          <li>Sequência C-A-B</li>
+          <li>FV/TV (chocável) vs AESP/Assistolia</li>
+          <li>Energia de desfibrilação</li>
+          <li>Medicamentos na PCR</li>
+        </ul>
+        <button class="print-btn" onclick="printPage('pcr')">🖨️ Imprimir Ficha</button>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="rc-head"><div class="rc-ico">💊</div><div class="rc-info"><h3>5 Certos + Diluições</h3><small>Medicamentos + emergência</small></div></div>
+      <div class="rc-body">
+        <ul>
+          <li>Os 7 certos da medicação</li>
+          <li>Vias de administração</li>
+          <li>Diluições de emergência</li>
+          <li>Antídotos principais</li>
+        </ul>
+        <button class="print-btn" onclick="printPage('med')">🖨️ Imprimir Ficha</button>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="rc-head"><div class="rc-ico">🏥</div><div class="rc-info"><h3>Carro de Emergência</h3><small>Checklist completo</small></div></div>
+      <div class="rc-body">
+        <ul>
+          <li>Medicamentos obrigatórios</li>
+          <li>Equipamentos essenciais</li>
+          <li>Verificação do lacre</li>
+          <li>Frequência de checagem</li>
+        </ul>
+        <button class="print-btn" onclick="printPage('carro')">🖨️ Imprimir Ficha</button>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="rc-head"><div class="rc-ico">⚖️</div><div class="rc-info"><h3>Legislação Rápida</h3><small>COFEN · Lei 7498 · Ética</small></div></div>
+      <div class="rc-body">
+        <ul>
+          <li>Atribuições por categoria</li>
+          <li>Bioética — 4 princípios</li>
+          <li>Penalidades do COFEN</li>
+          <li>Tipos de erro profissional</li>
+        </ul>
+        <button class="print-btn" onclick="printPage('leg')">🖨️ Imprimir Ficha</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PÁGINAS DE IMPRESSÃO — ocultas na tela, visíveis ao imprimir -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="print-area" id="print-sv">
+<div class="page">
+  <div class="p-title">❤️ Sinais Vitais — Valores de Referência (Adulto)</div>
+  <div class="p-subtitle">EnfermaStudy v3.0 · enfermastudy.web.app · Saieso Seraos 2026</div>
+  <div class="p-grid-3">
+    <div class="p-box">
+      <h4>🩸 Pressão Arterial</h4>
+      <table><tr><th>Classificação</th><th>PA (mmHg)</th></tr>
+      <tr><td>Ótima</td><td>&lt;120/80</td></tr>
+      <tr><td>Normal ✅</td><td>&lt;120/80</td></tr>
+      <tr><td>⚠️ Pré-hipertensão (novo 2025)</td><td>120–139/80–89</td></tr>
+      <tr><td>HAS grau 1</td><td>140–159/90–99</td></tr>
+      <tr><td>HAS grau 2</td><td>160–179/100–109</td></tr>
+      <tr><td>HAS grau 3</td><td>≥180/110</td></tr>
+      <tr><td>Hipotensão</td><td>&lt;90/60</td></tr></table>
+    </div>
+    <div class="p-box">
+      <h4>💓 Frequência Cardíaca</h4>
+      <table><tr><th>Classificação</th><th>bpm</th></tr>
+      <tr><td>Bradicardia grave</td><td>&lt;40</td></tr>
+      <tr><td>Bradicardia</td><td>40–59</td></tr>
+      <tr><td>Normal</td><td>60–100</td></tr>
+      <tr><td>Taquicardia</td><td>101–130</td></tr>
+      <tr><td>Taquicardia grave</td><td>&gt;130</td></tr></table>
+      <h4 style="margin-top:6pt">🫁 Frequência Respiratória</h4>
+      <table><tr><th>Classificação</th><th>irpm</th></tr>
+      <tr><td>Bradipneia</td><td>&lt;12</td></tr>
+      <tr><td>Normal</td><td>12–20</td></tr>
+      <tr><td>Taquipneia</td><td>&gt;20</td></tr>
+      <tr><td>Crítico</td><td>&gt;30</td></tr></table>
+    </div>
+    <div class="p-box">
+      <h4>🌡️ Temperatura</h4>
+      <table><tr><th>Classificação</th><th>°C</th></tr>
+      <tr><td>Hipotermia grave</td><td>&lt;35,0</td></tr>
+      <tr><td>Hipotermia</td><td>35,0–35,9</td></tr>
+      <tr><td>Normal</td><td>36,0–37,5</td></tr>
+      <tr><td>Febrícula</td><td>37,6–37,9</td></tr>
+      <tr><td>Febre</td><td>38,0–38,9</td></tr>
+      <tr><td>Febre alta</td><td>39,0–40,0</td></tr>
+      <tr><td>Hipertermia</td><td>&gt;40,0</td></tr></table>
+    </div>
+  </div>
+  <div class="p-grid">
+    <div class="p-box">
+      <h4>🫀 SpO₂ e Oxigenação</h4>
+      <table><tr><th>Classificação</th><th>SpO₂ %</th></tr>
+      <tr><td>Normal</td><td>95–100%</td></tr>
+      <tr><td>Atenção</td><td>90–94%</td></tr>
+      <tr><td>Hipoxemia grave 🔴</td><td>&lt;90%</td></tr></table>
+      <h4 style="margin-top:6pt">💉 Glicemia Capilar</h4>
+      <table><tr><th>Classificação</th><th>mg/dL</th></tr>
+      <tr><td>Hipoglicemia grave 🔴</td><td>&lt;45</td></tr>
+      <tr><td>Hipoglicemia</td><td>45–69</td></tr>
+      <tr><td>Normal (jejum)</td><td>70–99</td></tr>
+      <tr><td>Pré-diabetes</td><td>100–125</td></tr>
+      <tr><td>Diabetes</td><td>≥126</td></tr>
+      <tr><td>Hiperglicemia grave</td><td>&gt;400</td></tr></table>
+    </div>
+    <div class="p-box">
+      <h4>💧 Diurese e Parâmetros</h4>
+      <table><tr><th>Parâmetro</th><th>Valor</th></tr>
+      <tr><td>Diurese normal</td><td>0,5–1 mL/kg/h</td></tr>
+      <tr><td>Oligúria ⚠️</td><td>&lt;0,5 mL/kg/h</td></tr>
+      <tr><td>Anúria 🔴</td><td>&lt;100 mL/24h</td></tr>
+      <tr><td>Glasgow normal</td><td>15 pts</td></tr>
+      <tr><td>Glasgow coma</td><td>≤8 pts</td></tr>
+      <tr><td>EVA leve</td><td>1–3</td></tr>
+      <tr><td>EVA moderada</td><td>4–6</td></tr>
+      <tr><td>EVA intensa 🔴</td><td>7–10</td></tr></table>
+    </div>
+  </div>
+  <div class="footer-print">EnfermaStudy v3.2 · Material educativo · Saieso Seraos (Oseias Soares da Silva Luz) · 2026</div>
+</div>
+</div>
+
+<div class="print-area" id="print-glasgow">
+<div class="page">
+  <div class="p-title">🧠 Escala de Coma de Glasgow</div>
+  <div class="p-subtitle">EnfermaStudy v3.0 · Avaliação do nível de consciência</div>
+  <div class="p-row">
+    <div class="p-box">
+      <h4>👁️ Abertura Ocular (O) — máx 4</h4>
+      <table><tr><th>Pts</th><th>Resposta</th></tr>
+      <tr><td>4</td><td>Espontânea</td></tr>
+      <tr><td>3</td><td>Ao chamado (estímulo verbal)</td></tr>
+      <tr><td>2</td><td>À dor (estímulo doloroso)</td></tr>
+      <tr><td>1</td><td>Ausente</td></tr></table>
+    </div>
+    <div class="p-box">
+      <h4>🗣️ Resposta Verbal (V) — máx 5</h4>
+      <table><tr><th>Pts</th><th>Resposta</th></tr>
+      <tr><td>5</td><td>Orientado (tempo, lugar, pessoa)</td></tr>
+      <tr><td>4</td><td>Confuso (responde mas desorientado)</td></tr>
+      <tr><td>3</td><td>Palavras inapropriadas</td></tr>
+      <tr><td>2</td><td>Sons incompreensíveis</td></tr>
+      <tr><td>1</td><td>Ausente</td></tr></table>
+    </div>
+    <div class="p-box">
+      <h4>💪 Resposta Motora (M) — máx 6</h4>
+      <table><tr><th>Pts</th><th>Resposta</th></tr>
+      <tr><td>6</td><td>Obedece comandos</td></tr>
+      <tr><td>5</td><td>Localiza a dor</td></tr>
+      <tr><td>4</td><td>Retirada (flexão normal)</td></tr>
+      <tr><td>3</td><td>Flexão anormal (decorticação)</td></tr>
+      <tr><td>2</td><td>Extensão anormal (descerebração)</td></tr>
+      <tr><td>1</td><td>Ausente</td></tr></table>
+    </div>
+  </div>
+  <div class="p-full">
+    <h4>📊 Interpretação do Escore Total (mín 3 — máx 15)</h4>
+    <table><tr><th>Escore</th><th>Classificação</th><th>Conduta</th></tr>
+    <tr><td>15</td><td>Normal</td><td>Manter monitoramento de rotina</td></tr>
+    <tr><td>13–14</td><td>Leve alteração</td><td>Monitorar com mais frequência, comunicar enfermeiro</td></tr>
+    <tr><td>9–12</td><td>Moderado — Sonolento</td><td>Comunicar enfermeiro/médico, cabeceira 30°, O₂ se necessário</td></tr>
+    <tr><td>≤8</td><td>Grave — COMA</td><td>Emergência — acionar equipe, proteção de via aérea, suporte</td></tr>
+    <tr><td>3</td><td>Mínimo — Coma profundo</td><td>PCR iminente — código azul</td></tr></table>
+  </div>
+  <div class="p-grid">
+    <div class="p-box">
+      <h4>⚠️ Sinais de Alerta Neurológico</h4>
+      <ul>
+        <li>Queda de 2+ pontos no Glasgow → comunicar IMEDIATAMENTE</li>
+        <li>Anisocoria (pupilas desiguais) → HTIC / herniação</li>
+        <li>Tríade de Cushing: bradicardia + HAS + alt. respiratória</li>
+        <li>Cefaleia intensa súbita + vômito em jato → HTIC</li>
+        <li>FAST: Face + Arm + Speech + Time → AVC</li>
+      </ul>
+    </div>
+    <div class="p-box">
+      <h4>🩺 Cuidados de Enfermagem</h4>
+      <ul>
+        <li>Avaliar Glasgow a cada 1–2h ou conforme prescrição</li>
+        <li>Usar sempre o mesmo método de estímulo doloroso</li>
+        <li>Registrar: data, hora, pontuação (O+V+M=total)</li>
+        <li>TCE/AVC: cabeceira 30°, monitorar PIC</li>
+        <li>Sedado: registrar O1T1M= com nota "sedado"</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-print">EnfermaStudy v3.2 · Material educativo · Saieso Seraos (Oseias Soares da Silva Luz) · 2026</div>
+</div>
+</div>
+
+<div class="print-area" id="print-braden">
+<div class="page">
+  <div class="p-title">🩹 Escala de Braden — Risco de Lesão por Pressão</div>
+  <div class="p-subtitle">EnfermaStudy v3.0 · Avaliação obrigatória na admissão e a cada 48–72h</div>
+  <div class="p-full">
+    <h4>📊 Domínios e Pontuação</h4>
+    <table>
+      <tr><th>Domínio</th><th>1 — Alto risco</th><th>2 — Risco moderado</th><th>3 — Baixo risco</th><th>4 — Sem risco</th></tr>
+      <tr><td><strong>Percepção sensorial</strong></td><td>Completamente limitada</td><td>Muito limitada</td><td>Levemente limitada</td><td>Nenhuma limitação</td></tr>
+      <tr><td><strong>Umidade</strong></td><td>Constantemente úmida</td><td>Muito úmida</td><td>Ocasionalmente úmida</td><td>Raramente úmida</td></tr>
+      <tr><td><strong>Atividade</strong></td><td>Acamado</td><td>Restrito à cadeira</td><td>Deambula ocasionalmente</td><td>Deambula frequentemente</td></tr>
+      <tr><td><strong>Mobilidade</strong></td><td>Totalmente imóvel</td><td>Muito limitada</td><td>Levemente limitada</td><td>Nenhuma limitação</td></tr>
+      <tr><td><strong>Nutrição</strong></td><td>Muito deficiente</td><td>Provavelmente inadequada</td><td>Adequada</td><td>Excelente</td></tr>
+      <tr><td><strong>Fricção e Cisalhamento</strong></td><td>Problema</td><td>Potencial problema</td><td>Sem problema aparente</td><td>—</td></tr>
+    </table>
+  </div>
+  <div class="p-grid">
+    <div class="p-box">
+      <h4>🎯 Classificação do Risco</h4>
+      <table><tr><th>Escore</th><th>Risco</th><th>Conduta</th></tr>
+      <tr><td>≤9</td><td>Muito alto</td><td>Protocolo máximo</td></tr>
+      <tr><td>10–12</td><td>Alto</td><td>Protocolo intensivo</td></tr>
+      <tr><td>13–14</td><td>Moderado</td><td>Protocolo padrão</td></tr>
+      <tr><td>15–18</td><td>Em risco</td><td>Medidas preventivas</td></tr>
+      <tr><td>≥19</td><td>Sem risco</td><td>Reavaliar a cada 48h</td></tr></table>
+    </div>
+    <div class="p-box">
+      <h4>🩺 Medidas Preventivas</h4>
+      <ul>
+        <li>Mudança de decúbito a cada 2h</li>
+        <li>Hidratação com AGE nas proeminências</li>
+        <li>Colchão especial (risco moderado+)</li>
+        <li>Coxins nas proeminências ósseas</li>
+        <li>Manter pele limpa e seca</li>
+        <li>Trocar fralda imediatamente</li>
+        <li>Nutrição adequada (proteína++)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="p-box" style="margin-top:6pt">
+    <h4>🦴 Proeminências Ósseas de Risco (decúbito dorsal)</h4>
+    <ul style="columns:3; column-gap:12pt">
+      <li>Occipital</li><li>Escápulas</li><li>Cotovelos</li>
+      <li>Sacro / Cóccix</li><li>Calcanhares</li><li>Orelhas</li>
+      <li>Maléolos</li><li>Joelhos (lateral)</li><li>Trocânteres</li>
+    </ul>
+  </div>
+  <div class="footer-print">EnfermaStudy v3.2 · Material educativo · Saieso Seraos (Oseias Soares da Silva Luz) · 2026</div>
+</div>
+</div>
+
+<div class="print-area" id="print-vacinas">
+<div class="page">
+  <div class="p-title">💉 Calendário Vacinal PNI 2024 — Brasil</div>
+  <div class="p-subtitle">EnfermaStudy v3.0 · Programa Nacional de Imunizações</div>
+  <div class="p-full">
+    <table>
+      <tr><th>Faixa Etária</th><th>Vacinas</th></tr>
+      <tr><td><strong>Ao nascer</strong></td><td>BCG (dose única) · Hepatite B (1ª dose)</td></tr>
+      <tr><td><strong>1 mês</strong></td><td>Hepatite B (2ª dose)</td></tr>
+      <tr><td><strong>2 meses</strong></td><td>Pentavalente 1ª · VIP 1ª · Pneumo 10 1ª · Rotavírus 1ª · Meningocócica C 1ª</td></tr>
+      <tr><td><strong>3 meses</strong></td><td>DTPa 1ª (bebê) · VIP 2ª</td></tr>
+      <tr><td><strong>4 meses</strong></td><td>Pentavalente 2ª · VIP 2ª · Pneumo 10 2ª · Rotavírus 2ª · Meningocócica C 2ª</td></tr>
+      <tr><td><strong>5 meses</strong></td><td>DTPa 2ª (bebê)</td></tr>
+      <tr><td><strong>6 meses</strong></td><td>Pentavalente 3ª · VIP 3ª · Hepatite B 3ª · Influenza (início campanha)</td></tr>
+      <tr><td><strong>9 meses</strong></td><td>Febre Amarela (1ª dose)</td></tr>
+      <tr><td><strong>12 meses</strong></td><td>Tríplice Viral (SCR) 1ª · Pneumo 10 (reforço) · Meningocócica C (reforço) · Varicela 1ª</td></tr>
+      <tr><td><strong>15 meses</strong></td><td>DTP (1º reforço) · VOP (1º reforço) · Tríplice Viral 2ª · Hepatite A</td></tr>
+      <tr><td><strong>4 anos</strong></td><td>DTP (2º reforço) · VOP (2º reforço) · Varicela (reforço) · Febre Amarela (reforço)</td></tr>
+      <tr><td><strong>9–14 anos (M)</strong></td><td>HPV Bivalente (2 doses)</td></tr>
+      <tr><td><strong>9–45 anos</strong></td><td>HPV (conforme calendário do município)</td></tr>
+      <tr><td><strong>Adolescente</strong></td><td>dTpa · Meningocócica ACWY · Hepatite B (se não vacinado)</td></tr>
+      <tr><td><strong>Adulto 20–59 anos</strong></td><td>dT (a cada 10 anos) · Hepatite B · Febre Amarela · Tríplice Viral</td></tr>
+      <tr><td><strong>60 anos+</strong></td><td>Influenza (anual) · Pneumocócica 23 · dT ou dTpa · Febre Amarela · Zóster</td></tr>
+      <tr><td><strong>Gestante</strong></td><td>dTpa (27–36 semanas) · Influenza · Hepatite B · COVID-19</td></tr>
+    </table>
+  </div>
+  <div class="p-grid">
+    <div class="p-box">
+      <h4>⚠️ Cuidados Pós-Vacinação</h4>
+      <ul>
+        <li>Aguardar 20–30 min no local (reação adversa)</li>
+        <li>Ter adrenalina e material de emergência disponível</li>
+        <li>Registrar: lote, validade, local de aplicação</li>
+        <li>Orientar sobre reações locais esperadas (dor, eritema)</li>
+        <li>Notificar reações graves no e-SUS / NOTIVISA</li>
+      </ul>
+    </div>
+    <div class="p-box">
+      <h4>🚫 Contraindicações Gerais</h4>
+      <ul>
+        <li>Febre alta no dia (adiar, não cancelar)</li>
+        <li>Reação anafilática a dose anterior</li>
+        <li>Vacinas vivas: imunossuprimidos, gestantes (maioria)</li>
+        <li>Alergia ao componente da vacina</li>
+        <li>Doenças neurológicas em evolução (DTP)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-print">EnfermaStudy v3.2 · Material educativo · Saieso Seraos (Oseias Soares da Silva Luz) · 2026</div>
+</div>
+</div>
+
+<div class="print-area" id="print-pcr">
+<div class="page">
+  <div class="p-title">🚨 PCR e RCP — Protocolo BLS/ACLS</div>
+  <div class="p-subtitle">EnfermaStudy v3.2 · Diretrizes AHA 2025</div>
+  <div class="p-grid">
+    <div class="p-box">
+      <h4>⚡ Sequência BLS — C-A-B</h4>
+      <ul>
+        <li><strong>1.</strong> Confirmar inconsciência e ausência de pulso (&lt;10s)</li>
+        <li><strong>2.</strong> Chamar ajuda + acionar código azul / SAMU 192</li>
+        <li><strong>3.</strong> Compressões: 30 compressões</li>
+        <li><strong>4.</strong> Abertura de via aérea (head-tilt / chin-lift)</li>
+        <li><strong>5.</strong> Ventilação: 2 ventilações</li>
+        <li><strong>6.</strong> Repetir ciclos 30:2</li>
+        <li><strong>7.</strong> Desfibrilar assim que disponível</li>
+      </ul>
+    </div>
+    <div class="p-box">
+      <h4>💓 Qualidade das Compressões</h4>
+      <ul>
+        <li><strong>Frequência:</strong> 100–120 compressões/min</li>
+        <li><strong>Profundidade:</strong> 5–6 cm (adulto)</li>
+        <li><strong>Retorno:</strong> completo após cada compressão</li>
+        <li><strong>Interrupções:</strong> mínimas (&lt;10 segundos)</li>
+        <li><strong>Posição:</strong> prancha rígida, terço inferior do esterno</li>
+        <li><strong>Rodízio:</strong> a cada 2 min para evitar fadiga</li>
+      </ul>
+    </div>
+  </div>
+  <div class="p-full">
+    <h4>📊 Ritmos de PCR — Chocável vs Não Chocável</h4>
+    <table><tr><th>Ritmo</th><th>Chocável?</th><th>Energia (bifásico)</th><th>Medicamento principal</th></tr>
+    <tr><td>Fibrilação Ventricular (FV)</td><td>✅ SIM</td><td>120–200J</td><td>Adrenalina 1mg EV após 2º choque</td></tr>
+    <tr><td>Taquicardia Ventricular sem pulso</td><td>✅ SIM</td><td>120–200J</td><td>Amiodarona 300mg EV (1ª dose)</td></tr>
+    <tr><td>Assistolia</td><td>❌ NÃO</td><td>—</td><td>Adrenalina 1mg EV a cada 3–5 min</td></tr>
+    <tr><td>AESP (ativ. elétrica sem pulso)</td><td>❌ NÃO</td><td>—</td><td>Adrenalina 1mg EV + tratar causa</td></tr></table>
+  </div>
+  <div class="p-grid">
+    <div class="p-box">
+      <h4>5H — Causas Reversíveis</h4>
+      <ul>
+        <li>🫁 Hipóxia → O₂ / via aérea</li>
+        <li>💧 Hipovolemia → volume EV</li>
+        <li>🧪 Hidrogênio (acidose) → bicarbonato</li>
+        <li>⚗️ Hipo/Hipercalemia → eletrólitos</li>
+        <li>🌡️ Hipotermia → aquecimento</li>
+      </ul>
+    </div>
+    <div class="p-box">
+      <h4>5T — Causas Reversíveis</h4>
+      <ul>
+        <li>💨 Tensão (pneumotórax) → descompressão</li>
+        <li>🫀 Tamponamento cardíaco → pericardiocentese</li>
+        <li>🩸 Trombose coronária (IAM) → trombolítico</li>
+        <li>🫁 Tromboembolismo pulmonar</li>
+        <li>☠️ Tóxicos → antídoto específico</li>
+      </ul>
+    </div>
+  </div>
+  <div class="p-grid" style="margin-top:6pt">
+    <div class="p-box" style="border-left:3px solid #1565c0">
+      <h4>🆕 OVACE — Desobstrução (AHA 2025)</h4>
+      <ul>
+        <li><strong>Adulto/Criança consciente:</strong> 5 golpes nas costas (interescapular) → 5 compressões abdominais. Repetir ciclos até desobstruir.</li>
+        <li><strong>Lactente:</strong> 5 tapas nas costas + 5 compressões torácicas. Alternar.</li>
+        <li><strong>Inconsciente:</strong> Iniciar RCP. Verificar boca antes de ventilar.</li>
+        <li><strong>MUDANÇA 2025:</strong> Adultos agora também iniciam com golpes nas costas (antes era Heimlich direto).</li>
+      </ul>
+    </div>
+    <div class="p-box" style="border-left:3px solid #b71c1c">
+      <h4>🆕 ATLS 11ª Ed. 2025 — XABCDE</h4>
+      <ul>
+        <li><strong>X:</strong> eXanguinação — controlar hemorragia grave ANTES da via aérea</li>
+        <li>Compressão direta · Packing · Torniquete (5–8cm acima, registrar hora)</li>
+        <li><strong>A:</strong> Via Aérea · <strong>B:</strong> Ventilação</li>
+        <li><strong>C:</strong> Circulação · <strong>D:</strong> Neurológico · <strong>E:</strong> Exposição</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-print">EnfermaStudy v3.2 · Diretrizes AHA/ATLS 2025 · Saieso Seraos (Oseias Soares da Silva Luz) · 2026</div>
+</div>
+</div>
+
+<div class="print-area" id="print-med">
+<div class="page">
+  <div class="p-title">💊 Medicamentos — 7 Certos, Vias e Diluições</div>
+  <div class="p-subtitle">EnfermaStudy v3.0 · Segurança na administração de medicamentos</div>
+  <div class="p-grid">
+    <div class="p-box">
+      <h4>✅ Os 7 Certos da Medicação</h4>
+      <ul>
+        <li>1. <strong>Paciente</strong> certo → conferir pulseira + nome</li>
+        <li>2. <strong>Medicamento</strong> certo → ler rótulo 3x</li>
+        <li>3. <strong>Dose</strong> certa → calcular e conferir</li>
+        <li>4. <strong>Via</strong> certa → EV, IM, SC, VO, etc.</li>
+        <li>5. <strong>Horário</strong> certo → conforme prescrição</li>
+        <li>6. <strong>Registro</strong> certo → anotar após administrar</li>
+        <li>7. <strong>Razão</strong> certa → saber o porquê</li>
+      </ul>
+    </div>
+    <div class="p-box">
+      <h4>💉 Vias e Ângulos de Aplicação</h4>
+      <table><tr><th>Via</th><th>Ângulo</th><th>Agulha</th><th>Vol. máx.</th></tr>
+      <tr><td>ID (intradérmica)</td><td>10–15°</td><td>13×0,45</td><td>0,1 mL</td></tr>
+      <tr><td>SC (subcutânea)</td><td>45° ou 90°</td><td>13×4,5</td><td>2 mL</td></tr>
+      <tr><td>IM (intramuscular)</td><td>90°</td><td>30×7 ou 40×12</td><td>5 mL</td></tr>
+      <tr><td>EV (endovenosa)</td><td>15–30°</td><td>25×7 ou jelco</td><td>variável</td></tr></table>
+    </div>
+  </div>
+  <div class="p-full">
+    <h4>🚨 Diluições de Emergência — Principais</h4>
+    <table><tr><th>Medicamento</th><th>Apresentação</th><th>Diluição padrão</th><th>Via/Obs.</th></tr>
+    <tr><td>Adrenalina</td><td>1mg/mL (amp 1mL)</td><td>PCR: EV direto 1mg · Anafilaxia: 0,3–0,5mg IM</td><td>EV / IM coxa</td></tr>
+    <tr><td>Amiodarona</td><td>150mg/3mL</td><td>300mg em 20mL SG5% (PCR) / 150mg em 100mL SG5% (manutenção)</td><td>EV lento</td></tr>
+    <tr><td>Atropina</td><td>0,5mg/mL</td><td>0,5mg EV direto (bradicardia) — pode repetir até 3mg</td><td>EV rápido</td></tr>
+    <tr><td>KCl 19,1%</td><td>2mEq/mL</td><td>NUNCA EV direto. Diluir: máx 40mEq/L em SF. Infusão lenta.</td><td>⚠️ com bomba</td></tr>
+    <tr><td>MgSO₄ 50%</td><td>500mg/mL</td><td>Eclâmpsia: 4–6g em 100mL SF (20 min). Manutenção: 1–2g/h</td><td>EV lento</td></tr>
+    <tr><td>Noradrenalina</td><td>4mg/4mL</td><td>4mg em 250mL SG5% = 16mcg/mL. Bomba de infusão.</td><td>Acesso central</td></tr>
+    <tr><td>Dopamina</td><td>5mg/mL</td><td>200mg em 250mL SF = 800mcg/mL. Titular conforme PA.</td><td>Bomba</td></tr></table>
+  </div>
+  <div class="p-grid">
+    <div class="p-box">
+      <h4>🔄 Antídotos Principais</h4>
+      <ul>
+        <li>Heparina → Sulfato de protamina</li>
+        <li>Varfarina → Vitamina K + plasma</li>
+        <li>Opioide → Naloxona 0,4mg EV</li>
+        <li>Benzodiazepínico → Flumazenil</li>
+        <li>Paracetamol → N-acetilcisteína</li>
+        <li>MgSO₄ (tox.) → Gluconato de Cálcio</li>
+      </ul>
+    </div>
+    <div class="p-box">
+      <h4>⚠️ Medicamentos de Alta Vigilância</h4>
+      <ul>
+        <li>KCl EV → NUNCA bolus (PCR)</li>
+        <li>Insulina → conferir tipo e dose</li>
+        <li>Heparina → monitorar TTPA</li>
+        <li>Digoxina → verificar FC antes</li>
+        <li>Quimioterápicos → EPI completo</li>
+        <li>Eletrólitos concentrados → diluir sempre</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-print">EnfermaStudy v3.2 · Material educativo · Saieso Seraos (Oseias Soares da Silva Luz) · 2026</div>
+</div>
+</div>
+
+<div class="print-area" id="print-carro">
+<div class="page">
+  <div class="p-title">🏥 Carro de Emergência — Checklist Completo</div>
+  <div class="p-subtitle">EnfermaStudy v3.0 · Verificar no início de cada plantão · Registrar número do lacre</div>
+  <div class="p-grid">
+    <div class="p-box">
+      <h4>💊 Medicamentos Obrigatórios</h4>
+      <table><tr><th>Medicamento</th><th>Qtd.</th><th>✓</th></tr>
+      <tr><td>Adrenalina 1mg/mL</td><td>10 amp</td><td></td></tr>
+      <tr><td>Amiodarona 150mg</td><td>5 amp</td><td></td></tr>
+      <tr><td>Atropina 0,5mg/mL</td><td>5 amp</td><td></td></tr>
+      <tr><td>Bicarbonato 8,4% 250mL</td><td>2 fr</td><td></td></tr>
+      <tr><td>Glicose 50% 10mL</td><td>5 amp</td><td></td></tr>
+      <tr><td>Lidocaína 2%</td><td>3 amp</td><td></td></tr>
+      <tr><td>SF 0,9% 250mL</td><td>4 fr</td><td></td></tr>
+      <tr><td>SG 5% 250mL</td><td>2 fr</td><td></td></tr>
+      <tr><td>Vasopressor (protocolo)</td><td>—</td><td></td></tr>
+      <tr><td>Validade checada</td><td>todos</td><td></td></tr></table>
+    </div>
+    <div class="p-box">
+      <h4>🔧 Equipamentos</h4>
+      <table><tr><th>Item</th><th>✓</th></tr>
+      <tr><td>Desfibrilador + pás + gel</td><td></td></tr>
+      <tr><td>Ambu + máscara + reservatório</td><td></td></tr>
+      <tr><td>Laringoscópio + lâmpada OK</td><td></td></tr>
+      <tr><td>TOT tamanhos 6,5 / 7,0 / 7,5 / 8,0</td><td></td></tr>
+      <tr><td>Fio guia + seringa 10mL</td><td></td></tr>
+      <tr><td>Aspirador + sondas de aspiração</td><td></td></tr>
+      <tr><td>O₂ + fluxômetro</td><td></td></tr>
+      <tr><td>Prancha rígida para RCP</td><td></td></tr>
+      <tr><td>Acesso EV: jelcos, equipo, scalp</td><td></td></tr>
+      <tr><td>Seringas e agulhas variadas</td><td></td></tr></table>
+    </div>
+  </div>
+  <div class="p-full">
+    <h4>📋 Registro de Verificação</h4>
+    <table>
+      <tr><th>Data</th><th>Horário</th><th>Nº Lacre</th><th>Plantão</th><th>Assinatura</th><th>COREN</th></tr>
+      <tr><td style="height:18pt"></td><td></td><td></td><td>□M □T □N</td><td></td><td></td></tr>
+      <tr><td style="height:18pt"></td><td></td><td></td><td>□M □T □N</td><td></td><td></td></tr>
+      <tr><td style="height:18pt"></td><td></td><td></td><td>□M □T □N</td><td></td><td></td></tr>
+      <tr><td style="height:18pt"></td><td></td><td></td><td>□M □T □N</td><td></td><td></td></tr>
+      <tr><td style="height:18pt"></td><td></td><td></td><td>□M □T □N</td><td></td><td></td></tr>
+    </table>
+  </div>
+  <div class="footer-print">EnfermaStudy v3.0 · Checar início de cada plantão · Carro violado → reselar e comunicar chefia · Saieso Seraos 2026</div>
+</div>
+</div>
+
+<div class="print-area" id="print-leg">
+<div class="page">
+  <div class="p-title">⚖️ Legislação e Ética — Resumo Rápido</div>
+  <div class="p-subtitle">EnfermaStudy v3.0 · Lei 7.498/1986 · Decreto 94.406/1987 · Resolução COFEN 564/2017</div>
+  <div class="p-grid-3">
+    <div class="p-box">
+      <h4>👩‍⚕️ Enfermeiro — Privativas</h4>
+      <ul>
+        <li>Consulta de enfermagem</li>
+        <li>Prescrição de enfermagem</li>
+        <li>Chefia e direção de serviços</li>
+        <li>Cuidados em UTI e CC</li>
+        <li>Parto normal sem distócia</li>
+        <li>Pesquisa e ensino</li>
+      </ul>
+    </div>
+    <div class="p-box">
+      <h4>🩺 Técnico — Atribuições</h4>
+      <ul>
+        <li>Assistência sob supervisão do Enf.</li>
+        <li>Administração de medicamentos</li>
+        <li>Curativos e sondagens</li>
+        <li>Punções e coleta de exames</li>
+        <li>Vigilância de sinais/sintomas</li>
+        <li>Registro de enfermagem</li>
+      </ul>
+    </div>
+    <div class="p-box">
+      <h4>🩹 Auxiliar — Atribuições</h4>
+      <ul>
+        <li>Higiene e conforto</li>
+        <li>Sinais vitais simples</li>
+        <li>Auxílio na alimentação</li>
+        <li>Preparo de material</li>
+        <li>Atividades elementares sob supervisão</li>
+        <li>Não realiza procedimentos complexos</li>
+      </ul>
+    </div>
+  </div>
+  <div class="p-grid">
+    <div class="p-box">
+      <h4>🔬 Bioética — 4 Princípios</h4>
+      <ul>
+        <li><strong>Autonomia:</strong> respeitar a decisão do paciente, consentimento informado</li>
+        <li><strong>Beneficência:</strong> agir em benefício do paciente</li>
+        <li><strong>Não maleficência:</strong> primum non nocere — não causar dano</li>
+        <li><strong>Justiça:</strong> tratar igualmente, sem discriminação</li>
+      </ul>
+    </div>
+    <div class="p-box">
+      <h4>⚠️ Erros Profissionais</h4>
+      <ul>
+        <li><strong>Negligência:</strong> omissão de cuidado necessário</li>
+        <li><strong>Imprudência:</strong> ação sem precaução necessária</li>
+        <li><strong>Imperícia:</strong> falta de habilidade técnica</li>
+        <li><strong>Dolo:</strong> intenção deliberada de causar dano</li>
+      </ul>
+      <h4 style="margin-top:6pt">🏛️ Penalidades COFEN</h4>
+      <ul>
+        <li>Advertência → Multa → Censura pública</li>
+        <li>Suspensão → Cassação do registro</li>
+      </ul>
+    </div>
+  </div>
+  <div class="p-full">
+    <h4>📊 SAE — Etapas (Resolução COFEN 358/2009)</h4>
+    <table><tr><th>#</th><th>Etapa</th><th>Descrição</th><th>Responsável</th></tr>
+    <tr><td>1</td><td>Coleta de dados</td><td>Histórico de enfermagem, anamnese e exame físico</td><td>Enfermeiro (técnico auxilia)</td></tr>
+    <tr><td>2</td><td>Diagnóstico de Enf.</td><td>Interpretação dos dados — NANDA</td><td>Enfermeiro</td></tr>
+    <tr><td>3</td><td>Planejamento</td><td>Definição de metas e intervenções</td><td>Enfermeiro</td></tr>
+    <tr><td>4</td><td>Implementação</td><td>Execução das intervenções prescritas</td><td>Toda a equipe</td></tr>
+    <tr><td>5</td><td>Avaliação</td><td>Verificação do alcance das metas — replanejar se necessário</td><td>Enfermeiro</td></tr></table>
+  </div>
+  <div class="footer-print">EnfermaStudy v3.2 · Material educativo · Saieso Seraos (Oseias Soares da Silva Luz) · 2026</div>
+</div>
+</div>
+
+<script>
+function printPage(id) {
+  // Hide all print areas
+  document.querySelectorAll('.print-area').forEach(el => el.style.display = 'none');
+  // Show only the target
+  const target = document.getElementById('print-' + id);
+  if (target) {
+    target.style.display = 'block';
+    setTimeout(() => {
+      window.print();
+      // After print dialog closes, hide again
+      target.style.display = 'none';
+    }, 100);
+  }
+}
+</script>
+</body>
+</html>

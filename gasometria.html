@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FR02Y9XJX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FR02Y9XJX1');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gasometria e Balanço Hídrico — EnfermaStudy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#f0f4f3;min-height:100vh}
+header{background:linear-gradient(135deg,#4a148c,#6a1b9a);color:#fff;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.hd{display:flex;align-items:center;gap:14px;padding:14px 20px}
+.hi{width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ht h1{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800}
+.ht p{font-size:.72rem;opacity:.8;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.bk{margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:10px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;text-decoration:none}
+main{max-width:900px;margin:0 auto;padding:20px 16px 60px}
+.hero{background:linear-gradient(135deg,#4a148c,#6a1b9a);color:#fff;border-radius:16px;padding:24px;margin-bottom:20px;position:relative;overflow:hidden}
+.hero::after{content:'🫁';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:70px;opacity:.1}
+.hero h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;margin-bottom:6px}
+.hero p{font-size:.84rem;opacity:.9;line-height:1.6}
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab{padding:10px 18px;border-radius:20px;border:2px solid #e0e0e0;background:#fff;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s}
+.tab.active,.tab:hover{border-color:#6a1b9a;background:#6a1b9a;color:#fff}
+.panel{display:none}
+.panel.show{display:block}
+/* Gasometria */
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:12px 0}
+.ref{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:12px;text-align:center;border:2px solid transparent}
+.ref.normal{border-color:#4caf50}
+.ref.alt{border-color:#ef5350}
+.ref-name{font-size:.7rem;font-weight:800;color:#666;text-transform:uppercase;margin-bottom:4px}
+.ref-val{font-size:1.1rem;font-weight:900;color:#1a2332}
+.ref-unit{font-size:.65rem;color:#888}
+/* Interpretador */
+.interp-form{background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.07);padding:18px;margin-bottom:16px}
+.if-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.if-field{background:#f9f9f9;border-radius:10px;padding:10px}
+.if-field label{display:block;font-size:.68rem;font-weight:800;color:#666;text-transform:uppercase;margin-bottom:4px}
+.if-field input{width:100%;border:1.5px solid #e0e0e0;border-radius:7px;padding:7px 10px;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;outline:none}
+.if-field input:focus{border-color:#6a1b9a}
+.interp-btn{background:#6a1b9a;color:#fff;border:none;border-radius:10px;padding:11px 22px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;cursor:pointer;margin-right:8px}
+.clear-btn{background:#f0f0f0;color:#555;border:none;border-radius:10px;padding:11px 18px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer}
+#gasoResult{display:none;border-radius:12px;padding:16px;margin-top:14px}
+.r-normal{background:#e8f5e9;border-left:4px solid #4caf50}
+.r-acid{background:#fff3e0;border-left:4px solid #ff9800}
+.r-alc{background:#e3f2fd;border-left:4px solid #2196f3}
+.r-mixed{background:#fce4ec;border-left:4px solid #e91e63}
+#gasoResult h3{font-size:.95rem;font-weight:800;margin-bottom:8px}
+#gasoResult ul{padding-left:16px;font-size:.83rem;line-height:1.8;color:#444}
+/* Balanço hídrico */
+.bh-form{background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.07);padding:18px;margin-bottom:14px}
+.bh-section{margin-bottom:16px}
+.bh-section h4{font-size:.85rem;font-weight:800;color:#4a148c;margin-bottom:10px}
+.bh-row{display:grid;grid-template-columns:1fr auto 80px;gap:8px;margin-bottom:6px;align-items:center}
+.bh-row input[type=text]{border:1.5px solid #e0e0e0;border-radius:8px;padding:8px 10px;font-family:'Nunito',sans-serif;font-size:.82rem;outline:none;width:100%}
+.bh-row input[type=number]{border:1.5px solid #e0e0e0;border-radius:8px;padding:8px 10px;font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:700;outline:none;width:100%;text-align:right}
+.bh-row input:focus{border-color:#6a1b9a}
+.add-btn{background:#e8eaf6;color:#4a148c;border:none;border-radius:8px;padding:8px 12px;font-size:.8rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.bh-total{display:flex;justify-content:space-between;align-items:center;background:#f5f5f5;border-radius:10px;padding:12px 16px;font-weight:800;font-size:.88rem}
+.bh-result{border-radius:12px;padding:16px;margin-top:12px;display:none}
+.bh-pos{background:#e8f5e9;border-left:4px solid #4caf50;color:#2e7d32}
+.bh-neg{background:#ffebee;border-left:4px solid #ef5350;color:#b71c1c}
+.bh-zero{background:#e3f2fd;border-left:4px solid #2196f3;color:#1565c0}
+table{width:100%;border-collapse:collapse;font-size:.8rem;margin:10px 0}
+th{background:#6a1b9a;color:#fff;padding:9px 10px;text-align:left}
+td{padding:8px 10px;border-bottom:1px solid #eee}
+tr:hover td{background:#f9f9f9}
+.ib{border-radius:10px;padding:12px 14px;font-size:.82rem;line-height:1.6;margin:10px 0}
+.ib-blue{background:#e3f2fd;border-left:4px solid #2196f3;color:#0d47a1}
+.ib-purple{background:#f3e5f5;border-left:4px solid #9c27b0;color:#4a148c}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="hi">🫁</div>
+    <div class="ht"><h1>Gasometria e Balanço Hídrico</h1><p>EnfermaStudy</p></div>
+    <a href="recursos.html" class="bk">← Recursos</a>
+  </div>
+</header>
+<main>
+  <div class="hero">
+    <h2>🫁 Gasometria Arterial e Balanço Hídrico</h2>
+    <p>Interprete gasometrias arteriais passo a passo e calcule o balanço hídrico do seu paciente. Ferramentas clínicas 100% offline.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showPanel('gaso',this)">🫁 Gasometria</button>
+    <button class="tab" onclick="showPanel('bh',this)">💧 Balanço Hídrico</button>
+    <button class="tab" onclick="showPanel('eletr',this)">⚗️ Eletrólitos</button>
+  </div>
+
+  <!-- GASOMETRIA -->
+  <div class="panel show" id="p-gaso">
+    <div style="font-size:.85rem;font-weight:800;color:#333;margin-bottom:10px">📊 Valores de Referência — Gasometria Arterial</div>
+    <div class="ref-grid">
+      <div class="ref normal"><div class="ref-name">pH</div><div class="ref-val">7,35–7,45</div><div class="ref-unit">— sem unidade</div></div>
+      <div class="ref normal"><div class="ref-name">PaO₂</div><div class="ref-val">80–100</div><div class="ref-unit">mmHg</div></div>
+      <div class="ref normal"><div class="ref-name">PaCO₂</div><div class="ref-val">35–45</div><div class="ref-unit">mmHg</div></div>
+      <div class="ref normal"><div class="ref-name">HCO₃⁻</div><div class="ref-val">22–26</div><div class="ref-unit">mEq/L</div></div>
+      <div class="ref normal"><div class="ref-name">SpO₂</div><div class="ref-val">95–100</div><div class="ref-unit">%</div></div>
+      <div class="ref normal"><div class="ref-name">BE</div><div class="ref-val">-2 a +2</div><div class="ref-unit">mEq/L</div></div>
+    </div>
+
+    <div class="interp-form">
+      <div style="font-size:.88rem;font-weight:800;color:#4a148c;margin-bottom:12px">🔍 Interpretador de Gasometria</div>
+      <div class="if-grid">
+        <div class="if-field"><label>pH</label><input type="number" id="g_ph" step="0.01" placeholder="7,40" min="6.5" max="8"></div>
+        <div class="if-field"><label>PaCO₂ (mmHg)</label><input type="number" id="g_co2" step="0.1" placeholder="40" min="10" max="100"></div>
+        <div class="if-field"><label>HCO₃⁻ (mEq/L)</label><input type="number" id="g_hco3" step="0.1" placeholder="24" min="5" max="50"></div>
+        <div class="if-field"><label>PaO₂ (mmHg)</label><input type="number" id="g_po2" step="0.1" placeholder="95" min="20" max="600"></div>
+        <div class="if-field"><label>BE (mEq/L)</label><input type="number" id="g_be" step="0.1" placeholder="0" min="-30" max="30"></div>
+        <div class="if-field"><label>SpO₂ (%)</label><input type="number" id="g_spo2" step="0.1" placeholder="98" min="50" max="100"></div>
+      </div>
+      <button class="interp-btn" onclick="interpretGaso()">🔍 Interpretar</button>
+      <button class="clear-btn" onclick="clearGaso()">↺ Limpar</button>
+      <div id="gasoResult"></div>
+    </div>
+
+    <div class="ib ib-purple"><strong>📝 Como interpretar passo a passo:</strong><br>
+    1. pH: acidose (&lt;7,35) ou alcalose (&gt;7,45)?<br>
+    2. PaCO₂: elevado = acidose resp. / baixo = alcalose resp.<br>
+    3. HCO₃⁻: elevado = alcalose metab. / baixo = acidose metab.<br>
+    4. Compensação: o sistema oposto tenta corrigir o pH.<br>
+    5. Oxigenação: PaO₂ e SpO₂ indicam hipoxemia.</div>
+
+    <table>
+      <tr><th>Distúrbio</th><th>pH</th><th>PaCO₂</th><th>HCO₃⁻</th><th>Causa comum</th></tr>
+      <tr><td>Acidose Respiratória</td><td>&lt;7,35</td><td>↑&gt;45</td><td>Normal/↑</td><td>Hipoventilação, DPOC, depressão respiratória</td></tr>
+      <tr><td>Alcalose Respiratória</td><td>&gt;7,45</td><td>↓&lt;35</td><td>Normal/↓</td><td>Hiperventilação, ansiedade, TEP, febre</td></tr>
+      <tr><td>Acidose Metabólica</td><td>&lt;7,35</td><td>Normal/↓</td><td>↓&lt;22</td><td>Cetoacidose, sepse, insuficiência renal, diarreia</td></tr>
+      <tr><td>Alcalose Metabólica</td><td>&gt;7,45</td><td>Normal/↑</td><td>↑&gt;26</td><td>Vômitos, diuréticos, hipocalemia, alcalose por contração</td></tr>
+    </table>
+  </div>
+
+  <!-- BALANÇO HÍDRICO -->
+  <div class="panel" id="p-bh">
+    <div class="bh-form">
+      <div style="font-size:.88rem;font-weight:800;color:#4a148c;margin-bottom:14px">💧 Calculadora de Balanço Hídrico</div>
+
+      <div class="bh-section">
+        <h4>📥 Entradas (mL)</h4>
+        <div id="entradas">
+          <div class="bh-row"><input type="text" placeholder="Item (ex: SF 0,9% 500mL)" class="e-label"><input type="number" placeholder="mL" class="e-val" min="0" oninput="calcBH()"></div>
+          <div class="bh-row"><input type="text" placeholder="Item (ex: Dieta enteral)" class="e-label"><input type="number" placeholder="mL" class="e-val" min="0" oninput="calcBH()"></div>
+          <div class="bh-row"><input type="text" placeholder="Item (ex: Água oral)" class="e-label"><input type="number" placeholder="mL" class="e-val" min="0" oninput="calcBH()"></div>
+        </div>
+        <button class="add-btn" onclick="addRow('entradas')">+ Adicionar entrada</button>
+        <div class="bh-total" style="margin-top:10px">Total de entradas: <span id="totalEntradas" style="color:#2e7d32;font-size:1rem">0 mL</span></div>
+      </div>
+
+      <div class="bh-section">
+        <h4>📤 Saídas (mL)</h4>
+        <div id="saidas">
+          <div class="bh-row"><input type="text" placeholder="Item (ex: Diurese)" class="s-label"><input type="number" placeholder="mL" class="s-val" min="0" oninput="calcBH()"></div>
+          <div class="bh-row"><input type="text" placeholder="Item (ex: Dreno)" class="s-label"><input type="number" placeholder="mL" class="s-val" min="0" oninput="calcBH()"></div>
+          <div class="bh-row"><input type="text" placeholder="Item (ex: Vômito)" class="s-label"><input type="number" placeholder="mL" class="s-val" min="0" oninput="calcBH()"></div>
+        </div>
+        <button class="add-btn" onclick="addRow('saidas')">+ Adicionar saída</button>
+        <div class="bh-total" style="margin-top:10px">Total de saídas: <span id="totalSaidas" style="color:#c62828;font-size:1rem">0 mL</span></div>
+      </div>
+
+      <div id="bhResult" class="bh-result"></div>
+    </div>
+
+    <div class="ib ib-blue">💡 BH positivo: entradas &gt; saídas (risco de sobrecarga/edema). BH negativo: saídas &gt; entradas (risco de desidratação/hipovolemia). BH neutro: ±200 mL é considerado equilibrado.</div>
+
+    <table>
+      <tr><th>Tipo de Saída</th><th>Volume médio estimado</th><th>Obs.</th></tr>
+      <tr><td>Diurese (adulto)</td><td>0,5–1 mL/kg/h</td><td>Oligúria &lt;0,5 mL/kg/h → comunicar</td></tr>
+      <tr><td>Perda insensível</td><td>~500–800 mL/dia</td><td>Suor, respiração — não medível diretamente</td></tr>
+      <tr><td>Febre (+1°C)</td><td>+200–400 mL/dia extra</td><td>Aumenta perda insensível</td></tr>
+      <tr><td>Dreno</td><td>Variável</td><td>Registrar volume e aspecto</td></tr>
+      <tr><td>Evacuação líquida</td><td>~100–200 mL</td><td>Diarreia pode chegar a &gt;1000 mL/episódio</td></tr>
+    </table>
+  </div>
+
+  <!-- ELETRÓLITOS -->
+  <div class="panel" id="p-eletr">
+    <table>
+      <tr><th>Eletrólito</th><th>Valor normal</th><th>Alteração</th><th>Sintomas</th><th>Causa comum</th></tr>
+      <tr><td><strong>Sódio (Na⁺)</strong></td><td>135–145 mEq/L</td><td>Hiponatremia &lt;135</td><td>Confusão, convulsão, coma</td><td>Diuréticos, vômito, SIADH</td></tr>
+      <tr><td></td><td></td><td>Hipernatremia &gt;145</td><td>Sede intensa, letargia, convulsão</td><td>Desidratação, DI, excesso de Na</td></tr>
+      <tr><td><strong>Potássio (K⁺)</strong></td><td>3,5–5,0 mEq/L</td><td>Hipocalemia &lt;3,5</td><td>Fraqueza, cãibras, arritmia, íleo</td><td>Diuréticos, vômito, diarreia</td></tr>
+      <tr><td></td><td></td><td>Hipercalemia &gt;5,5</td><td>Parestesia, arritmia, PCR</td><td>IRA, uso de IECA, acidose</td></tr>
+      <tr><td><strong>Cálcio (Ca²⁺)</strong></td><td>8,5–10,5 mg/dL</td><td>Hipocalcemia &lt;8,5</td><td>Tetania, espasmos, Trousseau+</td><td>Hipoparatireoidismo, MgSO₄</td></tr>
+      <tr><td></td><td></td><td>Hipercalcemia &gt;10,5</td><td>Fraqueza, confusão, nefrolitíase</td><td>Hiperparatireoidismo, neoplasia</td></tr>
+      <tr><td><strong>Magnésio (Mg²⁺)</strong></td><td>1,7–2,4 mg/dL</td><td>Hipomagnesemia &lt;1,7</td><td>Tremores, arritmia, convulsão</td><td>Diuréticos, alcoolismo, diarreia</td></tr>
+      <tr><td></td><td></td><td>Hipermagnesemia &gt;2,4</td><td>Hiporeflexia, depressão resp., PCR</td><td>Uso de MgSO₄, IRA</td></tr>
+      <tr><td><strong>Fosfato (PO₄³⁻)</strong></td><td>2,5–4,5 mg/dL</td><td>Hipofosfatemia</td><td>Fraqueza muscular, hemólise</td><td>Desnutrição, alcoolismo</td></tr>
+      <tr><td><strong>Cloro (Cl⁻)</strong></td><td>98–106 mEq/L</td><td>Hipocloremia</td><td>Alcalose metabólica</td><td>Vômito prolongado, diuréticos</td></tr>
+    </table>
+    <div class="ib ib-purple">⚠️ <strong>Hipercalemia &gt;6,5 mEq/L = EMERGÊNCIA CARDÍACA.</strong> Gluconato de cálcio EV protege o miocárdio. Bicarbonato, insulina+glicose e kayexalate ajudam a reduzir K⁺ sérico. Acionar médico imediatamente.</div>
+  </div>
+</main>
+<script>
+function showPanel(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('p-'+id).classList.add('show');
+  btn.classList.add('active');
+}
+
+function interpretGaso(){
+  const ph=parseFloat(document.getElementById('g_ph').value);
+  const co2=parseFloat(document.getElementById('g_co2').value);
+  const hco3=parseFloat(document.getElementById('g_hco3').value);
+  const po2=parseFloat(document.getElementById('g_po2').value);
+  const be=parseFloat(document.getElementById('g_be').value);
+  const spo2=parseFloat(document.getElementById('g_spo2').value);
+  const r=document.getElementById('gasoResult');
+
+  if(isNaN(ph)||isNaN(co2)||isNaN(hco3)){r.style.display='none';alert('Preencha pelo menos pH, PaCO₂ e HCO₃⁻.');return;}
+
+  let disturbio='',compensacao='',ox='',cls='r-normal';
+  const phAlterado = ph<7.35?'acidose':ph>7.45?'alcalose':'normal';
+  const respComp = co2<35?'alcalose resp.':co2>45?'acidose resp.':'normal';
+  const metComp = hco3<22?'acidose metab.':hco3>26?'alcalose metab.':'normal';
+
+  if(phAlterado==='normal'&&respComp==='normal'&&metComp==='normal'){
+    disturbio='✅ Gasometria NORMAL'; cls='r-normal';
+  } else if(phAlterado==='acidose'&&co2>45){
+    disturbio='🟠 Acidose Respiratória'; cls='r-acid';
+    compensacao = hco3>26?'com compensação metabólica (HCO₃⁻ ↑)':'sem compensação aparente';
+  } else if(phAlterado==='alcalose'&&co2<35){
+    disturbio='🔵 Alcalose Respiratória'; cls='r-alc';
+    compensacao = hco3<22?'com compensação metabólica (HCO₃⁻ ↓)':'sem compensação aparente';
+  } else if(phAlterado==='acidose'&&hco3<22){
+    disturbio='🟠 Acidose Metabólica'; cls='r-acid';
+    compensacao = co2<35?'com compensação respiratória (PaCO₂ ↓ — respiração de Kussmaul)':'sem compensação aparente';
+  } else if(phAlterado==='alcalose'&&hco3>26){
+    disturbio='🔵 Alcalose Metabólica'; cls='r-alc';
+    compensacao = co2>45?'com compensação respiratória (PaCO₂ ↑)':'sem compensação aparente';
+  } else {
+    disturbio='🔴 Distúrbio misto — avaliação complexa'; cls='r-mixed';
+    compensacao='Considerar sobreposição de distúrbios. Acionar avaliação clínica.';
+  }
+
+  if(!isNaN(po2)){
+    if(po2<60)ox='<br>🔴 <strong>Hipoxemia grave</strong> (PaO₂ '+po2+' mmHg)';
+    else if(po2<80)ox='<br>⚠️ Hipoxemia moderada (PaO₂ '+po2+' mmHg)';
+    else ox='<br>✅ Oxigenação adequada (PaO₂ '+po2+' mmHg)';
+  }
+  if(!isNaN(spo2)&&spo2<90) ox+=' · 🔴 SpO₂ crítica ('+spo2+'%)';
+
+  r.className=cls; r.style.display='block';
+  r.innerHTML='<h3>'+disturbio+'</h3><ul>'+
+    '<li>pH: '+ph.toFixed(2)+' ('+phAlterado+')</li>'+
+    '<li>PaCO₂: '+co2+' mmHg ('+respComp+')</li>'+
+    '<li>HCO₃⁻: '+hco3+' mEq/L ('+metComp+')</li>'+
+    (compensacao?'<li>'+compensacao+'</li>':'')+
+    '</ul>'+ox;
+}
+
+function clearGaso(){
+  ['g_ph','g_co2','g_hco3','g_po2','g_be','g_spo2'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('gasoResult').style.display='none';
+}
+
+function sum(cls){return[...document.querySelectorAll('.'+cls)].reduce((a,i)=>a+(parseFloat(i.value)||0),0)}
+function calcBH(){
+  const e=sum('e-val'),s=sum('s-val');
+  document.getElementById('totalEntradas').textContent=e.toFixed(0)+' mL';
+  document.getElementById('totalSaidas').textContent=s.toFixed(0)+' mL';
+  const bh=e-s,r=document.getElementById('bhResult');
+  if(e===0&&s===0){r.style.display='none';return;}
+  r.style.display='block';
+  if(bh>200){r.className='bh-result bh-pos';r.innerHTML='<strong>💧 Balanço Hídrico: +'+bh.toFixed(0)+' mL (POSITIVO)</strong><br>Entradas &gt; saídas. Atentar para sinais de sobrecarga hídrica: edema, dispneia, crepitações.';}
+  else if(bh<-200){r.className='bh-result bh-neg';r.innerHTML='<strong>💧 Balanço Hídrico: '+bh.toFixed(0)+' mL (NEGATIVO)</strong><br>Saídas &gt; entradas. Atentar para sinais de desidratação: mucosas secas, oligúria, hipotensão.';}
+  else{r.className='bh-result bh-zero';r.innerHTML='<strong>💧 Balanço Hídrico: '+bh.toFixed(0)+' mL (EQUILIBRADO)</strong><br>Diferença dentro da margem aceitável (±200 mL).';}
+}
+
+function addRow(secao){
+  const div=document.getElementById(secao);
+  const row=document.createElement('div');row.className='bh-row';
+  const isCls=secao==='entradas'?'e-label':'s-label';
+  const vCls=secao==='entradas'?'e-val':'s-val';
+  row.innerHTML=`<input type="text" placeholder="Item" class="${isCls}"><input type="number" placeholder="mL" class="${vCls}" min="0" oninput="calcBH()">`;
+  div.appendChild(row);
+}
+</script>
+</body>
+</html>

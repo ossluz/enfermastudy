@@ -1,256 +1,244 @@
 # 🩺 EnfermaStudy
 
-**Material de estudo completo para Enfermeiros(as), Técnicos e Auxiliares de Enfermagem — formados e estudantes. Funciona offline!**
+**Para Enfermeiros(as), Técnicos e Auxiliares de Enfermagem — formados e estudantes. Funciona offline!**
 
 > Criado por **Saieso Seraos** (Oseias Soares da Silva Luz) · 2026
 
 ---
 
-## 📱 Sobre o Projeto
+## 📌 Versão Atual
 
-O **EnfermaStudy** é um Progressive Web App (PWA) gratuito, sem anúncios e offline-first, criado para estudantes e profissionais de enfermagem em todos os níveis — Enfermeiros(as), Técnicos e Auxiliares. Reúne em um único app tudo que é necessário para o dia a dia clínico e para a preparação de concursos.
+### `v3.2` — 2026
+**Atualização de diretrizes clínicas 2025 + correções de protocolo.**
+
+**Correções aplicadas:**
+- 🔴 **XABCDE** — ATLS 11ª Ed. (2025): "X" como primeira etapa, controle de hemorragia exsanguinante antes da via aérea. Torniquete, packing e compressão direta documentados.
+- 🩸 **Pressão Arterial — Diretriz SBC 2025**: PA normal redefinida como <120/80 mmHg. 120/80 agora é **pré-hipertensão**. Tabela HAS expandida com 3 estágios. Todos os arquivos afetados atualizados.
+- 🫁 **Pneumotórax ATLS 11**: descompressão no 2º EIC LMC reintroduzida como opção.
+- 🍽️ **OVACE AHA 2025**: adultos agora iniciam com 5 golpes nas costas → 5 compressões abdominais (antes era Heimlich direto). `procedimentos.html` e `resumos.html` atualizados.
+- 📋 "Urgência hipertensiva" substituído por "elevação importante da PA sem lesão de órgão-alvo" (SBC 2025).
+- 📊 Google Analytics (`G-FR02Y9XJX1`) adicionado em todos os 17 arquivos HTML.
+
+### `v3.1` — 2026
+**Expansão de conteúdo clínico e acessibilidade.**
+
+- 🖨️ `resumos.html` — 8 fichas A4 para impressão
+- 🩺 `cateteres.html` — PICC, CVC, Swan-Ganz e Cateter de Diálise
+- 📢 Tagline expandida para todos os níveis de enfermagem
+- 🔄 Service Worker v6
+
+### `v3.0` — 2026
+**Maior atualização do projeto.**
+
+- 🃏 `flashcards.html` — 85 cards · 6 categorias · sistema de avaliação
+- ❤️ `ecg.html` — 8 ritmos cardíacos com traçados SVG
+- 🫁 `gasometria.html` — Interpretador de gasometria + balanço hídrico + eletrólitos
+- 💊 `compatibilidade.html` — Tabela 20×20 compatibilidade medicamentos EV
+- ⏱️ `cronometro.html` — Cronômetro de plantão com timers de medicação
+- ⚖️ `legislacao.html` — Lei 7.498, COFEN, Código de Ética, bioética, SAE
+- 🔄 Banner de atualização inteligente (SW v5)
+- 💚 Card de doação via Pix na seção Sobre o Autor
+
+### `v2.1` — 2026
+- 🗂️ `recursos.html`, 💉 `procedimentos.html`, 🧪 `diluicoes.html`
+- 🫀 `sistemas.html`, 🔬 `exames.html`, 🩸 `jelco.html`, 📋 `fichas.html`
+
+### `v1.0` — 2026
+- App principal com 11 seções, chat Firebase, Service Worker, ferramentas clínicas offline.
 
 ---
 
-## 🗂️ Estrutura dos Arquivos
+## 📱 Sobre o Projeto
+
+O **EnfermaStudy** é um Progressive Web App (PWA) gratuito, sem anúncios e offline-first, criado para Enfermeiros(as), Técnicos e Auxiliares de Enfermagem — formados e estudantes. Reúne conteúdo teórico, ferramentas clínicas, procedimentos, exames, legislação e muito mais em um único app que funciona sem internet após o primeiro acesso.
+
+---
+
+## 🗂️ Estrutura Completa — 18 Arquivos
 
 ```
 📁 EnfermaStudy/
-   ├── index.html          → App principal (PWA)
-   ├── chat.html           → Comunidade em tempo real (Firebase)
-   ├── recursos.html       → Hub de recursos extras
-   ├── procedimentos.html  → 20+ procedimentos passo a passo
-   ├── diluicoes.html      → Diluições de emergência
-   ├── exames.html         → Exames diagnósticos
-   ├── sistemas.html       → Sistemas do corpo humano
-   ├── jelco.html          → Guia de calibres de jelco
-   ├── fichas.html         → Checklists e fichas interativas
-   └── sw.js               → Service Worker v4 (cache offline)
+│
+├── 🔧 Core
+│   ├── index.html                → App principal (PWA) v3.2
+│   ├── sw.js                     → Service Worker v6 (cache offline + banner atualização)
+│   ├── firebase-config.js        → ⚠️ Credenciais Firebase (NÃO commitar — .gitignore)
+│   ├── firebase-config.example.js → Modelo para configuração local
+│   └── .gitignore
+│
+├── 💬 Comunidade
+│   ├── chat.html                 → Chat em tempo real (Firebase Auth + Realtime DB)
+│   └── recursos.html             → Hub central de todos os recursos extras
+│
+├── 📚 Conteúdo Clínico
+│   ├── procedimentos.html        → 20+ procedimentos passo a passo · busca · filtros
+│   ├── diluicoes.html            → Protocolos de diluição para emergências
+│   ├── sistemas.html             → 10 sistemas do corpo humano
+│   ├── exames.html               → 9 exames diagnósticos com preparo
+│   ├── ecg.html                  → 8 ritmos cardíacos com traçados SVG
+│   └── compatibilidade.html      → Tabela 20×20 compatibilidade medicamentos EV
+│
+├── 🔬 Ferramentas Clínicas
+│   ├── gasometria.html           → Interpretador gasometria + balanço hídrico + eletrólitos
+│   ├── fichas.html               → Checklists interativos + ficha de sinais vitais
+│   ├── cronometro.html           → Cronômetro de plantão com timers de medicação
+│   └── jelco.html                → Guia de calibres 26G→14G
+│
+├── 🎓 Estudo e Concursos
+│   ├── flashcards.html           → 85 cards · 6 categorias · sistema de avaliação
+│   ├── legislacao.html           → Lei 7.498, COFEN, bioética, SAE
+│   └── cateteres.html            → PICC, CVC, Swan-Ganz, cateter de diálise
+│
+└── 🖨️ Impressão
+    └── resumos.html              → 8 fichas A4 formatadas (Glasgow, Braden, PCR, vacinas...)
 ```
 
 ---
 
-## ✨ Funcionalidades
+## ✨ Funcionalidades por Arquivo
 
-### 📚 Conteúdo Teórico (index.html)
-- **Prioridades** — Sinais vitais, medicamentos, PCR, SAE e muito mais
-- **Procedimentos** — Curativo, nebulização, punção venosa, sondagem, ostomia
-- **Doenças** — Patologias comuns com sinais, sintomas e cuidados de enfermagem
-- **Clínica Geral** — IVAS, asma, hipertensão, diabetes, sepse
-- **Emergências** — AVC, politrauma (ATLS/XABCDE), carro de emergência
-- **Home Care** — Traqueostomia, UPP, ostomias, nutrição enteral
-- **Outros Temas** — Farmacologia, anatomia, legislação, escalas clínicas, ética
+### index.html — App Principal
+**Seções de conteúdo:** Início · Prioridades · Procedimentos · Doenças · Clínica Geral · Emergências · Home Care · Evolução (9 modelos SOAP) · Exercícios (70+) · Outros Temas · Glossário (100+) · Anatomia 3D · Na Prática (50+ vídeos) · Sobre o Autor
 
-### 🔧 Ferramentas Clínicas (index.html — offline)
-- 🧮 **Calculadoras** — Gotejamento (macro/micro), dose/peso, diluição, IMC
-- 🧠 **Glasgow interativo** — Clicável com resultado imediato
-- 👶 **APGAR neonatal** — Tabela interativa
-- 📊 **Escalas clínicas** — EVA (dor), Braden (UPP), Morse (queda)
-- 💉 **Calendário Vacinal PNI 2024** — Tabela completa por faixa etária
-- 💊 **Mini Bulário** — 30 medicamentos com dose, diluição e cuidados
-- 🧰 **Bandejas de procedimentos** — Material necessário para cada técnica
-- 📝 **Simulado estilo concurso** — 20 questões aleatórias com timer e gabarito
-- 📓 **Anotador de plantão** — Salvo no dispositivo, exportável
-- 🗂️ **Atalhos para Recursos Extras** — Grade de acesso rápido a todos os arquivos extras
-
-### 🆕 Recursos Extras
-
-#### 💉 procedimentos.html
-- 20+ procedimentos clínicos com passo a passo detalhado
-- Categorias: Acesso Venoso, Sondagens, Curativos, Medicações, Emergências, Coleta
-- Filtro por categoria e busca por palavra-chave
-- Diagramas SVG ilustrativos (ângulo de punção, posicionamento, etc.)
-- Alertas e cuidados especiais por procedimento
-
-#### 🧪 diluicoes.html
-- Protocolos completos de diluição para emergências
-- Inclui: Adrenalina, Amiodarona, KCl, Noradrenalina, Morfina, MgSO₄, Heparina, Naloxona e mais
-- Tabelas com concentração, velocidade, indicação e alertas
-- Busca em tempo real
-
-#### 🫀 sistemas.html
-- 10 sistemas do corpo humano com navegação por abas
-- Para cada sistema: anatomia, fisiologia, alterações comuns e cuidados de enfermagem
-- Sistemas: Cardiovascular, Respiratório, Nervoso, Digestivo, Urinário, Músculo-Esquelético, Endócrino, Tegumentar, Imunológico, Reprodutor
-
-#### 🔬 exames.html
-- 9 exames diagnósticos principais (Raio-X, TC, RM, USG, ECG, PET, EEG, Espirometria, Endoscopia)
-- Para cada exame: o que é, indicações, preparo do paciente, papel do técnico
-- Tabela comparativa entre os exames
-
-#### 🩸 jelco.html
-- Guia interativo de calibres de jelco (26G → 14G)
-- Seletor visual com cores, fluxo, indicações e contraindicações
-- Diagrama SVG do ângulo de punção
-- Tabela comparativa e guia de decisão clínica
-
-#### 📋 fichas.html
-- **Checklist do Carro de Emergência** — Lacre, medicamentos e equipamentos com barra de progresso interativa
-- **Ficha de Sinais Vitais** — Preenchimento com análise automática de alertas (FC, FR, Temp, SpO₂, glicemia, Glasgow, EVA) e botão de copiar anotação
-- **Checklist de SVD** — Cuidados por plantão com marcação interativa
-- **Checklist de Curativo** — Avaliação e técnica com marcação interativa
-- **Tabela de Valores de Referência** — Normal, Alerta e Crítico para todos os parâmetros
-
-### 🎬 Aprendendo na Prática (index.html)
-- Mais de 50 vídeos organizados por tema
-- Suporte a YouTube Shorts (formato vertical)
-- Detecção automática de vídeos bloqueados (Erro 153) com fallback elegante
-- Thumbnail-first (não carrega iframe até o clique)
-
-### 🧬 Anatomia 3D (index.html)
-- Links diretos para ZygoteBody, AnatomyLearning e Z-Anatomy
-- Crânio humano 3D incorporado (UFMG via Sketchfab)
-- Tabela comparativa das ferramentas
-
-### 📋 Modelos de Evolução (index.html)
-- 9 modelos completos de evolução de enfermagem (SOAP)
-- Dificuldade fácil, médio e difícil
-- Botão de cópia direta
-
-### 📝 Exercícios (index.html)
-- 70+ questões com resposta comentada
-- Botão de reiniciar por grupo
-- Temas: procedimentos, doenças, emergências, farmacologia, legislação
-
-### 🔤 Glossário (index.html)
-- Mais de 100 termos e siglas de enfermagem
-- Busca em tempo real
-- Categorias visuais por área
-
-### 💬 Comunidade (chat.html)
-- Chat em tempo real com Firebase
-- Login com conta Google
-- Modal de boas-vindas com regras da comunidade
-- Sistema de moderação automática (palavras proibidas)
-- Banimento progressivo: aviso → 10min → 24h → permanente
-- Botão de denúncia de mensagens
+**Ferramentas offline:** Calculadoras (gotejamento, dose/peso, IMC) · Glasgow interativo · APGAR · EVA · Braden · Morse · Calendário Vacinal PNI 2024 · Mini Bulário (30 medicamentos) · Bandejas de procedimentos · Simulado (20 questões/timer) · Anotador de plantão
 
 ---
 
-## 🔄 Sistema de Atualização (SW v4)
+### Recursos Extras
 
-O EnfermaStudy possui um sistema de atualização inteligente, especialmente útil para usuários com o app instalado no iPhone/Android:
-
-- Quando uma nova versão é publicada no GitHub, o Service Worker novo é baixado silenciosamente em segundo plano
-- Um **banner azul** aparece automaticamente no rodapé: *"🆕 Nova versão disponível!"*
-- O usuário clica **"Atualizar ✓"** e o app recarrega com o conteúdo novo
-- Sem necessidade de desinstalar ou reinstalar o app
-
-> **Nota:** Na primeira atualização após o SW v4 ser instalado, a transição ocorre silenciosamente (fechar e reabrir). A partir daí o banner funciona perfeitamente.
+| Arquivo | Destaques |
+|---|---|
+| `procedimentos.html` | 20+ procedimentos · filtro por categoria · busca · OVACE AHA 2025 |
+| `diluicoes.html` | Adrenalina, Amiodarona, KCl, Noradrenalina, MgSO₄, Naloxona e mais |
+| `sistemas.html` | 10 sistemas · anatomia · fisiologia · alterações · cuidados de enfermagem |
+| `exames.html` | Raio-X, TC, RM, USG, ECG, PET, EEG, Espirometria, Endoscopia |
+| `ecg.html` | Sinusal, bradicardia, taquicardia, FA, TV, FV, assistolia, bloqueio AV |
+| `compatibilidade.html` | Verificador rápido + tabela matricial 20×20 · tags ✅❌⚠️ |
+| `gasometria.html` | Interpretador pH/PaCO₂/HCO₃⁻ · calculadora BH · eletrólitos |
+| `fichas.html` | Carro de emergência · SVD · curativo · ficha SV com alertas automáticos |
+| `cronometro.html` | Timer 12h · 4 timers de medicação · vibração · marcadores |
+| `jelco.html` | 26G→14G · cores · fluxo · indicações · diagrama de inserção |
+| `flashcards.html` | Sinais Vitais · Procedimentos · Farmacologia · Emergências · Escalas · Legislação |
+| `legislacao.html` | Lei 7.498/1986 · COFEN/COREn · Código de Ética · bioética · SAE · sigilo |
+| `cateteres.html` | PICC · CVC (PVC) · Swan-Ganz (balonete, zeros) · diálise · bundle ICSRC · complicações |
+| `resumos.html` | Sinais Vitais · Glasgow · Braden · Vacinas · PCR+XABCDE · Medicamentos · Carro · Legislação |
+| `chat.html` | Firebase Auth (Google) · moderação automática · banimento progressivo · denúncia |
+| `recursos.html` | Hub de navegação para todos os extras |
 
 ---
 
-## 🚀 Como usar
+## 📋 Diretrizes Clínicas Aplicadas (2025)
 
-### Opção 1 — GitHub Pages (recomendado)
-Acesse diretamente pelo link do GitHub Pages do repositório.
+| Diretriz | Fonte | Onde aplicado |
+|---|---|---|
+| **XABCDE** — X antes do A | ATLS 11ª Ed. (ACS 2025) | `index.html` · `resumos.html` |
+| **PA normal <120/80** · Pré-HAS 120–139/80–89 | Diretriz SBC/SBN/SBH 2025 | `index.html` · `fichas.html` · `flashcards.html` · `resumos.html` |
+| **OVACE** — 5 golpes + 5 compressões (adulto) | AHA Guidelines 2025 | `procedimentos.html` · `resumos.html` |
+| Pneumotórax: 2º EIC LMC reintroduzido | ATLS 11ª Ed. 2025 | `index.html` |
+| "Urgência hipertensiva" → novo termo | Diretriz SBC 2025 | `index.html` |
 
-### Opção 2 — Instalar como app (PWA)
-1. Abra o site no celular ou computador
-2. **Android:** menu do navegador → **"Adicionar à tela inicial"**
-3. **iPhone/iPad:** toque em **Compartilhar ⬆️** → **"Adicionar à Tela Inicial"**
-4. **Computador:** clique no ícone de instalar na barra de endereços
+---
 
-### Opção 3 — Local (VS Code)
-1. Clone o repositório
-2. Abra com o VS Code + extensão **Live Server**
-3. Clique com o botão direito no `index.html` → **"Open with Live Server"**
+## 🔄 Sistema de Atualização (SW v6)
+
+- Novo conteúdo publicado no GitHub → SW baixado silenciosamente
+- Banner azul aparece: **"🆕 Nova versão disponível!"**
+- Usuário clica **"Atualizar ✓"** → app recarrega
+- Nenhuma reinstalação necessária
+
+---
+
+## 🚀 Como Usar
+
+**GitHub Pages:** Acesse pelo link do repositório.
+
+**Instalar como PWA:**
+- Android: menu → "Adicionar à tela inicial"
+- iPhone/iPad: Compartilhar ⬆️ → "Adicionar à Tela Inicial"
+- Computador: ícone de instalar na barra de endereços
 
 ---
 
 ## ⚙️ Configuração do Chat (Firebase)
 
-O `chat.html` requer um projeto Firebase configurado:
+1. Criar projeto em [firebase.google.com](https://firebase.google.com)
+2. Ativar **Authentication → Google**
+3. Criar **Realtime Database** (us-central1)
+4. Copiar `firebase-config.example.js` → renomear para `firebase-config.js` → preencher credenciais
+5. Adicionar domínio do GitHub Pages em **Authentication → Domínios autorizados**
+6. Publicar as regras do banco:
 
-1. Crie um projeto em [firebase.google.com](https://firebase.google.com)
-2. Ative **Authentication → Google**
-3. Crie o **Realtime Database** (us-central1, modo teste)
-4. Registre um app Web e copie o `firebaseConfig`
-5. Substitua o `firebaseConfig` no `chat.html`
-6. Publique as regras do banco (veja abaixo)
-7. Adicione seu domínio em **Authentication → Domínios autorizados**
-
-**Regras do Realtime Database:**
 ```json
 {
   "rules": {
-    "messages": {
-      ".read": "auth != null",
-      ".write": "auth != null"
-    },
-    "users": {
-      "$uid": {
-        ".read": "auth != null",
-        ".write": "auth != null && auth.uid == $uid"
-      }
-    },
-    "bans": {
-      "$uid": {
-        ".read": "auth != null",
-        ".write": "auth != null && auth.uid == $uid"
-      }
-    },
-    "reports": {
-      ".read": false,
-      ".write": "auth != null"
-    }
+    "messages": { ".read": "auth != null", ".write": "auth != null" },
+    "users": { "$uid": { ".read": "auth != null", ".write": "auth != null && auth.uid == $uid" } },
+    "bans": { "$uid": { ".read": "auth != null", ".write": "auth != null && auth.uid == $uid" } },
+    "reports": { ".read": false, ".write": "auth != null" }
   }
 }
 ```
 
 ---
 
-## 🛠️ Tecnologias utilizadas
+## 🛠️ Tecnologias
 
 | Tecnologia | Uso |
 |---|---|
-| HTML5 + CSS3 + JavaScript | App completo (sem frameworks) |
-| PWA + Service Worker v4 | Funcionamento offline + banner de atualização |
-| Firebase Auth | Login com Google |
-| Firebase Realtime Database | Chat em tempo real |
+| HTML5 + CSS3 + JavaScript | App completo sem frameworks |
+| PWA + Service Worker v6 | Offline + banner de atualização |
+| SVG inline | Traçados de ECG, diagramas clínicos, jelco |
+| Firebase Auth + Realtime DB | Chat em tempo real |
 | YouTube Embed API | Vídeos educativos |
-| Sketchfab Embed | Modelos 3D anatômicos |
-| localStorage | Anotador de plantão offline |
-| SVG inline | Diagramas e infográficos clínicos |
+| localStorage | Anotador de plantão |
+| Google Analytics G-FR02Y9XJX1 | Rastreamento de uso em todos os arquivos |
+
+---
+
+## 🚧 Próximas Implementações
+
+| Arquivo | Descrição | Complexidade |
+|---|---|---|
+| `farmacologia.html` | Classes de medicamentos por sistema | ⭐⭐⭐ |
+| `triagem.html` | Triagem de Manchester | ⭐⭐⭐ |
+| `questoes.html` | Banco de questões por tema (100+) | ⭐⭐⭐⭐ |
+| `casos_clinicos.html` | Situações clínicas comentadas | ⭐⭐⭐⭐ |
+| `acls.html` | Protocolos ACLS/BLS com algoritmos | ⭐⭐⭐⭐⭐ |
+| `forum.html` | Fórum Firebase com gamificação e títulos | ⭐⭐⭐⭐⭐ |
 
 ---
 
 ## 💚 Apoie o Projeto
 
-Este app é gratuito, sem anúncios e mantido por uma pessoa só. Se o EnfermaStudy te ajudou, considere contribuir com qualquer valor via Pix:
+Gratuito, sem anúncios, mantido por uma pessoa só.
 
-- **Chave Pix:** 94984122526 (telefone)
+- **Chave Pix:** `94984122526` (telefone)
 - **Favorecido:** Oseias Soares da Silva Luz
 - **Banco:** Cloudwalk
-
-Qualquer valor é bem-vindo e ajuda a manter o projeto vivo e crescendo. 🙏
 
 ---
 
 ## ⚠️ Aviso Legal
 
-Este material é **exclusivamente educativo**. Em situações clínicas reais, sempre siga os protocolos institucionais e as orientações do enfermeiro responsável e da equipe médica.
+Material **exclusivamente educativo**. Em situações clínicas reais, siga os protocolos institucionais e as orientações do enfermeiro responsável.
 
 ---
 
 ## 👤 Autor
 
-**Saieso Seraos** — pseudônimo de Oseias Soares da Silva Luz
+**Saieso Seraos** — Oseias Soares da Silva Luz
 
 - 🎓 Técnico em Enfermagem
 - 💻 Instrutor de Informática
 - 📚 Autor Independente
-- 🌐 Criador de Conlangs — [academiadeconlangs.blogspot.com](https://academiadeconlangs.blogspot.com)
+- 🌐 [academiadeconlangs.blogspot.com](https://academiadeconlangs.blogspot.com)
 
 ---
 
 ## 📄 Licença
 
-Este projeto é de uso livre para fins educativos e não comerciais.
-Para uso comercial, entre em contato com o autor.
+Uso livre para fins educativos e não comerciais.
 
 ---
 
-<p align="center">
-  Feito com ❤️ por <strong>Saieso Seraos</strong> · EnfermaStudy 2026
-</p>
+<p align="center">Feito com ❤️ por <strong>Saieso Seraos</strong> · EnfermaStudy v3.2 · 2026</p>

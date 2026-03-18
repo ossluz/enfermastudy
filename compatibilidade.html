@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FR02Y9XJX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FR02Y9XJX1');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compatibilidade de Medicamentos — EnfermaStudy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f0f4f3}
+body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh}
+header{background:linear-gradient(135deg,#1a237e,#283593);color:#fff;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.hd{display:flex;align-items:center;gap:14px;padding:14px 20px}
+.hi{width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ht h1{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800}
+.ht p{font-size:.72rem;opacity:.8;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.bk{margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:10px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;text-decoration:none}
+main{max-width:960px;margin:0 auto;padding:24px 16px 60px}
+.hero{background:linear-gradient(135deg,#1a237e,#283593,#3949ab);color:#fff;border-radius:16px;padding:24px;margin-bottom:20px;position:relative;overflow:hidden}
+.hero::after{content:'💉';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:70px;opacity:.1}
+.hero h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;margin-bottom:6px}
+.hero p{font-size:.84rem;opacity:.9;line-height:1.6}
+.search-row{display:flex;gap:10px;margin-bottom:20px}
+.search-row select{flex:1;border:2px solid #e0e0e0;border-radius:10px;padding:11px 14px;font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:700;outline:none;background:#fff}
+.search-row select:focus{border-color:#3949ab}
+.check-btn{background:#3949ab;color:#fff;border:none;border-radius:10px;padding:11px 20px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.88rem;cursor:pointer}
+/* Resultado */
+#resultBox{display:none;border-radius:14px;padding:18px;margin-bottom:20px;font-size:.88rem;line-height:1.7}
+.compat{background:#e8f5e9;border-left:4px solid #4caf50}
+.incompat{background:#ffebee;border-left:4px solid #ef5350}
+.caution{background:#fff8e1;border-left:4px solid #ffc107}
+.unknown{background:#f5f5f5;border-left:4px solid #9e9e9e}
+#resultBox h3{font-size:1rem;font-weight:800;margin-bottom:6px}
+/* Tabela */
+.table-wrap{overflow-x:auto;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;font-size:.75rem;min-width:700px}
+th{background:#283593;color:#fff;padding:10px 8px;text-align:center;position:sticky;top:0}
+th:first-child{text-align:left;position:sticky;left:0;z-index:2;background:#1a237e}
+td{padding:8px;text-align:center;border:1px solid #e0e0e0;font-weight:700}
+td:first-child{text-align:left;font-weight:800;background:#fff;position:sticky;left:0;border-right:2px solid #e0e0e0}
+.c{background:#c8e6c9;color:#1b5e20}
+.i{background:#ffcdd2;color:#b71c1c}
+.p{background:#fff9c4;color:#f57f17}
+.d{background:#f5f5f5;color:#9e9e9e}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.leg{display:flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700}
+.leg-dot{width:14px;height:14px;border-radius:4px;flex-shrink:0}
+.info-box{border-radius:10px;padding:12px 14px;font-size:.82rem;line-height:1.6;margin-bottom:16px;background:#e8eaf6;border-left:4px solid #3949ab;color:#1a237e}
+.drug-card{background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.06);padding:16px;margin-bottom:10px;border:1px solid rgba(0,0,0,.06)}
+.drug-card h4{font-size:.9rem;font-weight:800;color:#1a237e;margin-bottom:10px}
+.incomp-list{display:flex;flex-wrap:wrap;gap:6px}
+.tag{padding:4px 10px;border-radius:20px;font-size:.72rem;font-weight:700}
+.tag-i{background:#ffcdd2;color:#b71c1c}
+.tag-p{background:#fff9c4;color:#f57f17}
+.tag-c{background:#c8e6c9;color:#1b5e20}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="hi">💉</div>
+    <div class="ht"><h1>Compatibilidade EV</h1><p>EnfermaStudy — Medicamentos</p></div>
+    <a href="recursos.html" class="bk">← Recursos</a>
+  </div>
+</header>
+<main>
+  <div class="hero">
+    <h2>💉 Compatibilidade de Medicamentos EV</h2>
+    <p>Verifique se dois medicamentos podem ser administrados na mesma via ou misturados no mesmo acesso venoso. Use como referência — sempre consulte o protocolo institucional.</p>
+  </div>
+
+  <div class="info-box">⚠️ Esta tabela é uma referência educativa baseada em fontes reconhecidas. Em caso de dúvida, consulte o farmacêutico clínico ou o protocolo da instituição antes de misturar medicamentos.</div>
+
+  <!-- Verificador rápido -->
+  <div style="background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.06);padding:18px;margin-bottom:20px">
+    <div style="font-size:.85rem;font-weight:800;color:#1a237e;margin-bottom:12px">🔍 Verificar Compatibilidade</div>
+    <div class="search-row">
+      <select id="drug1"><option value="">Medicamento A...</option></select>
+      <select id="drug2"><option value="">Medicamento B...</option></select>
+      <button class="check-btn" onclick="checkCompat()">Verificar</button>
+    </div>
+    <div id="resultBox"></div>
+  </div>
+
+  <div class="legend">
+    <div class="leg"><div class="leg-dot" style="background:#c8e6c9"></div>Compatível</div>
+    <div class="leg"><div class="leg-dot" style="background:#ffcdd2"></div>Incompatível</div>
+    <div class="leg"><div class="leg-dot" style="background:#fff9c4"></div>Cautela / Condicional</div>
+    <div class="leg"><div class="leg-dot" style="background:#f5f5f5"></div>Dados insuficientes</div>
+  </div>
+
+  <!-- Tabela matricial -->
+  <div class="table-wrap">
+    <table id="compatTable"></table>
+  </div>
+
+  <!-- Cards por medicamento -->
+  <div style="font-size:.85rem;font-weight:800;color:#333;margin-bottom:12px">📋 Incompatibilidades por Medicamento</div>
+  <div id="drugCards"></div>
+
+</main>
+<script>
+const DRUGS = [
+  'Adrenalina','Amiodarona','Atropina','Bicarbonato','Dobutamina',
+  'Dopamina','Furosemida','Heparina','Hidrocortisona','KCl',
+  'Midazolam','Morfina','Nitroglicerina','Noradrenalina','Omeprazol',
+  'Oxitocina','Penicilina G','Propofol','SF 0,9%','Vancomicina'
+];
+
+// Matriz: C=compatível, I=incompatível, P=cautela, D=sem dados
+// Indexado como COMPAT[A][B]
+const COMPAT = {
+  'Adrenalina':     {'Adrenalina':'C','Amiodarona':'P','Atropina':'C','Bicarbonato':'I','Dobutamina':'P','Dopamina':'C','Furosemida':'I','Heparina':'I','Hidrocortisona':'P','KCl':'P','Midazolam':'P','Morfina':'P','Nitroglicerina':'P','Noradrenalina':'C','Omeprazol':'P','Oxitocina':'P','Penicilina G':'D','Propofol':'D','SF 0,9%':'C','Vancomicina':'D'},
+  'Amiodarona':     {'Adrenalina':'P','Amiodarona':'C','Atropina':'D','Bicarbonato':'I','Dobutamina':'P','Dopamina':'P','Furosemida':'I','Heparina':'I','Hidrocortisona':'D','KCl':'D','Midazolam':'P','Morfina':'D','Nitroglicerina':'P','Noradrenalina':'P','Omeprazol':'I','Oxitocina':'D','Penicilina G':'I','Propofol':'I','SF 0,9%':'C','Vancomicina':'D'},
+  'Atropina':       {'Adrenalina':'C','Amiodarona':'D','Atropina':'C','Bicarbonato':'I','Dobutamina':'C','Dopamina':'C','Furosemida':'D','Heparina':'D','Hidrocortisona':'C','KCl':'D','Midazolam':'C','Morfina':'C','Nitroglicerina':'D','Noradrenalina':'C','Omeprazol':'D','Oxitocina':'D','Penicilina G':'D','Propofol':'C','SF 0,9%':'C','Vancomicina':'D'},
+  'Bicarbonato':    {'Adrenalina':'I','Amiodarona':'I','Atropina':'I','Bicarbonato':'C','Dobutamina':'I','Dopamina':'I','Furosemida':'P','Heparina':'I','Hidrocortisona':'I','KCl':'I','Midazolam':'I','Morfina':'I','Nitroglicerina':'I','Noradrenalina':'I','Omeprazol':'I','Oxitocina':'I','Penicilina G':'I','Propofol':'I','SF 0,9%':'I','Vancomicina':'I'},
+  'Dobutamina':     {'Adrenalina':'P','Amiodarona':'P','Atropina':'C','Bicarbonato':'I','Dobutamina':'C','Dopamina':'C','Furosemida':'I','Heparina':'P','Hidrocortisona':'C','KCl':'P','Midazolam':'P','Morfina':'P','Nitroglicerina':'P','Noradrenalina':'C','Omeprazol':'P','Oxitocina':'D','Penicilina G':'D','Propofol':'P','SF 0,9%':'C','Vancomicina':'D'},
+  'Dopamina':       {'Adrenalina':'C','Amiodarona':'P','Atropina':'C','Bicarbonato':'I','Dobutamina':'C','Dopamina':'C','Furosemida':'I','Heparina':'I','Hidrocortisona':'C','KCl':'P','Midazolam':'P','Morfina':'P','Nitroglicerina':'P','Noradrenalina':'C','Omeprazol':'P','Oxitocina':'D','Penicilina G':'I','Propofol':'P','SF 0,9%':'C','Vancomicina':'P'},
+  'Furosemida':     {'Adrenalina':'I','Amiodarona':'I','Atropina':'D','Bicarbonato':'P','Dobutamina':'I','Dopamina':'I','Furosemida':'C','Heparina':'P','Hidrocortisona':'P','KCl':'P','Midazolam':'I','Morfina':'I','Nitroglicerina':'I','Noradrenalina':'I','Omeprazol':'P','Oxitocina':'D','Penicilina G':'D','Propofol':'I','SF 0,9%':'C','Vancomicina':'I'},
+  'Heparina':       {'Adrenalina':'I','Amiodarona':'I','Atropina':'D','Bicarbonato':'I','Dobutamina':'P','Dopamina':'I','Furosemida':'P','Heparina':'C','Hidrocortisona':'I','KCl':'C','Midazolam':'I','Morfina':'I','Nitroglicerina':'C','Noradrenalina':'I','Omeprazol':'P','Oxitocina':'D','Penicilina G':'C','Propofol':'I','SF 0,9%':'C','Vancomicina':'I'},
+  'Hidrocortisona': {'Adrenalina':'P','Amiodarona':'D','Atropina':'C','Bicarbonato':'I','Dobutamina':'C','Dopamina':'C','Furosemida':'P','Heparina':'I','Hidrocortisona':'C','KCl':'P','Midazolam':'P','Morfina':'P','Nitroglicerina':'D','Noradrenalina':'P','Omeprazol':'P','Oxitocina':'D','Penicilina G':'P','Propofol':'D','SF 0,9%':'C','Vancomicina':'D'},
+  'KCl':            {'Adrenalina':'P','Amiodarona':'D','Atropina':'D','Bicarbonato':'I','Dobutamina':'P','Dopamina':'P','Furosemida':'P','Heparina':'C','Hidrocortisona':'P','KCl':'C','Midazolam':'D','Morfina':'P','Nitroglicerina':'P','Noradrenalina':'P','Omeprazol':'D','Oxitocina':'P','Penicilina G':'P','Propofol':'D','SF 0,9%':'C','Vancomicina':'P'},
+  'Midazolam':      {'Adrenalina':'P','Amiodarona':'P','Atropina':'C','Bicarbonato':'I','Dobutamina':'P','Dopamina':'P','Furosemida':'I','Heparina':'I','Hidrocortisona':'P','KCl':'D','Midazolam':'C','Morfina':'C','Nitroglicerina':'P','Noradrenalina':'P','Omeprazol':'I','Oxitocina':'D','Penicilina G':'D','Propofol':'C','SF 0,9%':'C','Vancomicina':'D'},
+  'Morfina':        {'Adrenalina':'P','Amiodarona':'D','Atropina':'C','Bicarbonato':'I','Dobutamina':'P','Dopamina':'P','Furosemida':'I','Heparina':'I','Hidrocortisona':'P','KCl':'P','Midazolam':'C','Morfina':'C','Nitroglicerina':'P','Noradrenalina':'P','Omeprazol':'I','Oxitocina':'D','Penicilina G':'D','Propofol':'C','SF 0,9%':'C','Vancomicina':'D'},
+  'Nitroglicerina': {'Adrenalina':'P','Amiodarona':'P','Atropina':'D','Bicarbonato':'I','Dobutamina':'P','Dopamina':'P','Furosemida':'I','Heparina':'C','Hidrocortisona':'D','KCl':'P','Midazolam':'P','Morfina':'P','Nitroglicerina':'C','Noradrenalina':'P','Omeprazol':'D','Oxitocina':'D','Penicilina G':'D','Propofol':'D','SF 0,9%':'C','Vancomicina':'D'},
+  'Noradrenalina':  {'Adrenalina':'C','Amiodarona':'P','Atropina':'C','Bicarbonato':'I','Dobutamina':'C','Dopamina':'C','Furosemida':'I','Heparina':'I','Hidrocortisona':'P','KCl':'P','Midazolam':'P','Morfina':'P','Nitroglicerina':'P','Noradrenalina':'C','Omeprazol':'P','Oxitocina':'D','Penicilina G':'D','Propofol':'D','SF 0,9%':'C','Vancomicina':'D'},
+  'Omeprazol':      {'Adrenalina':'P','Amiodarona':'I','Atropina':'D','Bicarbonato':'I','Dobutamina':'P','Dopamina':'P','Furosemida':'P','Heparina':'P','Hidrocortisona':'P','KCl':'D','Midazolam':'I','Morfina':'I','Nitroglicerina':'D','Noradrenalina':'P','Omeprazol':'C','Oxitocina':'D','Penicilina G':'D','Propofol':'I','SF 0,9%':'C','Vancomicina':'D'},
+  'Oxitocina':      {'Adrenalina':'P','Amiodarona':'D','Atropina':'D','Bicarbonato':'I','Dobutamina':'D','Dopamina':'D','Furosemida':'D','Heparina':'D','Hidrocortisona':'D','KCl':'P','Midazolam':'D','Morfina':'D','Nitroglicerina':'D','Noradrenalina':'D','Omeprazol':'D','Oxitocina':'C','Penicilina G':'D','Propofol':'D','SF 0,9%':'C','Vancomicina':'D'},
+  'Penicilina G':   {'Adrenalina':'D','Amiodarona':'I','Atropina':'D','Bicarbonato':'I','Dobutamina':'D','Dopamina':'I','Furosemida':'D','Heparina':'C','Hidrocortisona':'P','KCl':'P','Midazolam':'D','Morfina':'D','Nitroglicerina':'D','Noradrenalina':'D','Omeprazol':'D','Oxitocina':'D','Penicilina G':'C','Propofol':'D','SF 0,9%':'C','Vancomicina':'I'},
+  'Propofol':       {'Adrenalina':'D','Amiodarona':'I','Atropina':'C','Bicarbonato':'I','Dobutamina':'P','Dopamina':'P','Furosemida':'I','Heparina':'I','Hidrocortisona':'D','KCl':'D','Midazolam':'C','Morfina':'C','Nitroglicerina':'D','Noradrenalina':'D','Omeprazol':'I','Oxitocina':'D','Penicilina G':'D','Propofol':'C','SF 0,9%':'C','Vancomicina':'D'},
+  'SF 0,9%':        {'Adrenalina':'C','Amiodarona':'C','Atropina':'C','Bicarbonato':'I','Dobutamina':'C','Dopamina':'C','Furosemida':'C','Heparina':'C','Hidrocortisona':'C','KCl':'C','Midazolam':'C','Morfina':'C','Nitroglicerina':'C','Noradrenalina':'C','Omeprazol':'C','Oxitocina':'C','Penicilina G':'C','Propofol':'C','SF 0,9%':'C','Vancomicina':'C'},
+  'Vancomicina':    {'Adrenalina':'D','Amiodarona':'D','Atropina':'D','Bicarbonato':'I','Dobutamina':'D','Dopamina':'P','Furosemida':'I','Heparina':'I','Hidrocortisona':'D','KCl':'P','Midazolam':'D','Morfina':'D','Nitroglicerina':'D','Noradrenalina':'D','Omeprazol':'D','Oxitocina':'D','Penicilina G':'I','Propofol':'D','SF 0,9%':'C','Vancomicina':'C'},
+};
+
+const MSGS = {
+  C:{label:'✅ Compatível',cls:'compat',text:'Estes medicamentos são considerados compatíveis na mesma via. Ainda assim, use acessos separados sempre que possível para garantir a segurança.'},
+  I:{label:'❌ Incompatível — NÃO misturar',cls:'incompat',text:'INCOMPATÍVEIS. Podem ocorrer precipitação, degradação ou reação química perigosa. Use vias de acesso diferentes obrigatoriamente.'},
+  P:{label:'⚠️ Atenção — Usar com cautela',cls:'caution',text:'Compatibilidade condicional. Podem ser compatíveis em determinadas concentrações ou em curto período. Consulte o farmacêutico clínico e o protocolo institucional.'},
+  D:{label:'❓ Dados insuficientes',cls:'unknown',text:'Não há dados conclusivos sobre a compatibilidade. Por segurança, evite misturar e use vias separadas até obter informação do farmacêutico.'},
+};
+
+// Populate selects
+DRUGS.forEach(d => {
+  ['drug1','drug2'].forEach(id => {
+    const opt = document.createElement('option');
+    opt.value = d; opt.textContent = d;
+    document.getElementById(id).appendChild(opt);
+  });
+});
+
+// Build table
+function buildTable() {
+  const t = document.getElementById('compatTable');
+  let html = '<tr><th>↓ A / B →</th>';
+  DRUGS.forEach(d => html += `<th>${d}</th>`);
+  html += '</tr>';
+  DRUGS.forEach(a => {
+    html += `<tr><td>${a}</td>`;
+    DRUGS.forEach(b => {
+      const v = COMPAT[a][b] || 'D';
+      html += `<td class="${v.toLowerCase()}">${v}</td>`;
+    });
+    html += '</tr>';
+  });
+  t.innerHTML = html;
+}
+
+function checkCompat() {
+  const a = document.getElementById('drug1').value;
+  const b = document.getElementById('drug2').value;
+  const box = document.getElementById('resultBox');
+  if (!a || !b) { alert('Selecione os dois medicamentos.'); return; }
+  if (a === b) { box.className='result-box caution'; box.innerHTML='<h3>⚠️ Mesmo medicamento</h3><p>Selecione dois medicamentos diferentes.</p>'; box.style.display='block'; return; }
+  const v = COMPAT[a]?.[b] || 'D';
+  const m = MSGS[v];
+  box.className = m.cls;
+  box.innerHTML = `<h3>${m.label}</h3><p><strong>${a}</strong> + <strong>${b}</strong>: ${m.text}</p>`;
+  box.style.display = 'block';
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// Build drug cards
+function buildCards() {
+  const el = document.getElementById('drugCards');
+  let html = '';
+  DRUGS.forEach(a => {
+    const incomp = DRUGS.filter(b => b!==a && COMPAT[a]?.[b]==='I');
+    const caut = DRUGS.filter(b => b!==a && COMPAT[a]?.[b]==='P');
+    const comp = DRUGS.filter(b => b!==a && COMPAT[a]?.[b]==='C');
+    html += `<div class="drug-card"><h4>💊 ${a}</h4><div class="incomp-list">`;
+    if(incomp.length) incomp.forEach(b => html+=`<span class="tag tag-i">❌ ${b}</span>`);
+    if(caut.length) caut.forEach(b => html+=`<span class="tag tag-p">⚠️ ${b}</span>`);
+    if(comp.length) comp.slice(0,5).forEach(b => html+=`<span class="tag tag-c">✅ ${b}</span>`);
+    html += '</div></div>';
+  });
+  el.innerHTML = html;
+}
+
+buildTable();
+buildCards();
+</script>
+</body>
+</html>
